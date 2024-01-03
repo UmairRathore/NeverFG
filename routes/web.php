@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\RoleController;
+use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
 
-Route::get('/signup',[AuthController::class]);
+Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('userSignUp');
 Route::post('/signup',[AuthController::class]);
 Route::get('/login',[AuthController::class]);
 Route::post('/login',[AuthController::class]);
@@ -49,6 +50,21 @@ Route::group(['prefix' => 'role'], function () {
     Route::get('/edit-role/{id}', [RoleController::class, 'edit'])->name('backend.edit-role');
     Route::patch('/update-role/{id}', [RoleController::class, 'update'])->name('backend.update-role');
     Route::get('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
+
+});
+//Role
+
+//<----------CRUD User
+
+Route::group(['prefix' => 'user'], function () {
+
+    Route::get('/list-user', [UserController::class, 'index'])->name('backend.list-user');
+    Route::get('/add-user', [UserController::class, 'create']);
+    Route::post('/add-user', [UserController::class, 'store'])->name('backend.add-user');
+    Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('backend.edit-user');
+    Route::patch('/update-user/{id}', [UserController::class, 'update'])->name('backend.update-user');
+    Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('backend.delete-user');
+    Route::post('/status-user/{id}', [UserController::class, 'changeStatus'])->name('status-user');
 
 });
 //Role
