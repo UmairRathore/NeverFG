@@ -6,8 +6,8 @@
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
         <a class="ps-0 ms-0 text-center" href="{{route('backend.index')}}"> <img src="{{asset('/backend/assets/img/medboard-logo-216x62.png')}}" alt="logo"> </a>
-        <a href="{{route('backend.update-profile')}}" class="text-center ms-logo-img-link"> <img src="{{asset('/backend/assets/img/dashboard/doctor-3.jpg')}}" alt="logo"></a>
-        <h5 class="text-center text-white mt-2">{{ Auth::user()->first_name }}</h5>
+{{--        <a href="{{route('backend.update-profile')}}" class="text-center ms-logo-img-link"> <img src="{{asset('/backend/assets/img/dashboard/doctor-3.jpg')}}" alt="logo"></a>--}}
+{{--        <h5 class="text-center text-white mt-2">{{ Auth::user()->first_name }}</h5>--}}
 {{--        <h6 class="text-center text-white mb-3">{{ Auth::role()->name }}</h6>--}}
     </div>
     <!-- Navigation -->
@@ -29,14 +29,14 @@
 {{--            </ul>--}}
 {{--        </li>--}}
         <!-- /Dashboard -->
-@role('Super Admin|Admin')
-        <!-- User -->
-        <li class="menu-item">
-            <a href="{{route('backend.user-list')}}">
-                <span><i class="far fa-user-circle"></i>User </span>
-            </a>
-        </li>
-        @endrole
+
+{{--        <!-- User -->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.user-list')}}">--}}
+{{--                <span><i class="far fa-user-circle"></i>User </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        --}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user">--}}
 {{--                <span><i class="far fa-user-circle"></i>User</span>--}}
@@ -46,13 +46,13 @@
 {{--                <li> <a href="{{route('backend.user-list')}}">Admin User List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!-- User -->
-        <!-- Doctor -->
-        <li class="menu-item">
-            <a href="{{route('backend.doctor-list')}}">
-                <span><i class="fas fa-stethoscope"></i>Doctor </span>
-            </a>
-        </li>
+{{--        <!-- User -->--}}
+{{--        <!-- Doctor -->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.doctor-list')}}">--}}
+{{--                <span><i class="fas fa-stethoscope"></i>Doctor </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#doctor" aria-expanded="false" aria-controls="doctor">--}}
@@ -63,13 +63,13 @@
 {{--                <li> <a href="{{route('backend.doctor-list')}}">Doctor List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!-- Doctor -->
-        <!-- Patient -->
-        <li class="menu-item">
-            <a href="{{route('backend.patient-list')}}">
-                <span><i class="far fa-user"></i>Patient </span>
-            </a>
-        </li>
+{{--        <!-- Doctor -->--}}
+{{--        <!-- Patient -->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.patient-list')}}">--}}
+{{--                <span><i class="far fa-user"></i>Patient </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#patient" aria-expanded="false" aria-controls="patient">--}}
 {{--                <span><i class="fas fa-user"></i>Patient</span>--}}
@@ -79,32 +79,32 @@
 {{--                <li> <a href="{{route('backend.patient-list')}}">Patient List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!-- /Patient -->
+{{--        <!-- /Patient -->--}}
 
-        @role('Super Admin|Admin')
+
         <!-- Roles -->
         <li class="menu-item">
             <a href="{{route('backend.role-list')}}">
                 <span><i class="material-icons">group</i>Roles </span>
             </a>
         </li>
-        @endrole
-        <!-- Roles -->
-    @role('Super Admin|Admin|Doctor')
-        <!-- Appointment -->
 
-        <li class="menu-item">
-            <a href="{{route('backend.timeslot-list')}}">
-                <span><i class="fa fa-clock"></i>Time Slots </span>
-            </a>
-        </li>
+{{--        <!-- Roles -->--}}
 
-        <li class="menu-item">
-            <a href="{{route('backend.appointment-list')}}">
-                <span><i class="far fa-check-square"></i>Appointment </span>
-            </a>
-        </li>
-        @endrole
+{{--        <!-- Appointment -->--}}
+
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.timeslot-list')}}">--}}
+{{--                <span><i class="fa fa-clock"></i>Time Slots </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.appointment-list')}}">--}}
+{{--                <span><i class="far fa-check-square"></i>Appointment </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        --}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#appointment" aria-expanded="false" aria-controls="appointment">--}}
 {{--                <span><i class="far fa-check-square"></i>Appointment</span>--}}
@@ -114,14 +114,14 @@
 {{--                <li> <a href="{{route('backend.appointment-list')}}">Appointment List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!-- /Appointment -->
-        @role('Super Admin|Admin')
-        <!-- Labtest -->
-        <li class="menu-item">
-            <a href="{{route('backend.labtest-list')}}">
-                <span><i class="fas fa-file-alt"></i>Labtest </span>
-            </a>
-        </li>
+{{--        <!-- /Appointment -->--}}
+
+{{--        <!-- Labtest -->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.labtest-list')}}">--}}
+{{--                <span><i class="fas fa-file-alt"></i>Labtest </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#labtest" aria-expanded="false" aria-controls="labtest">--}}
 {{--                <span><i class="fas fa-file-alt"></i>Lab Test</span>--}}
@@ -131,15 +131,15 @@
 {{--                <li> <a href="{{route('backend.labtest-list')}}">Lab Test List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!-- Labtest -->
+{{--        <!-- Labtest -->--}}
 
 
-        <!--Specialization-->
-        <li class="menu-item">
-            <a href="{{route('backend.specialization-list')}}">
-                <span><i class="material-icons">beenhere</i>Specialization </span>
-            </a>
-        </li>
+{{--        <!--Specialization-->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.specialization-list')}}">--}}
+{{--                <span><i class="material-icons">beenhere</i>Specialization </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#specialization" aria-expanded="false" aria-controls="specialization">--}}
 {{--                <span><i class="far fa-check-square"></i>Specialization</span>--}}
@@ -149,14 +149,14 @@
 {{--                <li> <a href="{{route('backend.specialization-list')}}">Specialization List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!--Specialization-->
+{{--        <!--Specialization-->--}}
 
-        <!--Symptoms-->
-        <li class="menu-item">
-            <a href="{{route('backend.symptom-list')}}">
-                <span><i class="far fa-list-alt"></i>Symptom </span>
-            </a>
-        </li>
+{{--        <!--Symptoms-->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.symptom-list')}}">--}}
+{{--                <span><i class="far fa-list-alt"></i>Symptom </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#symptom" aria-expanded="false" aria-controls="symptom">--}}
 {{--                <span><i class="fas fa-list-alt"></i>Symptom</span>--}}
@@ -166,35 +166,35 @@
 {{--                <li> <a href="{{route('backend.symptom-list')}}">Symptom List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!--Symptoms-->
+{{--        <!--Symptoms-->--}}
 
-        <!--Banner-->
-        <li class="menu-item">
-            <a href="{{route('backend.banner-list')}}">
-                <span><i class="far fa-images"></i>Banner </span>
-            </a>
-        </li>
-        <!--Banner-->
+{{--        <!--Banner-->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.banner-list')}}">--}}
+{{--                <span><i class="far fa-images"></i>Banner </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        <!--Banner-->--}}
 
-        <!--Issue-->
-        <li class="menu-item">
-            <a href="{{route('backend.issue-list')}}">
-                <span><i class="far fa-images"></i>Issue </span>
-            </a>
-        </li>
-        <!--Issue-->
-        <!--Transactions-->
-        <li class="menu-item">
-            <a href="{{route('backend.transaction-list')}}">
-                <span><i class="material-icons">payment</i>Transaction </span>
-            </a>
-        </li>
+{{--        <!--Issue-->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.issue-list')}}">--}}
+{{--                <span><i class="far fa-images"></i>Issue </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+{{--        <!--Issue-->--}}
+{{--        <!--Transactions-->--}}
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.transaction-list')}}">--}}
+{{--                <span><i class="material-icons">payment</i>Transaction </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
-        <li class="menu-item">
-            <a href="{{route('backend.userwallet-list')}}">
-                <span><i class="material-icons">payment</i>User Wallet </span>
-            </a>
-        </li>
+{{--        <li class="menu-item">--}}
+{{--            <a href="{{route('backend.userwallet-list')}}">--}}
+{{--                <span><i class="material-icons">payment</i>User Wallet </span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#transaction" aria-expanded="false" aria-controls="transaction">--}}
 {{--                <span><i class="fas fa-dollar-sign"></i>Transaction</span>--}}
@@ -203,15 +203,35 @@
 {{--                <li> <a href="{{route('backend.transaction-list')}}">Transaction List</a> </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-        <!--Transactions-->
+{{--        <!--Transactions-->--}}
 
-        <!--Reviews-->
+{{--        <!--Reviews-->--}}
 {{--        <li class="menu-item">--}}
 {{--            <a href="{{route('backend.reviews-list')}}">--}}
 {{--                <span><i class="material-icons">reviews</i>Reviews </span>--}}
 {{--            </a>--}}
 {{--        </li>--}}
-        @endrole
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#reviews" aria-expanded="false" aria-controls="reviews">--}}

@@ -32,9 +32,9 @@
         <span class="ms-toggler-bar bg-white"></span>
     </div>
     <div class="docfind-logo d-none d-xl-block">
-        <a class="sigma_logo" href="{{route('frontend.doctor-clinic')}}">
-            <img src="{{asset('/backend/assets/img/dov-logo.png')}}" alt="logo">
-        </a>
+{{--        <a class="sigma_logo" href="{{route('frontend.doctor-clinic')}}">--}}
+{{--            <img src="{{asset('/backend/assets/img/dov-logo.png')}}" alt="logo">--}}
+{{--        </a>--}}
     </div>
     <div class="logo-sn logo-sm ms-d-block-sm">
         <a class="ps-0 ms-0 text-center navbar-brand me-0" href="{{route('backend.index')}}"><img src="{{asset('/backend/assets/img/medboard-logo-84x41.png')}}" alt="logo"> </a>
@@ -225,12 +225,12 @@
             <a href="#" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="ms-user-img ms-img-round float-end" src="{{asset('/backend/assets/img/dashboard/doctor-3.jpg')}}" alt="people"> </a>
             <ul class="dropdown-menu dropdown-menu-end user-dropdown" aria-labelledby="userDropdown">
                 <li class="dropdown-menu-header">
-                    <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, {{ Auth::user()->first_name }}</span></h6>
+{{--                    <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, {{ Auth::user()->first_name }}</span></h6>--}}
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="ms-dropdown-list">
-                    <a class="media fs-14 p-2" href="{{route('backend.update-profile')}}"> <span><i class="flaticon-user me-2"></i> Profile</span> </a>
-                    <a class="media fs-14 p-2" href="{{route('backend.update-password')}}"> <span><i class="flaticon-gear me-2"></i> Account Settings</span> </a>
+{{--                    <a class="media fs-14 p-2" href="{{route('backend.update-profile')}}"> <span><i class="flaticon-user me-2"></i> Profile</span> </a>--}}
+{{--                    <a class="media fs-14 p-2" href="{{route('backend.update-password')}}"> <span><i class="flaticon-gear me-2"></i> Account Settings</span> </a>--}}
                 </li>
                 <li class="dropdown-divider"></li>
 
