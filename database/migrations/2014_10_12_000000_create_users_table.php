@@ -22,10 +22,12 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->string('gender');
              $table->unsignedBigInteger('role_id');
+             $table->unsignedBigInteger('account_type_id');
             $table->timestamps();
 
             //foreign key constraint
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('account_type_id')->references('id')->on('account_types');
 
 
         });

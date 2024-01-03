@@ -22,10 +22,12 @@ class CreateUserMemorialsTable extends Migration
             $table->string('fav_saying')->nullable();
             $table->string('resting_place')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('keeper_id');
             $table->enum('status', ['active', 'inactive'])->default('active'); // Use ENUM for two options
 
             //foreign key constraint
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('keeper_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
