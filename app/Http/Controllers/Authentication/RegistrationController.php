@@ -63,7 +63,6 @@ class RegistrationController extends Controller
             'gender' => 'required',
             'dob' => 'required',
         ]);
-
         $this->data['user'] = $this->_model;
         $this->data['user']->username = $request->input('first_name');
         $this->data['user']->username = $request->input('last_name');
