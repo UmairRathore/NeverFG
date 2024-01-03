@@ -80,17 +80,38 @@ class RoleController extends Controller
         }
 
         $this->data['roles'] = $this->model::find($id);
-        $this->data['roles'] = $request->input('name');
+        $this->data['roles']->name = $request->input('name');
         $check = $this->data['roles']->save();
         if ($check) {
             $msg = 'Role updated successfully';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-success');
+//            Session::flash('msg', $msg);
+            Session::flash('message', $msg);
         } else {
             $msg = 'Role not updated successfully';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-danger');
+//            Session::flash('msg', $msg);
+            Session::flash('message', $msg);
         }
         return redirect()->back();
     }
-}
+
+    public function destroy($id)
+    {
+        $this->data['roles'] = $this->model::find($id);
+        $check = $this->data['roles']->delete();
+        if (!$check)
+          {
+                $msg = 'Role deleted successfully';
+//            Session::flash('msg', $msg);
+                Session::flash('message', $msg);
+            } else {
+                $msg = 'Role not deleted successfully';
+//                Session::flash('msg', $msg);
+                Session::flash('required fields empty', $msg);
+            }
+    return redirect()->back();
+    }
+
+
+
+    }
+

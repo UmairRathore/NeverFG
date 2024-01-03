@@ -48,7 +48,7 @@ Route::group(['prefix' => 'role'], function () {
     Route::post('/add-role', [RoleController::class, 'store'])->name('backend.add-role');
     Route::get('/edit-role/{id}', [RoleController::class, 'edit'])->name('backend.edit-role');
     Route::patch('/update-role/{id}', [RoleController::class, 'update'])->name('backend.update-role');
-    Route::delete('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
+    Route::get('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
 
 });
 //Role

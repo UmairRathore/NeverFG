@@ -43,6 +43,7 @@
                                             <td>{{$role->id}}</td>
                                             <td>{{$role->name}}</td>
                                             <td>
+                                                    <a class="btn btn-primary" href="{{ route('backend.edit-role',$role->id) }}">Edit Role</a>
                                                     <a class="btn btn-danger" href="{{ route('backend.delete-role',$role->id) }}">Delete Role</a>
                                             </td>
                                         </tr>
