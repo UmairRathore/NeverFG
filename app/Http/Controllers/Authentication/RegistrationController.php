@@ -98,37 +98,37 @@ class RegistrationController extends Controller
     public function memorialregistration(Request $request)
     {
 
-//        $request->validate([
-//
-//            //               Step 1: memorial person
-//
-//            'memorial_first_name' => 'required',
-//            'memorial_last_name' => 'required',
-//            'memorial_passed' => 'required',
-//            'memorial_dod' => $request->input('passed') == 1 ? 'required' : '',
-//            'memorial_email' => $request->input('passed') == 0 ? 'required|email|unique:users' : '',
-//            'memorial_dob' => 'required',
-//            'memorial_city_of_birth' => 'required',
-//            'memorial_gender' => 'required',
-//            'memorial_image' => 'required',
-//
-//            //              Step 2: Biography of memorial person
-//
-//            'memorial_biography' => 'required',
-//            'memorial_fav_saying' => 'required',
-//            'memorial_resting_place' => 'required',
-//
-//            //              Step 3: Keeper INFO
-//
-//            'keeper_first_name' => 'required',
-//            'keeper_last_name' => 'required',
-//            'keeper_email' => 'required',
-//            'keeper_password' => 'required',
-//            'keeper_dob' => 'required',
-//            'keeper_gender' => 'required',
-//
-//            //              Step 4: Account Type
-//
+        $request->validate([
+
+            //               Step 1: memorial person
+
+            'memorial_first_name' => 'required',
+            'memorial_last_name' => 'required',
+            'memorial_passed' => 'required',
+            'memorial_dod' => $request->input('passed') == 1 ? 'required' : '',
+            'memorial_email' => $request->input('passed') == 0 ? 'required|email|unique:users' : '',
+            'memorial_dob' => 'required',
+            'memorial_city_of_birth' => 'required',
+            'memorial_gender' => 'required',
+            'memorial_image' => 'required',
+
+            //              Step 2: Biography of memorial person
+
+            'memorial_biography' => 'required',
+            'memorial_fav_saying' => 'required',
+            'memorial_resting_place' => 'required',
+
+            //              Step 3: Keeper INFO
+
+            'keeper_first_name' => 'required',
+            'keeper_last_name' => 'required',
+            'keeper_email' => 'required',
+            'keeper_password' => 'required',
+            'keeper_dob' => 'required',
+            'keeper_gender' => 'required',
+
+            //              Step 4: Account Type
+
 //            'cardholder_name' => $request->input('account_type') == 1 ? 'required' : '',
 //            'card_number' => $request->input('account_type') == 1 ? 'required|numeric|
 //                digits:16|
@@ -140,70 +140,44 @@ class RegistrationController extends Controller
 //            'card_city' => $request->input('account_type') == 1 ? 'required' : '',
 //            'card_country' => $request->input('account_type') == 1 ? 'required' : '',
 //            'card_state' => $request->input('account_type') == 1 ? 'required' : '',
-//
-//
-//        ], [
-//            'dod.required' => 'Date of Death is required when passed is 1.',
-//            'email.required' => 'Email is required when passed is 0.',
-//        ]);
 
 
-        $faker = Faker::create();
+        ], [
+            'dod.required' => 'Date of Death is required when passed is 1.',
+            'email.required' => 'Email is required when passed is 0.',
+        ]);
 
-        $dummyData = [
-            'memorial_first_name' => $faker->firstName,
-            'memorial_last_name' => $faker->lastName,
-            'memorial_email' => $faker->email,
-            'memorial_gender' => $faker->randomElement(['male', 'female']),
-            'memorial_passed' => $faker->randomElement(['alive', 'deceased']),
-            'memorial_dob' => $faker->date('Y-m-d', '1990-01-01'),
-            'memorial_dod' => $faker->date('Y-m-d', 'now'),
-            'memorial_biography' => $faker->sentence,
-            'memorial_fav_saying' => $faker->sentence,
-            'memorial_resting_place' => $faker->word,
-            'memorial_city_of_birth' => $faker->city,
 
-            'keeper_first_name' => $faker->firstName,
-            'keeper_last_name' => $faker->lastName,
-            'keeper_email' => $faker->email,
-            'keeper_gender' => $faker->randomElement(['male', 'female']),
-            'keeper_account_type' => $faker->randomElement(['1', '2']),
-            'keeper_dob' => $faker->date('Y-m-d', '1990-01-01'),
-        ];
 
         $this->data['memorialUser'] = $this->_model;
-        $this->data['memorialUser']->first_name = $dummyData['memorial_first_name'];
-        $this->data['memorialUser']->last_name = $dummyData['memorial_last_name'];
-        $this->data['memorialUser']->password = 'asdas';
-        $this->data['memorialUser']->dob = $dummyData['memorial_dob'];
-        $this->data['memorialUser']->email = $dummyData['memorial_email'];
-        $this->data['memorialUser']->gender = $dummyData['memorial_gender'];
+        $this->data['memorialUser']->first_name = $request->input('memorial_first_name');
+        $this->data['memorialUser']->last_name = $request->input('memorial_last_name');
+        $this->data['memorialUser']->dob = $request->input('memorial_dob');
+        $this->data['memorialUser']->email = $request->input('memorial_email');
+        $this->data['memorialUser']->gender = $request->input('memorial_gender');
         $this->data['memorialUser']->role_id = '3'; /* Memorial Loved One User Account*/
 
         $checkMemorialUser = $this->data['memorialUser']->save();
         $memorialUserId = $this->data['memorialUser']->id;
         if ($checkMemorialUser) {
             $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model;
-
-            $this->data['memorialUserAdditionalInfo']->passed = $dummyData['memorial_passed'];
-            $this->data['memorialUserAdditionalInfo']->dod = $dummyData['memorial_dod'];
-            $this->data['memorialUserAdditionalInfo']->biography = $dummyData['memorial_biography'];
-            $this->data['memorialUserAdditionalInfo']->fav_saying = $dummyData['memorial_fav_saying'];
-            $this->data['memorialUserAdditionalInfo']->resting_place = $dummyData['memorial_resting_place'];
-            $this->data['memorialUserAdditionalInfo']->city_of_birth = $dummyData['memorial_city_of_birth'];
-            $this->data['memorialUserAdditionalInfo']->user_id = $memorialUserId; /* Memorial Loved One User Account*/
+            $this->data['memorialUserAdditionalInfo']->passed = $request->input('memorial_passed');
+            $this->data['memorialUserAdditionalInfo']->dod = $request->input('memorial_dod');
+            $this->data['memorialUserAdditionalInfo']->biography = $request->input('memorial_biography');
+            $this->data['memorialUserAdditionalInfo']->fav_saying = $request->input('memorial_fav_saying');
+            $this->data['memorialUserAdditionalInfo']->resting_place = $request->input('memorial_resting_place');
+            $this->data['memorialUserAdditionalInfo']->city_of_birth = $request->input('memorial_city_of_birth');
             $checkMemorialUserAdditionalInfo = $this->data['memorialUserAdditionalInfo']->save();
             $MemorialUserAdditionalInfoIDForKeeper = $this->data['memorialUserAdditionalInfo']->id;
             if ($checkMemorialUserAdditionalInfo) {
-                $this->data['keeperUser'] = new User();
-                $this->data['keeperUser']->first_name = $dummyData['keeper_first_name'];
-                $this->data['keeperUser']->last_name = $dummyData['keeper_last_name'];
-                $this->data['keeperUser']->password = 'asdas';
-                $this->data['keeperUser']->dob = $dummyData['keeper_dob'];
-                $this->data['keeperUser']->email = $dummyData['keeper_email'];
-                $this->data['keeperUser']->gender = $dummyData['keeper_gender'];
-                $this->data['keeperUser']->role_id = '2'; /* Memorial Loved One User Account*/
-
+                $this->data['keeperUser'] = $this->_model;
+                $this->data['keeperUser']->first_name = $request->input('keeper_first_name');
+                $this->data['keeperUser']->last_name = $request->input('keeper_last_name');
+                $this->data['keeperUser']->email = $request->input('keeper_email');
+                $this->data['keeperUser']->password = hash::make($request->password);
+                $this->data['keeperUser']->dob = $request->input('keeper_dob');
+                $this->data['keeperUser']->gender = $request->input('keeper_gender');
+                $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
 
                 $checkKeeper = $this->data['keeperUser']->save();
                 $Keepername = $this->data['keeperUser']->first_name . '' . $this->data['keeperUser']->last_name;
@@ -215,7 +189,7 @@ class RegistrationController extends Controller
 
                     if ($checkmemorialkeeper) {
                         $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
-                        $this->data['keeperAccountType']->account_type_id = $dummyData['keeper_account_type'];
+                        $this->data['keeperAccountType']->account_type_id = $request->input('keeper_account_type');
                         $this->data['keeperAccountType']->update();
                     }
 

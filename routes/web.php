@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\AuthController;
+use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.ind
 Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('userSignUp');
 Route::get('/memorialsignup',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
 Route::post('/signup',[AuthController::class]);
-Route::get('/login',[AuthController::class]);
+Route::get('/postLogin',[LoginController::class,'postLogin'])->name('postLogin');
 Route::post('/login',[AuthController::class]);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/forgot-password',[AuthController::class]);
