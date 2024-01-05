@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\AuthController;
+use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -30,19 +31,21 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
 
 Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('userSignUp');
 Route::get('/memorialsignup',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
-Route::post('/signup',[AuthController::class]);
-Route::get('/postLogin',[LoginController::class,'postLogin'])->name('postLogin');
-Route::post('/login',[AuthController::class]);
+Route::post('/signup',[RegistrationController::class]);
+//Route::post('/login',[LoginController::class,'login'])->name('login');
+Route::get('/postlogin',[LoginController::class,'postLogin'])->name('postlogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/forgot-password',[AuthController::class]);
-Route::post('/forgot-password',[AuthController::class]);
+Route::get('/forgot-password',[ForgetPasswordController::class]);
+Route::post('/forgot-password',[ForgetPasswordController::class]);
 
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {
+
+    //DASHBOARD
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
 
 
 //<----------CRUD User

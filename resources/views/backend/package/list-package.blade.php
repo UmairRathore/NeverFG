@@ -92,12 +92,7 @@
                                         {{Session('info_deleted')}}
                                     </div>
                                 @endif
-                                    @if(Session('required_fields_empty'))
-                                        <div class="alert alert-danger" role="alert">
-                                            {{Session('required_fields_empty')}}
-
-                                        </div>
-                                    @endif
+                                
                                 <table id="packagelist" class="table table-striped thead-primary w-100">
                                     <thead>
                                     <th>No</th>

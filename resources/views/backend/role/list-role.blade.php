@@ -31,24 +31,11 @@
                                     </div>
 
                                 @endif
+
                                 <table id="rolelist" class="table table-striped thead-primary w-100">
                                     <thead>
                                     <th>No</th>
-                                    <th>Memento Images</th>
-                                    <th>Guestbook And Tributes</th>
-                                    <th>Biography and Orbiuary</th>
-                                    <th>Memorial Donation Link</th>
-                                    <th>Online Forever</th>
-                                    <th>Unlimited Milestones</th>
-                                    <th>Share Cemetery/Grave Location</th>
-                                    <th>Full Privacy</th>
-                                    <th>Download images</th>
-                                    <th>Video Uploading</th>
-                                    <th>Customizable Url</th>
-                                    <th>Keeper Administrators</th>
-                                    <th>Events Pages</th>
-                                    <th>Family Tree</th>
-                                    <th>Memorial PAges</th>
+                                    <th>name</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -57,8 +44,8 @@
                                             <td>{{$role->id}}</td>
                                             <td>{{$role->name}}</td>
                                             <td>
-                                                    <a class="btn btn-primary" href="{{ route('backend.edit-role',$role->id) }}">Edit Role</a>
-                                                    <a class="btn btn-danger" href="{{ route('backend.delete-role',$role->id) }}">Delete Role</a>
+                                                    <a class="fa fa-edit" href="{{ route('backend.edit-role',$role->id) }}">Edit Role</a>
+                                                    <a class="fas fa-trash alt" href="{{ route('backend.delete-role',$role->id) }}">Delete Role</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -77,7 +64,7 @@
 
 
 @endsection
-@section('datatablelist')
+@section('rolelist')
     <script>
         $(document).ready(function () {
             $('#rolelist').DataTable();

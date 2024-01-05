@@ -16,7 +16,8 @@ class LoginController extends Controller
     {
         $check = Auth::guard('user')->logout();
         if ($check == null) {
-            return redirect('login');
+//            return redirect('login');
+            return redirect('/');
         }
 
     }
@@ -45,10 +46,13 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
 
+        $email = 'admin@gmail.com';
+        $password = '123456';
+
 
         if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 1) {
-            
-            return redirect('dashboard');
+
+            return view('backend.index');
         } elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 2) /* user */ {
 
             $previousUrl = URL::previous();

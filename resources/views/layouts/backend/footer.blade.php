@@ -50,6 +50,7 @@ $('[data-toggle="tooltip"]').tooltip()
 @yield('packagelist')
 
 
+
 {{--Time-Slots Tables--}}
 @yield('timeslotslist')
 
@@ -91,7 +92,7 @@ $('[data-toggle="tooltip"]').tooltip()
 @yield('userlist')
 
 {{--Roles and Permission Table--}}
-@yield('packageslist')
+@yield('rolelist')
 @yield('permissionslist')
 
 

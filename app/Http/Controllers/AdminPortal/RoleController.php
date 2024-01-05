@@ -102,7 +102,7 @@ class RoleController extends Controller
           {
                 $msg = 'Role deleted successfully';
 //            Session::flash('msg', $msg);
-                Session::flash('message', $msg);
+                Session::flash('info_deleted', $msg);
             } else {
                 $msg = 'Role not deleted successfully';
 //                Session::flash('msg', $msg);
