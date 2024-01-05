@@ -44,8 +44,18 @@ $('[data-toggle="tooltip"]').tooltip()
 </script>
 
 {{-----------------------------------------------DATA-TABLES-------------------------------------------------}}
+
+
+{{--Packages Tables--}}
+@yield('packagelist')
+
+
 {{--Time-Slots Tables--}}
 @yield('timeslotslist')
+
+
+
+
 
 
 {{--Appointments Tables--}}
@@ -81,7 +91,7 @@ $('[data-toggle="tooltip"]').tooltip()
 @yield('userlist')
 
 {{--Roles and Permission Table--}}
-@yield('rolelist')
+@yield('packageslist')
 @yield('permissionslist')
 
 
@@ -96,92 +106,3 @@ $('[data-toggle="tooltip"]').tooltip()
 
 
 
-
-{{--<!---DATATable-->--}}
-
-{{--<!--APPOINTMENT_LIST-->--}}
-{{--@section('appointmentlist')--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#appointmentlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-{{--<!--APPOINTMENT_LIST-->--}}
-
-
-{{--<!--DOCTOR_LIST-->--}}
-{{--@section('doctorlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#doctorlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-{{--<!--DOCTOR_LIST-->--}}
-
-
-{{--<!--LABTEST_LIST-->--}}
-{{--@section('labtestlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#labtestlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-
-{{--<!--LABTEST_LIST-->--}}
-
-
-{{--<!--PATIENT_LIST-->--}}
-{{--@section('patientlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#patientlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-
-{{--<!--PATIENT_LIST-->--}}
-
-
-{{--<!--SPECIALIZATION_LIST_LIST-->--}}
-{{--@section('specializationlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#specializationlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-{{--<!--SPECIALIZATION_LIST_LIST-->--}}
-
-
-{{--<!--SYMPTOM_LIST-->--}}
-{{--@section('symptomlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#symptomlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-{{--<!--SYMPTOM_LIST-->--}}
-
-
-{{--<!--USER_LIST-->--}}
-{{--@section('userlist')--}}
-{{--    <script type="text/javascript" charset="utf8" src="{{asset('https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js')}}"></script>--}}
-{{--    <script>--}}
-{{--        $(document).ready( function () {--}}
-{{--            $('#userlist').DataTable();--}}
-{{--        } );--}}
-{{--    </script>--}}
-{{--@endsection--}}
-{{--<!--USER_LIST-->--}}
-
-
-{{--@yield('datatable-3footer')--}}

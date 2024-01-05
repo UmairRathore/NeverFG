@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminPortal\DashboardController;
+use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\AuthController;
@@ -47,7 +48,7 @@ Route::post('/forgot-password',[AuthController::class]);
 
 Route::group(['prefix' => 'role'], function () {
 
-    Route::get('/role-list', [RoleController::class, 'index'])->name('backend.role-list');
+    Route::get('/list-role', [RoleController::class, 'index'])->name('backend.role-list');
     Route::get('/add-role', [RoleController::class, 'create']);
     Route::post('/add-role', [RoleController::class, 'store'])->name('backend.add-role');
     Route::get('/edit-role/{id}', [RoleController::class, 'edit'])->name('backend.edit-role');
@@ -56,6 +57,20 @@ Route::group(['prefix' => 'role'], function () {
 
 });
 //Role
+
+
+//<----------CRUD Package
+
+//Route::group(['prefix' => 'package'], function () {
+
+    Route::get('/list-package', [PackageController::class, 'index'])->name('backend.package-list');
+    Route::get('/add-package', [PackageController::class, 'create']);
+    Route::post('/add-package', [PackageController::class, 'store'])->name('backend.add-package');
+    Route::get('/delete-package/{id}', [PackageController::class, 'destroy'])->name('backend.delete-package');
+    Route::post('/status-package/{id}', [PackageController::class, 'changeStatus'])->name('backend.status-package');
+
+//});
+//Package
 
 //<----------CRUD User
 

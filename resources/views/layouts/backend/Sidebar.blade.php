@@ -30,13 +30,13 @@
 {{--        </li>--}}
         <!-- /Dashboard -->
 
-{{--        <!-- User -->--}}
-{{--        <li class="menu-item">--}}
-{{--            <a href="{{route('backend.user-list')}}">--}}
-{{--                <span><i class="far fa-user-circle"></i>User </span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        --}}
+        <!-- User -->
+        <li class="menu-item">
+            <a href="{{route('backend.list-user')}}">
+                <span><i class="far fa-user-circle"></i>User </span>
+            </a>
+        </li>
+
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user">--}}
 {{--                <span><i class="far fa-user-circle"></i>User</span>--}}
