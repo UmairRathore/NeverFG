@@ -12,6 +12,12 @@ class AccountType extends Model
     protected $table = 'account_types';
     protected $fillable =
         [
+            'id',
           'name',
         ];
+
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
 }

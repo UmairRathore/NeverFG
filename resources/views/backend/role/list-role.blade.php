@@ -34,7 +34,21 @@
                                 <table id="rolelist" class="table table-striped thead-primary w-100">
                                     <thead>
                                     <th>No</th>
-                                    <th>Role</th>
+                                    <th>Memento Images</th>
+                                    <th>Guestbook And Tributes</th>
+                                    <th>Biography and Orbiuary</th>
+                                    <th>Memorial Donation Link</th>
+                                    <th>Online Forever</th>
+                                    <th>Unlimited Milestones</th>
+                                    <th>Share Cemetery/Grave Location</th>
+                                    <th>Full Privacy</th>
+                                    <th>Download images</th>
+                                    <th>Video Uploading</th>
+                                    <th>Customizable Url</th>
+                                    <th>Keeper Administrators</th>
+                                    <th>Events Pages</th>
+                                    <th>Family Tree</th>
+                                    <th>Memorial PAges</th>
                                     <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -63,7 +77,7 @@
 
 
 @endsection
-@section('rolelist')
+@section('datatablelist')
     <script>
         $(document).ready(function () {
             $('#rolelist').DataTable();
