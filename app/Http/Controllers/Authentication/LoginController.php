@@ -46,10 +46,9 @@ class LoginController extends Controller
         $password = $request->password;
 
 
-        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->user()->role_id == 1) /* admin */{
+        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 1) {
+            
             return redirect('dashboard');
-
-
         } elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 2) /* user */ {
 
             $previousUrl = URL::previous();

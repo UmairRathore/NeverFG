@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-         Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
@@ -21,11 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('dob');
             $table->string('gender');
-             $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('account_type_id');
+            $table->rememberToken();
             $table->timestamps();
 
             //foreign key constraint
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('account_type_id')->references('id')->on('account_types');
 
 
         });
