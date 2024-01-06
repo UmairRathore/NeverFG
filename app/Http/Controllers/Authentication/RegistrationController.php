@@ -78,7 +78,6 @@ class RegistrationController extends Controller
         $this->data['user']->role_id = '2'; /* self User Account*/
 
 //        dd($this->data['user']);
-        $this->data['user']->save();
         $check = $this->data['user']->save();
 
         $name = $this->data['user']->first_name . '' . $this->data['user']->last_name;

@@ -98,16 +98,15 @@ class RoleController extends Controller
     {
         $this->data['roles'] = $this->model::find($id);
         $check = $this->data['roles']->delete();
-        if (!$check)
-          {
-                $msg = 'Role deleted successfully';
+        if (!$check) {
+            $msg = 'Role deleted successfully';
 //            Session::flash('msg', $msg);
-                Session::flash('info_deleted', $msg);
-            } else {
-                $msg = 'Role not deleted successfully';
+            Session::flash('info_deleted', $msg);
+        } else {
+            $msg = 'Role not deleted successfully';
 //                Session::flash('msg', $msg);
-                Session::flash('required fields empty', $msg);
-            }
+            Session::flash('required fields empty', $msg);
+        }
     return redirect()->back();
     }
 

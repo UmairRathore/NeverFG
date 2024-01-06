@@ -92,14 +92,14 @@
 {{--                                <a href="{{route('backend.add-user')}}" class="btn btn-primary ms-text-primary">Add User</a>--}}
                         </div>
                         <div class="ms-panel-body">
-                            <div class="col-md-3">
-                                <label for="">Active</label>
-                                <select class="form-control" name="status" id="inputStateRes">
-                                    <option value="All">All</option>
-                                    <option value="Active">Active</option>
-                                    <option value="InActive">In Active</option>
-                                </select>
-                            </div>
+{{--                            <div class="col-md-3">--}}
+{{--                                <label for="">Active</label>--}}
+{{--                                <select class="form-control" name="status" id="inputStateRes">--}}
+{{--                                    <option value="All">All</option>--}}
+{{--                                    <option value="Active">Active</option>--}}
+{{--                                    <option value="InActive">In Active</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
                             <div class="table-responsive">
                                 <table id="userlist" class="table table-striped thead-primary w-100">
                                     @if(Session('info_deleted'))
@@ -118,7 +118,7 @@
                                     <th>Joined Date</th>
                                     <th>Role</th>
 {{--                                    <th>Status</th>--}}
-{{--                                    <th>Action</th>--}}
+                                    <th>Action</th>
                                     </thead>
                                     <tbody>
 
@@ -140,11 +140,11 @@
 {{--                                                </label>--}}
 {{--                                                <span style="display: none">{{ ($user->status == 1) ? 'Active' : 'false' }}</span>--}}
 {{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                    <a href="{{route('backend.delete-user',[$user->id])}}"onclick="return confirm('Are you sure?')" data-toggle="tooltip" data-placement="top" title="delete" class="far fa-trash-alt ms-text-danger"></a>--}}
+                                            <td>
+                                                    <a href="{{route('backend.delete-user',[$user->id])}}"onclick="return confirm('Are you sure?')" data-toggle="tooltip" data-placement="top" title="delete" class="far fa-trash-alt ms-text-danger"></a>
 {{----}}
 {{--                                                    <a href="{{route('backend.edit-user',[$user->id])}}" data-toggle="tooltip" data-placement="top" title="Edit" class="fas fa-pencil-alt ms-text-primary"></a>--}}
-{{--                                            </td>--}}
+                                            </td>
 
 
                                     @endforeach
