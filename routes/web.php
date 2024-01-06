@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminPortal\DashboardController;
+use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
@@ -77,6 +78,25 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {
 
     });
 //Role
+
+
+
+//<----------CRUD Faq
+
+    Route::group(['prefix' => 'faq'], function () {
+
+        Route::get('/list-faq', [FaqController::class, 'index'])->name('backend.faq-list');
+        Route::get('/add-faq', [FaqController::class, 'create'])->name('backend.add-faq');
+        Route::post('/storeTopic', [FaqController::class, 'storeTopic'])->name('backend.storeTopic');
+        Route::post('/storeQuestionAnswer', [FaqController::class, 'storeQuestionAnswer'])->name('backend.topic-storeQuestionAnswer');
+        Route::get('/edit-faq/{id}', [FaqController::class, 'edit'])->name('backend.edit-faq');
+        Route::put('/update-faq/{id}', [FaqController::class, 'update'])->name('backend.update-faq');
+//        Route::put('/updateTopic/{id}', [FaqController::class, 'updateTopic'])->name('backend.updateTopic');
+//        Route::put('/updateQuestionAnswer/{id}', [FaqController::class, 'updateQuestionAnswer'])->name('backend.topic-updateQuestionAnswer');
+        Route::get('/delete-faq/{id}', [FaqController::class, 'destroy'])->name('backend.delete-faq');
+
+    });
+//Faq
 
 
 //<----------CRUD Package

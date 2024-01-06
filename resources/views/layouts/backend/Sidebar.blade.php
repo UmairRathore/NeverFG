@@ -461,7 +461,7 @@
 {{--                </li>--}}
 {{--                <li> <a href="/prebuilt-pages/coming-soon">Coming Soon</a> </li>--}}
 {{--                <li> <a href="/prebuilt-pages/error">Error Page</a> </li>--}}
-{{--                <li class="menu-item"> <a href="/prebuilt-pages/faq"> FAQ </a> </li>--}}
+                <li class="menu-item"> <a href="{{route('backend.faq-list')}}"> FAQ </a> </li>
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/portfolio"> Portfolio </a> </li>--}}
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/user-profile"> User Profile </a> </li>--}}
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/invoice"> Invoice </a> </li>--}}
