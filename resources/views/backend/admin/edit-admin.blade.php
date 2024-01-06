@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div>
-                                    <input type="submit" class="btn btn-primary" value="Update">
+                                    <input type="submit" class="btn btn-primary">
                                 </div>
                             </form>
                         </div>

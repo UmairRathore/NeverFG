@@ -18,13 +18,6 @@ class AdminController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
-        ]);
-
 
         $admin = User::find($id);
         $admin->first_name = $request->input('first_name');
@@ -38,8 +31,7 @@ class AdminController extends Controller
         }
         //        dd($admin);
 
-        $check = $admin->save();
-
+        $check = $admin->update();
         $name = $admin->first_name . '' . $admin->last_name;
         if ($check) {
             $msg = $name . 'Profile updated successfully';
