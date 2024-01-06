@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AdminPortal\AdminController;
 use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\PackageController;
@@ -47,6 +48,10 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {
 
     //DASHBOARD
     Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
+
+
+    Route::get('/edit-admin/{id}',[AdminController::class,'edit'])->name('backend.edit-admin');
+    Route::put('/update-admin/{id}',[AdminController::class,'update'])->name('backend.update-admin');
 
 
 //<----------CRUD User

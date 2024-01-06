@@ -225,11 +225,11 @@
             <a href="#" id="userDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="ms-user-img ms-img-round float-end" src="{{asset('/backend/assets/img/dashboard/doctor-3.jpg')}}" alt="people"> </a>
             <ul class="dropdown-menu dropdown-menu-end user-dropdown" aria-labelledby="userDropdown">
                 <li class="dropdown-menu-header">
-{{--                    <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, {{ Auth::user()->first_name }}</span></h6>--}}
+                    <h6 class="dropdown-header ms-inline m-0"><span class="text-disabled">Welcome, {{ Auth::user()->first_name }}</span></h6>
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="ms-dropdown-list">
-{{--                    <a class="media fs-14 p-2" href="{{route('backend.update-profile')}}"> <span><i class="flaticon-user me-2"></i> Profile</span> </a>--}}
+                    <a class="media fs-14 p-2" href="{{route('backend.edit-admin',auth()->user()->id)}}"> <span><i class="flaticon-user me-2"></i> Profile</span> </a>
 {{--                    <a class="media fs-14 p-2" href="{{route('backend.update-password')}}"> <span><i class="flaticon-gear me-2"></i> Account Settings</span> </a>--}}
                 </li>
                 <li class="dropdown-divider"></li>
