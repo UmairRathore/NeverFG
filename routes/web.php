@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminPortal\AdminController;
 use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\FaqController;
+use App\Http\Controllers\AdminPortal\FuneralServiceController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
@@ -118,3 +119,17 @@ Route::group(['prefix' => 'package'], function () {
 //Package
 
 });
+
+//<----------CRUD Feature
+
+//Route::group(['prefix' => 'feature'], function () {
+
+    Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
+    Route::get('/add-feature', [FuneralServiceController::class, 'create']);
+    Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
+    Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
+    Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
+
+//});
+//Feature
+
