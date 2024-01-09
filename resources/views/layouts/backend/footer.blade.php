@@ -49,6 +49,7 @@ $('[data-toggle="tooltip"]').tooltip()
 {{--Packages Tables--}}
 @yield('packagelist')
 @yield('faqlist')
+@yield('featurelist')
 
 
 

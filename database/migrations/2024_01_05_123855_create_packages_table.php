@@ -19,7 +19,7 @@ class CreatePackagesTable extends Migration
             $table->tinyInteger('memento_images')->default(0);
             $table->tinyInteger('guestbook_and_tributes')->default(0);
             $table->tinyInteger('biography_and_obituary')->default(0);
-            $table->tinyInteger('in_memoriam_donation_link')->default(1);
+            $table->tinyInteger('in_memoriam_donation_link')->default(0);
             $table->tinyInteger('online_forever')->default(0);
             $table->tinyInteger('unlimited_milestones')->default(0);
             $table->tinyInteger('share_cemetery_and_grave_location')->default(0);
