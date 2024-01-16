@@ -46,17 +46,20 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        $email = 'admin@gmail.com';
-        $password = '123456';
+//        $email = 'admin@gmail.com';
+        $email = 'corahug@mailinator.com';
+//        $password = '123456';
+        $password = '123123';
 
 
         if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 1) {
 
             return view('backend.index');
         } elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 2) /* user */ {
+            return view('backend.index');
 
-            $previousUrl = URL::previous();
-            return Redirect::to($previousUrl ?? '/');
+//            $previousUrl = URL::previous();
+//            return Redirect::to($previousUrl ?? '/');
         }
 
         elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 3) /* memorial loved one */ {

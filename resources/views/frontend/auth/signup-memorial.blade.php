@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('frontend/assets/css/SignUp.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
+
 <body>
 <div id="svg_wrap"></div>
 
@@ -20,12 +23,32 @@
         <p class="step-1-top-heading">ABOUT YOUR LOVED ONE</p>
         <div class="form-group-input">
             <label for="memorial_first_name">Their First Name</label>
-            <input name="memorial_first_name" type="text" placeholder="First Name" class="input-design"/>
+            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design"/>
         </div>
         <div class="form-group-input">
             <label for="memorial_last_name">Their Last Name</label>
-            <input name="memorial_last_name" type="text" placeholder="Last Name" class="input-design"/>
+            <input name="memorial_last_name" type="text" placeholder="Their Last Name" class="input-design"/>
         </div>
+
+
+        {{--Passed--}}
+        <div class="form-group-input">
+            {{--                <label for="memorial_passed">Passed</label>--}}
+            <H2>Has Passed Away?
+                <input type="checkbox" name="memorial_passed" id="memorialPassedCheckbox" onclick="updateCheckboxValue()" value="0">
+                <small>
+                    <i class="fa fa-info-circle" data-tooltip="Select this option to create a Living Memorial page for a loved one who has not passed away."
+                       style="position: relative; cursor: pointer; "
+                       onmouseover="this.children[0].style.display = 'block';"
+                       onmouseout="this.children[0].style.display = 'none';">
+                       <span style="position: absolute; bottom: 100%; font-size: 10px; left: 50%;
+                        transform: translateX(-50%); padding: 5px; background-color: #333; color: #fff; border-radius: 90%; display: none;">
+                           Select this option to create a Living Memorial page for a loved one who has not passed away.</span>
+                    </i>             </small>
+            </H2>
+
+        </div>
+
 
         <!-- Date of Birth -->
         <div class="form-group-input">
@@ -53,22 +76,8 @@
             </div>
         </div>
 
-
-        <div class="form-group-input">
-            {{--                <label for="memorial_passed">Passed</label>--}}
-            <H2>Passed
-                <input type="checkbox" name="memorial_passed" id="memorialPassedCheckbox" ></H2>
-
-        </div>
-
-        <!-- Email input for when "Passed" checkbox is checked -->
-        <div class="form-group-input" id="memorialEmailContainer" style="display: none; text-align: left;">
-            <label for="memorial_email">Email</label>
-            <input type="email" name="memorial_email" placeholder="Email Address" class="input-design"/>
-        </div>
-
         <!-- Date of Death -->
-        <div class="form-group-input" id="memorialDodContainer" style="display: none; text-align: left;">
+        <div class="form-group-input" id="memorialDodContainer" style="display: block; text-align: left;">
             <label for="">Their Date Of Death</label>
             <div class="row-of-select">
                 <select name="memorial_dod_year">
@@ -91,6 +100,18 @@
                     @endfor
                 </select>
             </div>
+        </div>
+
+        <!-- Email input for when "Passed" checkbox is checked -->
+        <div class="form-group-input" id="memorialEmailContainer" style="display: none; text-align: left;">
+            <label for="memorial_email">Email</label>
+            <input type="email" name="memorial_email" placeholder="Their Email Address" class="input-design"/>
+        </div>
+
+
+        <div class="form-group-input">
+            <label for="memorial_city_of_birth">Their City of Birth</label>
+            <input name="memorial_city_of_birth" type="text" placeholder="Their City of Birth " class="input-design"/>
         </div>
 
         <div class="user-img-container">
@@ -414,21 +435,29 @@
             $("section").not(currentSection).hide();
         });
     });
-    const memorialPassedCheckbox = document.getElementById('memorialPassedCheckbox');
-    const memorialEmailContainer = document.getElementById('memorialEmailContainer');
-    const memorialDodContainer = document.getElementById('memorialDodContainer');
+
+
+    var memorialPassedCheckbox = document.getElementById("memorialPassedCheckbox");
+    var memorialEmailContainer = document.getElementById("memorialEmailContainer");
+    var memorialDodContainer = document.getElementById("memorialDodContainer");
+
+    // Set the default state of the checkbox to checked
+    memorialPassedCheckbox.checked = true;
+    updateCheckboxValue();
 
     memorialPassedCheckbox.addEventListener('change', function () {
-        if (this.checked) {
-            // If "Passed" checkbox is checked, show email input and hide Date of Birth
-            memorialEmailContainer.style.display = 'block';
-            memorialDodContainer.style.display = 'none';
-        } else {
-            // If "Passed" checkbox is unchecked, hide email input and show Date of Birth
-            memorialEmailContainer.style.display = 'none';
-            memorialDodContainer.style.display = 'block';
-        }
+        // If "Passed" checkbox is checked, show email input and hide Date of Birth
+        memorialDodContainer.style.display = this.checked ? 'block' : 'none';
+        memorialEmailContainer.style.display = this.checked ? 'none' : 'block';
+
+        // Update the checkbox value
+        updateCheckboxValue();
     });
+
+    function updateCheckboxValue() {
+        // Update the checkbox value based on its checked state
+        memorialPassedCheckbox.value = memorialPassedCheckbox.checked ? "1" : "0";
+    }
 </script>
 </body>
 </html>

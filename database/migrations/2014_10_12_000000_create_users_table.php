@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('dob');
             $table->string('gender');
+            $table->string('profile_image')->nullable(); // Add the profile_image column
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('account_type_id');
             $table->rememberToken();

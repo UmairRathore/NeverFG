@@ -26,6 +26,7 @@ class User extends Authenticatable
         'password',
         'dob',
         'gender',
+        'profile_image',
         'status',
         'role_id'
     ];
