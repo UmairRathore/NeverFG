@@ -36,7 +36,9 @@ Route::get('/', function () {
 
 
 Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('userSignUp');
-Route::get('/memorialsignup',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
+
+Route::get('/memorialsignup',[RegistrationController::class,'memorialSignup']);
+Route::post('/memorialsignup',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
 Route::post('/signup',[RegistrationController::class]);
 //Route::post('/login',[LoginController::class,'login'])->name('login');
 Route::get('/postlogin',[LoginController::class,'postLogin'])->name('postlogin');

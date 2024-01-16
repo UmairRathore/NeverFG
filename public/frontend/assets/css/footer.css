@@ -1,0 +1,168 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+}
+.footer-insider {
+  display: flex;
+  padding: 32px 32px;
+  flex-direction: column;
+  background-color: #131e29;
+}
+.footer-insider .row-one {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.footer-insider .row-one .logo-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-basis: 20%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-right: 2px solid white;
+}
+.footer-insider .row-one .logo-section .footer-logo {
+  width: 140px;
+  height: 100px;
+}
+.footer-insider .row-one .site-links-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 20px;
+  justify-content: space-between;
+  padding: 0px 16px;
+  border-right: 2px solid white;
+}
+.footer-insider .row-one .site-links-section a {
+  color: white;
+  text-decoration: none;
+}
+.footer-insider .row-one .site-links-section a:hover {
+  text-decoration: underline;
+}
+.footer-insider .row-one .site-links-section .links-col-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33%;
+}
+.footer-insider .row-one .site-links-section .links-col-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33%;
+}
+.footer-insider .row-one .site-links-section .links-col-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33%;
+}
+.footer-insider .row-one .section-social-links {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  flex-basis: 30%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.footer-insider .row-one .section-social-links .footer-follow-us {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+.footer-insider .row-one .section-social-links .parent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footer-insider .row-one .section-social-links .child {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.footer-insider .row-one .section-social-links .child:hover {
+  background-color: white;
+  background-position: -100px 100px, -100px 100px;
+  transform: rotate3d(0.5, 1, 0, 30deg);
+  transform: perspective(180px) rotateX(60deg) translateY(2px);
+  box-shadow: 0px 10px 10px rgb(1, 49, 182);
+}
+.footer-insider .row-one .section-social-links button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+}
+.footer-insider .row-one .section-social-links .button:hover {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg) translateY(2px);
+  border-radius: 50%;
+}
+.footer-insider .row-two {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  align-items: center;
+  padding: 24px;
+}
+.footer-insider .row-two-insider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.footer .footer-last-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #59cbe8;
+  color: white;
+}
+
+@media only screen and (max-width: 890px) {
+  .footer-insider .row-one {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer-insider .row-one .logo-section {
+    border-right: none;
+  }
+  .footer-insider .row-one .site-links-section {
+    justify-content: center;
+    flex-wrap: nowrap;
+    border-right: none;
+  }
+  .footer-insider .row-one .site-links-section .links-col-1 {
+    gap: 8px;
+    width: 100%;
+  }
+  .footer-insider .row-one .site-links-section .links-col-2 {
+    gap: 8px;
+    width: 100%;
+  }
+  .footer-insider .row-one .site-links-section .links-col-3 {
+    gap: 8px;
+    width: 100%;
+  }
+}/*# sourceMappingURL=footer.css.map */

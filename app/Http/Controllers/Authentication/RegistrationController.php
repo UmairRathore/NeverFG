@@ -34,7 +34,7 @@ class RegistrationController extends Controller
 
     private function setDefaultData()
     {
-        $this->_viewPath = 'auth.';
+        $this->_viewPath = 'frontend.auth.';
         $this->data['moduleName'] = 'User';
     }
 
@@ -97,62 +97,66 @@ class RegistrationController extends Controller
     public function memorialregistration(Request $request)
     {
 
-        $request->validate([
+//        dd($request);
+//        $request->validate([
+//
+//            'memorial_first_name' => 'required',
+//            'memorial_last_name' => 'required',
+//            'memorial_passed' => 'required',
+//            'memorial_dod' => $request->input('passed') != Null ? 'required' : '',
+//            'memorial_email' => $request->input('passed') != Null  ? 'required|email|unique:users' : '',
+//            'memorial_dob' => 'required',
+//            'memorial_city_of_birth' => 'required',
+//            'memorial_gender' => 'required',
+//            'memorial_image' => 'required',
+//
+//            'memorial_biography' => 'required',
+//            'memorial_fav_saying' => 'required',
+//            'memorial_resting_place' => 'required',
+//
+//            'keeper_first_name' => 'required',
+//            'keeper_last_name' => 'required',
+//            'keeper_email' => 'required',
+//            'keeper_password' => 'required',
+//            'keeper_dob' => 'required',
+//            'keeper_gender' => 'required',
+//        ], [
+//            'dod.required' => 'Date of Death is required when not null',
+//            'email.required' => 'Email is required when when not null.',
+//        ]);
 
-            //               Step 1: memorial person
+        $memorialDobYear = $request->input('memorial_dob_year');
+        $memorialDobMonth = $request->input('memorial_dob_month');
+        $memorialDobDay = $request->input('memorial_dob_day');
+        $memorialDob = "$memorialDobYear-$memorialDobMonth-$memorialDobDay";
 
-            'memorial_first_name' => 'required',
-            'memorial_last_name' => 'required',
-            'memorial_passed' => 'required',
-            'memorial_dod' => $request->input('passed') == 1 ? 'required' : '',
-            'memorial_email' => $request->input('passed') == 0 ? 'required|email|unique:users' : '',
-            'memorial_dob' => 'required',
-            'memorial_city_of_birth' => 'required',
-            'memorial_gender' => 'required',
-            'memorial_image' => 'required',
+        // Accessing Date of Death
+        $memorialDodYear = $request->input('memorial_dod_year');
+        $memorialDodMonth = $request->input('memorial_dod_month');
+        $memorialDodDay = $request->input('memorial_dod_day');
+        $memorialDod = "$memorialDodYear-$memorialDodMonth-$memorialDodDay";
 
-            //              Step 2: Biography of memorial person
-
-            'memorial_biography' => 'required',
-            'memorial_fav_saying' => 'required',
-            'memorial_resting_place' => 'required',
-
-            //              Step 3: Keeper INFO
-
-            'keeper_first_name' => 'required',
-            'keeper_last_name' => 'required',
-            'keeper_email' => 'required',
-            'keeper_password' => 'required',
-            'keeper_dob' => 'required',
-            'keeper_gender' => 'required',
-
-            //              Step 4: Account Type
-
-//            'cardholder_name' => $request->input('account_type') == 1 ? 'required' : '',
-//            'card_number' => $request->input('account_type') == 1 ? 'required|numeric|
-//                digits:16|
-//                luhn' : '', // Luhn algorithm
-//            'card_expiry_date' => $request->input('account_type') == 1 ? '
-//                required|date_format:m/y|,
-//                after:today' : '',
-//            'card_street' => $request->input('account_type') == 1 ? 'required' : '',
-//            'card_city' => $request->input('account_type') == 1 ? 'required' : '',
-//            'card_country' => $request->input('account_type') == 1 ? 'required' : '',
-//            'card_state' => $request->input('account_type') == 1 ? 'required' : '',
-
-
-        ], [
-            'dod.required' => 'Date of Death is required when passed is 1.',
-            'email.required' => 'Email is required when passed is 0.',
-        ]);
-
+        //  Keeper DOB
+        $keeperDobYear = $request->input('keeper_dob_year');
+        $keeperDobMonth = $request->input('keeper_dob_month');
+        $keeperDobDay = $request->input('keeper_dob_day');
+        $keeperDob = "$keeperDobYear-$keeperDobMonth-$keeperDobDay";
 
 
         $this->data['memorialUser'] = $this->_model;
         $this->data['memorialUser']->first_name = $request->input('memorial_first_name');
         $this->data['memorialUser']->last_name = $request->input('memorial_last_name');
-        $this->data['memorialUser']->dob = $request->input('memorial_dob');
-        $this->data['memorialUser']->email = $request->input('memorial_email');
+        $this->data['memorialUser']->dob = $memorialDob;
+        if ( $request->memorial_email)
+        {
+            $this->data['memorialUser']->email = $request->input('memorial_email');
+
+        }else
+        {
+            $this->data['memorialUser']->email = 'loved one is dead';
+
+        }
+        $this->data['memorialUser']->password = hash::make('jhjjk');
         $this->data['memorialUser']->gender = $request->input('memorial_gender');
         $this->data['memorialUser']->role_id = '3'; /* Memorial Loved One User Account*/
 
@@ -160,8 +164,15 @@ class RegistrationController extends Controller
         $memorialUserId = $this->data['memorialUser']->id;
         if ($checkMemorialUser) {
             $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model;
-            $this->data['memorialUserAdditionalInfo']->passed = $request->input('memorial_passed');
-            $this->data['memorialUserAdditionalInfo']->dod = $request->input('memorial_dod');
+            if ($memorialDod)
+            {
+            $this->data['memorialUserAdditionalInfo']->dod = $memorialDod;
+            $this->data['memorialUserAdditionalInfo']->passed = 1;
+
+            }else
+                {
+                    $this->data['memorialUserAdditionalInfo']->passed = 0;
+                }
             $this->data['memorialUserAdditionalInfo']->biography = $request->input('memorial_biography');
             $this->data['memorialUserAdditionalInfo']->fav_saying = $request->input('memorial_fav_saying');
             $this->data['memorialUserAdditionalInfo']->resting_place = $request->input('memorial_resting_place');
@@ -174,7 +185,7 @@ class RegistrationController extends Controller
                 $this->data['keeperUser']->last_name = $request->input('keeper_last_name');
                 $this->data['keeperUser']->email = $request->input('keeper_email');
                 $this->data['keeperUser']->password = hash::make($request->password);
-                $this->data['keeperUser']->dob = $request->input('keeper_dob');
+                $this->data['keeperUser']->dob = $keeperDob;
                 $this->data['keeperUser']->gender = $request->input('keeper_gender');
                 $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
 

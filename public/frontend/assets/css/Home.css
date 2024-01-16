@@ -1,0 +1,548 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heading-color {
+  color: #46c0e1;
+}
+
+.font-heading-large {
+  font-size: 24px;
+}
+
+body {
+  font-size: 12px;
+  font-family: "Nunito", sans-serif;
+}
+
+.hero_section_home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: url("../assets/hero_background_1.jpg") no-repeat center center;
+  background-size: 100%;
+}
+.hero_section_home .hero_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 100%;
+  color: white;
+  letter-spacing: 2px;
+  gap: 1rem;
+}
+.hero_section_home .hero_wrapper .hero_logo {
+  width: 100px;
+  height: 100px;
+  margin: 1rem;
+}
+.hero_section_home .hero_wrapper .heading_primary {
+  font-size: 3.5rem;
+}
+.hero_section_home .hero_wrapper .heading_secandary {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.hero_section_home .hero_wrapper .custom-button {
+  margin-top: 2rem;
+}
+
+.our-free-swipe {
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  background: rgb(33, 27, 141);
+  background: linear-gradient(90deg, rgb(33, 27, 141) 0%, rgb(103, 103, 245) 48%, rgb(0, 212, 255) 92%);
+}
+.our-free-swipe .swiper-heading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.our-free-swipe .swiper-heading-wrapper .swipers-main-heading {
+  justify-content: center;
+  width: 400px;
+  color: white;
+  margin: 40px 0px 20px 0px;
+  font-size: 36px;
+}
+.our-free-swipe .swiper-heading-wrapper .swipers-secandary-heading {
+  font-size: 24px;
+}
+
+.craft-cermony-home-section {
+  padding: 3rem;
+  display: flex;
+}
+.craft-cermony-home-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.craft-cermony-home-section-wrapper .craft-cermony-main-heading {
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .craft-cermony-secandary-heading {
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section {
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .cermony-list {
+  list-style: disc;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .cermony-list li {
+  list-style: none;
+  padding: 8px 24px;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .cermony-list li span {
+  font-size: 16px;
+  font-weight: 600;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .cermony-list li::before {
+  content: "·";
+  vertical-align: middle;
+  line-height: 20px;
+  font-size: 50px;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .bottom-section {
+  margin: 12px 0px;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section .video-item {
+  width: 500px;
+  height: 400px;
+  margin-top: -55px;
+}
+
+.our-free-memorials {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.our-free-memorials .main-box {
+  display: flex;
+  background: #000;
+  margin: 70px auto 70px auto;
+  padding: 0;
+  width: 90%;
+  height: 100%;
+}
+.our-free-memorials .box {
+  height: 600px;
+  padding: 15px;
+  border-right: 1px solid white;
+  webkit-transition: 0.8s;
+  -o-transition: 0.8s;
+  transition: 0.8s;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+}
+.our-free-memorials .detail {
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: white;
+  color: black;
+  opacity: 0;
+  padding: 30px;
+  box-sizing: border-box;
+  webkit-transition: 0.8s;
+  -o-transition: 0.8s;
+  transition: 0.8s;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+}
+.our-free-memorials .detail .image-of-slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.our-free-memorials .box.active {
+  width: 70% !important;
+}
+.our-free-memorials .box.active .detail {
+  opacity: 1;
+  -webkit-transition-delay: 0.6s;
+  -moz-transition-delay: 0.6s;
+  -o-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+  transform: none;
+}
+.our-free-memorials .box span {
+  writing-mode: vertical-rl;
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  width: 40px;
+  transform: rotate(180deg);
+  font-weight: 400;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.our-free-memorials .box.active span {
+  left: 25px;
+  right: auto;
+  margin: 0;
+  font-weight: 600;
+}
+.our-free-memorials p {
+  line-height: 23px;
+}
+
+.online-memorial-site-section {
+  padding: 24px 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+.online-memorial-site-section-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  gap: 24px;
+}
+.online-memorial-site-section-list .single-item-of-online-memorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.online-memorial-site-section-list .single-item-of-online-memorial .online-memorial-main-heading {
+  color: #46c0e1;
+  padding: 8px;
+  font-size: 20px;
+  border-bottom: 2px solid #46c0e1;
+  text-align: center;
+}
+.online-memorial-site-section-list .single-item-of-online-memorial .online-memorial-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.online-memorial-site-section-list .single-item-of-online-memorial .online-memorial-paragraph {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.share-memorial-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.share-memorial-section .share-memorial-insider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  width: 100%;
+  margin: 24px 100px;
+}
+.share-memorial-section .share-memorial-insider .share-memorial-form {
+  border: 1px solid black;
+  padding: 36px 80px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+}
+.share-memorial-section .share-memorial-insider .share-memorial-form .row {
+  display: flex;
+  gap: 16px;
+}
+.share-memorial-section .share-memorial-insider .share-memorial-form .input-style {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+  width: 100%;
+}
+.share-memorial-section .share-memorial-insider .share-memorial-form .input-style:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.are-you-funeral-service-provider-section {
+  display: flex;
+  background: url("../assets/hero_2_backgound.jpg") no-repeat center center;
+  background-size: 100%;
+  height: 500px;
+  width: 100%;
+  align-items: center;
+  margin-top: 32px;
+}
+.are-you-funeral-service-provider-section .service-provider-insider {
+  width: 400px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plan-a-tree-section {
+  display: flex;
+  background: url("../assets/tree.jpg") no-repeat center center;
+  background-size: 100%;
+  height: 400px;
+  width: 100%;
+  align-items: center;
+}
+.plan-a-tree-section .two-columns-of-tree {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-first {
+  font-size: 24px;
+  font-weight: bolder;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-two {
+  width: 240px;
+  font-size: 32px;
+  text-align: end;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-three {
+  width: 400px;
+  text-align: end;
+  font-size: 1rem;
+}
+.plan-a-tree-section .two-columns-of-tree .right-col-tree-memorial {
+  display: flex;
+}
+.plan-a-tree-section .two-columns-of-tree .right-col-tree-memorial .tree-image-size {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.custom-button {
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+
+.custom-button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261, 80%, 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93, 24, 220) 0px 7px 29px 0px;
+}
+
+.custom-button:active {
+  letter-spacing: 3px;
+  background-color: hsl(261, 80%, 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93, 24, 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+.black-background-btn {
+  background-color: black;
+  color: white;
+  padding: 12px 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+  text-align: center;
+}
+
+.white-background-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+.white-background-btn:hover {
+  background-color: lightgray;
+}
+
+@media only screen and (max-width: 890px) {
+  .hero_section_home .hero_wrapper .heading_primary {
+    font-size: 2.5rem;
+  }
+  .hero_section_home .hero_wrapper .heading_secandary {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero_section_home .hero_wrapper .custom-button {
+    margin-top: 1.3rem;
+  }
+  .our-free-memorials {
+    display: none;
+  }
+  .our-free-swipe {
+    display: flex;
+    padding: 20px;
+    background-color: #46c0e1;
+  }
+  .craft-cermony-home-section-wrapper .craft-cermony-main-heading {
+    width: 100%;
+  }
+  .craft-cermony-home-section-wrapper .craft-cermony-secandary-heading {
+    width: 100%;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section {
+    width: 100%;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .bottom-section {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section {
+    width: 100%;
+  }
+  .online-memorial-site-section {
+    background-color: lightgray;
+  }
+  .online-memorial-site-section-list {
+    flex-direction: column;
+  }
+  .online-memorial-site-section-list .single-item-of-online-memorial {
+    background-color: white;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .share-memorial-section .share-memorial-insider {
+    margin: 24px 24px;
+  }
+  .share-memorial-section .share-memorial-insider .share-memorial-form .row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .plan-a-tree-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-size: auto;
+    padding: 24px 24px 0px 24px;
+  }
+  .plan-a-tree-section .two-columns-of-tree {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial {
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(237, 230, 230);
+    height: 100%;
+    padding: 16px;
+    position: relative;
+  }
+  .plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-first {
+    font-size: 22px;
+    font-weight: bolder;
+  }
+  .plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-two {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+  }
+  .plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-three {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+  }
+  .plan-a-tree-section .two-columns-of-tree .right-col-tree-memorial {
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .hero_section_home .hero_wrapper .heading_primary {
+    font-size: 1.6rem;
+  }
+  .hero_section_home .hero_wrapper .heading_secandary {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+  }
+  .hero_section_home .hero_wrapper .custom-button {
+    margin-top: 1.3rem;
+    padding: 12px;
+  }
+  .hero_section_home .hero_wrapper .heading_ternary {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 0.2rem;
+  }
+}/*# sourceMappingURL=Home.css.map */
