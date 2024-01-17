@@ -49,7 +49,7 @@ class RegistrationController extends Controller
     public function userSignup()
     {
         https://www.mykeeper.com/signup-steps/?is_self_account_view=1
-        return view($this->_viewPath . 'signup-self-account');
+        return view($this->_viewPath . 'signup-user');
     }
 
 
@@ -67,34 +67,29 @@ class RegistrationController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
-            'gender' => 'required',
-            'dob' => 'required',
         ]);
+
         $this->data['user'] = $this->_model;
         $this->data['user']->first_name = $request->input('first_name');
         $this->data['user']->last_name = $request->input('last_name');
         $this->data['user']->email = $request->input('email');
-        $this->data['user']->password = hash::make($request->password);
-        $this->data['user']->dob = $request->input('dob');
-        $this->data['user']->gender = $request->input('gender');
-        $this->data['user']->role_id = '2'; /* self User Account*/
+        $this->data['user']->password = Hash::make($request->password);
+        $this->data['user']->role_id = '2'; /* self User Account */
 
-//        dd($this->data['user']);
         $check = $this->data['user']->save();
 
-        $name = $this->data['user']->first_name . '' . $this->data['user']->last_name;
+        $name = $this->data['user']->first_name . ' ' . $this->data['user']->last_name;
         if ($check) {
-            $msg = $name . ' Registered successfully';
+            $msg = $name . ' registered successfully';
             Session::flash('msg', $msg);
             Session::flash('message', 'alert-success');
         } else {
-            $msg = trans('lang_data.error');
+            $msg = 'Error occurred while registering.';
             Session::flash('msg', $msg);
             Session::flash('message', 'alert-danger');
         }
         return redirect()->back();
     }
-
 
     public function memorialregistration(Request $request)
     {
@@ -157,17 +152,17 @@ class RegistrationController extends Controller
         } else {
             $this->data['memorialUser']->email = Str::random(5) . ' loved one is dead ' . Str::random(5);
         }
-//        if ($request->hasFile('memorial_image')) {
-//            $image = $request->file('memorial_image');
-//
-//            $imageName = time() . '_' . $image->getClientOriginalName();
-//            $directory = public_path('profile_images');
-//            if (!File::exists($directory)) {
-//                File::makeDirectory($directory, 0777, true, true);
-//            }
-//            $image->move($directory, $imageName);
-//            $this->data['keeperUser']->profile_image = 'profile_images/' . $imageName;
-//        }
+        if ($request->hasFile('memorial_image')) {
+            $image = $request->file('memorial_image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $directory = public_path('assets/images/profile_images');
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+            $image->move($directory, $imageName);
+            $this->data['keeperUser']->profile_image = 'profile_images/' . $imageName;
+        }
         $this->data['memorialUser']->password = hash::make(Str::random('6'));
         $this->data['memorialUser']->gender = $request->input('memorial_gender');
         $this->data['memorialUser']->role_id = '3'; /* Memorial Loved One User Account*/

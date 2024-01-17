@@ -34,17 +34,20 @@ Route::get('/', function () {
 
 
 
+//AUTHENTICATION
 
-Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('userSignUp');
-
-Route::get('/memorialsignup',[RegistrationController::class,'memorialSignup']);
-Route::post('/memorialsignup',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
-Route::post('/signup',[RegistrationController::class]);
-//Route::post('/login',[LoginController::class,'login'])->name('login');
-Route::get('/postlogin',[LoginController::class,'postLogin'])->name('postlogin');
+Route::get('/login',[LoginController::class,'login'])->name('login');
+Route::post('/postlogin', [LoginController::class, 'postLogin'])->name('postlogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::get('/forgot-password',[ForgetPasswordController::class]);
 Route::post('/forgot-password',[ForgetPasswordController::class]);
+
+Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('usersignup');
+Route::post('/userregistration', [RegistrationController::class, 'userregistration'])->name('userregistration');
+
+Route::get('/memorialsignup',[RegistrationController::class,'memorialSignup'])->name('memorialsignup');
+Route::post('/memorialregistration',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
 
 
 Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {

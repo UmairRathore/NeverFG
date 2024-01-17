@@ -1,0 +1,684 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.heading-color {
+  color: #46c0e1;
+}
+
+.font-heading-large {
+  font-size: 24px;
+}
+
+body {
+  font-size: 12px;
+  font-family: "Nunito", sans-serif;
+  width: 100%;
+}
+
+.hero_section_home {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60vh;
+  background: url("../assets/hero_background_1.jpg") no-repeat center center;
+  background-size: 100%;
+}
+.hero_section_home .hero_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 100%;
+  color: white;
+  letter-spacing: 2px;
+  gap: 1rem;
+}
+.hero_section_home .hero_wrapper .hero_logo {
+  width: 200px;
+  height: 120px;
+  margin: 1rem;
+}
+
+.concept-of-websiteName-section {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.concept-of-websiteName-section-wrapper {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 400;
+  gap: 16px;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-left-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section {
+  width: 50%;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  width: 100%;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form {
+  border: 1px solid black;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form .form-headin-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form .form-headin-wrapper .form-main-heading {
+  width: 60%;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form .input-sections-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form .input-style {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+  width: 100%;
+}
+.concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section .share-memorial-insider .share-memorial-form .input-style:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.features-page-first-grid {
+  display: grid;
+  padding: 30px;
+  gap: 16px;
+  width: 100%;
+  max-width: 1000px;
+  grid-template-areas: "features-section-header features-section-header" "div-1 div-2" "div-3 div-4" "div-5 div-6" "div-7 div-8" "div-9 div-10" "div-11 div-12" "div-13 div-13" "div-14 div-14" "bird-flying-section bird-flying-section";
+}
+.features-page-first-grid .features-div-top {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px 12px;
+  align-items: center;
+  gap: 20px;
+}
+.features-page-first-grid .features-div-top .feature-div-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.features-page-first-grid > * {
+  min-width: 0px;
+  overflow: auto;
+  padding-bottom: 12px;
+}
+.features-page-first-grid .features-section-header {
+  grid-area: features-section-header;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+.features-page-first-grid .features-section-header-insider {
+  width: 80%;
+  text-align: center;
+}
+.features-page-first-grid .features-section-header-insider-primary-heading {
+  font-size: 32px;
+  font-weight: bolder;
+}
+.features-page-first-grid .div-1 {
+  grid-area: div-1;
+}
+.features-page-first-grid .div-2 {
+  grid-area: div-2;
+}
+.features-page-first-grid .div-3 {
+  grid-area: div-3;
+}
+.features-page-first-grid .div-4 {
+  grid-area: div-4;
+}
+.features-page-first-grid .div-5 {
+  grid-area: div-5;
+}
+.features-page-first-grid .div-6 {
+  grid-area: div-6;
+}
+.features-page-first-grid .div-7 {
+  grid-area: div-7;
+}
+.features-page-first-grid .div-8 {
+  grid-area: div-8;
+}
+.features-page-first-grid .div-9 {
+  grid-area: div-9;
+}
+.features-page-first-grid .div-10 {
+  grid-area: div-10;
+}
+.features-page-first-grid .div-11 {
+  grid-area: div-11;
+}
+.features-page-first-grid .div-12 {
+  grid-area: div-12;
+}
+.features-page-first-grid .div-13 {
+  grid-area: div-13;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.features-page-first-grid .div-14 {
+  grid-area: div-14;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.features-page-first-grid .div-14 .create-a-true-celebaration {
+  color: #46c0e1;
+  font-size: 24px;
+  width: 60%;
+  text-align: center;
+}
+.features-page-first-grid .div-14 .create-a-true-celebaration .highlighted-section {
+  font-size: 20px;
+  margin-left: 8px;
+  margin-top: 12px;
+  position: absolute;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: rgb(80, 178, 238);
+  background: linear-gradient(90deg, rgba(80, 178, 238, 0.9598433123) 14%, rgba(15, 58, 113, 0.9626444328) 49%);
+}
+.features-page-first-grid .bird-flying-section {
+  grid-area: bird-flying-section;
+  height: 80vh;
+  background: url("../assets/bird.webp") no-repeat;
+  background-size: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 30px;
+  padding-bottom: 0px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper {
+  background-color: white;
+  width: 450px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  gap: 12px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .most-popular-top-heading {
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+  padding: 8px;
+  margin-top: -16px;
+  border-radius: 4px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-main-heading {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-main-heading .sup-tm-text {
+  font-size: 8px;
+  position: absolute;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-main-heading .plus-title {
+  margin-left: 2px;
+  color: white;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  position: relative;
+  top: -8px;
+  background: rgb(80, 178, 238);
+  background: linear-gradient(90deg, rgba(80, 178, 238, 0.9598433123) 14%, rgba(15, 58, 113, 0.9626444328) 49%);
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading {
+  font-size: 20px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  width: 50%;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .left-col-of-price {
+  width: 50%;
+  font-size: 30px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .left-col-of-price .price-row-main-heading {
+  align-self: center;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .left-col-of-price .price-row-main-heading-sup {
+  font-size: 24px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .right-col-of-price {
+  width: 50%;
+  align-self: center;
+  font-size: 18px;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading-2 {
+  padding: 8px 20px;
+  font-size: 18px;
+  text-align: center;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading-2 a {
+  text-decoration: underline;
+  color: black;
+  cursor: pointer;
+}
+.features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .create-memorial-btn {
+  margin: 16px;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.are-you-funeral-service-provider-section {
+  display: flex;
+  background: url("../assets/hero_background_1.jpg") no-repeat center center;
+  background-size: 100%;
+  height: 400px;
+  width: 100%;
+  align-items: center;
+  margin-top: 32px;
+}
+.are-you-funeral-service-provider-section .service-provider-insider {
+  color: white;
+  width: 400px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tablet-and-form-section-of-features {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider {
+  margin: 70px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet {
+  display: flex;
+  width: 100%;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-left-col {
+  width: 50%;
+  height: 100%;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-left-col .phone-tab-img {
+  margin-top: -100px;
+  width: 540px;
+  height: 800px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col-logo {
+  width: 200px;
+  height: 80px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col-heading-main {
+  color: white;
+  font-size: 32px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col-heading-sub {
+  color: white;
+  font-size: 21px;
+  width: 400px;
+  text-align: center;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col .share-memorial-form {
+  background-color: white;
+  border: 1px solid black;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+  margin: 20px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col .share-memorial-form .form-headin-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col .share-memorial-form .input-sections-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col .share-memorial-form .input-style {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+  width: 100%;
+}
+.tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col .share-memorial-form .input-style:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.craft-cermony-home-section {
+  padding: 3rem;
+  display: flex;
+}
+.craft-cermony-home-section-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.craft-cermony-home-section-wrapper .craft-cermony-main-heading {
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .craft-cermony-secandary-heading {
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section .bottom-section {
+  margin: 12px 0px;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+.craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section .video-item {
+  width: 500px;
+  height: 400px;
+  margin-top: -55px;
+}
+
+.plan-a-tree-section {
+  display: flex;
+  background: url("../assets/tree.jpg") no-repeat center center;
+  background-size: 100%;
+  height: 400px;
+  width: 100%;
+  align-items: center;
+}
+.plan-a-tree-section .two-columns-of-tree {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-first {
+  font-size: 24px;
+  font-weight: bolder;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-two {
+  width: 240px;
+  font-size: 32px;
+  text-align: end;
+}
+.plan-a-tree-section .two-columns-of-tree .left-col-tree-memorial .heading-three {
+  width: 400px;
+  text-align: end;
+  font-size: 1rem;
+}
+.plan-a-tree-section .two-columns-of-tree .right-col-tree-memorial {
+  display: flex;
+}
+.plan-a-tree-section .two-columns-of-tree .right-col-tree-memorial .tree-image-size {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .concept-of-websiteName-section-wrapper .cermonyTwocolumns {
+    flex-direction: column;
+  }
+  .concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-left-section {
+    width: 100%;
+  }
+  .concept-of-websiteName-section-wrapper .cermonyTwocolumns .cermony-right-section {
+    width: 100%;
+  }
+  .features-page-first-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .features-page-first-grid .features-section-header-insider {
+    width: 100%;
+  }
+  .features-page-first-grid .div-14 .create-a-true-celebaration {
+    font-size: 16px;
+    width: 100%;
+    margin: 16px;
+  }
+  .features-page-first-grid .div-14 .create-a-true-celebaration .highlighted-section {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .features-page-first-grid .bird-flying-section {
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border-radius: 20px;
+    background-color: lightgrey;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper {
+    width: 80%;
+    height: 500px;
+    flex-wrap: wrap;
+    border-radius: 20px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading {
+    font-size: 16px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price {
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    gap: 8px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .left-col-of-price {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .right-col-of-price {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .create-memorial-btn {
+    margin: 12px;
+    font-size: 18px;
+    padding: 16px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .features-page-first-grid .bird-flying-section {
+    height: 70vh;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border-radius: 20px;
+    background-color: lightgrey;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper {
+    width: 80%;
+    flex-wrap: wrap;
+    border-radius: 20px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price {
+    font-size: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    gap: 8px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .left-col-of-price {
+    width: 100%;
+    font-size: 16px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .row-of-bird-flying-price .right-col-of-price {
+    font-size: 16px;
+    width: 100%;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading {
+    text-align: center;
+    font-size: 14px;
+    padding: 8px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper-paragrpah-heading-2 {
+    padding: 8px 12px;
+    font-size: 14px;
+    text-align: center;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .create-memorial-btn {
+    font-size: 16px;
+  }
+  .features-page-first-grid .bird-flying-section .form-of-flying-bird-wrapper .half-width {
+    width: 50%;
+    padding: 16px;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-left-col {
+    display: none;
+  }
+  .tablet-and-form-section-of-features .tablet-and-form-section-of-features-insider .two-cols-of-phone-and-tablet-right-col {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .craft-cermony-home-section-wrapper .craft-cermony-main-heading {
+    width: 100%;
+    padding: 16px;
+  }
+  .craft-cermony-home-section-wrapper .craft-cermony-secandary-heading {
+    width: 100%;
+    padding: 16px;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns {
+    flex-direction: column-reverse;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-left-section {
+    width: 100%;
+  }
+  .craft-cermony-home-section-wrapper .cermonyTwocolumns .cermony-right-section {
+    width: 100%;
+  }
+}
+.black-background-btn {
+  background-color: black;
+  color: white;
+  padding: 12px 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.half-width {
+  width: 50%;
+  text-align: center;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
+}
+
+.white-background-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 12px 16px;
+}
+.white-background-btn:hover {
+  background-color: lightgray;
+}
+
+.full-width {
+  width: 100%;
+}/*# sourceMappingURL=Features.css.map */
