@@ -39,52 +39,36 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    function postLogin(Request $request)
+    public function postLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
+        $credentials = $request->only('email', 'password');
 
-        $email = $request->email;
-        $password = $request->password;
+        if (Auth::guard('user')->attempt($credentials, true)) {
+            $user = auth('user')->user();
 
-        $email = 'admin@gmail.com';
-        $password = '123456';
-
-
-        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 1) {
-
-            return view('backend.index');
-        } elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 2) /* user */ {
-
-            $previousUrl = URL::previous();
-            return Redirect::to($previousUrl ?? '/');
-        }
-
-        elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 3) /* memorial loved one */ {
-
-            $previousUrl = URL::previous();
-            return Redirect::to($previousUrl ?? '/');
-        }
-
-        elseif (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], true) && auth('user')->user()->role_id == 4) /* business Keeper */ {
-
-            $previousUrl = URL::previous();
-            return Redirect::to($previousUrl ?? '/');
-        }
-        else {
-
-
-            if (!\auth()->user()) {
-                $msg = "Your credentials do not match our record, Please try again.";
-                Session::flash('msg', $msg);
-                Session::flash('message', 'alert-success');
-            } else {
-                $msg = trans('lang_data.error');
-                Session::flash('msg', $msg);
-                Session::flash('message', 'alert-danger');
+            if ($user->role_id == 1) {
+                return view('index');
+            } elseif ($user->role_id == 2) {
+                $previousUrl = URL::previous();
+                return redirect()->to($previousUrl);
+            } elseif ($user->role_id == 3) {
+                $previousUrl = URL::previous();
+                return redirect()->to($previousUrl);
+            } elseif ($user->role_id == 4) {
+                $previousUrl = URL::previous();
+                return redirect()->to($previousUrl);
             }
-            return redirect()->back();
-
         }
-    }
 
+        // If authentication fails
+        $msg = "Your credentials do not match our records. Please try again.";
+        Session::flash('msg', $msg);
+        Session::flash('message', 'alert-danger');
+        return redirect()->back();
+    }
 }

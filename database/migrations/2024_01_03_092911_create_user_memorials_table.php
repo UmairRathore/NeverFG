@@ -24,6 +24,7 @@ class CreateUserMemorialsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('keeper_id');
             $table->enum('status', ['active', 'inactive'])->default('active'); // Use ENUM for two options
+            $table->enum('passed', ['alive', 'deceased'])->default('deceased'); // Use ENUM for two options
 
             //foreign key constraint
             $table->foreign('user_id')->references('id')->on('users');

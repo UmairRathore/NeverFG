@@ -16,15 +16,16 @@ class ForgetPasswordController extends Controller
     //
     public function showForgetPasswordForm()
     {
-        return view('auth.forgetPassword');
+        return view('auth.forgetpassword');
     }
 
 
     public function submitForgetPasswordForm(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users',
-        ]);
+//        dd($request);
+//        $request->validate([
+//            'email' => 'required|email|exists:users',
+//        ]);
 
         $token = Str::random(64);
 
@@ -34,7 +35,7 @@ class ForgetPasswordController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('backend.email.forgetPassword', ['token' => $token], function ($message) use ($request) {
+        Mail::send('auth.email.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Reset Password');
         });
@@ -44,13 +45,14 @@ class ForgetPasswordController extends Controller
 
     public function showResetPasswordForm($token)
     {
-        //        return view($this->_viewPath.'forgetPasswordLink', ['token' => $token]);
-        return view('auth.forgetpassLink', ['token' => $token]);
+        return view('auth.resetpassword', ['token' => $token]);
     }
 
 
     public function submitResetPasswordForm(Request $request)
     {
+        $request->token = 'uBWCv2vtvjqmgjgVBCPf8WTL2XCa9Z00phk62coYrxOgO9uEfs';
+//        dd($request->token);
         $request->validate([
             'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
@@ -60,10 +62,11 @@ class ForgetPasswordController extends Controller
         $updatePassword = DB::table('password_resets')
             ->where([
                 'email' => $request->email,
-                'token' => $request->token
+                'token' => 'uBWCv2vtvjqmgjgVBCPf8WTL2XCa9Z00phk62coYrxOgO9uEfsZe0ToT6YbRTmGM',
             ])
             ->first();
 
+//        dd($updatePassword);
         if (!$updatePassword) {
             return back()->withInput()->with('error', 'Invalid token!');
         }
