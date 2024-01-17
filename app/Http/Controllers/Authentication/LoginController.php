@@ -36,7 +36,7 @@ class LoginController extends Controller
         elseif (Auth::guard('user')->check() && auth('user')->user()->role_id == 4) /* business Keeper */ {
             return redirect('/');
         }
-        return view('frontend.auth.login');
+        return view('auth.login');
     }
 
     public function postLogin(Request $request)
@@ -52,9 +52,10 @@ class LoginController extends Controller
             $user = auth('user')->user();
 
             if ($user->role_id == 1) {
-                return view('backend.index');
+                return view('index');
             } elseif ($user->role_id == 2) {
-                return view('backend.index');
+                $previousUrl = URL::previous();
+                return redirect()->to($previousUrl);
             } elseif ($user->role_id == 3) {
                 $previousUrl = URL::previous();
                 return redirect()->to($previousUrl);

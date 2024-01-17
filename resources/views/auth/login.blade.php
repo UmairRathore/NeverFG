@@ -24,6 +24,10 @@
             No account?
             <a href="{{ route('usersignup') }}">Sign up</a>
         </p>
+        <p class="signup-link">
+            Forgot Password?
+            <a href="{{ route('forgetpassword') }}">Recover Password</a>
+        </p>
     </form></div>
 </body>
 </html>

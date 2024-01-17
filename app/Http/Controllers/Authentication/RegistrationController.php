@@ -36,7 +36,7 @@ class RegistrationController extends Controller
 
     private function setDefaultData()
     {
-        $this->_viewPath = 'frontend.auth.';
+        $this->_viewPath = 'auth.';
         $this->data['moduleName'] = 'User';
     }
 
