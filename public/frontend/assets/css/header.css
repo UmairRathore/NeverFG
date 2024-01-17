@@ -430,7 +430,7 @@ body {
   }
 }
 
-@media screen and (width <= 480px) {
+@media screen and (max-width: 480px) {
   .main-header-funeralist-wrapper .small-and-medium-size-navigation-menu .small-nav-bar-logo-div .my-small-nav-logo {
     display: flex;
     flex-wrap: wrap;
