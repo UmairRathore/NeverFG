@@ -15,11 +15,23 @@
 
 <h1>Add a Memorial</h1>
 <!-- First form -->
+@if (Session::has('message'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('message') }}
+    </div>
+@endif
+@if (Session::has('error'))
+    <div class="alert alert-error" role="alert">
+        {{ Session::get('error') }}
+    </div>
+@endif
+
 <form method="POST" action="{{ route('memorialregistration') }}" enctype="multipart/form-data">
     @csrf
 
     {{--   MEMORIAL PROFILE  --}}
     <section>
+
         <p class="step-1-top-heading">ABOUT YOUR LOVED ONE</p>
         <div class="form-group-input">
             <label for="memorial_first_name">Their First Name</label>
@@ -35,7 +47,7 @@
         <div class="form-group-input">
             {{--                <label for="memorial_passed">Passed</label>--}}
             <H2>Has Passed Away?
-                <input type="checkbox" name="memorial_passed" id="memorialPassedCheckbox" onclick="updateCheckboxValue()" value="0">
+                <input type="checkbox" name="memorial_passed" id="memorialPassedCheckbox"  >
                 <small>
                     <i class="fa fa-info-circle" data-tooltip="Select this option to create a Living Memorial page for a loved one who has not passed away."
                        style="position: relative; cursor: pointer; "
@@ -443,7 +455,7 @@
 
     // Set the default state of the checkbox to checked
     memorialPassedCheckbox.checked = true;
-    updateCheckboxValue();
+
 
     memorialPassedCheckbox.addEventListener('change', function () {
         // If "Passed" checkbox is checked, show email input and hide Date of Birth
@@ -451,13 +463,9 @@
         memorialEmailContainer.style.display = this.checked ? 'none' : 'block';
 
         // Update the checkbox value
-        updateCheckboxValue();
+
     });
 
-    function updateCheckboxValue() {
-        // Update the checkbox value based on its checked state
-        memorialPassedCheckbox.value = memorialPassedCheckbox.checked ? "1" : "0";
-    }
 </script>
 </body>
 </html>

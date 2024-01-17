@@ -156,13 +156,15 @@ class RegistrationController extends Controller
             $image = $request->file('memorial_image');
 
             $imageName = time() . '_' . $image->getClientOriginalName();
+            $imageExtension = $image->getClientOriginalExtension();
             $directory = public_path('assets/images/profile_images');
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0777, true, true);
             }
-            $image->move($directory, $imageName);
-            $this->data['keeperUser']->profile_image = 'profile_images/' . $imageName;
+            $image->move($directory, $imageName . '-' . $imageExtension);
+            $this->data['memorialUser']->profile_image = 'assets/images/profile_images/' . $imageName;
         }
+
         $this->data['memorialUser']->password = hash::make(Str::random('6'));
         $this->data['memorialUser']->gender = $request->input('memorial_gender');
         $this->data['memorialUser']->role_id = '3'; /* Memorial Loved One User Account*/
@@ -175,7 +177,14 @@ class RegistrationController extends Controller
             $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model;
             $this->data['memorialUserAdditionalInfo']->user_id = $memorialUserId;
             $this->data['memorialUserAdditionalInfo']->dod = $memorialDod;
-            $this->data['memorialUserAdditionalInfo']->passed = $request->memorial_passed;
+//            dd($request->has('memorial_passed'));
+            if ($request->has('memorial_passed')) {
+                $passedValue = 'alive';
+            } else {
+                $passedValue = 'deceased';
+            }
+//            dd($passedValue);
+            $this->data['memorialUserAdditionalInfo']->passed = $passedValue;
             $this->data['memorialUserAdditionalInfo']->biography = $request->input('memorial_biography');
             $this->data['memorialUserAdditionalInfo']->fav_saying = $request->input('memorial_fav_saying');
             $this->data['memorialUserAdditionalInfo']->resting_place = $request->input('memorial_resting_place');
@@ -183,49 +192,44 @@ class RegistrationController extends Controller
             $checkMemorialUserAdditionalInfo = $this->data['memorialUserAdditionalInfo']->save();
             $MemorialUserAdditionalInfoIDForKeeper = $this->data['memorialUserAdditionalInfo']->id;
 
-        if ($checkMemorialUserAdditionalInfo) {
+            if ($checkMemorialUserAdditionalInfo) {
 //                dd($MemorialUserAdditionalInfoIDForKeeper);
-            $this->data['keeperUser'] = new User();
-            $this->data['keeperUser']->first_name = $request->input('keeper_first_name');
-            $this->data['keeperUser']->last_name = $request->input('keeper_last_name');
-            $this->data['keeperUser']->email = $request->input('keeper_email');
-            $this->data['keeperUser']->password = hash::make($request->password);
-            $this->data['keeperUser']->dob = $keeperDob;
-            $this->data['keeperUser']->gender = $request->input('keeper_gender');
-            $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
-            $checkKeeper = $this->data['keeperUser']->save();
-            $memorialkeeperId = $this->data['keeperUser']->id;
+                $this->data['keeperUser'] = new User();
+                $this->data['keeperUser']->first_name = $request->input('keeper_first_name');
+                $this->data['keeperUser']->last_name = $request->input('keeper_last_name');
+                $this->data['keeperUser']->email = $request->input('keeper_email');
+                $this->data['keeperUser']->password = hash::make($request->password);
+                $this->data['keeperUser']->dob = $keeperDob;
+                $this->data['keeperUser']->gender = $request->input('keeper_gender');
+                $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
+                $checkKeeper = $this->data['keeperUser']->save();
+                $memorialkeeperId = $this->data['keeperUser']->id;
 
-        if ($checkKeeper) {
-//                    dd($memorialkeeperId);
-            $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model::where('id', $MemorialUserAdditionalInfoIDForKeeper)->first();
-            $this->data['memorialUserAdditionalInfo']->keeper_id = $memorialkeeperId;
-            $checkmemorialkeeper = $this->data['memorialUserAdditionalInfo']->update();
+                if ($checkKeeper) {
+                    $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model::where('id', $MemorialUserAdditionalInfoIDForKeeper)->first();
+                    $this->data['memorialUserAdditionalInfo']->keeper_id = $memorialkeeperId;
+                    $checkmemorialkeeper = $this->data['memorialUserAdditionalInfo']->update();
 
-        if ($checkmemorialkeeper) {
-            $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
-            $this->data['keeperAccountType']->account_type_id = $request->input('keeper_account_type');
-            $this->data['keeperAccountType']->update();
-        }}}}
-//                else {
-//                    $this->data['keeperUser'] = $this->_model::find($checkKeeper);
-//                    $checkKeeperUser = $this->data['keeperUser']->delete();
-//                    if (!$checkKeeperUser) {
-//                        dd('Keeper User successfully deleted');
-//                    }
-//                }
+                    if ($checkmemorialkeeper) {
+                        $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
+                        $this->data['keeperAccountType']->account_type_id = $request->input('keeper_account_type');
+                        $check = $this->data['keeperAccountType']->update();
+
+                        if ($check)
+                        {
+                                $msg =' Registered successfully, Memorial account as well';
+                                Session::flash('message', $msg);
+                            } else {
+                                $msg = trans('lang_data.error');
+                                Session::flash('error', $msg);
+
+
+                            }
+                            return redirect()->back();
+
+                    }
+                }
+            }
+        }
     }
-
-
-
-//        else {
-//            $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model::find($memorialUserId);
-//            $checkMemorialUserAdditionalInfo = $this->data['memorialUserAdditionalInfo']->delete();
-//            if (!$checkMemorialUserAdditionalInfo) {
-//                dd('Memorial - User_Additional_Info successfully deleted');
-//            }
-//        }
-
-
 }
-
