@@ -12,6 +12,7 @@ use App\Http\Controllers\Authentication\AuthController;
 use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +26,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-//Route::get('/',[\App\Http\Controllers\Authentication\RegistrationController::class,'memorialregistration']);
+
+Route::get('/',[HomeController::class,'index'])->name('index');
+Route::get('/faqs',[HomeController::class,'faqs'])->name('faqs');
+Route::get('/features',[HomeController::class,'features'])->name('features');
+Route::get('/virtual-funeral',[HomeController::class,'virtualFuneral'])->name('virtualfuneral');
+Route::get('/for-business',[HomeController::class,'forBusiness'])->name('forbusiness');
+
+
 
 
 
