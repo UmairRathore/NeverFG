@@ -13,6 +13,7 @@ use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
 
 Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
 Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
@@ -38,6 +36,15 @@ Route::get('/events',[ProfileController::class,'events'])->name('events');
 Route::get('/family',[ProfileController::class,'family'])->name('family');
 Route::get('/message',[ProfileController::class,'message'])->name('message');
 Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
+
+
+
+Route::get('/',[HomeController::class,'index'])->name('index');
+Route::get('/faqs',[HomeController::class,'faqs'])->name('faqs');
+Route::get('/features',[HomeController::class,'features'])->name('features');
+Route::get('/virtual-funeral',[HomeController::class,'virtualFuneral'])->name('virtualfuneral');
+Route::get('/for-business',[HomeController::class,'forBusiness'])->name('forbusiness');
+
 
 
 
