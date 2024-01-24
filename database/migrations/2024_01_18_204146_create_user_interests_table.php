@@ -17,9 +17,9 @@ class CreateUserInterestsTable extends Migration
             $table->id();
             $table->string('interest');
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('memorial_user_id');
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('memorial_user_id')->references('id')->on('users');
         });
     }
 

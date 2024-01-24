@@ -212,15 +212,15 @@
                         <label for="">Gender</label>
                         <div class="row-of-inputs">
                             <div class="radio-input">
-                                <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'male') checked @endif />
+                                <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'Male') checked @endif />
                                 <label for="male">Male</label><br/>
                             </div>
                             <div class="radio-input">
-                                <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'female') checked @endif />
+                                <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'Female') checked @endif />
                                 <label for="female">Female</label><br/>
                             </div>
                             <div class="radio-input">
-                                <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'other') checked @endif />
+                                <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'Other') checked @endif />
                                 <label for="other">Other</label>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
                         <label for="">Search</label>
-                        <input type="text" class="input-design" value="{{$profile['memorialCity']->home_city}}"/>
+                        <input type="text" class="input-design" name="home_city" value="{{$profile['memorialCity']->home_city}}"/>
                     </div>
                 </div>
                 <div class="footer-of-form-content">
@@ -267,7 +267,7 @@
                     <div class="form-group-input">
                         <label for="">The last city they resided in. If it is the same as their
                             Hometown, leave it blank.</label>
-                        <input type="text" class="input-design" value="{{$profile['memorialCity']->other_city}}"/>
+                        <input type="text" class="input-design" name="other_city" value="{{$profile['memorialCity']->other_city}}"/>
                     </div>
                 </div>
                 <div class="footer-of-form-content">
@@ -1095,19 +1095,27 @@
                             `<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Occupation</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->occupation}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialOccupation'])
+                            {{$profile['memorialOccupation']->occupation}}
+                            @endisset" />
                 </div>
                 <div class="form-group-input">
                   <label for="">Company</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->company}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialOccupation'])
+                  {{$profile['memorialOccupation']->company}}
+                  @endisset" />
                 </div>
                 <div class="form-group-input">
                   <label for="">From Year</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->from_year}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialOccupation'])
+                  {{$profile['memorialOccupation']->from_year}}
+                  @endisset" />
                 </div>
                 <div class="form-group-input">
                   <label for="">To Year</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->to_year}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialOccupation'])
+                  {{$profile['memorialOccupation']->to_year}}
+                  @endisset" />
                 </div>
                 <svg
                 class="deleteOccupation"
@@ -1158,19 +1166,19 @@
                     $(academic_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Diploma</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->diploma}}"  />
+                  <input type="text" class="input-design" value="@isset($profile['memorialAcademic']){{$profile['memorialAcademic']->diploma}}@endisset"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">School</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->school}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialAcademic']){{$profile['memorialAcademic']->school}}@endisset" />
                 </div>
                 <div class="form-group-input">
                   <label for="">From Year</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->from_year}}"  />
+                  <input type="text" class="input-design" value="@isset($profile['memorialAcademic']){{$profile['memorialAcademic']->from_year}}@endisset"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">To Year</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->to_year}}"  />
+                  <input type="text" class="input-design" value="@isset($profile['memorialAcademic']){{$profile['memorialAcademic']->to_year}}@endisset"  />
                 </div>
                 <svg
                 class="deleteAcademic"
@@ -1218,11 +1226,11 @@
                     $(milestone_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Description</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialMilestone']->milestone}}"  />
+                  <input type="text" class="input-design" value="@isset($profile['memorialMilestone']){{$profile['memorialMilestone']->milestone}}@endisset"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">Year</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialMilestone']->year}}"/>
+                  <input type="text" class="input-design" value="@isset($profile['memorialMilestone']){{$profile['memorialMilestone']->year}}@endisset"/>
                 </div>
 
                 <svg
@@ -1271,7 +1279,7 @@
                     $(interests_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Interest Name</label>
-                  <input type="text" class="input-design" value="{{$profile['memorialInterest']->interest}}" />
+                  <input type="text" class="input-design" value="@isset($profile['memorialInterest']){{$profile['memorialInterest']->interest}}@endisset" />
                 </div>
 
                 <svg

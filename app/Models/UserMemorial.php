@@ -20,6 +20,6 @@ class UserMemorial extends Model
             'resting_place',
             'religion',
             'status',
-            'user_id'
+            'memorial_user_id'
         ];
 }
