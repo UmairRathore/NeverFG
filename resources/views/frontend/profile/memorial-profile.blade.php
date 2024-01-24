@@ -295,7 +295,7 @@
                         </div>
                     </div>
                     <div class="footer-of-form-content">
-                        <button class="form-btn">Save Changes</button>
+                        <button id="occupation-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                     </div>
                 </div>
 
@@ -314,7 +314,7 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button class="form-btn">Save Changes</button>
+                    <button id="academic-info-btn" class="form-btn">Save Changes</button>
                 </div>
             </div>
 
@@ -340,7 +340,7 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button class="form-btn">Save Changes</button>
+                    <button id="milestone-info-btn" class="form-btn">Save Changes</button>
                 </div>
             </div>
 
@@ -415,7 +415,7 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button class="form-btn">Save Changes</button>
+                    <button id="interest-info-btn" class="form-btn" data-user-id="{{$profile['memorialProfile']->id}}" >Save Changes</button>
                 </div>
             </div>
 
@@ -1091,25 +1091,25 @@
                     <div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Occupation</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialOccupation'])
+                  <input type="text" class="input-design" name="occupation[]" value="@if($profile['memorialOccupation'])
                         {{$profile['memorialOccupation']->occupation}}
                         @endif" />
                 </div>
                 <div class="form-group-input">
                   <label for="">Company</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialOccupation'])
+                  <input type="text" class="input-design" name="company[]" value="@if($profile['memorialOccupation'])
                         {{$profile['memorialOccupation']->company}}
                         @endif" />
                 </div>
                 <div class="form-group-input">
                   <label for="">From Year</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialOccupation'])
+                  <input type="text" class="input-design" name="from_year[]" value="@if($profile['memorialOccupation'])
                         {{$profile['memorialOccupation']->from_year}}
                         @endif" />
                 </div>
                 <div class="form-group-input">
                   <label for="">To Year</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialOccupation'])
+                  <input type="text" class="input-design" name="to_year[]" value="@if($profile['memorialOccupation'])
                         {{$profile['memorialOccupation']->to_year}}
                         @endif" />
                 </div>
@@ -1166,19 +1166,19 @@
         <div class="row-of-dynamic-inputs">
             <div class="form-group-input">
                 <label for="">Diploma</label>
-                <input type="text" class="input-design" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->diploma}}@endif" />
+                <input type="text" class="input-design" name="diploma[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->diploma}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">School</label>
-                <input type="text" class="input-design" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->school}}@endif" />
+                <input type="text" class="input-design" name="school[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->school}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">From Year</label>
-                <input type="text" class="input-design" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->from_year}}@endif" />
+                <input type="text" class="input-design" name="from_year[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->from_year}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">To Year</label>
-                <input type="text" class="input-design" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->to_year}}@endif" />
+                <input type="text" class="input-design" name="to_year[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->to_year}}@endif" />
             </div>
             <svg class="deleteAcademic" width="128px" height="128px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -1215,11 +1215,11 @@
 <div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Description</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->milestone}}@endif"  />
+                  <input type="text" class="input-design" name="milestone[]" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->milestone}}@endif"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">Year</label>
-                  <input type="text" class="input-design" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->year}}@endif"/>
+                  <input type="text" class="input-design" name="year[]" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->year}}@endif"/>
                 </div>
 
                 <svg
@@ -1266,7 +1266,7 @@
                 if (interests_counter < max_fields_of_interests) {
                     interests_counter++;
                     $(interests_container).append(`
-                    <form class="interest-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+<form id="interest-form">
                     <div class="row-of-dynamic-inputs">
             <div class="form-group-input">
                 <label for="">Interest Name</label>
@@ -1294,7 +1294,7 @@
                   </g>
                 </svg>
               </div>
-                </form>`);
+              </form>`);
                 } else {
                     alert("You Reached the limits");
                 }
@@ -1405,7 +1405,7 @@
                 return 0;
             });
 
-            $('#academic-info-form').submit(function (e) {
+            $('#academic-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
@@ -1416,7 +1416,7 @@
                 return 0;
             });
 
-            $('#occupation-info-form').submit(function (e) {
+            $('#occupation-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
@@ -1428,7 +1428,7 @@
                 return 0;
             });
 
-            $('#milestone-info-form').submit(function (e) {
+            $('#milestone-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
@@ -1450,19 +1450,29 @@
                 return 0;
             });
 
-            $('#interest-info-form').submit(function (e) {
+
+            $('#interest-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
                 var identifier = 'interest_info';
-                // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+
+                // Serialize the form data
+                var formData = $('.form-of-logged-in-user form').serializeArray();
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.push({ name: 'user_id', value: userId });
+                formData.push({ name: 'form_identifier', value: identifier });
+
+                // Convert formData to a serialized string
+                formData = $.param(formData);
                 saveFormData(userId, formData);
                 return 0;
             });
 
             //Ajax function
             function saveFormData(userId, formData) {
+                console.log(formData);
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile/' + userId,
@@ -1490,6 +1500,7 @@
                     }
                 });
             };
+
         });
     </script>
 @endsection

@@ -42,7 +42,7 @@ class ProfileController extends Controller
     {
         if (auth()->user()->role_id == 2) {
             $memorial = $this->_memorial_model::where('keeper_id', $id)->first();
-            $memorialID=$memorial->memorial_user_id;
+            $memorialID = $memorial->memorial_user_id;
             $this->data['profile'] = [
                 'memorialProfile' => $this->_model::where('id', $memorialID)->first(),
                 'memorialAdditional' => $this->_memorial_model::where('memorial_user_id', $memorialID)->first(),
@@ -91,7 +91,7 @@ class ProfileController extends Controller
 
             $checkInfo = $this->data['basicInfo']->save();
 
-            if($checkInfo && $checkInfoDod) {
+            if ($checkInfo && $checkInfoDod) {
                 $data = [
                     'success' => true,
                     'message' => 'Your Basic info has been updated correctly'
@@ -102,30 +102,27 @@ class ProfileController extends Controller
 
         if ($request->form_identifier == 'home_info') {
 
-            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id',$id)->first();
-            if ($this->data['homeCity'])
-            {
+            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id', $id)->first();
+            if ($this->data['homeCity']) {
 //            return $this->data['homeCity'];
 //                return $this->data['homeCity'] ;
-            $this->data['homeCity']->home_city = $request->home_city;
+                $this->data['homeCity']->home_city = $request->home_city;
                 $this->data['homeCity']->memorial_user_id = $id;
                 $checkHomeCity = $this->data['homeCity']->save();
-                if($checkHomeCity) {
+                if ($checkHomeCity) {
                     $data = [
                         'success' => true,
                         'message' => 'Your Basic info has been updated correctly'
                     ];
                     return response()->json($data);
                 }
-            }
-            else
-            {
+            } else {
 //                return $request;
                 $this->data['homeCity'] = $this->_city_model;
                 $this->data['homeCity']->home_city = $request->home_city;
                 $this->data['homeCity']->memorial_user_id = $id;
                 $checkHomeCity = $this->data['homeCity']->save();
-                if($checkHomeCity) {
+                if ($checkHomeCity) {
                     $data = [
                         'success' => true,
                         'message' => 'Your Home City has been updated correctly'
@@ -136,29 +133,26 @@ class ProfileController extends Controller
         }
 
         if ($request->form_identifier == 'other_info') {
-            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id',$id)->first();
-            if ($this->data['otherCity'])
-            {
+            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id', $id)->first();
+            if ($this->data['otherCity']) {
 //                return $this->data['homeCity'] ;
                 $this->data['otherCity']->other_city = $request->other_city;
                 $this->data['otherCity']->memorial_user_id = $id;
                 $checkOtherCity = $this->data['otherCity']->save();
-                if($checkOtherCity) {
+                if ($checkOtherCity) {
                     $data = [
                         'success' => true,
                         'message' => 'Your Basic info has been updated correctly'
                     ];
                     return response()->json($data);
                 }
-            }
-            else
-            {
+            } else {
 //                return $request;
                 $this->data['otherCity'] = $this->_city_model;
                 $this->data['otherCity']->home_city = $request->home_city;
                 $this->data['otherCity']->memorial_user_id = $id;
                 $checkOtherCity = $this->data['homeCity']->save();
-                if($checkOtherCity) {
+                if ($checkOtherCity) {
                     $data = [
                         'success' => true,
                         'message' => 'Your Home City has been updated correctly'
@@ -169,20 +163,24 @@ class ProfileController extends Controller
         }
 
         if ($request->form_identifier == 'occupation_info') {
-            return 'occupation_info';
-        }
-
-        if ($request->form_identifier == 'academic_info') {
-            $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
-            $this->data['religionInfo']->religion = $request->religion;
-            $checkReligionInfo = $this->data['religionInfo']->save();
-            if($checkReligionInfo) {
+            return $request;
+            $this->data['occupationInfo'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
+            $this->data['occupationInfo']->school = $request->school;
+            $this->data['occupationInfo']->diploma = $request->diploma;
+            $this->data['occupationInfo']->from_year = $request->from_year;
+            $this->data['occupationInfo']->to_year = $request->to_year;
+            $checkOccupationInfo = $this->data['occupationInfo']->save();
+            if ($checkOccupationInfo) {
                 $data = [
                     'success' => true,
-                    'message' => 'Your religion information has been updated correctly'
+                    'message' => 'Your Occupational information has been updated correctly'
                 ];
                 return response()->json($data);
             }
+        }
+
+        if ($request->form_identifier == 'academic_info') {
+            return 'academic_info';
         }
 
 
@@ -191,47 +189,96 @@ class ProfileController extends Controller
         }
 
         if ($request->form_identifier == 'religion_info') {
-
+            $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+            $this->data['religionInfo']->religion = $request->religion;
+            $checkReligionInfo = $this->data['religionInfo']->save();
+            if ($checkReligionInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your religion information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
         }
 
+        // Check if the form_identifier is 'interest_info'
         if ($request->form_identifier == 'interest_info') {
-            return 'interest_info';
+            // Retrieve the 'interest' array from the request
+            $interests = $request->input('interest', []);
+
+            $checkInterestInfo = '';
+            $this->data['interestinfoCheck'] = $this->_interest_model::where('memorial_user_id', $id)->first();
+
+            if ($this->data['interestinfoCheck']) {
+
+                    $this->data['interestinfo'] = $this->_interest_model::where('memorial_user_id', $id)->first();
+                    $this->data['interestinfo']->interest = implode(', ', $interests);
+                    $this->data['interestinfo']->memorial_user_id = $id;
+                    $checkInterestInfo = $this->data['interestinfo']->save();
+
+            } else {
+                    $this->data['interestinfo'] = $this->_interest_model;
+                     $this->data['interestinfo']->interest = implode(', ', $interests);
+                    $this->data['interestinfo']->memorial_user_id = $id;
+                    $checkInterestInfo = $this->data['interestinfo']->save();
+            }
+
+            if ($checkInterestInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Interest information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
         }
 
+
+        $data = [
+            'success' => false,
+            'message' => 'Invalid form identifier'
+        ];
+        return response()->json($data, 400);
 
     }
 
-    public function events()
+    public
+    function events()
     {
         return view($this->_viewPath . 'events');
     }
 
-    public function family()
+    public
+    function family()
     {
         return view($this->_viewPath . 'family');
     }
 
-    public function keeper()
+    public
+    function keeper()
     {
         return view($this->_viewPath . 'keeper');
     }
 
-    public function keeperplus()
+    public
+    function keeperplus()
     {
         return view($this->_viewPath . 'keeper-plus');
     }
 
-    public function mementos()
+    public
+    function mementos()
     {
         return view($this->_viewPath . 'mementos');
     }
 
-    public function message()
+    public
+    function message()
     {
         return view($this->_viewPath . 'message');
     }
 
-    public function profile()
+    public
+    function profile()
     {
         return view($this->_viewPath . 'profile');
     }
