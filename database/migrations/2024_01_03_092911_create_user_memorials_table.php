@@ -21,6 +21,7 @@ class CreateUserMemorialsTable extends Migration
             $table->text('biography')->nullable();
             $table->string('fav_saying')->nullable();
             $table->string('resting_place')->nullable();
+            $table->string('religion')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('keeper_id');
             $table->enum('status', ['active', 'inactive'])->default('active'); // Use ENUM for two options
