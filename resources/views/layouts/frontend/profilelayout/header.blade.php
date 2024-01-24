@@ -75,7 +75,7 @@
                 <div class="user-content-bottom-row">
                     <div class="navigation-of-logged-in-profile">
                         <div class="single-item">
-                            <a href="{{route('memorialprofile')}}" class="single-item-insider">
+                            <a href="{{route('edit.memorial.profile',auth()->user()->id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>

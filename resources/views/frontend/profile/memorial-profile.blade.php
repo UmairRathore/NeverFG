@@ -115,58 +115,96 @@
     <div class="center-and-margin">
         <!-- Profile secion -->
         <div class="profile-icon-content tab-content" id="Info">
-            <div class="form-of-logged-in-user">
+
+            <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <!--Basic Information-->
+            <div class="form-of-logged-in-user" >
+                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                    Your changes have been saved successfully!
+                </div>
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
                 </div>
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
                         <label for="">First Name</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" name="first_name" value="{{$profile['memorialProfile']->first_name}}"/>
                     </div>
                     <div class="form-group-input">
                         <label for="">Middle Name</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" name="middle_name" value="{{$profile['memorialProfile']->middle_name}}"/>
                     </div>
                     <div class="form-group-input">
                         <label for="">Last Name</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" name="last_name" value="{{$profile['memorialProfile']->last_name}}"/>
                     </div>
                     <div class="form-group-input">
                         <label for="">Suffix(Mr., M.D., etc.)</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" name="suffix" value="{{$profile['memorialProfile']->suffix}}"/>
                     </div>
                     <div class="form-group-input">
                         <label for="">Date of Birth</label>
                         <div class="row-of-inputs">
-                            <select name="" id="">
-                                <option value="0">1970</option>
-                                <option value="0">1971</option>
-                                <option value="0">1972</option>
-                                <option value="0">1973</option>
+                            @php
+                                $dobParts = explode('-', $profile['memorialProfile']->dob);
+                                $selectedDay = $dobParts[0] ?? '';
+                                $selectedMonth = $dobParts[1] ?? '';
+                                $selectedYear = $dobParts[2] ?? '';
+                            @endphp
+
+                                <!-- Day Dropdown -->
+                            <select name="birth_day" id="birth_day">
+                                @for ($day = 1; $day <= 31; $day++)
+                                    <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                @endfor
                             </select>
-                            <select name="" id="">
-                                <option value="0">1970</option>
-                                <option value="0">1971</option>
-                                <option value="0">1972</option>
-                                <option value="0">1973</option>
+
+                            <!-- Month Dropdown -->
+                            <select name="birth_month" id="birth_month">
+                                @for ($month = 1; $month <= 12; $month++)
+                                    <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                @endfor
                             </select>
-                            <select name="" id="">
-                                <option value="0">1970</option>
-                                <option value="0">1971</option>
-                                <option value="0">1972</option>
-                                <option value="0">1973</option>
+
+                            <!-- Year Dropdown -->
+                            <select name="birth_year" id="birth_year">
+                                @for ($year = 1970; $year <= 2023; $year++)
+                                    {{-- Adjust the end year as needed --}}
+                                    <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                @endfor
                             </select>
                         </div>
                     </div>
                     <div class="form-group-input">
-                        <label for="">Date of Birth</label>
+                        <label for="">Date of Death</label>
                         <div class="row-of-inputs">
-                            <select name="" id="">
-                                <option value="0">1970</option>
-                                <option value="0">1971</option>
-                                <option value="0">1972</option>
-                                <option value="0">1973</option>
+                            @php
+                                $dobParts = explode('-', $profile['memorialAdditional']->dod);
+                                $selectedDay = $dobParts[0] ?? '';
+                                $selectedMonth = $dobParts[1] ?? '';
+                                $selectedYear = $dobParts[2] ?? '';
+                            @endphp
+
+                                <!-- Day Dropdown -->
+                            <select name="death_day" id="death_day">
+                                @for ($day = 1; $day <= 31; $day++)
+                                    <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                @endfor
+                            </select>
+
+                            <!-- Month Dropdown -->
+                            <select name="death_month" id="death_month">
+                                @for ($month = 1; $month <= 12; $month++)
+                                    <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                @endfor
+                            </select>
+
+                            <!-- Year Dropdown -->
+                            <select name="death_year" id="death_year">
+                                @for ($year = 1970; $year <= 2023; $year++)
+                                    {{-- Adjust the end year as needed --}}
+                                    <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                @endfor
                             </select>
                         </div>
                     </div>
@@ -174,20 +212,17 @@
                         <label for="">Gender</label>
                         <div class="row-of-inputs">
                             <div class="radio-input">
-                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                  <label for="html">Male</label><br/>
+                                <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'male') checked @endif />
+                                <label for="male">Male</label><br/>
                             </div>
                             <div class="radio-input">
-                                <input type="radio" id="css" name="fav_language" value="CSS"/>
-                                  <label for="css">Female</label><br/>
-                                 
+                                <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'female') checked @endif />
+                                <label for="female">Female</label><br/>
                             </div>
                             <div class="radio-input">
-                                <input type="radio" id="javascript" name="fav_language" value="JavaScript"/>
-                                  <label for="javascript">Other</label>
+                                <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'other') checked @endif />
+                                <label for="other">Other</label>
                             </div>
-
-                             
                         </div>
                     </div>
                 </div>
@@ -195,21 +230,36 @@
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+
+{{-- Home City--}}
+            <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+
+            <div class="form-of-logged-in-user" >
+                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                    Your changes have been saved successfully!
+                </div>
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Home Town</h1>
                 </div>
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
                         <label for="">Search</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" value="{{$profile['memorialCity']->home_city}}"/>
                     </div>
                 </div>
                 <div class="footer-of-form-content">
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+
+{{--Other City--}}
+            <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <div class="form-of-logged-in-user" >
+                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                    Your changes have been saved successfully!
+                </div>
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Other city</h1>
                 </div>
@@ -217,14 +267,18 @@
                     <div class="form-group-input">
                         <label for="">The last city they resided in. If it is the same as their
                             Hometown, leave it blank.</label>
-                        <input type="text" class="input-design"/>
+                        <input type="text" class="input-design" value="{{$profile['memorialCity']->other_city}}"/>
                     </div>
                 </div>
                 <div class="footer-of-form-content">
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+
+{{--Occupational History--}}
+            <form id="occupation-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <div class="form-of-logged-in-user" >
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">
                         Occupational History
@@ -245,7 +299,12 @@
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+
+
+{{--Academic History--}}
+            <form id="academic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <div class="form-of-logged-in-user" >
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Academic History</h1>
                 </div>
@@ -262,8 +321,12 @@
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
+            </form>
 
-            <div class="form-of-logged-in-user">
+
+{{--            Milestones--}}
+            <form id="milestone-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <div class="form-of-logged-in-user" >
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Milestones</h1>
                 </div>
@@ -283,7 +346,15 @@
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+
+
+{{--            Religious Values--}}
+            <form id="religion-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+            <div class="form-of-logged-in-user" >
+                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                    Your changes have been saved successfully!
+                </div>
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Religious Values</h1>
                 </div>
@@ -297,14 +368,13 @@
                         <label for="">Religious Views:</label>
                         <div class="row-of-inputs">
                             <div class="radio-input">
-                                <input type="radio" id="html" name="fav_language" value="HTML"/>
-                                 
+                                <input type="radio" id="religion_html" name="religion" value="HTML" @if($profile['memorialAdditional']->religion === 'Islam') checked @endif />
                                 <div class="row-of-inputs">
-                                    <select name="" id="">
-                                        <option value="0">1970</option>
-                                        <option value="0">1971</option>
-                                        <option value="0">1972</option>
-                                        <option value="0">1973</option>
+                                    <select name="religion" id="religion_select" style="display: block">
+                                        <option value="Islam" @if($profile['memorialAdditional']->religion === 'Islam') selected @endif>Islam</option>
+                                        <option value="Christianity" @if($profile['memorialAdditional']->religion === 'Christianity') selected @endif>Christianity</option>
+                                        <option value="Hindusm" @if($profile['memorialAdditional']->religion === 'Hindusm') selected @endif>Hindusm</option>
+                                        <option value="Buddhism" @if($profile['memorialAdditional']->religion === 'Buddhism') selected @endif>Buddhism</option>
                                     </select>
                                 </div>
                             </div>
@@ -315,9 +385,9 @@
                         </label>
                         <div class="row-of-inputs">
                             <div class="radio-input">
-                                <input type="radio" id="html" name="fav_language" value="HTML"/>
+                                <input type="radio" id="custom_religion_html" name="religion" value="HTML"/>
                                  
-                                <input type="text" name="" id="" class="input-design"/>
+                                <input type="text" name="religion" id="custom_religion" class="input-design" value="" style="display: none"/>
                             </div>
                         </div>
                     </div>
@@ -326,7 +396,11 @@
                     <button class="form-btn">Save Changes</button>
                 </div>
             </div>
-            <div class="form-of-logged-in-user">
+            </form>
+{{--Interests--}}
+            <form id="interest-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+
+            <div class="form-of-logged-in-user"  >
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Interests</h1>
                 </div>
@@ -343,215 +417,222 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button class="form-btn">Save Changes</button>
+                    <button class="form-btn" type="button">Save Changes</button>
                 </div>
             </div>
+            </form>
         </div>
-        <!-- Profile Picture -->
-        <div class="Picture tab-content" id="Picture">
-            <div class="form-of-logged-in-user">
-                <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>
-                </div>
-                <div class="form-data-of-profile-page">
-                    <p>
-                        Add a cover photo for this profile. You can change this photo at
-                        any time. The maximum size is 1 MB. You can use these formats:
-                        .png, .jpeg, .gif.
-                    </p>
-                    <div class="form-group-input">
-                        <div class="profile-pic-wrapper-of-Picture">
-                            <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
-                        </div>
-                        <div class="custom-file-chooser-wrapper">
-                            <input type="file" id="file-input" name="file-input"/>
-
-                            <label id="file-input-label" for="file-input">
-                                + Select a File</label</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="footer-of-form-content">
-                <div class="delete-btn">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                         stroke="#ffffff">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path
-                                d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
-                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </g>
-                    </svg>
-                    <button class="del-btn">Delete</button>
-                </div>
-
-            </div>
-        </div>
-        <!-- Gallery -->
-        <div class="form-of-logged-in-user">
-
-            <div class="form-data-of-profile-page">
-                <p>
-                    Don't have access to a photo at the moment? Select a profile image from our library.
-                </p>
-                <div class="grid-of-photos">
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-1">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-              </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-2">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-              </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-3">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-              </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-              </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-              </svg>
-                        </div>
-                    </div>
-
-                </div>
 
 
-            </div>
-            <div class="footer-of-form-content">
-                <button class="form-btn">Select</button>
+{{--        <!-- Profile Picture -->--}}
+{{--        <div class="Picture tab-content" id="Picture">--}}
+{{--            <div class="form-of-logged-in-user">--}}
+{{--                <div class="header-of-form-profile margin-top">--}}
+{{--                    <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>--}}
+{{--                </div>--}}
+{{--                <div class="form-data-of-profile-page">--}}
+{{--                    <p>--}}
+{{--                        Add a cover photo for this profile. You can change this photo at--}}
+{{--                        any time. The maximum size is 1 MB. You can use these formats:--}}
+{{--                        .png, .jpeg, .gif.--}}
+{{--                    </p>--}}
+{{--                    <div class="form-group-input">--}}
+{{--                        <div class="profile-pic-wrapper-of-Picture">--}}
+{{--                            @if($profile['memorialProfile']->profile_image)--}}
+{{--                                <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>--}}
+{{--                            @else--}}
+{{--                                <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
+{{--                        <div class="custom-file-chooser-wrapper">--}}
+{{--                            <input type="file" id="file-input" name="file-input"/>--}}
 
-            </div>
-        </div>
+{{--                            <label id="file-input-label" for="file-input">--}}
+{{--                                + Select a File</label</div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <div class="delete-btn">--}}
+{{--                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                         stroke="#ffffff">--}}
+{{--                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                        <g id="SVGRepo_iconCarrier">--}}
+{{--                            <path--}}
+{{--                                d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"--}}
+{{--                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                        </g>--}}
+{{--                    </svg>--}}
+{{--                    <button class="del-btn">Delete</button>--}}
+{{--                </div>--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--        <!-- Gallery -->--}}
+{{--        <div class="form-of-logged-in-user">--}}
+
+{{--            <div class="form-data-of-profile-page">--}}
+{{--                <p>--}}
+{{--                    Don't have access to a photo at the moment? Select a profile image from our library.--}}
+{{--                </p>--}}
+{{--                <div class="grid-of-photos">--}}
+{{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-1">--}}
+{{--                        <div class="img-wrpper-inside-gallery">--}}
+{{--                            <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+{{--                        </div>--}}
+{{--                        <div class="overlay">--}}
+{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
+{{--                                 xml:space="preserve" fill="#000000">--}}
+{{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <g>--}}
+{{--                                        <g>--}}
+{{--                                            <g>--}}
+{{--                                                <path style="fill:#30562f;"--}}
+{{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+{{--                                                </path>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                        <g>--}}
+{{--                                            <polygon style="fill:#30562f;"--}}
+{{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+{{--                                            </polygon>--}}
+{{--                                        </g>--}}
+{{--                                    </g>--}}
+{{--                                </g>--}}
+{{--              </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-2">--}}
+{{--                        <div class="img-wrpper-inside-gallery">--}}
+{{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+{{--                        </div>--}}
+{{--                        <div class="overlay">--}}
+{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
+{{--                                 xml:space="preserve" fill="#000000">--}}
+{{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <g>--}}
+{{--                                        <g>--}}
+{{--                                            <g>--}}
+{{--                                                <path style="fill:#30562f;"--}}
+{{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+{{--                                                </path>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                        <g>--}}
+{{--                                            <polygon style="fill:#30562f;"--}}
+{{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+{{--                                            </polygon>--}}
+{{--                                        </g>--}}
+{{--                                    </g>--}}
+{{--                                </g>--}}
+{{--              </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-3">--}}
+{{--                        <div class="img-wrpper-inside-gallery">--}}
+{{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+{{--                        </div>--}}
+{{--                        <div class="overlay">--}}
+{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
+{{--                                 xml:space="preserve" fill="#000000">--}}
+{{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <g>--}}
+{{--                                        <g>--}}
+{{--                                            <g>--}}
+{{--                                                <path style="fill:#30562f;"--}}
+{{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+{{--                                                </path>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                        <g>--}}
+{{--                                            <polygon style="fill:#30562f;"--}}
+{{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+{{--                                            </polygon>--}}
+{{--                                        </g>--}}
+{{--                                    </g>--}}
+{{--                                </g>--}}
+{{--              </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">--}}
+{{--                        <div class="img-wrpper-inside-gallery">--}}
+{{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+{{--                        </div>--}}
+{{--                        <div class="overlay">--}}
+{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
+{{--                                 xml:space="preserve" fill="#000000">--}}
+{{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <g>--}}
+{{--                                        <g>--}}
+{{--                                            <g>--}}
+{{--                                                <path style="fill:#30562f;"--}}
+{{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+{{--                                                </path>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                        <g>--}}
+{{--                                            <polygon style="fill:#30562f;"--}}
+{{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+{{--                                            </polygon>--}}
+{{--                                        </g>--}}
+{{--                                    </g>--}}
+{{--                                </g>--}}
+{{--              </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">--}}
+{{--                        <div class="img-wrpper-inside-gallery">--}}
+{{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+{{--                        </div>--}}
+{{--                        <div class="overlay">--}}
+{{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
+{{--                                 xml:space="preserve" fill="#000000">--}}
+{{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <g>--}}
+{{--                                        <g>--}}
+{{--                                            <g>--}}
+{{--                                                <path style="fill:#30562f;"--}}
+{{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+{{--                                                </path>--}}
+{{--                                            </g>--}}
+{{--                                        </g>--}}
+{{--                                        <g>--}}
+{{--                                            <polygon style="fill:#30562f;"--}}
+{{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+{{--                                            </polygon>--}}
+{{--                                        </g>--}}
+{{--                                    </g>--}}
+{{--                                </g>--}}
+{{--              </svg>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                </div>--}}
+
+
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <button class="form-btn">Select</button>--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
     <div class="Memorial tab-content" id="Memorial">
         <h1>Memorial</h1>
@@ -611,6 +692,7 @@
             </div>
         </div>
     </div>
+
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">
             <div class="header-of-form-profile margin-top">
@@ -927,7 +1009,6 @@
 
         // Start here
 
-
         //gallery img
         $(".whole-image-wrapper-with-overlay").click(function (e) {
             console.log('Image Click', e);
@@ -994,8 +1075,11 @@
             // $(".overlay").show();
 
         })
+
         $(document).ready(function () {
+            e.preventDefault();
             // Add Occupation
+            alert('occupation');
             var max_fields_of_occupation = 50;
             var occupation_container = $(".occupation_container");
             var add_occupation_button = $(".add_occupation_field");
@@ -1007,22 +1091,23 @@
                     if (occupation_counter < max_fields_of_occupation) {
                         occupation_counter++;
                         $(occupation_container).append(
+                            // <form id="milestone_info_form">
                             `<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Occupation</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->occupation}}" />
                 </div>
                 <div class="form-group-input">
                   <label for="">Company</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->company}}" />
                 </div>
                 <div class="form-group-input">
                   <label for="">From Year</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->from_year}}" />
                 </div>
                 <div class="form-group-input">
                   <label for="">To Year</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialOccupation']->to_year}}" />
                 </div>
                 <svg
                 class="deleteOccupation"
@@ -1046,6 +1131,7 @@
                   </g>
                 </svg>
               </div>`
+
                         ); //add input box
                     } else {
                         alert("You Reached the limits");
@@ -1059,6 +1145,7 @@
             });
 
             //Add Academic
+            e.preventDefault();
             var max_fields_of_academic = 10;
             var academic_counter = 1;
             var academic_container = $(".academic_container");
@@ -1071,19 +1158,19 @@
                     $(academic_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Diploma</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->diploma}}"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">School</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->school}}" />
                 </div>
                 <div class="form-group-input">
                   <label for="">From Year</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->from_year}}"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">To Year</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialAcademic']->to_year}}"  />
                 </div>
                 <svg
                 class="deleteAcademic"
@@ -1118,6 +1205,7 @@
             });
 
             //Milestones
+            e.preventDefault();
             var max_fields_of_milestones = 10;
             var milestone_counter = 1;
             var milestone_container = $(".milestone_container");
@@ -1130,11 +1218,11 @@
                     $(milestone_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Description</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialMilestone']->milestone}}"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">Year</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialMilestone']->year}}"/>
                 </div>
 
                 <svg
@@ -1170,6 +1258,7 @@
             });
 
             //Interests
+            e.preventDefault();
             var max_fields_of_interests = 10;
             var interests_counter = 1;
             var interests_container = $(".interests_container");
@@ -1182,7 +1271,7 @@
                     $(interests_container).append(`<div class="row-of-dynamic-inputs">
                 <div class="form-group-input">
                   <label for="">Interest Name</label>
-                  <input type="text" class="input-design" />
+                  <input type="text" class="input-design" value="{{$profile['memorialInterest']->interest}}" />
                 </div>
 
                 <svg
@@ -1241,6 +1330,24 @@
             evt.currentTarget.className += " active";
         }
 
+        //religios chck button
+        document.addEventListener('DOMContentLoaded', function () {
+            var existingReligionRadio = document.getElementById('religion_html');
+            var customReligionRadio = document.getElementById('custom_religion_html');
+            var selectReligion = document.getElementById('religion_select');
+            var customReligionInput = document.getElementById('custom_religion');
+
+            existingReligionRadio.addEventListener('change', function () {
+                selectReligion.style.display = 'block';
+                customReligionInput.style.display = 'none';
+            });
+
+            customReligionRadio.addEventListener('change', function () {
+                selectReligion.style.display = 'none';
+                customReligionInput.style.display = 'block';
+            });
+        });
+
         function openThemeItem(evt, themeTab) {
             // Declare all variables
             var theme_i, theme_tabcontent, theme_tablinks;
@@ -1261,5 +1368,128 @@
             document.getElementById(themeTab).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
+        // AJAX submit forms
+        $(document).ready(function () {
+
+
+            $('#basic-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'basic_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#home-city-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'home_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#other-city-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'other_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#academic-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'academic_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#occupation-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'occupation_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#milestone-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'milestone_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#religion-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'religion_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            $('#interest-info-form').submit(function (e) {
+                e.preventDefault(); // Prevent the form from submitting in the traditional way
+                // Get the user_id from the form data attribute
+                var userId = $(this).data('user-id');
+                var identifier = 'interest_info';
+                // Serialize the form data along with user_id
+                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+                saveFormData(userId,formData);
+                return 0;
+            });
+
+            //Ajax function
+            function saveFormData(userId,formData) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/update-memorial-profile/' + userId,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.success) {
+                            $('#successMessage').show();
+
+                            // Hide success message after 2 seconds
+                            setTimeout(function () {
+                                $('#successMessage').hide();
+                            }, 2000);
+                        } else {
+                            // Handle failure, show an error message, or take appropriate action
+                            alert('Error: ' + response.message);
+                        }
+                    },
+
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            };
+        });
     </script>
 @endsection

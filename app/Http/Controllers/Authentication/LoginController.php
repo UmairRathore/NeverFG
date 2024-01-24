@@ -52,7 +52,7 @@ class LoginController extends Controller
             $user = auth('user')->user();
 
             if ($user->role_id == 1) {
-                return view('index');
+                return view('backend.index');
             } elseif ($user->role_id == 2) {
                 $previousUrl = URL::previous();
                 return redirect()->to($previousUrl);
