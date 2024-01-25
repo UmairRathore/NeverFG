@@ -13,8 +13,7 @@
                         <div class="tabbed-single-item">
                             <svg fill="currentColor" width="32px" height="32px" viewBox="0 0 32.00 32.00" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" <!-- stroke="#000000" -->
-                            stroke-width="0.00032"
-                            >
+                            stroke-width="0.00032">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -1267,11 +1266,16 @@
                     interests_counter++;
                     $(interests_container).append(`
 <form id="interest-form">
+@php
+                    $interests =explode(', ',$profile['memorialInterest']->interest) ;
+@endphp
+                @foreach($interests as $interest )
                     <div class="row-of-dynamic-inputs">
             <div class="form-group-input">
                 <label for="">Interest Name</label>
-                <input type="text" class="input-design" name="interest[]" value="@if($profile['memorialInterest']){{$profile['memorialInterest']->interest}}@endif" />
+                <input type="text" class="input-design" name="interest[]" value="@if($interest){{$interest}}@endif" />
             </div>
+
                 <svg
                 class="deleteAcademic"
                   width="64px"
@@ -1294,6 +1298,7 @@
                   </g>
                 </svg>
               </div>
+                @endforeach
               </form>`);
                 } else {
                     alert("You Reached the limits");
