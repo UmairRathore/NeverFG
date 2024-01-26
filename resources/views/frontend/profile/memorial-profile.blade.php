@@ -115,165 +115,165 @@
         <!-- Profile secion -->
         <div class="profile-icon-content tab-content" id="Info">
 
-            {{--            <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">--}}
-            {{--            <!--Basic Information-->--}}
-            {{--            <div class="form-of-logged-in-user" >--}}
-            {{--                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">--}}
-            {{--                    Your changes have been saved successfully!--}}
-            {{--                </div>--}}
-            {{--                <div class="header-of-form-profile margin-top">--}}
-            {{--                    <h1 class="form-top-main-heading-of-profile">Basic Information</h1>--}}
-            {{--                </div>--}}
-            {{--                <div class="form-data-of-profile-page">--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">First Name</label>--}}
-            {{--                        <input type="text" class="input-design" name="first_name" value="{{$profile['memorialProfile']->first_name}}"/>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Middle Name</label>--}}
-            {{--                        <input type="text" class="input-design" name="middle_name" value="{{$profile['memorialProfile']->middle_name}}"/>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Last Name</label>--}}
-            {{--                        <input type="text" class="input-design" name="last_name" value="{{$profile['memorialProfile']->last_name}}"/>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Suffix(Mr., M.D., etc.)</label>--}}
-            {{--                        <input type="text" class="input-design" name="suffix" value="{{$profile['memorialProfile']->suffix}}"/>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Date of Birth</label>--}}
-            {{--                        <div class="row-of-inputs">--}}
-            {{--                            @php--}}
-            {{--                                $dobParts = explode('-', $profile['memorialProfile']->dob);--}}
-            {{--                                $selectedDay = $dobParts[0] ?? '';--}}
-            {{--                                $selectedMonth = $dobParts[1] ?? '';--}}
-            {{--                                $selectedYear = $dobParts[2] ?? '';--}}
-            {{--                            @endphp--}}
+                        <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                        <!--Basic Information-->
+                        <div class="form-of-logged-in-user" >
+                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                                Your changes have been saved successfully!
+                            </div>
+                            <div class="header-of-form-profile margin-top">
+                                <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
+                            </div>
+                            <div class="form-data-of-profile-page">
+                                <div class="form-group-input">
+                                    <label for="">First Name</label>
+                                    <input type="text" class="input-design" name="first_name" value="@if($profile['memorialProfile']->first_name){{$profile['memorialProfile']->first_name}}@endif"/>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Middle Name</label>
+                                    <input type="text" class="input-design" name="middle_name" value="@if($profile['memorialProfile']->middle_name){{$profile['memorialProfile']->middle_name}}@endif"/>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Last Name</label>
+                                    <input type="text" class="input-design" name="last_name" value="@if($profile['memorialProfile']->last_name){{$profile['memorialProfile']->last_name}}@endif"/>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Suffix(Mr., M.D., etc.)</label>
+                                    <input type="text" class="input-design" name="suffix" value="@if($profile['memorialProfile']->suffix){{$profile['memorialProfile']->suffix}}@endif"/>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Date of Birth</label>
+                                    <div class="row-of-inputs">
+                                        @php
+                                            $dobParts = explode('-', $profile['memorialProfile']->dob);
+                                            $selectedDay = $dobParts[0] ?? '';
+                                            $selectedMonth = $dobParts[1] ?? '';
+                                            $selectedYear = $dobParts[2] ?? '';
+                                        @endphp
 
-            {{--                                <!-- Day Dropdown -->--}}
-            {{--                            <select name="birth_day" id="birth_day">--}}
-            {{--                                @for ($day = 1; $day <= 31; $day++)--}}
-            {{--                                    <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
+                                            <!-- Day Dropdown -->
+                                        <select name="birth_day" id="birth_day">
+                                            @for ($day = 1; $day <= 31; $day++)
+                                                <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                            @endfor
+                                        </select>
 
-            {{--                            <!-- Month Dropdown -->--}}
-            {{--                            <select name="birth_month" id="birth_month">--}}
-            {{--                                @for ($month = 1; $month <= 12; $month++)--}}
-            {{--                                    <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
+                                        <!-- Month Dropdown -->
+                                        <select name="birth_month" id="birth_month">
+                                            @for ($month = 1; $month <= 12; $month++)
+                                                <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                            @endfor
+                                        </select>
 
-            {{--                            <!-- Year Dropdown -->--}}
-            {{--                            <select name="birth_year" id="birth_year">--}}
-            {{--                                @for ($year = 1970; $year <= 2023; $year++)--}}
-            {{--                                    --}}{{-- Adjust the end year as needed --}}
-            {{--                                    <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Date of Death</label>--}}
-            {{--                        <div class="row-of-inputs">--}}
-            {{--                            @php--}}
-            {{--                                $dobParts = explode('-', $profile['memorialAdditional']->dod);--}}
-            {{--                                $selectedDay = $dobParts[0] ?? '';--}}
-            {{--                                $selectedMonth = $dobParts[1] ?? '';--}}
-            {{--                                $selectedYear = $dobParts[2] ?? '';--}}
-            {{--                            @endphp--}}
+                                        <!-- Year Dropdown -->
+                                        <select name="birth_year" id="birth_year">
+                                            @for ($year = 1970; $year <= 2023; $year++)
+                                                 Adjust the end year as needed
+                                                <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Date of Death</label>
+                                    <div class="row-of-inputs">
+                                        @php
+                                            $dobParts = explode('-', $profile['memorialAdditional']->dod);
+                                            $selectedDay = $dobParts[0] ?? '';
+                                            $selectedMonth = $dobParts[1] ?? '';
+                                            $selectedYear = $dobParts[2] ?? '';
+                                        @endphp
 
-            {{--                                <!-- Day Dropdown -->--}}
-            {{--                            <select name="death_day" id="death_day">--}}
-            {{--                                @for ($day = 1; $day <= 31; $day++)--}}
-            {{--                                    <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
+                                            <!-- Day Dropdown -->
+                                        <select name="death_day" id="death_day">
+                                            @for ($day = 1; $day <= 31; $day++)
+                                                <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                            @endfor
+                                        </select>
 
-            {{--                            <!-- Month Dropdown -->--}}
-            {{--                            <select name="death_month" id="death_month">--}}
-            {{--                                @for ($month = 1; $month <= 12; $month++)--}}
-            {{--                                    <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
+                                        <!-- Month Dropdown -->
+                                        <select name="death_month" id="death_month">
+                                            @for ($month = 1; $month <= 12; $month++)
+                                                <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                            @endfor
+                                        </select>
 
-            {{--                            <!-- Year Dropdown -->--}}
-            {{--                            <select name="death_year" id="death_year">--}}
-            {{--                                @for ($year = 1970; $year <= 2023; $year++)--}}
-            {{--                                    --}}{{-- Adjust the end year as needed --}}
-            {{--                                    <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>--}}
-            {{--                                @endfor--}}
-            {{--                            </select>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Gender</label>--}}
-            {{--                        <div class="row-of-inputs">--}}
-            {{--                            <div class="radio-input">--}}
-            {{--                                <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'Male') checked @endif />--}}
-            {{--                                <label for="male">Male</label><br/>--}}
-            {{--                            </div>--}}
-            {{--                            <div class="radio-input">--}}
-            {{--                                <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'Female') checked @endif />--}}
-            {{--                                <label for="female">Female</label><br/>--}}
-            {{--                            </div>--}}
-            {{--                            <div class="radio-input">--}}
-            {{--                                <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'Other') checked @endif />--}}
-            {{--                                <label for="other">Other</label>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--                <div class="footer-of-form-content">--}}
-            {{--                    <button class="form-btn">Save Changes</button>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            </form>--}}
+                                        <!-- Year Dropdown -->
+                                        <select name="death_year" id="death_year">
+                                            @for ($year = 1970; $year <= 2023; $year++)
+                                                 Adjust the end year as needed
+                                                <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group-input">
+                                    <label for="">Gender</label>
+                                    <div class="row-of-inputs">
+                                        <div class="radio-input">
+                                            <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'Male') checked @endif />
+                                            <label for="male">Male</label><br/>
+                                        </div>
+                                        <div class="radio-input">
+                                            <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'Female') checked @endif />
+                                            <label for="female">Female</label><br/>
+                                        </div>
+                                        <div class="radio-input">
+                                            <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'Other') checked @endif />
+                                            <label for="other">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer-of-form-content">
+                                <button class="form-btn">Save Changes</button>
+                            </div>
+                        </div>
+                        </form>
 
-            {{-- Home City--}}
-            {{--            <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">--}}
+             Home City
+                        <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
 
-            {{--            <div class="form-of-logged-in-user" >--}}
-            {{--                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">--}}
-            {{--                    Your changes have been saved successfully!--}}
-            {{--                </div>--}}
-            {{--                <div class="header-of-form-profile margin-top">--}}
-            {{--                    <h1 class="form-top-main-heading-of-profile">Home Town</h1>--}}
-            {{--                </div>--}}
-            {{--                <div class="form-data-of-profile-page">--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Search</label>--}}
-            {{--                        <input type="text" class="input-design" name="home_city" value="{{$profile['memorialCity']->home_city}}"/>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--                <div class="footer-of-form-content">--}}
-            {{--                    <button class="form-btn">Save Changes</button>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            </form>--}}
+                        <div class="form-of-logged-in-user" >
+                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                                Your changes have been saved successfully!
+                            </div>
+                            <div class="header-of-form-profile margin-top">
+                                <h1 class="form-top-main-heading-of-profile">Home Town</h1>
+                            </div>
+                            <div class="form-data-of-profile-page">
+                                <div class="form-group-input">
+                                    <label for="">Search</label>
+                                    <input type="text" class="input-design" name="home_city" value="@if($profile['memorialCity']->home_city){{$profile['memorialCity']->home_city}}@endif"/>
+                                </div>
+                            </div>
+                            <div class="footer-of-form-content">
+                                <button class="form-btn">Save Changes</button>
+                            </div>
+                        </div>
+                        </form>
 
-            {{--Other City--}}
-            {{--            <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">--}}
-            {{--            <div class="form-of-logged-in-user" >--}}
-            {{--                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">--}}
-            {{--                    Your changes have been saved successfully!--}}
-            {{--                </div>--}}
-            {{--                <div class="header-of-form-profile margin-top">--}}
-            {{--                    <h1 class="form-top-main-heading-of-profile">Other city</h1>--}}
-            {{--                </div>--}}
-            {{--                <div class="form-data-of-profile-page">--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">The last city they resided in. If it is the same as their--}}
-            {{--                            Hometown, leave it blank.</label>--}}
-            {{--                        <input type="text" class="input-design" name="other_city" value="{{$profile['memorialCity']->other_city}}"/>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--                <div class="footer-of-form-content">--}}
-            {{--                    <button class="form-btn">Save Changes</button>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            </form>--}}
+            Other City
+                        <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                        <div class="form-of-logged-in-user" >
+                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                                Your changes have been saved successfully!
+                            </div>
+                            <div class="header-of-form-profile margin-top">
+                                <h1 class="form-top-main-heading-of-profile">Other city</h1>
+                            </div>
+                            <div class="form-data-of-profile-page">
+                                <div class="form-group-input">
+                                    <label for="">The last city they resided in. If it is the same as their
+                                        Hometown, leave it blank.</label>
+                                    <input type="text" class="input-design" name="other_city" value="@if($profile['memorialCity']->other_city){{$profile['memorialCity']->other_city}}@endif"/>
+                                </div>
+                            </div>
+                            <div class="footer-of-form-content">
+                                <button class="form-btn">Save Changes</button>
+                            </div>
+                        </div>
+                        </form>
 
             {{--Occupational History--}}
             <div id="occupation-history" class="form-of-logged-in-user">
@@ -318,7 +318,7 @@
             </div>
 
 
-            {{--            Milestones--}}
+            {{--Milestones--}}
 
             <div id="milestone-info" class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
@@ -342,56 +342,51 @@
             </div>
 
 
-            {{--            Religious Values--}}
-            {{--            <form id="religion-info-form" data-user-id="{{$profile['memorialProfile']->id}}">--}}
-            {{--            <div class="form-of-logged-in-user" >--}}
-            {{--                <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">--}}
-            {{--                    Your changes have been saved successfully!--}}
-            {{--                </div>--}}
-            {{--                <div class="header-of-form-profile margin-top">--}}
-            {{--                    <h1 class="form-top-main-heading-of-profile">Religious Values</h1>--}}
-            {{--                </div>--}}
-            {{--                <div class="form-data-of-profile-page">--}}
-            {{--                    <p class="heading-of-form-data">--}}
-            {{--                        A milestone is a significant event in a person's life. For--}}
-            {{--                        example: a wedding date or winning award!--}}
-            {{--                    </p>--}}
+{{--                        Religious Values--}}
+            <form id="religion-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                <div class="form-of-logged-in-user">
+                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                        Your changes have been saved successfully!
+                    </div>
+                    <div class="header-of-form-profile margin-top">
+                        <h1 class="form-top-main-heading-of-profile">Religious Values</h1>
+                    </div>
+                    <div class="form-data-of-profile-page">
+                        <p class="heading-of-form-data">
+                            A milestone is a significant event in a person's life. For example: a wedding date or winning award!
+                        </p>
 
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Religious Views:</label>--}}
-            {{--                        <div class="row-of-inputs">--}}
-            {{--                            <div class="radio-input">--}}
-            {{--                                <input type="radio" id="religion_html" name="religion" value="HTML" @if($profile['memorialAdditional']->religion === 'Islam') checked @endif />--}}
-            {{--                                <div class="row-of-inputs">--}}
-            {{--                                    <select name="religion" id="religion_select" style="display: block">--}}
-            {{--                                        @foreach--}}
-            {{--                                        <option value="Islam" @if($profile['memorialAdditional']->religion === 'Islam') selected @endif>Islam</option>--}}
-            {{--                                        <option value="Christianity" @if($profile['memorialAdditional']->religion === 'Christianity') selected @endif>Christianity</option>--}}
-            {{--                                        <option value="Hindusm" @if($profile['memorialAdditional']->religion === 'Hindusm') selected @endif>Hindusm</option>--}}
-            {{--                                        <option value="Buddhism" @if($profile['memorialAdditional']->religion === 'Buddhism') selected @endif>Buddhism</option>--}}
-            {{--                                    </select>--}}
-            {{--                                </div>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                    <div class="form-group-input">--}}
-            {{--                        <label for="">Your Religious Views are not there? Enter them here:--}}
-            {{--                        </label>--}}
-            {{--                        <div class="row-of-inputs">--}}
-            {{--                            <div class="radio-input">--}}
-            {{--                                <input type="radio" id="custom_religion_html" name="religion" value="HTML"/>--}}
-            {{--                                 --}}
-            {{--                                <input type="text" name="religion" id="custom_religion" class="input-design" value="" style="display: none"/>--}}
-            {{--                            </div>--}}
-            {{--                        </div>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--                <div class="footer-of-form-content">--}}
-            {{--                    <button class="form-btn">Save Changes</button>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            </form>--}}
-
+                        <div class="form-group-input">
+                            <label for="">Religious Views:</label>
+                            <div class="row-of-inputs">
+                                <div class="radio-input">
+                                    <input type="radio" id="religion_html" name="religion_type" value="predefined" @if($profile['memorialAdditional']->religion === 'Islam') checked @endif />
+                                    <div class="row-of-inputs">
+                                        <select name="predefined_religion" id="religion_select" style="display: block">
+                                            <option value="Islam" @if($profile['memorialAdditional']->religion === 'Islam') selected @endif>Islam</option>
+                                            <option value="Christianity" @if($profile['memorialAdditional']->religion === 'Christianity') selected @endif>Christianity</option>
+                                            <option value="Hinduism" @if($profile['memorialAdditional']->religion === 'Hinduism') selected @endif>Hinduism</option>
+                                            <option value="Buddhism" @if($profile['memorialAdditional']->religion === 'Buddhism') selected @endif>Buddhism</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Your Religious Views are not there? Enter them here:</label>
+                            <div class="row-of-inputs">
+                                <div class="radio-input">
+                                    <input type="radio" id="custom_religion_html" name="religion_type" value="custom"/>
+                                    <input type="text" name="custom_religion" id="custom_religion" class="input-design" value="" style="display: none"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-of-form-content">
+                        <button class="form-btn">Save Changes</button>
+                    </div>
+                </div>
+            </form>
             {{--Interests--}}
 
             <div id="interest-info" class="form-of-logged-in-user">
@@ -419,215 +414,215 @@
         </div>
 
 
-        {{--        <!-- Profile Picture -->--}}
-        {{--        <div class="Picture tab-content" id="Picture">--}}
-        {{--            <div class="form-of-logged-in-user">--}}
-        {{--                <div class="header-of-form-profile margin-top">--}}
-        {{--                    <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>--}}
-        {{--                </div>--}}
-        {{--                <div class="form-data-of-profile-page">--}}
-        {{--                    <p>--}}
-        {{--                        Add a cover photo for this profile. You can change this photo at--}}
-        {{--                        any time. The maximum size is 1 MB. You can use these formats:--}}
-        {{--                        .png, .jpeg, .gif.--}}
-        {{--                    </p>--}}
-        {{--                    <div class="form-group-input">--}}
-        {{--                        <div class="profile-pic-wrapper-of-Picture">--}}
-        {{--                            @if($profile['memorialProfile']->profile_image)--}}
-        {{--                                <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>--}}
-        {{--                            @else--}}
-        {{--                                <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>--}}
-        {{--                            @endif--}}
-        {{--                        </div>--}}
-        {{--                        <div class="custom-file-chooser-wrapper">--}}
-        {{--                            <input type="file" id="file-input" name="file-input"/>--}}
+                <!-- Profile Picture -->
+                <div class="Picture tab-content" id="Picture">
+                    <div class="form-of-logged-in-user">
+                        <div class="header-of-form-profile margin-top">
+                            <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>
+                        </div>
+                        <div class="form-data-of-profile-page">
+                            <p>
+                                Add a cover photo for this profile. You can change this photo at
+                                any time. The maximum size is 1 MB. You can use these formats:
+                                .png, .jpeg, .gif.
+                            </p>
+                            <div class="form-group-input">
+                                <div class="profile-pic-wrapper-of-Picture">
+                                    @if($profile['memorialProfile']->profile_image)
+                                        <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>
+                                    @else
+                                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                    @endif
+                                </div>
+                                <div class="custom-file-chooser-wrapper">
+                                    <input type="file" id="file-input" name="file-input"/>
 
-        {{--                            <label id="file-input-label" for="file-input">--}}
-        {{--                                + Select a File</label</div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--            <div class="footer-of-form-content">--}}
-        {{--                <div class="delete-btn">--}}
-        {{--                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                         stroke="#ffffff">--}}
-        {{--                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                        <g id="SVGRepo_iconCarrier">--}}
-        {{--                            <path--}}
-        {{--                                d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"--}}
-        {{--                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
-        {{--                        </g>--}}
-        {{--                    </svg>--}}
-        {{--                    <button class="del-btn">Delete</button>--}}
-        {{--                </div>--}}
+                                    <label id="file-input-label" for="file-input">
+                                        + Select a File</label</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-of-form-content">
+                        <div class="delete-btn">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                 stroke="#ffffff">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <path
+                                        d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
+                                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </g>
+                            </svg>
+                            <button class="del-btn">Delete</button>
+                        </div>
 
-        {{--            </div>--}}
-        {{--        </div>--}}
+                    </div>
+                </div>
 
-        {{--        <!-- Gallery -->--}}
-        {{--        <div class="form-of-logged-in-user">--}}
+                <!-- Gallery -->
+                <div class="form-of-logged-in-user">
 
-        {{--            <div class="form-data-of-profile-page">--}}
-        {{--                <p>--}}
-        {{--                    Don't have access to a photo at the moment? Select a profile image from our library.--}}
-        {{--                </p>--}}
-        {{--                <div class="grid-of-photos">--}}
-        {{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-1">--}}
-        {{--                        <div class="img-wrpper-inside-gallery">--}}
-        {{--                            <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-        {{--                        </div>--}}
-        {{--                        <div class="overlay">--}}
-        {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
-        {{--                                 xml:space="preserve" fill="#000000">--}}
-        {{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                                <g id="SVGRepo_iconCarrier">--}}
-        {{--                                    <g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <g>--}}
-        {{--                                                <path style="fill:#30562f;"--}}
-        {{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-        {{--                                                </path>--}}
-        {{--                                            </g>--}}
-        {{--                                        </g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <polygon style="fill:#30562f;"--}}
-        {{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-        {{--                                            </polygon>--}}
-        {{--                                        </g>--}}
-        {{--                                    </g>--}}
-        {{--                                </g>--}}
-        {{--              </svg>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-2">--}}
-        {{--                        <div class="img-wrpper-inside-gallery">--}}
-        {{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-        {{--                        </div>--}}
-        {{--                        <div class="overlay">--}}
-        {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
-        {{--                                 xml:space="preserve" fill="#000000">--}}
-        {{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                                <g id="SVGRepo_iconCarrier">--}}
-        {{--                                    <g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <g>--}}
-        {{--                                                <path style="fill:#30562f;"--}}
-        {{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-        {{--                                                </path>--}}
-        {{--                                            </g>--}}
-        {{--                                        </g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <polygon style="fill:#30562f;"--}}
-        {{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-        {{--                                            </polygon>--}}
-        {{--                                        </g>--}}
-        {{--                                    </g>--}}
-        {{--                                </g>--}}
-        {{--              </svg>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-3">--}}
-        {{--                        <div class="img-wrpper-inside-gallery">--}}
-        {{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-        {{--                        </div>--}}
-        {{--                        <div class="overlay">--}}
-        {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
-        {{--                                 xml:space="preserve" fill="#000000">--}}
-        {{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                                <g id="SVGRepo_iconCarrier">--}}
-        {{--                                    <g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <g>--}}
-        {{--                                                <path style="fill:#30562f;"--}}
-        {{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-        {{--                                                </path>--}}
-        {{--                                            </g>--}}
-        {{--                                        </g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <polygon style="fill:#30562f;"--}}
-        {{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-        {{--                                            </polygon>--}}
-        {{--                                        </g>--}}
-        {{--                                    </g>--}}
-        {{--                                </g>--}}
-        {{--              </svg>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">--}}
-        {{--                        <div class="img-wrpper-inside-gallery">--}}
-        {{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-        {{--                        </div>--}}
-        {{--                        <div class="overlay">--}}
-        {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
-        {{--                                 xml:space="preserve" fill="#000000">--}}
-        {{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                                <g id="SVGRepo_iconCarrier">--}}
-        {{--                                    <g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <g>--}}
-        {{--                                                <path style="fill:#30562f;"--}}
-        {{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-        {{--                                                </path>--}}
-        {{--                                            </g>--}}
-        {{--                                        </g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <polygon style="fill:#30562f;"--}}
-        {{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-        {{--                                            </polygon>--}}
-        {{--                                        </g>--}}
-        {{--                                    </g>--}}
-        {{--                                </g>--}}
-        {{--              </svg>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">--}}
-        {{--                        <div class="img-wrpper-inside-gallery">--}}
-        {{--                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-        {{--                        </div>--}}
-        {{--                        <div class="overlay">--}}
-        {{--                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-        {{--                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"--}}
-        {{--                                 xml:space="preserve" fill="#000000">--}}
-        {{--                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-        {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-        {{--                                <g id="SVGRepo_iconCarrier">--}}
-        {{--                                    <g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <g>--}}
-        {{--                                                <path style="fill:#30562f;"--}}
-        {{--                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-        {{--                                                </path>--}}
-        {{--                                            </g>--}}
-        {{--                                        </g>--}}
-        {{--                                        <g>--}}
-        {{--                                            <polygon style="fill:#30562f;"--}}
-        {{--                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-        {{--                                            </polygon>--}}
-        {{--                                        </g>--}}
-        {{--                                    </g>--}}
-        {{--                                </g>--}}
-        {{--              </svg>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
+                    <div class="form-data-of-profile-page">
+                        <p>
+                            Don't have access to a photo at the moment? Select a profile image from our library.
+                        </p>
+                        <div class="grid-of-photos">
+                            <div class="whole-image-wrapper-with-overlay" id="img-id-1">
+                                <div class="img-wrpper-inside-gallery">
+                                    <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                </div>
+                                <div class="overlay">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                         xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path style="fill:#30562f;"
+                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <polygon style="fill:#30562f;"
+                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                      </svg>
+                                </div>
+                            </div>
+                            <div class="whole-image-wrapper-with-overlay" id="img-id-2">
+                                <div class="img-wrpper-inside-gallery">
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                </div>
+                                <div class="overlay">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                         xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path style="fill:#30562f;"
+                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <polygon style="fill:#30562f;"
+                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                      </svg>
+                                </div>
+                            </div>
+                            <div class="whole-image-wrapper-with-overlay" id="img-id-3">
+                                <div class="img-wrpper-inside-gallery">
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                </div>
+                                <div class="overlay">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                         xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path style="fill:#30562f;"
+                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <polygon style="fill:#30562f;"
+                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                      </svg>
+                                </div>
+                            </div>
+                            <div class="whole-image-wrapper-with-overlay" id="img-id-4">
+                                <div class="img-wrpper-inside-gallery">
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                </div>
+                                <div class="overlay">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                         xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path style="fill:#30562f;"
+                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <polygon style="fill:#30562f;"
+                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                      </svg>
+                                </div>
+                            </div>
+                            <div class="whole-image-wrapper-with-overlay" id="img-id-4">
+                                <div class="img-wrpper-inside-gallery">
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                </div>
+                                <div class="overlay">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                         xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <path style="fill:#30562f;"
+                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                        </path>
+                                                    </g>
+                                                </g>
+                                                <g>
+                                                    <polygon style="fill:#30562f;"
+                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                    </polygon>
+                                                </g>
+                                            </g>
+                                        </g>
+                      </svg>
+                                </div>
+                            </div>
 
-        {{--                </div>--}}
+                        </div>
 
 
-        {{--            </div>--}}
-        {{--            <div class="footer-of-form-content">--}}
-        {{--                <button class="form-btn">Select</button>--}}
+                    </div>
+                    <div class="footer-of-form-content">
+                        <button class="form-btn">Select</button>
 
-        {{--            </div>--}}
-        {{--        </div>--}}
+                    </div>
+                </div>
     </div>
     <div class="Memorial tab-content" id="Memorial">
         <h1>Memorial</h1>

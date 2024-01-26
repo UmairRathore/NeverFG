@@ -38,7 +38,7 @@ class ProfileController extends Controller
         $this->data['moduleName'] = 'memorial';
     }
 
-    public function index($id)
+    public function editMementoProfile($id)
     {
         if (auth()->user()->role_id == 2) {
             $memorial = $this->_memorial_model::where('keeper_id', $id)->first();
@@ -59,7 +59,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function updateMementoProfile(Request $request, $id)
     {
 //        return $id;/
         if ($request->form_identifier == 'basic_info') {
@@ -239,6 +239,7 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
+
         if ($request->form_identifier == 'milestone_info') {
             $milestone = $request->input('milestone', []);
             $year = $request->input('year', []);
@@ -270,10 +271,18 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
+
         if ($request->form_identifier == 'religion_info') {
-            $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
-            $this->data['religionInfo']->religion = $request->religion;
-            $checkReligionInfo = $this->data['religionInfo']->save();
+            if ($request->custom_religion) {
+                $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+                $this->data['religionInfo']->religion = $request->custom_religion;
+                $checkReligionInfo = $this->data['religionInfo']->save();
+            }else
+                {
+                    $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+                    $this->data['religionInfo']->religion = $request->predefined_religion;
+                    $checkReligionInfo = $this->data['religionInfo']->save();
+                }
             if ($checkReligionInfo) {
                 $data = [
                     'success' => true,
@@ -282,6 +291,7 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
+
         if ($request->form_identifier == 'interest_info') {
             // Retrieve the 'interest' array from the request
             $interests = $request->input('interest', []);
@@ -311,7 +321,6 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
-
 
         $data = [
             'success' => false,
