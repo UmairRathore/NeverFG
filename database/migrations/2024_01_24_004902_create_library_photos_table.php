@@ -15,9 +15,10 @@ class CreateLibraryPhotosTable extends Migration
     {
         Schema::create('library_photos', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
-            $table->string('theme');
-            $table->string('profile');
+            $table->string('category');
+            $table->string('icon_image');
+            $table->string('theme_image');
+            $table->string('profile_image');
             $table->timestamps();
         });
     }

@@ -27,8 +27,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/edit-memorial-profile/{id}',[ProfileController::class,'editMementoProfile'])->name('edit.memorial.profile');
-Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoProfile'])->name('update.memorial.profile');
+Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
+Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile'])->name('update.memorial.profile');
+
+Route::get('/get-updated-profile-image/{userId}', [ProfileController::class,'getUpdatedProfileImage']);
+
+//Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
 
 
 

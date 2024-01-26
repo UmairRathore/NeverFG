@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\LibraryPhoto;
 use App\Models\User;
 use App\Models\UserAcademic;
 use App\Models\UserCity;
@@ -11,6 +12,7 @@ use App\Models\UserMemorial;
 use App\Models\UserMilestone;
 use App\Models\UserOccupation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
@@ -29,6 +31,7 @@ class ProfileController extends Controller
         $this->_city_model = new UserCity();
         $this->_interest_model = new UserInterest();
         $this->_milestone_model = new UserMilestone();
+        $this->_libraryPhoto_model = new LibraryPhoto();
         $this->setDefaultData();
     }
 
@@ -38,10 +41,12 @@ class ProfileController extends Controller
         $this->data['moduleName'] = 'memorial';
     }
 
-    public function editMementoProfile($id)
+    public function MementoInfoProfile($id)
     {
         if (auth()->user()->role_id == 2) {
-            $memorial = $this->_memorial_model::where('keeper_id', $id)->first();
+
+            $memorial = $this->_memorial_model::where('memorial_user_id', $id)->first();
+//            return $memorial;
             $memorialID = $memorial->memorial_user_id;
             $this->data['profile'] = [
                 'memorialProfile' => $this->_model::where('id', $memorialID)->first(),
@@ -59,7 +64,7 @@ class ProfileController extends Controller
         }
     }
 
-    public function updateMementoProfile(Request $request, $id)
+    public function updateMementoInfoProfile(Request $request, $id)
     {
 //        return $id;/
         if ($request->form_identifier == 'basic_info') {
@@ -165,7 +170,7 @@ class ProfileController extends Controller
         if ($request->form_identifier == 'occupation_info') {
 
             $occupation = $request->input('occupation', []);
-            $company= $request->input('company', []);
+            $company = $request->input('company', []);
             $toYears = $request->input('to_year', []);
             $fromYears = $request->input('from_year', []);
 
@@ -277,12 +282,11 @@ class ProfileController extends Controller
                 $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
                 $this->data['religionInfo']->religion = $request->custom_religion;
                 $checkReligionInfo = $this->data['religionInfo']->save();
-            }else
-                {
-                    $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
-                    $this->data['religionInfo']->religion = $request->predefined_religion;
-                    $checkReligionInfo = $this->data['religionInfo']->save();
-                }
+            } else {
+                $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+                $this->data['religionInfo']->religion = $request->predefined_religion;
+                $checkReligionInfo = $this->data['religionInfo']->save();
+            }
             if ($checkReligionInfo) {
                 $data = [
                     'success' => true,
@@ -301,16 +305,16 @@ class ProfileController extends Controller
 //            $checkInterestInfo = '';
             if ($this->data['interestinfoCheck']) {
 
-                    $this->data['interestinfo'] = $this->_interest_model::where('memorial_user_id', $id)->first();
-                    $this->data['interestinfo']->interest = implode(', ', $interests);
-                    $this->data['interestinfo']->memorial_user_id = $id;
-                    $checkInterestInfo = $this->data['interestinfo']->save();
+                $this->data['interestinfo'] = $this->_interest_model::where('memorial_user_id', $id)->first();
+                $this->data['interestinfo']->interest = implode(', ', $interests);
+                $this->data['interestinfo']->memorial_user_id = $id;
+                $checkInterestInfo = $this->data['interestinfo']->save();
 
             } else {
-                    $this->data['interestinfo'] = $this->_interest_model;
-                     $this->data['interestinfo']->interest = implode(', ', $interests);
-                    $this->data['interestinfo']->memorial_user_id = $id;
-                    $checkInterestInfo = $this->data['interestinfo']->save();
+                $this->data['interestinfo'] = $this->_interest_model;
+                $this->data['interestinfo']->interest = implode(', ', $interests);
+                $this->data['interestinfo']->memorial_user_id = $id;
+                $checkInterestInfo = $this->data['interestinfo']->save();
             }
 
             if ($checkInterestInfo) {
@@ -322,6 +326,57 @@ class ProfileController extends Controller
             }
         }
 
+        if ($request->form_identifier == 'profile_image_custom') {
+
+            $mementoId = $request->user_id;
+
+            $this->data['mementoProfileImage'] = $this->_model::find($mementoId);
+
+            if (!$this->data['mementoProfileImage']) {
+                // Handle the case where the user is not found
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ]);
+            }
+
+            if ($request->hasFile('memento_profile_image_custom')) {
+                $image = $request->file('memento_profile_image_custom');
+                $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+
+                $directory = public_path('assets/images/profile_images');
+
+                // Create the directory if it doesn't exist
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $image->move($directory, time() . '_' . $imageName);
+
+                $this->data['mementoProfileImage']->profile_image = 'assets/images/profile_images/' . time() . '_' . $imageName;
+
+                $checkMemorialUser = $this->data['mementoProfileImage']->save();
+
+                if ($checkMemorialUser) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Your Profile Image has been updated correctly',
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update profile image',
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file provided for profile image update',
+                ]);
+            }
+        }
+
+
         $data = [
             'success' => false,
             'message' => 'Invalid form identifier'
@@ -330,44 +385,105 @@ class ProfileController extends Controller
 
     }
 
-    public
-    function events()
+    public function getUpdatedProfileImage($userId, $formType)
+    {
+        if ($formType === 'profile_image_custom') {
+
+            $userProfile = $this->_model::where('id', $userId)->first();
+
+            if (File::exists(public_path($userProfile->profile_image))) {
+                return response()->json([
+                    'updatedImageURL' => asset($userProfile->profile_image),
+                ]);
+            } else {
+                // Handle the case where the file doesn't exist
+                return response()->json([
+                    'error' => 'File not found',
+                ], 404);
+            }
+        }
+        $data = [
+            'success' => false,
+            'message' => 'Invalid form identifier'
+        ];
+        return response()->json($data, 400);
+    }
+
+    public function updateMementoPicturesProfile(Request $request, $id)
+    {
+
+        if ($request->memento_profile_image) {
+            $mementoProfile = $this->_memorial_model::where('user_id', $id)->first();
+            $mementoId = $mementoProfile->id;
+            $mementoProfileImage = $this->_model::where('id', $mementoId)->first();
+            if ($request->hasFile('memento_profile_image')) {
+                $image = $request->file('memento_profile_image');
+
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imageExtension = $image->getClientOriginalExtension();
+                $directory = public_path('assets/images/profile_images');
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+                $image->move($directory, $imageName . '-' . $imageExtension);
+                $this->data['mementoProfileImage']->profile_image = 'assets/images/profile_images/' . $imageName;
+            }
+            $checkMemorialUser = $this->data['mementoProfileImage']->save();
+            if ($checkMemorialUser) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Basic info has been updated correctly'
+                ];
+                return response()->json($data);
+            } else {
+                $data = [
+                    'success' => false,
+                    'message' => 'Error'
+                ];
+                return response()->json($data);
+            }
+        } else {
+
+            $data = [
+                'success' => false,
+                'message' => 'Invalid form identifier'
+            ];
+        }
+        return response()->json($data, 400);
+
+    }
+
+    public function events()
     {
         return view($this->_viewPath . 'events');
     }
 
-    public
-    function family()
+    public function family()
     {
         return view($this->_viewPath . 'family');
     }
 
-    public
-    function keeper()
+    public function keeper()
     {
         return view($this->_viewPath . 'keeper');
     }
 
-    public
-    function keeperplus()
+    public function keeperplus()
     {
         return view($this->_viewPath . 'keeper-plus');
     }
 
-    public
-    function mementos()
+    public function mementos()
     {
         return view($this->_viewPath . 'mementos');
     }
 
-    public
-    function message()
+    public function message()
     {
         return view($this->_viewPath . 'message');
     }
 
-    public
-    function profile()
+    public function profile()
     {
         return view($this->_viewPath . 'profile');
     }
