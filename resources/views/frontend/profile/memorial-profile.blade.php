@@ -276,30 +276,30 @@
             {{--            </form>--}}
 
             {{--Occupational History--}}
-                <div class="form-of-logged-in-user">
-                    <div class="header-of-form-profile margin-top">
-                        <h1 class="form-top-main-heading-of-profile">
-                            Occupational History
-                        </h1>
-                    </div>
-                    <div class="form-data-of-profile-page">
-                        <p class="heading-of-form-data">
-                            Occupation Company From Year To Year
-                        </p>
-                        <div class="occupation_container">
-                            <button class="add_occupation_field form-btn">
-                                <span style="font-size: 16px; font-weight: bold">+ </span>
-                                Add Occupation &nbsp;
-                            </button>
-                        </div>
-                    </div>
-                    <div class="footer-of-form-content">
-                        <button id="occupation-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
+            <div id="occupation-history" class="form-of-logged-in-user">
+                <div class="header-of-form-profile margin-top">
+                    <h1 class="form-top-main-heading-of-profile">
+                        Occupational History
+                    </h1>
+                </div>
+                <div class="form-data-of-profile-page">
+                    <p class="heading-of-form-data">
+                        Occupation Company From Year To Year
+                    </p>
+                    <div class="occupation_container">
+                        <button class="add_occupation_field form-btn">
+                            <span style="font-size: 16px; font-weight: bold">+ </span>
+                            Add Occupation &nbsp;
+                        </button>
                     </div>
                 </div>
+                <div class="footer-of-form-content">
+                    <button id="occupation-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
+                </div>
+            </div>
 
             {{--Academic History--}}
-            <div class="form-of-logged-in-user">
+            <div id="academic-info" class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Academic History</h1>
                 </div>
@@ -313,16 +313,14 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button id="academic-info-btn" class="form-btn">Save Changes</button>
+                    <button id="academic-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                 </div>
             </div>
 
 
-
-
             {{--            Milestones--}}
 
-            <div class="form-of-logged-in-user">
+            <div id="milestone-info" class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Milestones</h1>
                 </div>
@@ -339,10 +337,9 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button id="milestone-info-btn" class="form-btn">Save Changes</button>
+                    <button id="milestone-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                 </div>
             </div>
-
 
 
             {{--            Religious Values--}}
@@ -397,7 +394,7 @@
 
             {{--Interests--}}
 
-            <div class="form-of-logged-in-user">
+            <div id="interest-info" class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Interests</h1>
                 </div>
@@ -414,7 +411,7 @@
                     </div>
                 </div>
                 <div class="footer-of-form-content">
-                    <button id="interest-info-btn" class="form-btn" data-user-id="{{$profile['memorialProfile']->id}}" >Save Changes</button>
+                    <button id="interest-info-btn" class="form-btn" data-user-id="{{$profile['memorialProfile']->id}}">Save Changes</button>
                 </div>
             </div>
 
@@ -1075,6 +1072,8 @@
         })
 
         $(document).ready(function () {
+
+
             // Add Occupation
             var max_fields_of_occupation = 50;
             var occupation_container = $(".occupation_container");
@@ -1086,32 +1085,46 @@
                 if (occupation_counter < max_fields_of_occupation) {
                     occupation_counter++;
                     $(occupation_container).append(`
-                        <form id="occupation-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+@php
+                        $occupationArray = explode(', ', $profile['memorialOccupation']->occupation);
+                        $companyArray = explode(', ', $profile['memorialOccupation']->company);
+                        $toYearArray = explode(', ', $profile['memorialOccupation']->to_year);
+                        $fromYearArray = explode(', ', $profile['memorialOccupation']->from_year);
+
+                        $data['occupations'] = [];
+
+                        // Assuming all arrays have the same length
+                        $length = count($occupationArray);
+
+                        for ($i = 0; $i < $length; $i++) {
+                            $data['occupations'][] = [
+                                'occupation' => $occupationArray[$i],
+                                'company' => $companyArray[$i],
+                                'to_year' => $toYearArray[$i],
+                                'from_year' => $fromYearArray[$i],
+                            ];
+                        }
+                    @endphp
+                    @foreach($data['occupations'] as $occupation)
                     <div class="row-of-dynamic-inputs">
-                <div class="form-group-input">
-                  <label for="">Occupation</label>
-                  <input type="text" class="input-design" name="occupation[]" value="@if($profile['memorialOccupation'])
-                        {{$profile['memorialOccupation']->occupation}}
-                        @endif" />
-                </div>
-                <div class="form-group-input">
-                  <label for="">Company</label>
-                  <input type="text" class="input-design" name="company[]" value="@if($profile['memorialOccupation'])
-                        {{$profile['memorialOccupation']->company}}
-                        @endif" />
-                </div>
-                <div class="form-group-input">
-                  <label for="">From Year</label>
-                  <input type="text" class="input-design" name="from_year[]" value="@if($profile['memorialOccupation'])
-                        {{$profile['memorialOccupation']->from_year}}
-                        @endif" />
-                </div>
-                <div class="form-group-input">
-                  <label for="">To Year</label>
-                  <input type="text" class="input-design" name="to_year[]" value="@if($profile['memorialOccupation'])
-                        {{$profile['memorialOccupation']->to_year}}
-                        @endif" />
-                </div>
+                        <div class="form-group-input">
+                            <label for="">Occupation</label>
+                            <input type="text" class="input-design" name="occupation[]" value="{{ $occupation['occupation'] }}" />
+        </div>
+        <div class="form-group-input">
+            <label for="">Company</label>
+            <input type="text" class="input-design" name="company[]" value="{{ $occupation['company'] }}" />
+        </div>
+        <div class="form-group-input">
+            <label for="">From Year</label>
+            <input type="text" class="input-design" name="from_year[]" value="{{ $occupation['from_year'] }}" />
+        </div>
+        <div class="form-group-input">
+            <label for="">To Year</label>
+            <input type="text" class="input-design" name="to_year[]" value="{{ $occupation['to_year'] }}" />
+        </div>
+    </div>
+
                 <svg
                 class="deleteOccupation"
                   width="128px"
@@ -1134,7 +1147,7 @@
                   </g>
                 </svg>
               </div>
-                </form>`); //add input box
+                @endforeach`); //add input box
                 } else {
                     alert("You Reached the limits");
                 }
@@ -1145,7 +1158,6 @@
                 $(this).parent("div").remove();
                 occupation_counter--;
             });
-
 
 
             //Add Academic
@@ -1161,23 +1173,45 @@
                 if (academic_counter < max_fields_of_academic) {
                     academic_counter++;
                     $(academic_container).append(`
-                    <form id="academic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
-        <div class="row-of-dynamic-inputs">
+                     @php
+
+                        $diplomaArray = explode(', ', $profile['memorialAcademic']->diploma);
+                        $schoolArray = explode(', ', $profile['memorialAcademic']->school);
+                        $toYearArray = explode(', ', $profile['memorialAcademic']->to_year);
+                        $fromYearArray = explode(', ', $profile['memorialAcademic']->from_year);
+
+                        $data['academics'] = [];
+
+                        // Assuming all arrays have the same length
+                        $length = count($diplomaArray);
+
+                        for ($i = 0; $i < $length; $i++) {
+                            $data['academics'][] = [
+                                'diploma' => $diplomaArray[$i],
+                                'school' => $schoolArray[$i],
+                                'to_year' => $toYearArray[$i],
+                                'from_year' => $fromYearArray[$i],
+                            ];
+                        }
+                    @endphp
+
+                    @foreach($data['academics'] as $academic)
+                    <div class="row-of-dynamic-inputs">
             <div class="form-group-input">
                 <label for="">Diploma</label>
-                <input type="text" class="input-design" name="diploma[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->diploma}}@endif" />
+                <input type="text" class="input-design" name="diploma[]" value="@if($academic['diploma']){{ $academic['diploma']}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">School</label>
-                <input type="text" class="input-design" name="school[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->school}}@endif" />
+                <input type="text" class="input-design" name="school[]" value="@if($academic['school']){{$academic['school']}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">From Year</label>
-                <input type="text" class="input-design" name="from_year[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->from_year}}@endif" />
+                <input type="text" class="input-design" name="from_year[]" value="@if($academic['to_year']){{$academic['to_year']}}@endif" />
             </div>
             <div class="form-group-input">
                 <label for="">To Year</label>
-                <input type="text" class="input-design" name="to_year[]" value="@if($profile['memorialAcademic']){{$profile['memorialAcademic']->to_year}}@endif" />
+                <input type="text" class="input-design" name="to_year[]" value="@if($academic['from_year']){{$academic['from_year']}}@endif" />
             </div>
             <svg class="deleteAcademic" width="128px" height="128px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -1187,7 +1221,7 @@
                 </g>
             </svg>
         </div>
-    </form>`);
+    @endforeach`);
                 } else {
                     alert("You Reached the limits");
                 }
@@ -1210,15 +1244,32 @@
                 if (milestone_counter < max_fields_of_milestones) {
                     milestone_counter++;
                     $(milestone_container).append(`
-                                            <form id="milestone-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
-<div class="row-of-dynamic-inputs">
-                <div class="form-group-input">
-                  <label for="">Description</label>
-                  <input type="text" class="input-design" name="milestone[]" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->milestone}}@endif"  />
+                    @php
+
+                        $milestoneArray = explode(', ', $profile['memorialMilestone']->milestone);
+                        $yearArray = explode(', ', $profile['memorialMilestone']->year);
+
+                        $data['milestone'] = [];
+
+                        // Assuming all arrays have the same length
+                        $length = count($milestoneArray);
+
+                        for ($i = 0; $i < $length; $i++) {
+                            $data['milestone'][] = [
+                                'milestone' => $milestoneArray[$i],
+                                'year' => $yearArray[$i],
+                            ];
+                        }
+                    @endphp
+                    @foreach( $data['milestone'] as $milestone)
+                    <div class="row-of-dynamic-inputs">
+                                    <div class="form-group-input">
+                                      <label for="">Description</label>
+                                      <input type="text" class="input-design" name="milestone[]" value="@if($milestone['milestone']){{$milestone['milestone']}}@endif"  />
                 </div>
                 <div class="form-group-input">
                   <label for="">Year</label>
-                  <input type="text" class="input-design" name="year[]" value="@if($profile['memorialMilestone']){{$profile['memorialMilestone']->year}}@endif"/>
+                  <input type="text" class="input-design" name="year[]" value="@if($milestone['year']){{$milestone['year']}}@endif"/>
                 </div>
 
                 <svg
@@ -1242,7 +1293,8 @@
                     ></path>
                   </g>
                 </svg>
-              </div>`);
+              </div>
+              @endforeach`);
                 } else {
                     alert("You Reached the limits");
                 }
@@ -1265,11 +1317,10 @@
                 if (interests_counter < max_fields_of_interests) {
                     interests_counter++;
                     $(interests_container).append(`
-<form id="interest-form">
-@php
-                    $interests =explode(', ',$profile['memorialInterest']->interest) ;
-@endphp
-                @foreach($interests as $interest )
+                    @php
+                        $interests =explode(', ',$profile['memorialInterest']->interest) ;
+                    @endphp
+                    @foreach($interests as $interest )
                     <div class="row-of-dynamic-inputs">
             <div class="form-group-input">
                 <label for="">Interest Name</label>
@@ -1298,8 +1349,7 @@
                   </g>
                 </svg>
               </div>
-                @endforeach
-              </form>`);
+                @endforeach`);
                 } else {
                     alert("You Reached the limits");
                 }
@@ -1415,8 +1465,16 @@
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
                 var identifier = 'academic_info';
-                // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+
+                // Serialize the form data
+                var formData = $('#academic-info form').serializeArray();
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.push({name: 'user_id', value: userId});
+                formData.push({name: 'form_identifier', value: identifier});
+
+                // Convert formData to a serialized string
+                formData = $.param(formData);
                 saveFormData(userId, formData);
                 return 0;
             });
@@ -1427,8 +1485,16 @@
                 var userId = $(this).data('user-id');
                 var identifier = 'occupation_info';
                 // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
-                console.log(formData);
+
+                // Serialize the form data
+                var formData = $('#occupation-history form').serializeArray();
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.push({name: 'user_id', value: userId});
+                formData.push({name: 'form_identifier', value: identifier});
+
+                // Convert formData to a serialized string
+                formData = $.param(formData);
                 saveFormData(userId, formData);
                 return 0;
             });
@@ -1438,8 +1504,16 @@
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
                 var identifier = 'milestone_info';
-                // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
+
+                // Serialize the form data
+                var formData = $('#milestone-info form').serializeArray();
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.push({name: 'user_id', value: userId});
+                formData.push({name: 'form_identifier', value: identifier});
+
+                // Convert formData to a serialized string
+                formData = $.param(formData);
                 saveFormData(userId, formData);
                 return 0;
             });
@@ -1463,11 +1537,11 @@
                 var identifier = 'interest_info';
 
                 // Serialize the form data
-                var formData = $('.form-of-logged-in-user form').serializeArray();
+                var formData = $('#interest-info form').serializeArray();
 
                 // Add additional data manually (user_id and form_identifier)
-                formData.push({ name: 'user_id', value: userId });
-                formData.push({ name: 'form_identifier', value: identifier });
+                formData.push({name: 'user_id', value: userId});
+                formData.push({name: 'form_identifier', value: identifier});
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);

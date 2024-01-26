@@ -163,31 +163,113 @@ class ProfileController extends Controller
         }
 
         if ($request->form_identifier == 'occupation_info') {
-            return $request;
-            $this->data['occupationInfo'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
-            $this->data['occupationInfo']->school = $request->school;
-            $this->data['occupationInfo']->diploma = $request->diploma;
-            $this->data['occupationInfo']->from_year = $request->from_year;
-            $this->data['occupationInfo']->to_year = $request->to_year;
-            $checkOccupationInfo = $this->data['occupationInfo']->save();
+
+            $occupation = $request->input('occupation', []);
+            $company= $request->input('company', []);
+            $toYears = $request->input('to_year', []);
+            $fromYears = $request->input('from_year', []);
+
+            $checkOccupationInfo = '';
+            $this->data['occupationinfoCheck'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
+
+            if ($this->data['occupationinfoCheck']) {
+
+                $this->data['occupationinfoCheck'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
+                $this->data['occupationinfoCheck']->occupation = implode(', ', $occupation);
+                $this->data['occupationinfoCheck']->company = implode(', ', $company);
+                $this->data['occupationinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['occupationinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['occupationinfoCheck']->memorial_user_id = $id;
+                $checkOccupationInfo = $this->data['occupationinfoCheck']->save();
+
+            } else {
+                $this->data['occupationinfoCheck'] = $this->_occupation_model;
+                $this->data['occupationinfoCheck']->occupation = implode(', ', $occupation);
+                $this->data['occupationinfoCheck']->company = implode(', ', $company);
+                $this->data['occupationinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['occupationinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['occupationinfoCheck']->memorial_user_id = $id;
+                $checkOccupationInfo = $this->data['occupationinfoCheck']->save();
+            }
+
             if ($checkOccupationInfo) {
                 $data = [
                     'success' => true,
-                    'message' => 'Your Occupational information has been updated correctly'
+                    'message' => 'Your Occupation information has been updated correctly'
                 ];
                 return response()->json($data);
             }
         }
 
         if ($request->form_identifier == 'academic_info') {
-            return 'academic_info';
+            // Retrieve the 'interest' array from the request
+            $diplomas = $request->input('diploma', []);
+            $schools = $request->input('school', []);
+            $toYears = $request->input('to_year', []);
+            $fromYears = $request->input('from_year', []);
+
+            $checkAcademicInfo = '';
+            $this->data['academicinfoCheck'] = $this->_academic_model::where('memorial_user_id', $id)->first();
+
+            if ($this->data['academicinfoCheck']) {
+
+                $this->data['academicinfoCheck'] = $this->_academic_model::where('memorial_user_id', $id)->first();
+                $this->data['academicinfoCheck']->diploma = implode(', ', $diplomas);
+                $this->data['academicinfoCheck']->school = implode(', ', $schools);
+                $this->data['academicinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['academicinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['academicinfoCheck']->memorial_user_id = $id;
+                $checkAcademicInfo = $this->data['academicinfoCheck']->save();
+
+            } else {
+                $this->data['academicinfoCheck'] = $this->_academic_model;
+                $this->data['academicinfoCheck']->diploma = implode(', ', $diplomas);
+                $this->data['academicinfoCheck']->school = implode(', ', $schools);
+                $this->data['academicinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['academicinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['academicinfoCheck']->memorial_user_id = $id;
+                $checkAcademicInfo = $this->data['academicinfoCheck']->save();
+            }
+
+            if ($checkAcademicInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Academic information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
         }
-
-
         if ($request->form_identifier == 'milestone_info') {
-            return 'milestone_info';
-        }
+            $milestone = $request->input('milestone', []);
+            $year = $request->input('year', []);
 
+            $this->data['milestoneinfo'] = $this->_milestone_model::where('memorial_user_id', $id)->first();
+
+//            $checkMilestoneInfo = '';
+            if ($this->data['milestoneinfo']) {
+
+                $this->data['milestoneinfo'] = $this->_milestone_model::where('memorial_user_id', $id)->first();
+                $this->data['milestoneinfo']->milestone = implode(', ', $milestone);
+                $this->data['milestoneinfo']->year = implode(', ', $year);
+                $this->data['milestoneinfo']->memorial_user_id = $id;
+                $checkMilestoneInfo = $this->data['interestinfo']->save();
+
+            } else {
+                $this->data['milestoneinfo'] = $this->_milestone_model;
+                $this->data['milestoneinfo']->milestone = implode(', ', $milestone);
+                $this->data['milestoneinfo']->year = implode(', ', $year);
+                $this->data['milestoneinfo']->memorial_user_id = $id;
+                $checkMilestoneInfo = $this->data['milestoneinfo']->save();
+            }
+
+            if ($checkMilestoneInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Milestone information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
         if ($request->form_identifier == 'religion_info') {
             $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
             $this->data['religionInfo']->religion = $request->religion;
@@ -200,15 +282,13 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
-
-        // Check if the form_identifier is 'interest_info'
         if ($request->form_identifier == 'interest_info') {
             // Retrieve the 'interest' array from the request
             $interests = $request->input('interest', []);
 
-            $checkInterestInfo = '';
             $this->data['interestinfoCheck'] = $this->_interest_model::where('memorial_user_id', $id)->first();
 
+//            $checkInterestInfo = '';
             if ($this->data['interestinfoCheck']) {
 
                     $this->data['interestinfo'] = $this->_interest_model::where('memorial_user_id', $id)->first();
