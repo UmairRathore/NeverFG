@@ -21,13 +21,14 @@ class CreateUserMemorialsTable extends Migration
             $table->text('biography')->nullable();
             $table->string('fav_saying')->nullable();
             $table->string('resting_place')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->string('religion')->nullable();
+            $table->unsignedBigInteger('memorial_user_id');
             $table->unsignedBigInteger('keeper_id');
             $table->enum('status', ['active', 'inactive'])->default('active'); // Use ENUM for two options
             $table->enum('passed', ['alive', 'deceased'])->default('deceased'); // Use ENUM for two options
 
             //foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('memorial_user_id')->references('id')->on('users');
             $table->foreign('keeper_id')->references('id')->on('users');
             $table->timestamps();
         });

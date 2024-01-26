@@ -8,12 +8,11 @@ use App\Http\Controllers\AdminPortal\FuneralServiceController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
-use App\Http\Controllers\Authentication\AuthController;
 use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
-use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +27,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/edit-memorial-profile/{id}',[ProfileController::class,'editMementoProfile'])->name('edit.memorial.profile');
+Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoProfile'])->name('update.memorial.profile');
+
+
+
 Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
-Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
+//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
 Route::get('/keeper',[ProfileController::class,'keeper'])->name('keeper');
 Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
 Route::get('/events',[ProfileController::class,'events'])->name('events');

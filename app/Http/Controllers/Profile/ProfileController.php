@@ -1,0 +1,374 @@
+<?php
+
+namespace App\Http\Controllers\Profile;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\UserAcademic;
+use App\Models\UserCity;
+use App\Models\UserInterest;
+use App\Models\UserMemorial;
+use App\Models\UserMilestone;
+use App\Models\UserOccupation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+
+class ProfileController extends Controller
+{
+    //
+
+    protected $_viewPath;
+    protected $data = array();
+
+    public function __construct()
+    {
+        $this->_model = new User();
+        $this->_memorial_model = new UserMemorial();
+        $this->_occupation_model = new UserOccupation();
+        $this->_academic_model = new UserAcademic();
+        $this->_city_model = new UserCity();
+        $this->_interest_model = new UserInterest();
+        $this->_milestone_model = new UserMilestone();
+        $this->setDefaultData();
+    }
+
+    private function setDefaultData()
+    {
+        $this->_viewPath = 'frontend.profile.';
+        $this->data['moduleName'] = 'memorial';
+    }
+
+    public function editMementoProfile($id)
+    {
+        if (auth()->user()->role_id == 2) {
+            $memorial = $this->_memorial_model::where('keeper_id', $id)->first();
+            $memorialID = $memorial->memorial_user_id;
+            $this->data['profile'] = [
+                'memorialProfile' => $this->_model::where('id', $memorialID)->first(),
+                'memorialAdditional' => $this->_memorial_model::where('memorial_user_id', $memorialID)->first(),
+                'memorialOccupation' => $this->_occupation_model::where('memorial_user_id', $memorialID)->first(),
+                'memorialAcademic' => $this->_academic_model::where('memorial_user_id', $memorialID)->first(),
+                'memorialInterest' => $this->_interest_model::where('memorial_user_id', $memorialID)->first(),
+                'memorialCity' => $this->_city_model::where('memorial_user_id', $memorialID)->first(),
+                'memorialMilestone' => $this->_milestone_model::where('memorial_user_id', $memorialID)->first(),
+            ];
+            return view($this->_viewPath . 'memorial-profile', $this->data);
+        } else {
+            $previousUrl = URL::previous();
+            return redirect()->to($previousUrl);
+        }
+    }
+
+    public function updateMementoProfile(Request $request, $id)
+    {
+//        return $id;/
+        if ($request->form_identifier == 'basic_info') {
+//            return $request;
+            $dobDay = $request->birth_day;
+            $dobMonth = $request->birth_month;
+            $dobYear = $request->birth_year;
+            $dob = $dobYear . '-' . $dobMonth . '-' . $dobDay;
+
+            $dodDay = $request->death_day;
+            $dodMonth = $request->death_month;
+            $dodYear = $request->death_year;
+
+            $dod = $dodYear . '-' . $dodMonth . '-' . $dodDay;
+
+            $this->data['basicInfoDod'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+//            return $this->data['basicInfoDod'];
+            $this->data['basicInfoDod']->dod = $dod;
+            $checkInfoDod = $this->data['basicInfoDod']->save();
+            $memorialId = $this->data['basicInfoDod']->memorial_user_id;
+
+            $this->data['basicInfo'] = $this->_model::where('id', $memorialId)->first();
+            $this->data['basicInfo']->first_name = $request->first_name;
+            $this->data['basicInfo']->last_name = $request->last_name;
+            $this->data['basicInfo']->middle_name = $request->middle_name;
+            $this->data['basicInfo']->suffix = $request->suffix;
+            $this->data['basicInfo']->gender = $request->gender;
+            $this->data['basicInfo']->dob = $dob;
+
+            $checkInfo = $this->data['basicInfo']->save();
+
+            if ($checkInfo && $checkInfoDod) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Basic info has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        if ($request->form_identifier == 'home_info') {
+
+            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id', $id)->first();
+            if ($this->data['homeCity']) {
+//            return $this->data['homeCity'];
+//                return $this->data['homeCity'] ;
+                $this->data['homeCity']->home_city = $request->home_city;
+                $this->data['homeCity']->memorial_user_id = $id;
+                $checkHomeCity = $this->data['homeCity']->save();
+                if ($checkHomeCity) {
+                    $data = [
+                        'success' => true,
+                        'message' => 'Your Basic info has been updated correctly'
+                    ];
+                    return response()->json($data);
+                }
+            } else {
+//                return $request;
+                $this->data['homeCity'] = $this->_city_model;
+                $this->data['homeCity']->home_city = $request->home_city;
+                $this->data['homeCity']->memorial_user_id = $id;
+                $checkHomeCity = $this->data['homeCity']->save();
+                if ($checkHomeCity) {
+                    $data = [
+                        'success' => true,
+                        'message' => 'Your Home City has been updated correctly'
+                    ];
+                    return response()->json($data);
+                }
+            }
+        }
+
+        if ($request->form_identifier == 'other_info') {
+            $this->data['homeCity'] = $this->_city_model::where('memorial_user_id', $id)->first();
+            if ($this->data['otherCity']) {
+//                return $this->data['homeCity'] ;
+                $this->data['otherCity']->other_city = $request->other_city;
+                $this->data['otherCity']->memorial_user_id = $id;
+                $checkOtherCity = $this->data['otherCity']->save();
+                if ($checkOtherCity) {
+                    $data = [
+                        'success' => true,
+                        'message' => 'Your Basic info has been updated correctly'
+                    ];
+                    return response()->json($data);
+                }
+            } else {
+//                return $request;
+                $this->data['otherCity'] = $this->_city_model;
+                $this->data['otherCity']->home_city = $request->home_city;
+                $this->data['otherCity']->memorial_user_id = $id;
+                $checkOtherCity = $this->data['homeCity']->save();
+                if ($checkOtherCity) {
+                    $data = [
+                        'success' => true,
+                        'message' => 'Your Home City has been updated correctly'
+                    ];
+                    return response()->json($data);
+                }
+            }
+        }
+
+        if ($request->form_identifier == 'occupation_info') {
+
+            $occupation = $request->input('occupation', []);
+            $company= $request->input('company', []);
+            $toYears = $request->input('to_year', []);
+            $fromYears = $request->input('from_year', []);
+
+            $checkOccupationInfo = '';
+            $this->data['occupationinfoCheck'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
+
+            if ($this->data['occupationinfoCheck']) {
+
+                $this->data['occupationinfoCheck'] = $this->_occupation_model::where('memorial_user_id', $id)->first();
+                $this->data['occupationinfoCheck']->occupation = implode(', ', $occupation);
+                $this->data['occupationinfoCheck']->company = implode(', ', $company);
+                $this->data['occupationinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['occupationinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['occupationinfoCheck']->memorial_user_id = $id;
+                $checkOccupationInfo = $this->data['occupationinfoCheck']->save();
+
+            } else {
+                $this->data['occupationinfoCheck'] = $this->_occupation_model;
+                $this->data['occupationinfoCheck']->occupation = implode(', ', $occupation);
+                $this->data['occupationinfoCheck']->company = implode(', ', $company);
+                $this->data['occupationinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['occupationinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['occupationinfoCheck']->memorial_user_id = $id;
+                $checkOccupationInfo = $this->data['occupationinfoCheck']->save();
+            }
+
+            if ($checkOccupationInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Occupation information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        if ($request->form_identifier == 'academic_info') {
+            // Retrieve the 'interest' array from the request
+            $diplomas = $request->input('diploma', []);
+            $schools = $request->input('school', []);
+            $toYears = $request->input('to_year', []);
+            $fromYears = $request->input('from_year', []);
+
+            $checkAcademicInfo = '';
+            $this->data['academicinfoCheck'] = $this->_academic_model::where('memorial_user_id', $id)->first();
+
+            if ($this->data['academicinfoCheck']) {
+
+                $this->data['academicinfoCheck'] = $this->_academic_model::where('memorial_user_id', $id)->first();
+                $this->data['academicinfoCheck']->diploma = implode(', ', $diplomas);
+                $this->data['academicinfoCheck']->school = implode(', ', $schools);
+                $this->data['academicinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['academicinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['academicinfoCheck']->memorial_user_id = $id;
+                $checkAcademicInfo = $this->data['academicinfoCheck']->save();
+
+            } else {
+                $this->data['academicinfoCheck'] = $this->_academic_model;
+                $this->data['academicinfoCheck']->diploma = implode(', ', $diplomas);
+                $this->data['academicinfoCheck']->school = implode(', ', $schools);
+                $this->data['academicinfoCheck']->to_year = implode(', ', $toYears);
+                $this->data['academicinfoCheck']->from_year = implode(', ', $fromYears);
+                $this->data['academicinfoCheck']->memorial_user_id = $id;
+                $checkAcademicInfo = $this->data['academicinfoCheck']->save();
+            }
+
+            if ($checkAcademicInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Academic information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        if ($request->form_identifier == 'milestone_info') {
+            $milestone = $request->input('milestone', []);
+            $year = $request->input('year', []);
+
+            $this->data['milestoneinfo'] = $this->_milestone_model::where('memorial_user_id', $id)->first();
+
+//            $checkMilestoneInfo = '';
+            if ($this->data['milestoneinfo']) {
+
+                $this->data['milestoneinfo'] = $this->_milestone_model::where('memorial_user_id', $id)->first();
+                $this->data['milestoneinfo']->milestone = implode(', ', $milestone);
+                $this->data['milestoneinfo']->year = implode(', ', $year);
+                $this->data['milestoneinfo']->memorial_user_id = $id;
+                $checkMilestoneInfo = $this->data['interestinfo']->save();
+
+            } else {
+                $this->data['milestoneinfo'] = $this->_milestone_model;
+                $this->data['milestoneinfo']->milestone = implode(', ', $milestone);
+                $this->data['milestoneinfo']->year = implode(', ', $year);
+                $this->data['milestoneinfo']->memorial_user_id = $id;
+                $checkMilestoneInfo = $this->data['milestoneinfo']->save();
+            }
+
+            if ($checkMilestoneInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Milestone information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        if ($request->form_identifier == 'religion_info') {
+            if ($request->custom_religion) {
+                $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+                $this->data['religionInfo']->religion = $request->custom_religion;
+                $checkReligionInfo = $this->data['religionInfo']->save();
+            }else
+                {
+                    $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+                    $this->data['religionInfo']->religion = $request->predefined_religion;
+                    $checkReligionInfo = $this->data['religionInfo']->save();
+                }
+            if ($checkReligionInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your religion information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        if ($request->form_identifier == 'interest_info') {
+            // Retrieve the 'interest' array from the request
+            $interests = $request->input('interest', []);
+
+            $this->data['interestinfoCheck'] = $this->_interest_model::where('memorial_user_id', $id)->first();
+
+//            $checkInterestInfo = '';
+            if ($this->data['interestinfoCheck']) {
+
+                    $this->data['interestinfo'] = $this->_interest_model::where('memorial_user_id', $id)->first();
+                    $this->data['interestinfo']->interest = implode(', ', $interests);
+                    $this->data['interestinfo']->memorial_user_id = $id;
+                    $checkInterestInfo = $this->data['interestinfo']->save();
+
+            } else {
+                    $this->data['interestinfo'] = $this->_interest_model;
+                     $this->data['interestinfo']->interest = implode(', ', $interests);
+                    $this->data['interestinfo']->memorial_user_id = $id;
+                    $checkInterestInfo = $this->data['interestinfo']->save();
+            }
+
+            if ($checkInterestInfo) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Interest information has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
+        $data = [
+            'success' => false,
+            'message' => 'Invalid form identifier'
+        ];
+        return response()->json($data, 400);
+
+    }
+
+    public
+    function events()
+    {
+        return view($this->_viewPath . 'events');
+    }
+
+    public
+    function family()
+    {
+        return view($this->_viewPath . 'family');
+    }
+
+    public
+    function keeper()
+    {
+        return view($this->_viewPath . 'keeper');
+    }
+
+    public
+    function keeperplus()
+    {
+        return view($this->_viewPath . 'keeper-plus');
+    }
+
+    public
+    function mementos()
+    {
+        return view($this->_viewPath . 'mementos');
+    }
+
+    public
+    function message()
+    {
+        return view($this->_viewPath . 'message');
+    }
+
+    public
+    function profile()
+    {
+        return view($this->_viewPath . 'profile');
+    }
+}

@@ -18,7 +18,8 @@ class UserMemorial extends Model
             'biography',
             'fav_saying',
             'resting_place',
+            'religion',
             'status',
-            'user_id'
+            'memorial_user_id'
         ];
 }
