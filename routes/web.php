@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminPortal\AdminController;
 use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\FuneralServiceController;
+use App\Http\Controllers\AdminPortal\LibraryPhotosController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
@@ -160,7 +161,38 @@ Route::group(['prefix' => 'feature'], function () {
 
 });
 //Feature
+
+
+
+//<----------CRUD Library
+
+    Route::group(['prefix' => 'library'], function () {
+
+        Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
+        Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
+        Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store');
+        Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
+        Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
+        Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
+
+    });
+//Library
+
 });
 
 
 
+
+//<----------CRUD Library
+
+//Route::group(['prefix' => 'library'], function () {
+
+    Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
+    Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
+    Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
+    Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
+    Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
+    Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
+
+//});
+//Library
