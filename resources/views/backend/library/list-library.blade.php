@@ -42,22 +42,22 @@
                                             <tr>
                                                 <td>{{ $library->id }}</td>
                                                 <td>
-                                                    @if ($library->profile && file_exists(public_path($library->profile)))
-                                                        <img src="{{ asset($library->profile) }}" alt="Library Profile" style="max-width: 100px;">
+                                                    @if ($library->profile_image && file_exists(public_path($library->profile_image)))
+                                                        <img src="{{ asset($library->profile_image) }}" alt="Library Profile" style="max-width: 100px;">
                                                     @else
                                                         <img src="{{ asset('path/to/placeholder/image.jpg') }}" alt="Library Profile" style="max-width: 100px;">
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($library->icon && file_exists(public_path($library->icon)))
-                                                        <img src="{{ asset($library->icon) }}" alt="Library Icon" style="max-width: 100px;">
+                                                    @if ($library->icon_image && file_exists(public_path($library->icon_image)))
+                                                        <img src="{{ asset($library->icon_image) }}" alt="Library Icon" style="max-width: 100px;">
                                                     @else
                                                         <img src="{{ asset('path/to/placeholder/image.jpg') }}" alt="Library Icon" style="max-width: 100px;">
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($library->theme && file_exists(public_path($library->theme)))
-                                                        <img src="{{ asset($library->theme) }}" alt="Library Theme" style="max-width: 100px;">
+                                                    @if ($library->theme_image && file_exists(public_path($library->theme_image)))
+                                                        <img src="{{ asset($library->theme_image) }}" alt="Library Theme" style="max-width: 100px;">
                                                     @else
                                                         <img src="{{ asset('path/to/placeholder/image.jpg') }}" alt="Library Theme" style="max-width: 100px;">
                                                     @endif
@@ -70,7 +70,6 @@
                                         @endforeach
                                         </tbody>
                                     </table>
->
                             </div>
                         </div>
                     </div>

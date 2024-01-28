@@ -28,7 +28,6 @@ class LibraryPhotosController extends Controller
     public function index()
     {
         $this->data['libraries'] = $this->_model::all();
-        dd($this->data['libraries']);
         return view($this->_viewPath . 'list-library', $this->data);
 
     }
@@ -40,7 +39,6 @@ class LibraryPhotosController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $validator = Validator::make($request->all(), [
             'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
             'icon_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',

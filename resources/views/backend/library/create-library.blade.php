@@ -54,7 +54,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="profile_image">Profile Image</label>
                                             <div class="input-group">
-                                                <input type="file" name="profile_image" accept="image/*" onchange="displayFileName(this, 'profileFileName')">
+                                                <input type="file" name="profile_image" onchange="displayFileName(this, 'profileFileName')">
                                                 <span id="profileFileName"></span>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="icon_image">Icon Image</label>
                                             <div class="input-group">
-                                                <input type="file" name="icon_image" accept="image/*" onchange="displayFileName(this, 'iconFileName')">
+                                                <input type="file" name="icon_image" onchange="displayFileName(this, 'iconFileName')">
                                                 <span id="iconFileName"></span>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="theme_image">Theme Image</label>
                                             <div class="input-group">
-                                                <input type="file" name="theme_image" accept="image/*" onchange="displayFileName(this, 'themeFileName')">
+                                                <input type="file" name="theme_image"  onchange="displayFileName(this, 'themeFileName')">
                                                 <span id="themeFileName"></span>
                                             </div>
                                         </div>
