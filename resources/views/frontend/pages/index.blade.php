@@ -86,7 +86,7 @@
                 <div class="row bottom-section">
                     <button class="black-background-btn">Learn more</button>
                     <button class="white-background-btn">
-                        Book free consultation
+                        <a href="https://calendly.com/maniwyatt29/30min">Book free consultation</a>
                     </button>
                 </div>
             </div>

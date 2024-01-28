@@ -18,7 +18,7 @@
             Comprehensive Virtual Memorial Services Call or Text (915) 800-7900
         </h2>
 
-        <button class="blue-background-btn">SCHEDULE FREE CONSULTATION</button>
+        <button class="blue-background-btn"> <a href="https://calendly.com/maniwyatt29/30min">SCHEDULE FREE CONSULTATION</a></button>
     </div>
 </div>
 <div class="craft-cermony-home-section">
@@ -80,7 +80,7 @@
         </div>
         <p class="call-paragraph">Call or Text (915) 800-7900</p>
         <button class="black-background-btn half-width">
-            BOOK 30 MINUTES CONSULTATION
+            <a href="https://calendly.com/maniwyatt29/30min">BOOK 30 MINUTES CONSULTATION</a>
         </button>
     </div>
 </div>
@@ -877,7 +877,7 @@
         <div class="pp-r1-c4"></div>
         <div class="pp-r2-c1">
 
-            <p>Free 30 Minute Consultation</p>
+            <a href="https://calendly.com/maniwyatt29/30min"><p>Free 30 Minute Consultation</p><a>
         </div>
         <div class="pp-r2-c2">
             <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
