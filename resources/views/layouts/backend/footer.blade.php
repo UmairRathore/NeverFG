@@ -51,6 +51,7 @@ $('[data-toggle="tooltip"]').tooltip()
 @yield('faqlist')
 @yield('featurelist')
 @yield('librarylist')
+@yield('relationlist')
 
 
 

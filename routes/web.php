@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\FuneralServiceController;
 use App\Http\Controllers\AdminPortal\LibraryPhotosController;
 use App\Http\Controllers\AdminPortal\PackageController;
+use App\Http\Controllers\AdminPortal\RelationsController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\ForgetPasswordController;
@@ -101,6 +102,19 @@ Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {
     });
 //User
 
+    //<----------CRUD User
+
+    Route::group(['prefix' => 'relation'], function () {
+
+        Route::get('/list-relation', [RelationsController::class, 'index'])->name('backend.relation-list');
+        Route::get('/add-relation', [RelationsController::class, 'create']);
+        Route::post('/add-relation', [RelationsController::class, 'store'])->name('backend.store-relation');
+        Route::get('/edit-relation/{id}', [RelationsController::class, 'edit'])->name('backend.edit-relation');
+        Route::put('/update-relation/{id}', [RelationsController::class, 'update'])->name('backend.update-relation');
+        Route::get('/delete-relation/{id}', [RelationsController::class, 'destroy'])->name('backend.delete-relation');
+
+    });
+//User
 
 //<----------CRUD ROLE
 
