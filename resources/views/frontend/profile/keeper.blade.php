@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
-                        <label for="">The profiles that Ghulam Dastgeer manages.</label>
+                        <label for="">The profiles that {{$keeper->first_name}} manages.</label>
                         <!-- <input type="text" class="input-design" /> -->
                     </div>
 

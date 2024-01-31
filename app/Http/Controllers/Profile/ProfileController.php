@@ -516,10 +516,7 @@ class ProfileController extends Controller
         return view($this->_viewPath . 'family');
     }
 
-    public function keeper()
-    {
-        return view($this->_viewPath . 'keeper');
-    }
+
 
     public function keeperplus()
     {

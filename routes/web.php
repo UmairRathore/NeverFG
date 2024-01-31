@@ -13,6 +13,7 @@ use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Profile\KeeperController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +36,11 @@ Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController:
 
 //Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
 
+Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
 
 
 Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
 //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-Route::get('/keeper',[ProfileController::class,'keeper'])->name('keeper');
 Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
 Route::get('/events',[ProfileController::class,'events'])->name('events');
 Route::get('/family',[ProfileController::class,'family'])->name('family');

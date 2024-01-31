@@ -94,7 +94,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('keeper')}}" class="single-item-insider">
+                            <a href="{{route('keeper-memorial',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/khheayfj.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>
