@@ -36,6 +36,16 @@
                 <span><i class="far fa-user-circle"></i>User </span>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('backend.library-list')}}">
+                <span><i class="far fa-user-circle"></i>Library </span>
+            </a>
+        </li>
+  <li class="menu-item">
+            <a href="{{route('backend.faq-list')}}">
+                <span><i class="far fa-user-circle"></i>Faq </span>
+            </a>
+        </li>
 
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user">--}}
@@ -461,7 +471,7 @@
 {{--                </li>--}}
 {{--                <li> <a href="/prebuilt-pages/coming-soon">Coming Soon</a> </li>--}}
 {{--                <li> <a href="/prebuilt-pages/error">Error Page</a> </li>--}}
-                <li class="menu-item"> <a href="{{route('backend.faq-list')}}"> FAQ </a> </li>
+{{--                <li class="menu-item"> <a href="{{route('backend.faq-list')}}"> FAQ </a> </li>--}}
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/portfolio"> Portfolio </a> </li>--}}
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/user-profile"> User Profile </a> </li>--}}
 {{--                <li class="menu-item"> <a href="/prebuilt-pages/invoice"> Invoice </a> </li>--}}

@@ -472,9 +472,14 @@
                     Don't have access to a photo at the moment? Select a profile image from our library.
                 </p>
                 <div class="grid-of-photos">
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-1">
+                    @foreach($profile_images as $key => $profile_image)
+                    <div class="whole-image-wrapper-with-overlay" id="img-id-{{$key}}">
                         <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                            @if($profile_image->profile_image)
+                                <img id="library_image" src="{{asset($profile_image->profile_image) }}" alt="" class="grid-single-img"/>
+                            @else
+                                <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                            @endif
                         </div>
                         <div class="overlay">
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -501,130 +506,11 @@
                       </svg>
                         </div>
                     </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-2">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-                      </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-3">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-                      </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-                      </svg>
-                        </div>
-                    </div>
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                        <div class="img-wrpper-inside-gallery">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
-                                            </g>
-                                        </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
-                                    </g>
-                                </g>
-                      </svg>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
-
-
             </div>
             <div class="footer-of-form-content">
-                <button class="form-btn">Select</button>
-
+                <button id="profile_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
             </div>
         </div>
     </div>
@@ -1003,28 +889,43 @@
 
         // Start here
 
-        //gallery img
-        $(".whole-image-wrapper-with-overlay").click(function (e) {
-            console.log('Image Click', e);
-            let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")
-            for (let i = 0; i < allElements.length; i++) {
-                console.log('Single class', allElements[i].classList[1])
-                if (allElements[i].classList[1]) {
-                    console.log('Yes')
-                    allElements[i].classList.remove('show');
-                }
+        {{--//gallery img--}}
+        {{--$(".whole-image-wrapper-with-overlay").click(function (e) {--}}
+        {{--    console.log('Image Click', e);--}}
+        {{--    let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")--}}
+        {{--    for (let i = 0; i < allElements.length; i++) {--}}
+        {{--        console.log('Single class', allElements[i].classList[1])--}}
+        {{--        if (allElements[i].classList[1]) {--}}
+        {{--            console.log('Yes')--}}
+        {{--            allElements[i].classList.remove('show');--}}
+        {{--        }--}}
+        {{--    }--}}
+        {{--    // console.log('All elements',allElements)--}}
+        {{--    console.log('ele', e.currentTarget)--}}
+        {{--    let ele = e.currentTarget.children[1];--}}
+        {{--    ele.classList.toggle('show')--}}
+        {{--    console.log('Child', ele)--}}
 
-            }
-            // console.log('All elements',allElements)
-            console.log('ele', e.currentTarget)
-            let ele = e.currentTarget.children[1];
+        {{--    // Update profile image when an image is selected--}}
+        {{--    let userId = "{{ $profile['memorialProfile']->id }}"; // Get user ID from PHP--}}
+        {{--    let formType = 'profile_image_library';--}}
+        {{--    let formData = new FormData();--}}
+        {{--    formData.append('user_id', userId);--}}
+        {{--    formData.append('form_identifier', formType);--}}
+        {{--    formData.append('is_image_upload', true);--}}
 
-            ele.classList.toggle('show')
-            console.log('Child', ele)
+        {{--    // Assuming you have an image URL associated with each image element--}}
+        {{--    let imageURL = $(this).find('img').attr('src');--}}
 
-            // $(".overlay").show();
-
-        })
+        {{--    // Add image file to FormData (you may need to fetch the image file if it's not already in the DOM)--}}
+        {{--    fetch(imageURL)--}}
+        {{--        .then(response => response.blob())--}}
+        {{--        .then(blob => {--}}
+        {{--            formData.append('profile_image', blob);--}}
+        {{--            saveFormData(userId, formData, formType);--}}
+        {{--        })--}}
+        {{--        .catch(error => console.error('Error fetching image:', error));--}}
+        {{--});--}}
 
         //Theme gallery
         $(".whole-image-wrapper-with-overlay-of-theme").click(function (e) {
@@ -1424,7 +1325,24 @@
 
         // AJAX submit forms
         $(document).ready(function () {
-
+            //gallery img
+            $(".whole-image-wrapper-with-overlay").click(function (e) {
+                e.preventDefault();
+                console.log('Image Click', e);
+                let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")
+                for (let i = 0; i < allElements.length; i++) {
+                    console.log('Single class', allElements[i].classList[1])
+                    if (allElements[i].classList[1]) {
+                        console.log('Yes')
+                        allElements[i].classList.remove('show');
+                    }
+                }
+                // console.log('All elements',allElements)
+                console.log('ele', e.currentTarget)
+                let ele = e.currentTarget.children[1];
+                ele.classList.toggle('show')
+                console.log('Child', ele)
+            });
 
             $('#basic-info-form').submit(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
@@ -1528,7 +1446,6 @@
                 return 0;
             });
 
-
             $('#interest-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
@@ -1565,10 +1482,46 @@
                 saveFormData(userId, formData, 'profile_image_custom');
                 return 0;
             });
+// Function for clicking the "Select" button
+            $('#profile_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateProfileImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            // Function to update the profile image via AJAX
+            function updateProfileImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'profile_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('profile_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormData(userId, formData, 'profile_image_custom');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
+
 
             //Ajax function
             function saveFormData(userId, formData, formType) {
-                console.log(formType);
+                alert(formData);
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile/' + userId,

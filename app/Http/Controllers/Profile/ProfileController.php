@@ -57,6 +57,7 @@ class ProfileController extends Controller
                 'memorialCity' => $this->_city_model::where('memorial_user_id', $memorialID)->first(),
                 'memorialMilestone' => $this->_milestone_model::where('memorial_user_id', $memorialID)->first(),
             ];
+           $this->data['profile_images'] = $this->_libraryPhoto_model::where('profile_image','!=',Null)->get();
             return view($this->_viewPath . 'memorial-profile', $this->data);
         } else {
             $previousUrl = URL::previous();
@@ -374,6 +375,58 @@ class ProfileController extends Controller
                     'message' => 'No file provided for profile image update',
                 ]);
             }
+
+        }
+
+        if ($request->form_identifier == 'profile_image_library') {
+//return $request;
+            $mementoId = $request->user_id;
+
+            $this->data['mementoProfileImage'] = $this->_model::find($mementoId);
+
+            if (!$this->data['mementoProfileImage']) {
+                // Handle the case where the user is not found
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ]);
+            }
+
+            if ($request->hasFile('profile_image')) {
+                $image = $request->file('profile_image');
+                $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+
+                $directory = public_path('assets/images/profile_images');
+
+                // Create the directory if it doesn't exist
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $image->move($directory, time() . '_' . $imageName);
+
+                $this->data['mementoProfileImage']->profile_image = 'assets/images/profile_images/' . time() . '_' . $imageName;
+
+                $checkMemorialUser = $this->data['mementoProfileImage']->save();
+
+                if ($checkMemorialUser) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Your Profile Image has been updated correctly',
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update profile image',
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file provided for profile image update',
+                ]);
+            }
+
         }
 
 
