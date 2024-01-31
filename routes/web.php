@@ -15,6 +15,7 @@ use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Profile\KeeperController;
+use App\Http\Controllers\Profile\MessageController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,26 +29,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
-Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile'])->name('update.memorial.profile');
-
-Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);
-
-//Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
-
-Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
-
-
-Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
-//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
-Route::get('/events',[ProfileController::class,'events'])->name('events');
-Route::get('/family',[ProfileController::class,'family'])->name('family');
-Route::get('/message',[ProfileController::class,'message'])->name('message');
-Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
-
 
 
 Route::get('/',[HomeController::class,'index'])->name('index');
@@ -78,7 +59,8 @@ Route::get('/memorialsignup',[RegistrationController::class,'memorialSignup'])->
 Route::post('/memorialregistration',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
 
 
-Route::group(['prefix' => 'admin','middleware' => ['auth']] ,function () {
+Route::group(['middleware' => ['auth']] ,function () {
+
 
     //DASHBOARD
     Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
@@ -191,9 +173,39 @@ Route::group(['prefix' => 'library'], function () {
 });
 //Library
 
+
+
+
+    Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
+    Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile'])->name('update.memorial.profile');
+
+    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);
+
+//Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
+
+    Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
+
+
+
+
+//Route::get('/message',[ProfileController::class,'message'])->name('message');
+//Messaging
+    Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
+    Route::post('storechat', [MessageController::class, 'store']);  //whenever use ajax don't use name function
+    Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
+
+
+
+    Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
+//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
+    Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
+    Route::get('/events',[ProfileController::class,'events'])->name('events');
+    Route::get('/family',[ProfileController::class,'family'])->name('family');
+
+    Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
+
+
 });
-
-
 
 
 

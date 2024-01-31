@@ -119,7 +119,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('message')}}" class="single-item-insider">
+                            <a href="{{route('chat.show')}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>

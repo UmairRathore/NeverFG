@@ -528,10 +528,7 @@ class ProfileController extends Controller
         return view($this->_viewPath . 'mementos');
     }
 
-    public function message()
-    {
-        return view($this->_viewPath . 'message');
-    }
+
 
     public function profile()
     {
