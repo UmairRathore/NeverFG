@@ -115,165 +115,165 @@
         <!-- Profile secion -->
         <div class="profile-icon-content tab-content" id="Info">
 
-                        <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
-                        <!--Basic Information-->
-                        <div class="form-of-logged-in-user" >
-                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                                Your changes have been saved successfully!
-                            </div>
-                            <div class="header-of-form-profile margin-top">
-                                <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
-                            </div>
-                            <div class="form-data-of-profile-page">
-                                <div class="form-group-input">
-                                    <label for="">First Name</label>
-                                    <input type="text" class="input-design" name="first_name" value="@if($profile['memorialProfile']->first_name){{$profile['memorialProfile']->first_name}}@endif"/>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Middle Name</label>
-                                    <input type="text" class="input-design" name="middle_name" value="@if($profile['memorialProfile']->middle_name){{$profile['memorialProfile']->middle_name}}@endif"/>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Last Name</label>
-                                    <input type="text" class="input-design" name="last_name" value="@if($profile['memorialProfile']->last_name){{$profile['memorialProfile']->last_name}}@endif"/>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Suffix(Mr., M.D., etc.)</label>
-                                    <input type="text" class="input-design" name="suffix" value="@if($profile['memorialProfile']->suffix){{$profile['memorialProfile']->suffix}}@endif"/>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Date of Birth</label>
-                                    <div class="row-of-inputs">
-                                        @php
-                                            $dobParts = explode('-', $profile['memorialProfile']->dob);
-                                            $selectedDay = $dobParts[0] ?? '';
-                                            $selectedMonth = $dobParts[1] ?? '';
-                                            $selectedYear = $dobParts[2] ?? '';
-                                        @endphp
+            <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                <!--Basic Information-->
+                <div class="form-of-logged-in-user">
+                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                        Your changes have been saved successfully!
+                    </div>
+                    <div class="header-of-form-profile margin-top">
+                        <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
+                    </div>
+                    <div class="form-data-of-profile-page">
+                        <div class="form-group-input">
+                            <label for="">First Name</label>
+                            <input type="text" class="input-design" name="first_name" value="@if($profile['memorialProfile']->first_name){{$profile['memorialProfile']->first_name}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Middle Name</label>
+                            <input type="text" class="input-design" name="middle_name" value="@if($profile['memorialProfile']->middle_name){{$profile['memorialProfile']->middle_name}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Last Name</label>
+                            <input type="text" class="input-design" name="last_name" value="@if($profile['memorialProfile']->last_name){{$profile['memorialProfile']->last_name}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Suffix(Mr., M.D., etc.)</label>
+                            <input type="text" class="input-design" name="suffix" value="@if($profile['memorialProfile']->suffix){{$profile['memorialProfile']->suffix}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Date of Birth</label>
+                            <div class="row-of-inputs">
+                                @php
+                                    $dobParts = explode('-', $profile['memorialProfile']->dob);
+                                    $selectedDay = $dobParts[0] ?? '';
+                                    $selectedMonth = $dobParts[1] ?? '';
+                                    $selectedYear = $dobParts[2] ?? '';
+                                @endphp
 
-                                            <!-- Day Dropdown -->
-                                        <select name="birth_day" id="birth_day">
-                                            @for ($day = 1; $day <= 31; $day++)
-                                                <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
-                                            @endfor
-                                        </select>
+                                    <!-- Day Dropdown -->
+                                <select name="birth_day" id="birth_day">
+                                    @for ($day = 1; $day <= 31; $day++)
+                                        <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                    @endfor
+                                </select>
 
-                                        <!-- Month Dropdown -->
-                                        <select name="birth_month" id="birth_month">
-                                            @for ($month = 1; $month <= 12; $month++)
-                                                <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
-                                            @endfor
-                                        </select>
+                                <!-- Month Dropdown -->
+                                <select name="birth_month" id="birth_month">
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                    @endfor
+                                </select>
 
-                                        <!-- Year Dropdown -->
-                                        <select name="birth_year" id="birth_year">
-                                            @for ($year = 1970; $year <= 2023; $year++)
-                                                 Adjust the end year as needed
-                                                <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Date of Death</label>
-                                    <div class="row-of-inputs">
-                                        @php
-                                            $dobParts = explode('-', $profile['memorialAdditional']->dod);
-                                            $selectedDay = $dobParts[0] ?? '';
-                                            $selectedMonth = $dobParts[1] ?? '';
-                                            $selectedYear = $dobParts[2] ?? '';
-                                        @endphp
-
-                                            <!-- Day Dropdown -->
-                                        <select name="death_day" id="death_day">
-                                            @for ($day = 1; $day <= 31; $day++)
-                                                <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
-                                            @endfor
-                                        </select>
-
-                                        <!-- Month Dropdown -->
-                                        <select name="death_month" id="death_month">
-                                            @for ($month = 1; $month <= 12; $month++)
-                                                <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
-                                            @endfor
-                                        </select>
-
-                                        <!-- Year Dropdown -->
-                                        <select name="death_year" id="death_year">
-                                            @for ($year = 1970; $year <= 2023; $year++)
-                                                 Adjust the end year as needed
-                                                <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group-input">
-                                    <label for="">Gender</label>
-                                    <div class="row-of-inputs">
-                                        <div class="radio-input">
-                                            <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'Male') checked @endif />
-                                            <label for="male">Male</label><br/>
-                                        </div>
-                                        <div class="radio-input">
-                                            <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'Female') checked @endif />
-                                            <label for="female">Female</label><br/>
-                                        </div>
-                                        <div class="radio-input">
-                                            <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'Other') checked @endif />
-                                            <label for="other">Other</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="footer-of-form-content">
-                                <button class="form-btn">Save Changes</button>
+                                <!-- Year Dropdown -->
+                                <select name="birth_year" id="birth_year">
+                                    @for ($year = 1970; $year <= 2023; $year++)
+                                        Adjust the end year as needed
+                                        <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                    @endfor
+                                </select>
                             </div>
                         </div>
-                        </form>
+                        <div class="form-group-input">
+                            <label for="">Date of Death</label>
+                            <div class="row-of-inputs">
+                                @php
+                                    $dobParts = explode('-', $profile['memorialAdditional']->dod);
+                                    $selectedDay = $dobParts[0] ?? '';
+                                    $selectedMonth = $dobParts[1] ?? '';
+                                    $selectedYear = $dobParts[2] ?? '';
+                                @endphp
 
-             Home City
-                        <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                                    <!-- Day Dropdown -->
+                                <select name="death_day" id="death_day">
+                                    @for ($day = 1; $day <= 31; $day++)
+                                        <option value="{{ $day }}" @if($selectedDay == $day) selected @endif>{{ $day }}</option>
+                                    @endfor
+                                </select>
 
-                        <div class="form-of-logged-in-user" >
-                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                                Your changes have been saved successfully!
-                            </div>
-                            <div class="header-of-form-profile margin-top">
-                                <h1 class="form-top-main-heading-of-profile">Home Town</h1>
-                            </div>
-                            <div class="form-data-of-profile-page">
-                                <div class="form-group-input">
-                                    <label for="">Search</label>
-                                    <input type="text" class="input-design" name="home_city" value="@if($profile['memorialCity']->home_city){{$profile['memorialCity']->home_city}}@endif"/>
-                                </div>
-                            </div>
-                            <div class="footer-of-form-content">
-                                <button class="form-btn">Save Changes</button>
+                                <!-- Month Dropdown -->
+                                <select name="death_month" id="death_month">
+                                    @for ($month = 1; $month <= 12; $month++)
+                                        <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
+                                    @endfor
+                                </select>
+
+                                <!-- Year Dropdown -->
+                                <select name="death_year" id="death_year">
+                                    @for ($year = 1970; $year <= 2023; $year++)
+                                        Adjust the end year as needed
+                                        <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
+                                    @endfor
+                                </select>
                             </div>
                         </div>
-                        </form>
+                        <div class="form-group-input">
+                            <label for="">Gender</label>
+                            <div class="row-of-inputs">
+                                <div class="radio-input">
+                                    <input type="radio" id="male" name="gender" value="Male" @if($profile['memorialProfile']->gender === 'Male') checked @endif />
+                                    <label for="male">Male</label><br/>
+                                </div>
+                                <div class="radio-input">
+                                    <input type="radio" id="female" name="gender" value="Female" @if($profile['memorialProfile']->gender === 'Female') checked @endif />
+                                    <label for="female">Female</label><br/>
+                                </div>
+                                <div class="radio-input">
+                                    <input type="radio" id="other" name="gender" value="Other" @if($profile['memorialProfile']->gender === 'Other') checked @endif />
+                                    <label for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-of-form-content">
+                        <button class="form-btn">Save Changes</button>
+                    </div>
+                </div>
+            </form>
+
+            Home City
+            <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+
+                <div class="form-of-logged-in-user">
+                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                        Your changes have been saved successfully!
+                    </div>
+                    <div class="header-of-form-profile margin-top">
+                        <h1 class="form-top-main-heading-of-profile">Home Town</h1>
+                    </div>
+                    <div class="form-data-of-profile-page">
+                        <div class="form-group-input">
+                            <label for="">Search</label>
+                            <input type="text" class="input-design" name="home_city" value="@if($profile['memorialCity']->home_city){{$profile['memorialCity']->home_city}}@endif"/>
+                        </div>
+                    </div>
+                    <div class="footer-of-form-content">
+                        <button class="form-btn">Save Changes</button>
+                    </div>
+                </div>
+            </form>
 
             Other City
-                        <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
-                        <div class="form-of-logged-in-user" >
-                            <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                                Your changes have been saved successfully!
-                            </div>
-                            <div class="header-of-form-profile margin-top">
-                                <h1 class="form-top-main-heading-of-profile">Other city</h1>
-                            </div>
-                            <div class="form-data-of-profile-page">
-                                <div class="form-group-input">
-                                    <label for="">The last city they resided in. If it is the same as their
-                                        Hometown, leave it blank.</label>
-                                    <input type="text" class="input-design" name="other_city" value="@if($profile['memorialCity']->other_city){{$profile['memorialCity']->other_city}}@endif"/>
-                                </div>
-                            </div>
-                            <div class="footer-of-form-content">
-                                <button class="form-btn">Save Changes</button>
-                            </div>
+            <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
+                <div class="form-of-logged-in-user">
+                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+                        Your changes have been saved successfully!
+                    </div>
+                    <div class="header-of-form-profile margin-top">
+                        <h1 class="form-top-main-heading-of-profile">Other city</h1>
+                    </div>
+                    <div class="form-data-of-profile-page">
+                        <div class="form-group-input">
+                            <label for="">The last city they resided in. If it is the same as their
+                                Hometown, leave it blank.</label>
+                            <input type="text" class="input-design" name="other_city" value="@if($profile['memorialCity']->other_city){{$profile['memorialCity']->other_city}}@endif"/>
                         </div>
-                        </form>
+                    </div>
+                    <div class="footer-of-form-content">
+                        <button class="form-btn">Save Changes</button>
+                    </div>
+                </div>
+            </form>
 
             {{--Occupational History--}}
             <div id="occupation-history" class="form-of-logged-in-user">
@@ -342,7 +342,7 @@
             </div>
 
 
-{{--                        Religious Values--}}
+            {{--                        Religious Values--}}
             <form id="religion-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <div class="form-of-logged-in-user">
                     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
@@ -414,215 +414,105 @@
         </div>
 
 
-                <!-- Profile Picture -->
-                <div class="Picture tab-content" id="Picture">
-                    <div class="form-of-logged-in-user">
-                        <div class="header-of-form-profile margin-top">
-                            <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>
-                        </div>
-                        <div class="form-data-of-profile-page">
-                            <p>
-                                Add a cover photo for this profile. You can change this photo at
-                                any time. The maximum size is 1 MB. You can use these formats:
-                                .png, .jpeg, .gif.
-                            </p>
-                            <div class="form-group-input">
-                                <div class="profile-pic-wrapper-of-Picture">
-                                    @if($profile['memorialProfile']->profile_image)
-                                        <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>
-                                    @else
-                                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
-                                    @endif
-                                </div>
-                                <div class="custom-file-chooser-wrapper">
-                                    <input type="file" id="file-input" name="file-input"/>
-
-                                    <label id="file-input-label" for="file-input">
-                                        + Select a File</label</div>
+        <!-- Profile Picture -->
+        <div class="Picture tab-content" id="Picture">
+            <div class="form-of-logged-in-user">
+                <div class="header-of-form-profile margin-top">
+                    <h1 class="form-top-main-heading-of-profile">Profile Picture</h1>
+                </div>
+                <div class="form-data-of-profile-page">
+                    <p>
+                        Add a cover photo for this profile. You can change this photo at
+                        any time. The maximum size is 1 MB. You can use these formats:
+                        .png, .jpeg, .gif.
+                    </p>
+                    <form id="profile_image_form" enctype="multipart/form-data">
+                        <div class="form-group-input">
+                            <div id="profile-image-div" class="profile-pic-wrapper-of-Picture">
+                                @if($profile['memorialProfile']->profile_image)
+                                    <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>
+                                @else
+                                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                @endif
                             </div>
+                            <div class="custom-file-chooser-wrapper">
+                                <input type="file" id="file-input" name="memento_profile_image_custom"/>
+
+                                <label id="file-input-label" for="file-input">
+                                    + Select a File</label</div>
                         </div>
-                    </div>
-                    <div class="footer-of-form-content">
-                        <div class="delete-btn">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                 stroke="#ffffff">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <button id="profile_image_custom_btn" class="form-btn" data-user-id="{{$profile['memorialProfile']->id}}">Save Image</button>
+
+                    </form>
+                </div>
+            </div>
+            <div class="footer-of-form-content">
+                <div class="delete-btn">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                         stroke="#ffffff">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
+                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </svg>
+                    <button class="del-btn">Delete</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Gallery -->
+        <div class="form-of-logged-in-user">
+
+            <div class="form-data-of-profile-page">
+                <p>
+                    Don't have access to a photo at the moment? Select a profile image from our library.
+                </p>
+                <div class="grid-of-photos">
+                    @foreach($profile_images as $key => $profile_image)
+                    <div class="whole-image-wrapper-with-overlay" id="img-id-{{$key}}">
+                        <div class="img-wrpper-inside-gallery">
+                            @if($profile_image->profile_image)
+                                <img id="library_image" src="{{asset($profile_image->profile_image) }}" alt="" class="grid-single-img"/>
+                            @else
+                                <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                            @endif
+                        </div>
+                        <div class="overlay">
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                 xml:space="preserve" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                 <g id="SVGRepo_iconCarrier">
-                                    <path
-                                        d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
-                                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <g>
+                                        <g>
+                                            <g>
+                                                <path style="fill:#30562f;"
+                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                </path>
+                                            </g>
+                                        </g>
+                                        <g>
+                                            <polygon style="fill:#30562f;"
+                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                            </polygon>
+                                        </g>
+                                    </g>
                                 </g>
-                            </svg>
-                            <button class="del-btn">Delete</button>
+                      </svg>
                         </div>
-
                     </div>
+                    @endforeach
                 </div>
-
-                <!-- Gallery -->
-                <div class="form-of-logged-in-user">
-
-                    <div class="form-data-of-profile-page">
-                        <p>
-                            Don't have access to a photo at the moment? Select a profile image from our library.
-                        </p>
-                        <div class="grid-of-photos">
-                            <div class="whole-image-wrapper-with-overlay" id="img-id-1">
-                                <div class="img-wrpper-inside-gallery">
-                                    <img src="{{asset('/frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                </div>
-                                <div class="overlay">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                         xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <path style="fill:#30562f;"
-                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                        </path>
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <polygon style="fill:#30562f;"
-                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                    </polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                      </svg>
-                                </div>
-                            </div>
-                            <div class="whole-image-wrapper-with-overlay" id="img-id-2">
-                                <div class="img-wrpper-inside-gallery">
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                </div>
-                                <div class="overlay">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                         xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <path style="fill:#30562f;"
-                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                        </path>
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <polygon style="fill:#30562f;"
-                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                    </polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                      </svg>
-                                </div>
-                            </div>
-                            <div class="whole-image-wrapper-with-overlay" id="img-id-3">
-                                <div class="img-wrpper-inside-gallery">
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                </div>
-                                <div class="overlay">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                         xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <path style="fill:#30562f;"
-                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                        </path>
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <polygon style="fill:#30562f;"
-                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                    </polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                      </svg>
-                                </div>
-                            </div>
-                            <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                                <div class="img-wrpper-inside-gallery">
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                </div>
-                                <div class="overlay">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                         xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <path style="fill:#30562f;"
-                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                        </path>
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <polygon style="fill:#30562f;"
-                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                    </polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                      </svg>
-                                </div>
-                            </div>
-                            <div class="whole-image-wrapper-with-overlay" id="img-id-4">
-                                <div class="img-wrpper-inside-gallery">
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                </div>
-                                <div class="overlay">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                         xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <path style="fill:#30562f;"
-                                                              d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                        </path>
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <polygon style="fill:#30562f;"
-                                                             points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                    </polygon>
-                                                </g>
-                                            </g>
-                                        </g>
-                      </svg>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="footer-of-form-content">
-                        <button class="form-btn">Select</button>
-
-                    </div>
-                </div>
+            </div>
+            <div class="footer-of-form-content">
+                <button id="profile_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
+            </div>
+        </div>
     </div>
     <div class="Memorial tab-content" id="Memorial">
         <h1>Memorial</h1>
@@ -999,28 +889,43 @@
 
         // Start here
 
-        //gallery img
-        $(".whole-image-wrapper-with-overlay").click(function (e) {
-            console.log('Image Click', e);
-            let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")
-            for (let i = 0; i < allElements.length; i++) {
-                console.log('Single class', allElements[i].classList[1])
-                if (allElements[i].classList[1]) {
-                    console.log('Yes')
-                    allElements[i].classList.remove('show');
-                }
+        {{--//gallery img--}}
+        {{--$(".whole-image-wrapper-with-overlay").click(function (e) {--}}
+        {{--    console.log('Image Click', e);--}}
+        {{--    let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")--}}
+        {{--    for (let i = 0; i < allElements.length; i++) {--}}
+        {{--        console.log('Single class', allElements[i].classList[1])--}}
+        {{--        if (allElements[i].classList[1]) {--}}
+        {{--            console.log('Yes')--}}
+        {{--            allElements[i].classList.remove('show');--}}
+        {{--        }--}}
+        {{--    }--}}
+        {{--    // console.log('All elements',allElements)--}}
+        {{--    console.log('ele', e.currentTarget)--}}
+        {{--    let ele = e.currentTarget.children[1];--}}
+        {{--    ele.classList.toggle('show')--}}
+        {{--    console.log('Child', ele)--}}
 
-            }
-            // console.log('All elements',allElements)
-            console.log('ele', e.currentTarget)
-            let ele = e.currentTarget.children[1];
+        {{--    // Update profile image when an image is selected--}}
+        {{--    let userId = "{{ $profile['memorialProfile']->id }}"; // Get user ID from PHP--}}
+        {{--    let formType = 'profile_image_library';--}}
+        {{--    let formData = new FormData();--}}
+        {{--    formData.append('user_id', userId);--}}
+        {{--    formData.append('form_identifier', formType);--}}
+        {{--    formData.append('is_image_upload', true);--}}
 
-            ele.classList.toggle('show')
-            console.log('Child', ele)
+        {{--    // Assuming you have an image URL associated with each image element--}}
+        {{--    let imageURL = $(this).find('img').attr('src');--}}
 
-            // $(".overlay").show();
-
-        })
+        {{--    // Add image file to FormData (you may need to fetch the image file if it's not already in the DOM)--}}
+        {{--    fetch(imageURL)--}}
+        {{--        .then(response => response.blob())--}}
+        {{--        .then(blob => {--}}
+        {{--            formData.append('profile_image', blob);--}}
+        {{--            saveFormData(userId, formData, formType);--}}
+        {{--        })--}}
+        {{--        .catch(error => console.error('Error fetching image:', error));--}}
+        {{--});--}}
 
         //Theme gallery
         $(".whole-image-wrapper-with-overlay-of-theme").click(function (e) {
@@ -1420,7 +1325,24 @@
 
         // AJAX submit forms
         $(document).ready(function () {
-
+            //gallery img
+            $(".whole-image-wrapper-with-overlay").click(function (e) {
+                e.preventDefault();
+                console.log('Image Click', e);
+                let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")
+                for (let i = 0; i < allElements.length; i++) {
+                    console.log('Single class', allElements[i].classList[1])
+                    if (allElements[i].classList[1]) {
+                        console.log('Yes')
+                        allElements[i].classList.remove('show');
+                    }
+                }
+                // console.log('All elements',allElements)
+                console.log('ele', e.currentTarget)
+                let ele = e.currentTarget.children[1];
+                ele.classList.toggle('show')
+                console.log('Child', ele)
+            });
 
             $('#basic-info-form').submit(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
@@ -1524,7 +1446,6 @@
                 return 0;
             });
 
-
             $('#interest-info-btn').click(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
@@ -1544,13 +1465,69 @@
                 return 0;
             });
 
+            $('#profile_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var identifier = 'profile_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#profile_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormData(userId, formData, 'profile_image_custom');
+                return 0;
+            });
+// Function for clicking the "Select" button
+            $('#profile_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateProfileImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            // Function to update the profile image via AJAX
+            function updateProfileImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'profile_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('profile_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormData(userId, formData, 'profile_image_custom');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
+
+
             //Ajax function
-            function saveFormData(userId, formData) {
-                console.log(formData);
+            function saveFormData(userId, formData, formType) {
+                alert(formData);
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile/' + userId,
                     data: formData,
+                    processData: false,
+                    contentType: false,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1558,6 +1535,11 @@
                         console.log(response);
                         if (response.success) {
                             $('#successMessage').show();
+
+                            // Check if the form is for image upload and refresh the profile image div
+                            if (formType === 'profile_image_custom') {
+                                refreshProfileImageDiv(userId, formType);
+                            }
 
                             // Hide success message after 2 seconds
                             setTimeout(function () {
@@ -1571,10 +1553,37 @@
 
                     error: function (error) {
                         console.error(error);
+
+                        // Access the error details sent from the server
+                        var errorMessage = error.responseJSON.message;
+                        var errorDetails = error.responseJSON.error_details;
+
+                        // Display the error message to the user or log it for debugging
+                        alert('Error: ' + errorMessage + '\nDetails: ' + errorDetails);
                     }
                 });
             };
 
+            function refreshProfileImageDiv(userId,formType) {
+                // Assuming you have a unique identifier or class for the profile image div
+                if (formType === 'profile_image_custom') {
+                    var profileImageDiv = $('#profile-image-div');
+                }
+                // Make an Ajax request to get the updated profile image URL based on the form type
+                $.ajax({
+                    type: 'GET',
+                    url: '/get-updated-profile-image/' + userId + '/' + formType ,
+                    success: function (imageResponse) {
+                        // Replace the content of the profile image div with the updated image
+                        profileImageDiv.html(
+                            '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
+                        );
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
         });
     </script>
 @endsection

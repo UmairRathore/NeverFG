@@ -50,6 +50,7 @@ $('[data-toggle="tooltip"]').tooltip()
 @yield('packagelist')
 @yield('faqlist')
 @yield('featurelist')
+@yield('librarylist')
 
 
 

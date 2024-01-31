@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminPortal\AdminController;
 use App\Http\Controllers\AdminPortal\DashboardController;
 use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\FuneralServiceController;
+use App\Http\Controllers\AdminPortal\LibraryPhotosController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
@@ -27,8 +28,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/edit-memorial-profile/{id}',[ProfileController::class,'editMementoProfile'])->name('edit.memorial.profile');
-Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoProfile'])->name('update.memorial.profile');
+Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
+Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile'])->name('update.memorial.profile');
+
+Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);
+
+//Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
 
 
 
@@ -156,7 +161,24 @@ Route::group(['prefix' => 'feature'], function () {
 
 });
 //Feature
+
+    //<----------CRUD Library
+
+Route::group(['prefix' => 'library'], function () {
+
+    Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
+    Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
+    Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
+    Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
+    Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
+    Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
+
 });
+//Library
+
+});
+
+
 
 
 

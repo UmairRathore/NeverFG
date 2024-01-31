@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('middle_name');
+            $table->string('suffix');
             $table->date('dob');
             $table->string('gender');
             $table->string('profile_image')->nullable(); // Add the profile_image column
