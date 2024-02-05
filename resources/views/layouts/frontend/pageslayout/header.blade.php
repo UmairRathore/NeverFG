@@ -16,8 +16,10 @@
                     <li><a href="{{route('virtualfuneral')}}">Virtual funerals</a></li>
                     <li><a href="{{route('faqs')}}">Faq </a></li>
                     <li><a href="{{route('features')}}">Features</a></li>
+                    @if(!auth()->check())
                     <li><a href="{{route('login')}}">Login</a></li>
                     <li><a href="{{route('usersignup')}}">Signup</a></li>
+                        @endif
                 </ul>
             </div>
             <div class="funeralist-header-search-box" id="search-box-div">
@@ -29,6 +31,17 @@
                 </svg>
             </div>
             <!-- User Profile -->
+            @if(auth()->check())
+                <?php
+                $user= \App\Models\User::where('id',auth()->user()->id)->first();
+//                dd($user);
+                $checkMemorial = \App\Models\UserMemorial::select('users.*','users.id as user_id'.'user_memorials.*')
+                    ->where('keeper_id',$user->id)
+                    ->join('users','users.id','=','user_memorials.keeper_id')
+                ->get();
+//                dd($checkMemorial);
+                ?>
+
             <div class="funeralist-header-user-box" id="user-icon-div">
                 <svg style="width: 22px" id="user-img-svg" viewBox="0 0 24 24">
                     <circle cx="12" cy="6.47" r="5.92" fill="none" stroke="currentColor" stroke-miterlimit="10"
@@ -38,12 +51,15 @@
                 </svg>
                 <div class="user-dropdown-of-funeralist" id="user-options">
                     <ul class="user-unorderedlist-dropdown">
-                        <li><a href="">Profile</a></li>
-                        <li><a href="">Profile 2</a></li>
-                        <li><a href="">Profile 3</a></li>
+                        <li><a href="{{route('edit.user.profile',$user->id)}}">{{$user->first_name.' '.$user->last_name}}</a></li>
+
+                        @foreach($checkMemorial  as $memorial)
+                        <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
+                @endif
         </div>
     </div>
     <div class="small-and-medium-size-navigation-menu" id="sidebar-menu">

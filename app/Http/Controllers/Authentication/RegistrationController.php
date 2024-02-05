@@ -53,10 +53,17 @@ class RegistrationController extends Controller
     }
 
 
-    public function memorialSignup()
+    public function memorialSignup(Request $request)
     {
-//        https://www.mykeeper.com/signup-steps/
-        return view($this->_viewPath . 'signup-memorial');
+        if ($request->has('firstName') && $request->has('lastName')) {
+            $firstName = $request->query('firstName');
+            $lastName = $request->query('lastName');
+            return view($this->_viewPath . 'signup-memorial', compact('firstName', 'lastName'));
+        } else {
+            return view($this->_viewPath . 'signup-memorial');
+        }
+
+
     }
 
 
