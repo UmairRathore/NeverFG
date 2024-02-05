@@ -227,7 +227,7 @@ class RegistrationController extends Controller
                             return redirect('https://buy.stripe.com/test_14k2a63F13IqfcYfYZ');
 
                         } else {
-                            dd('error');
+
                             $msg = trans('lang_data.error');
                             Session::flash('error', $msg);
                             return redirect()->back();
