@@ -174,14 +174,14 @@ Route::group(['prefix' => 'library'], function () {
 //Library
 
 
+    Route::get('/user-profile/{id}',[ProfileController::class,'userProfile'])->name('edit.user.profile');
+    Route::post('/update-user-profile/{id}',[ProfileController::class,'updateUserProfile']); //AJAX
 
+    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);//AJAX
 
     Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
-    Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile'])->name('update.memorial.profile');
+    Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile']);//AJAX
 
-    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);
-
-//Route::post('/update-memorial-profile-pictures/{id}',[ProfileController::class,'updateMementoPicturesProfile'])->name('update.memorial.profile.pictures');
 
     Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
 
