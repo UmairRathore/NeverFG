@@ -51,6 +51,11 @@
                 <span><i class="far fa-user-circle"></i>Relation </span>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('chat.show')}}">
+                <span><i class="far fa-user-circle"></i>Messages </span>
+            </a>
+        </li>
 
 {{--        <li class="menu-item">--}}
 {{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user">--}}

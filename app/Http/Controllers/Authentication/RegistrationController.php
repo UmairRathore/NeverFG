@@ -94,14 +94,13 @@ class RegistrationController extends Controller
     public function memorialregistration(Request $request)
     {
 
-//        dd($request);
 //        $request->validate([
 //
 //            'memorial_first_name' => 'required',
 //            'memorial_last_name' => 'required',
 //            'memorial_passed' => 'required',
-//            'memorial_dod' => $request->input('passed') != Null ? 'required' : '',
-//            'memorial_email' => $request->input('passed') != Null  ? 'required|email|unique:users' : '',
+////            'memorial_dod' => $request->input('passed') != Null ? 'required' : '',
+////            'memorial_email' => $request->input('passed') != Null  ? 'required|email|unique:users' : '',
 //            'memorial_dob' => 'required',
 //            'memorial_city_of_birth' => 'required',
 //            'memorial_gender' => 'required',
@@ -175,7 +174,7 @@ class RegistrationController extends Controller
 //        dd($memorialUserId);
         if ($checkMemorialUser) {
             $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model;
-            $this->data['memorialUserAdditionalInfo']->user_id = $memorialUserId;
+            $this->data['memorialUserAdditionalInfo']->memorial_user_id = $memorialUserId;
             $this->data['memorialUserAdditionalInfo']->dod = $memorialDod;
 //            dd($request->has('memorial_passed'));
             if ($request->has('memorial_passed')) {
@@ -193,6 +192,7 @@ class RegistrationController extends Controller
             $MemorialUserAdditionalInfoIDForKeeper = $this->data['memorialUserAdditionalInfo']->id;
 
             if ($checkMemorialUserAdditionalInfo) {
+//                dd('here4');
 //                dd($MemorialUserAdditionalInfoIDForKeeper);
                 $this->data['keeperUser'] = new User();
                 $this->data['keeperUser']->first_name = $request->input('keeper_first_name');
@@ -212,21 +212,27 @@ class RegistrationController extends Controller
 
                     if ($checkmemorialkeeper) {
                         $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
-                        $this->data['keeperAccountType']->account_type_id = $request->input('keeper_account_type');
+                        if ($request->selectedCard == 'Plus') {
+                            $this->data['keeperAccountType']->account_type_id = 1;
+
+                        } else {
+
+                            $this->data['keeperAccountType']->account_type_id = 2;
+                        }
                         $check = $this->data['keeperAccountType']->update();
 
-                        if ($check)
-                        {
-                                $msg =' Registered successfully, Memorial account as well';
-                                Session::flash('message', $msg);
-                            } else {
-                                $msg = trans('lang_data.error');
-                                Session::flash('error', $msg);
+                        if ($check) {
+                            $msg = ' Registered successfully, Memorial account as well';
+                            Session::flash('message', $msg);
+                            return redirect('https://buy.stripe.com/test_14k2a63F13IqfcYfYZ');
 
+                        } else {
 
-                            }
+                            $msg = trans('lang_data.error');
+                            Session::flash('error', $msg);
                             return redirect()->back();
 
+                        }
                     }
                 }
             }

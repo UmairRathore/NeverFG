@@ -12,7 +12,13 @@
 
 <body>
 <div id="svg_wrap"></div>
-
+<style>
+    /* Style for selected button */
+    .selected {
+        background-color: #ff9900; /* Change to desired color */
+        color: #ffffff; /* Change to desired text color */
+    }
+</style>
 <h1>Add a Memorial</h1>
 <!-- First form -->
 @if (Session::has('message'))
@@ -277,7 +283,8 @@
                         <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
                             Post thoughtful tributes and view up to five non-downloadable images in a photo gallery. Memorial pages do not expire.
                         </p>
-                        <button class="black-background-btn half-width create-memorial-btn">
+                        <!-- Other card details -->
+                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Free')">
                             Create Memorial
                         </button>
                     </div>
@@ -316,7 +323,7 @@
                             create a full family tree, create unlimited memorial pages, and
                             more. <a>Learn more</a>
                         </p>
-                        <button class="black-background-btn half-width create-memorial-btn">
+                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Plus')">
                             Create Memorial
                         </button>
                     </div>
@@ -335,6 +342,8 @@
             </div>
         </div>
     </section>
+    <input type="hidden" id="selectedCardInput" name="selectedCard">
+
 
 
     <div class="button" id="prev">&larr; Previous</div>
@@ -464,6 +473,24 @@
 
         // Update the checkbox value
 
+    });
+    function selectCard(cardType) {
+        // Update selected card input value
+        document.getElementById('selectedCardInput').value = cardType;
+
+        // Remove 'selected' class from all buttons
+        document.querySelectorAll('.create-memorial-btn').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+    }
+
+    // Add event listener to the form submit button
+    document.getElementById('submit').addEventListener('click', function(event) {
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Manually submit the form using JavaScript
+        document.querySelector('form').submit();
     });
 
 </script>

@@ -34,37 +34,36 @@ class MessageController extends Controller
 
     public function show()
     {
-        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 3) {
-            $messages = $this->_model::
-            where('sender_id', Auth()->user()->id)
-                ->orWhere('receiver_id',Auth()->user()->id)
-                ->orderby('id', 'desc')
-                ->get()
-                ->unique('sender_id')
-                ->pluck('sender_id');
+        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 1) {
 
-            $user = User::whereIn('id',$messages)
-                ->where('id','!=',Auth()->user()->id)
+            $messages = $this->_model::where('sender_id', Auth()->user()->id)
+                ->orWhere('receiver_id', Auth()->user()->id)
+                ->orderBy('id', 'desc')
                 ->get();
-            $this->data['leftwallmessages'] = $user;
-            return view('backend.pages.chat.chat-blogger', $this->data);
+
+            $uniqueReceiverIds = $messages->unique('receiver_id')->pluck('receiver_id');
+
+            $users = collect();
+
+            foreach ($uniqueReceiverIds as $receiverId) {
+                if ($receiverId != Auth()->user()->id) {
+                    $user = User::find($receiverId);
+                    if ($user) {
+                        // Get the last message for the current user
+                        $lastMessage = $messages->where('receiver_id', $receiverId)->sortByDesc('id')->pluck('message')->first();
+                        // Add the last message to the user object
+                        $user->message = $lastMessage;
+                        $users->push($user);
+                    }
+                }
+            }
+
+            $this->data['leftwallmessages'] = $users ;
+            return view('backend.message.chat-user', $this->data);
         }
 
         if (Auth::guard('user')->check() && auth('user')->user()->role_id == 2) {
 
-//            $messages = $this->_model::where('sender_id', Auth()->user()->id)
-//                ->orWhere('receiver_id',Auth()->user()->id)
-//                ->orderby('id', 'desc')
-//                ->get()
-//                ->unique('receiver_id')
-//                ->pluck('receiver_id');
-//
-//
-//            $user = User::whereIn('id',$messages)
-//                ->where('id','!=',Auth()->user()->id)
-//                ->first();
-////            }
-//            dd($user);
             $messages = $this->_model::where('sender_id', Auth()->user()->id)
                 ->orWhere('receiver_id', Auth()->user()->id)
                 ->orderBy('id', 'desc')
@@ -123,30 +122,39 @@ class MessageController extends Controller
     public function texting($reciever_id)
     {
 
-        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 3) {
+        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 1) {
 
             $this->data['reciever_id'] = $reciever_id;
 
-            $messages = $this->_model::
-            where('sender_id', Auth()->user()->id)
-                ->orWhere('receiver_id',Auth()->user()->id)
-//                ->leftjoin('users as u', 'u.id', '=', 'Messages.receiver_id')
-                ->orderby('id', 'desc')
-                ->get()
-                ->unique('sender_id')
-                ->pluck('sender_id');
-
-            $user = User::whereIn('id',$messages)
-                ->where('id','!=',Auth()->user()->id)
+            $messages = $this->_model::where('sender_id', Auth()->user()->id)
+                ->orWhere('receiver_id', Auth()->user()->id)
+                ->orderBy('id', 'desc')
                 ->get();
-            $this->data['leftwallmessages'] = $user;
+
+            $uniqueReceiverIds = $messages->unique('receiver_id')->pluck('receiver_id');
+
+            $users = collect();
+
+            foreach ($uniqueReceiverIds as $receiverId) {
+                if ($receiverId != Auth()->user()->id) {
+                    $user = User::find($receiverId);
+                    if ($user) {
+                        // Get the last message for the current user
+                        $lastMessage = $messages->where('receiver_id', $receiverId)->sortByDesc('id')->pluck('message')->first();
+                        // Add the last message to the user object
+                        $user->message = $lastMessage;
+                        $users->push($user);
+                    }
+                }
+            }
+
+            $this->data['leftwallmessages'] = $users;
+
 
             $user_id = Auth::user()->id;
             $this->data['messages'] = Message::whereIn('receiver_id', [$reciever_id, $user_id])
                 ->whereIn('sender_id', [$reciever_id, $user_id])->get();
-
-
-            return view('backend.pages.chat.chat-bloggertexting', $this->data);
+            return view('backend.message.chat-usertexting', $this->data);
         }
         if (Auth::guard('user')->check() && auth('user')->user()->role_id == 2) {
 
