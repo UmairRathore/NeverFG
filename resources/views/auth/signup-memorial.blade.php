@@ -41,11 +41,13 @@
         <p class="step-1-top-heading">ABOUT YOUR LOVED ONE</p>
         <div class="form-group-input">
             <label for="memorial_first_name">Their First Name</label>
-            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design"/>
+            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design" value="{{ $firstName ?? '' }}"/>
+
         </div>
         <div class="form-group-input">
             <label for="memorial_last_name">Their Last Name</label>
-            <input name="memorial_last_name" type="text" placeholder="Their Last Name" class="input-design"/>
+            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design" value="{{ $lastName ?? '' }}"/>
+
         </div>
 
 

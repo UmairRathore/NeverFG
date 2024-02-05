@@ -61,6 +61,14 @@ Route::post('/memorialregistration',[RegistrationController::class,'memorialregi
 
 Route::group(['middleware' => ['auth']] ,function () {
 
+    Route::get('/Creatememorial',[ProfileController::class,'Creatememorial'])->name('Creatememorial');
+
+
+
+
+
+
+
 
     //DASHBOARD
     Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
@@ -175,12 +183,12 @@ Route::group(['prefix' => 'library'], function () {
 
 
     Route::get('/user-profile/{id}',[ProfileController::class,'userProfile'])->name('edit.user.profile');
-    Route::post('/update-user-profile/{id}',[ProfileController::class,'updateUserProfile']); //AJAX
+    Route::put('/update-user-profile/{id}',[ProfileController::class,'updateUserProfile'])->name('update.user.profile');
 
-    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);//AJAX
 
     Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
     Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile']);//AJAX
+    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);//AJAX
 
 
     Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
@@ -196,16 +204,17 @@ Route::group(['prefix' => 'library'], function () {
 
 
 
-    Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
-//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-    Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
-    Route::get('/events',[ProfileController::class,'events'])->name('events');
-    Route::get('/family',[ProfileController::class,'family'])->name('family');
-
-    Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
-
 
 });
+
+//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
+Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
+Route::get('/events',[ProfileController::class,'events'])->name('events');
+Route::get('/family',[ProfileController::class,'family'])->name('family');
+
+Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
+
+Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
 
 
 

@@ -14,6 +14,7 @@ use App\Models\UserOccupation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -41,6 +42,57 @@ class ProfileController extends Controller
         $this->data['moduleName'] = 'memorial';
     }
 
+    public function userProfile($id)
+    {
+        $this->data['user'] = User::find($id);
+        return view($this->_viewPath . 'user-profile', $this->data);
+    }
+
+    public function updateUserProfile(Request $request)
+    {
+dd($request);
+        $this->data['user'] = User::find($id);
+        $this->data['user']->first_name = $request->first_name;
+        $this->data['user']->middle_name = $request->middle_name;
+        $this->data['user']->last_name = $request->last_name;
+        $this->data['user']->suffix = $request->suffix;
+        $this->data['user']->dob = $request->birth_year . '-' . $request->birth_month . '-' . $request->birth_day;
+        $this->data['user']->gender = $request->gender;
+        $this->data['user']->email = $request->email;
+        if ($request->password) {
+            $this->data['user']->password = bcrypt($request->password);
+        }
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+
+            $directory = public_path('assets/images/profile_images');
+
+            // Create the directory if it doesn't exist
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+
+            $image->move($directory, time() . '_' . $imageName);
+
+            $this->data['user']->profile_image = 'assets/images/profile_images/' . time() . '_' . $imageName;
+
+        }
+        $checkUser = $this->data['user']->save();
+
+        if ($checkUser) {
+            return response()->json([
+                'success' => true,
+                'message' => 'User Information has updated correctly',
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update profile image',
+            ]);
+        }
+    }
+
     public function MementoInfoProfile($id)
     {
         if (auth()->user()->role_id == 2) {
@@ -57,7 +109,7 @@ class ProfileController extends Controller
                 'memorialCity' => $this->_city_model::where('memorial_user_id', $memorialID)->first(),
                 'memorialMilestone' => $this->_milestone_model::where('memorial_user_id', $memorialID)->first(),
             ];
-           $this->data['profile_images'] = $this->_libraryPhoto_model::where('profile_image','!=',Null)->get();
+            $this->data['profile_images'] = $this->_libraryPhoto_model::where('profile_image', '!=', Null)->get();
             return view($this->_viewPath . 'memorial-profile', $this->data);
         } else {
             $previousUrl = URL::previous();
@@ -455,6 +507,21 @@ class ProfileController extends Controller
                 ], 404);
             }
         }
+        if ($formType === 'basic_info') {
+
+            $userProfile = $this->_model::where('id', $userId)->first();
+
+            if (File::exists(public_path($userProfile->profile_image))) {
+                return response()->json([
+                    'updatedImageURL' => asset($userProfile->profile_image),
+                ]);
+            } else {
+                // Handle the case where the file doesn't exist
+                return response()->json([
+                    'error' => 'File not found',
+                ], 404);
+            }
+        }
         $data = [
             'success' => false,
             'message' => 'Invalid form identifier'
@@ -517,7 +584,6 @@ class ProfileController extends Controller
     }
 
 
-
     public function keeperplus()
     {
         return view($this->_viewPath . 'keeper-plus');
@@ -527,7 +593,6 @@ class ProfileController extends Controller
     {
         return view($this->_viewPath . 'mementos');
     }
-
 
 
     public function profile()
