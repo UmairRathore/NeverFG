@@ -30,13 +30,12 @@
                             </div>
 
                             <div class="input-sections-col full-width">
-                                <input placeholder="Enter first name" class="input-style" type="text" />
-                                <input placeholder="Enter last name" class="input-style" type="text" />
+                                <input id="firstNameInput" placeholder="Enter first name" class="input-style" type="text">
+                                <input id="lastNameInput" placeholder="Enter last name" class="input-style" type="text">
                             </div>
                             <div class="row">
-                                <button class="black-background-btn full-width">
-                                    Get Started
-                                </button>
+                                <button onclick="redirectToCorrectPage()" class="black-background-btn full-width">Get Started</button>
+
                             </div>
                             <p><a href="">Learn more</a> about our memorial website</p>
                         </div>
@@ -56,168 +55,22 @@
                 </h1>
             </div>
         </div>
-        <div class="div-1">
+        @foreach($features as $key => $item)
+        <div class="div-{{$key}}">
             <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
+                <img src="{{asset($item->frontend_feature_image)}}" alt="" class="feature-div-image" />
+                <h2 class="feature-div-heading-primary">{{$item->frontend_feature_title}}</h2>
             </div>
 
             <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
+                {{$item->frontend_feature_description}}
             </p>
         </div>
-        <div class="div-2">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 2</h2>
-            </div>
 
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-3">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 3</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-4">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 4</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-5">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 5</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-6">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 6</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-7">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 7</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-8">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 8</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-9">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 9</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-10">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 10</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-11">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 11</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
-        <div class="div-12">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 12</h2>
-            </div>
-
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque fugit
-                beatae facilis repellat magnam! Perferendis accusantium velit aperiam
-                eius assumenda at ullam nihil enim consectetur natus facere, officiis
-                rerum explicabo.
-            </p>
-        </div>
+        @endforeach
         <div class="div-13">
-            <button class="black-background-btn half-width">
-                View Sample Memorial
-            </button>
+            <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
+
         </div>
         <div class="div-14">
             <div class="create-a-true-celebaration">
@@ -252,9 +105,13 @@
                     create a full family tree, create unlimited memorial pages, and
                     more. <a>Learn more</a>
                 </p>
-                <button class="black-background-btn half-width create-memorial-btn">
-                    Create Memorial
-                </button>
+                    @if(auth()->check())
+                        <button onclick="window.location.href='{{ route('Creatememorial') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
+
+                    @else
+                        <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
+                    @endif
+
             </div>
         </div>
     </div>
@@ -316,8 +173,8 @@
                         </div>
 
                         <div class="input-sections-col full-width">
-                            <input placeholder="Enter first name" class="input-style" type="text" />
-                            <input placeholder="Enter last name" class="input-style" type="text" />
+                            <input id="firstNameInput" placeholder="Enter first name" class="input-style" type="text">
+                            <input id="lastNameInput" placeholder="Enter last name" class="input-style" type="text">
                         </div>
                         <div class="row">
                             <button class="black-background-btn full-width">
@@ -333,5 +190,21 @@
 @endsection
 
 @section('featuresJS')
+<script>
+    function redirectToCorrectPage() {
+        var firstName = document.getElementById('firstNameInput').value.trim();
+        var lastName = document.getElementById('lastNameInput').value.trim();
 
+        if (firstName !== '' && lastName !== '') {
+            @if(auth()->check())
+                window.location.href = '{{ route('Creatememorial') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+            @else
+                window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+            @endif
+        } else {
+            alert('Please fill in both first name and last name.');
+        }
+    }
+
+</script>
 @endsection
