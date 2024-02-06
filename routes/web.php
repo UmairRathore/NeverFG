@@ -8,11 +8,14 @@ use App\Http\Controllers\AdminPortal\FuneralServiceController;
 use App\Http\Controllers\AdminPortal\LibraryPhotosController;
 use App\Http\Controllers\AdminPortal\PackageController;
 use App\Http\Controllers\AdminPortal\RelationsController;
+use App\Http\Controllers\Frontend\Cruds\FeatureController;
+use App\Http\Controllers\Frontend\Cruds\IndexController;
 use App\Http\Controllers\AdminPortal\RoleController;
 use App\Http\Controllers\AdminPortal\UserController;
 use App\Http\Controllers\Authentication\ForgetPasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegistrationController;
+use App\Http\Controllers\Frontend\Cruds\VirtualFuneralController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Profile\KeeperController;
 use App\Http\Controllers\Profile\MessageController;
@@ -180,7 +183,27 @@ Route::group(['prefix' => 'library'], function () {
 
 });
 //Library
+    Route::get('/frontend_index', [IndexController::class, 'index'])->name('frontend_index.index');
+    Route::get('/frontend_index/create', [IndexController::class, 'create'])->name('frontend_index.create');
+    Route::post('/frontend_index', [IndexController::class, 'store'])->name('frontend_index.store');
+    Route::get('/frontend_index/{id}/edit', [IndexController::class, 'edit'])->name('frontend_index.edit');
+    Route::put('/frontend_index/{id}', [IndexController::class, 'update'])->name('frontend_index.update');
+    Route::get('/frontend_index/{id}', [IndexController::class, 'destroy'])->name('frontend_index.destroy');
 
+
+    Route::get('/frontend_feature', [FeatureController::class, 'index'])->name('frontend_feature.index');
+    Route::get('/frontend_feature/create', [FeatureController::class, 'create'])->name('frontend_feature.create');
+    Route::post('/frontend_feature', [FeatureController::class, 'store'])->name('frontend_feature.store');
+    Route::get('/frontend_feature/{id}/edit', [FeatureController::class, 'edit'])->name('frontend_feature.edit');
+    Route::put('/frontend_feature/{id}', [FeatureController::class, 'update'])->name('frontend_feature.update');
+    Route::get('/frontend_feature/{id}', [FeatureController::class, 'destroy'])->name('frontend_feature.destroy');
+
+    Route::get('/frontend_virtual_funeral', [VirtualFuneralController::class, 'index'])->name('frontend_virtual_funeral.index');
+    Route::get('/frontend_virtual_funeral/create', [VirtualFuneralController::class, 'create'])->name('frontend_virtual_funeral.create');
+    Route::post('/frontend_virtual_funeral', [VirtualFuneralController::class, 'store'])->name('frontend_virtual_funeral.store');
+    Route::get('/frontend_virtual_funeral/{id}/edit', [VirtualFuneralController::class, 'edit'])->name('frontend_virtual_funeral.edit');
+    Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
+    Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
 
     Route::get('/user-profile/{id}',[ProfileController::class,'userProfile'])->name('edit.user.profile');
     Route::put('/update-user-profile/{id}',[ProfileController::class,'updateUserProfile'])->name('update.user.profile');

@@ -82,24 +82,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb ps-0">
                             <li class="breadcrumb-item"><a href="{{route('backend.index')}}"><i class="material-icons">home</i> Home</a></li>
-                            {{--                            <li class="breadcrumb-item"><a href="#">User </a></li>--}}
                             <li class="breadcrumb-item active" aria-current="page">User List</li>
                         </ol>
                     </nav>
                     <div class="ms-panel">
                         <div class="ms-panel-header ms-panel-custome">
                             <h6>User List</h6>
-{{--                                <a href="{{route('backend.add-user')}}" class="btn btn-primary ms-text-primary">Add User</a>--}}
                         </div>
                         <div class="ms-panel-body">
-{{--                            <div class="col-md-3">--}}
-{{--                                <label for="">Active</label>--}}
-{{--                                <select class="form-control" name="status" id="inputStateRes">--}}
-{{--                                    <option value="All">All</option>--}}
-{{--                                    <option value="Active">Active</option>--}}
-{{--                                    <option value="InActive">In Active</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
                             <div class="table-responsive">
                                 <table id="userlist" class="table table-striped thead-primary w-100">
                                     @if(Session('info_deleted'))
