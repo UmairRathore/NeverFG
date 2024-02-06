@@ -16,4 +16,5 @@ class Faq extends Model
         'answer',
         'topic_id'
     ];
+
 }
