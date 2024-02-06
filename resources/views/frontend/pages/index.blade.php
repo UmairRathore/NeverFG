@@ -64,7 +64,7 @@
                         </p>
                         <div class="row bottom-section">
                             <button class="black-background-btn">Learn more</button>
-                            <button class="white-background-btn" onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">
+                            <button class="white-background-btn" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" class="custom-button">
 
                                 Book free consultation
                             </button>
@@ -136,65 +136,31 @@
         <div class="our-free-memorials">
             <h1 class="heading-color font-heading-large">Our Free Memorials</h1>
             <ul class="main-box">
-                <li class="box active"><span>Store & share a life story</span>
-
-                    <div class="detail active">
-                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
-                <li class="box"><span>Add Pictures & Videos</span>
-                    <div class="detail">
-                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
-                <li class="box"><span>Send & Receive tribute Messages</span>
-
-                    <div class="detail">
-                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
-                <li class="box"><span>Build your family tree</span>
-                    <div class="detail">
-                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
-
-                <li class="box"><span>Share with world and keep it private</span>
-                    <div class="detail">
-                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
-                <li class="box"><span>Receive Direction</span>
-                    <div class="detail">
-                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                    </div>
-                </li>
+                @foreach($indexImage as $item)
+                    <li class="box {{ $loop->first ? 'active' : '' }}">
+                        <span>{{ $item->index_image_heading }}</span>
+                        <div class="detail {{ $loop->first ? 'active' : '' }}">
+                            <img src="{{ asset($item->index_image) }}" alt="" class="image-of-slide">
+                        </div>
+                    </li>
+                @endforeach
             </ul>
             <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>
         </div>
         <div class="online-memorial-site-section">
             <h1>Creating an Online Memorial Site is Simple</h1>
             <div class="online-memorial-site-section-list">
+
+
+                @foreach($indexCard as $item)
+
                 <div class="single-item-of-online-memorial">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+                    <img src="{{ asset($item->index_card_image) }}" alt="" class="online-memorial-img">
+                    <h3 class="online-memorial-main-heading">{{ $item->index_card_image_heading }}</h3>
+                    <p class="online-memorial-paragraph">{{ $item->index_card_image_description }}</p>
                 </div>
-                <div class="single-item-of-online-memorial">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-                </div>
-                <div class="single-item-of-online-memorial">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-                </div>
-                <div class="single-item-of-online-memorial">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-                </div>
+                @endforeach
+
             </div>
             <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
 
