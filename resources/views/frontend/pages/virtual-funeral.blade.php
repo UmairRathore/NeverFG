@@ -1,26 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app.app')
+@section('title', 'Virtual Funeral')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Virtual Funeral</title>
-    <link rel="stylesheet" href="./frontend/assets/css/VirtualFuneral.css" />
-</head>
+@section('content')
 
-<body>
-<div class="hero_section_virtual_funeral">
-    <div class="hero_wrapper">
-        <img src="{{asset('/frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo" />
 
-        <h2 class="heading_secandary">KEEPING MEMORIES ALIVE TOGETHER</h2>
-        <h2 class="heading_ternary">
-            Comprehensive Virtual Memorial Services Call or Text (915) 800-7900
-        </h2>
-
-        <button class="blue-background-btn"> <a href="https://calendly.com/maniwyatt29/30min">SCHEDULE FREE CONSULTATION</a></button>
-    </div>
-</div>
 <div class="craft-cermony-home-section">
     <div class="craft-cermony-home-section-wrapper">
         <div class="cermonyTwocolumns">
@@ -54,7 +37,7 @@
                 </div>
             </div>
             <div class="cermony-right-section">
-                <img src="{{asset('/frontend/assets/images/img_overlaping.png')}}" alt="" class="img-overlapping" />
+                <img src="./assets/img_overlaping.png" alt="" class="img-overlapping" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="114" height="110" viewBox="0 0 114 110">
                     <defs>
                         <style>
@@ -80,7 +63,7 @@
         </div>
         <p class="call-paragraph">Call or Text (915) 800-7900</p>
         <button class="black-background-btn half-width">
-            <a href="https://calendly.com/maniwyatt29/30min">BOOK 30 MINUTES CONSULTATION</a>
+            BOOK 30 MINUTES CONSULTATION
         </button>
     </div>
 </div>
@@ -98,7 +81,7 @@
         </div>
         <div class="div-2-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
             <p>
@@ -112,7 +95,7 @@
         </div>
         <div class="div-3-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
             <p>
@@ -126,7 +109,7 @@
         </div>
         <div class="div-4-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -141,7 +124,7 @@
         </div>
         <div class="div-5-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -156,7 +139,7 @@
         </div>
         <div class="div-6-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -171,7 +154,7 @@
         </div>
         <div class="div-7-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -186,7 +169,7 @@
         </div>
         <div class="div-8-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -691,7 +674,7 @@
         </div>
         <div class="div-10-vf">
             <div class="features-div-top">
-                <img src="{{asset('/frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="feature-div-image" />
+                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
                 <h2 class="feature-div-heading-primary">Heading Text 1</h2>
             </div>
 
@@ -723,7 +706,7 @@
         </div>
         <div class="legacy-content-img">
             <div class="legacy-content-img-wrapper">
-                <img src="{{asset('/frontend/assets/images/keeper-service.jpg')}}" alt="" class="legacy-content-img-actual">
+                <img src="./assets/keeper-service.jpg" alt="" class="legacy-content-img-actual">
             </div>
         </div>
         <div class="sample-project-heading">
@@ -877,7 +860,7 @@
         <div class="pp-r1-c4"></div>
         <div class="pp-r2-c1">
 
-            <a href="https://calendly.com/maniwyatt29/30min"><p>Free 30 Minute Consultation</p><a>
+            <p>Free 30 Minute Consultation</p>
         </div>
         <div class="pp-r2-c2">
             <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1475,6 +1458,9 @@
     </div>
 </div>
 
-</body>
+@endsection
 
-</html>
+@section('virtualJS')
+
+@endsection
+

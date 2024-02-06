@@ -1,260 +1,233 @@
-@extends('layouts.frontend.pageslayout.main')
-@section('title','Home')
-@section('css')
-    @parent
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/header.css')}}"/>
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/Home.css')}}"/>
-    <link rel="stylesheet" href="{{asset('frontend/assets/css/footer.css')}}"/>
-@endsection
-
+@extends('layouts.app.app')
+@section('title', 'Home')
 @section('content')
-    <style>
-        .swiper {
-            width: 100%;
-            height: 7%;
-            /* margin: 20px; */
-            /* padding: 20px; */
-        }
+        <style>
+            .swiper {
+                width: 100%;
+                height: 7%;
+                /* margin: 20px; */
+                /* padding: 20px; */
+            }
 
-        .swiper-slide {
-            text-align: center;
-            width: 600px;
+            .swiper-slide {
+                text-align: center;
+                width: 600px;
 
 
-        }
+            }
 
-        .swiper-slide img {
-            padding: 20px;
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
+            .swiper-slide img {
+                padding: 20px;
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
 
-        }
-    </style>
+            }
+        </style>
 
-    <div class="hero_section_home">
-        <div class="hero_wrapper">
-            <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo"/>
-            <h1 class="heading_primary">KEEPING MEMORIES ALIVE</h1>
-            <h2 class="heading_secandary">
-                Beautiful, Free Online Memorials & Tributes
-            </h2>
-            <h2 class="heading_ternary">Keeper online tributes are a simple way</h2>
-            <h2 class="heading_ternary">
-                to preserve, celebrate and share a loved one's legacy.
-            </h2>
-            @if(auth()->check())
-                <button onclick="window.location.href='{{ route('Creatememorial') }}'" class="custom-button">Click here to create a memorial</button>
+        <div class="craft-cermony-home-section">
+            <div class="craft-cermony-home-section-wrapper">
+                <h4 class="craft-cermony-main-heading heading-color">
+                    Virtual & Hybrid Memorial Services
+                </h4>
+                <h1 class="craft-cermony-secandary-heading heading-color">
+                    Craft the Perfect Ceremony for Your Loved One
+                </h1>
+                <div class="cermonyTwocolumns">
+                    <div class="cermony-left-section">
+                        <p>
+                            Keeper’s team of experts make it easy to host a virtual or hybrid
+                            memorial service to honor the memory of your loved one. When you
+                            partner with us, you’ll have access to our:
+                        </p>
+                        <ul class="cermony-list">
+                            <li>
+                                <span>Virtual or Hybrid Technology - </span>We provide hybrid,
+                                livestream, or fully virtual ceremony options to fit with your
+                                needs
+                            </li>
 
-            @else
-                <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">Click here to create a memorial</button>
-            @endif
-        </div>
-    </div>
-    <div class="craft-cermony-home-section">
-        <div class="craft-cermony-home-section-wrapper">
-            <h4 class="craft-cermony-main-heading heading-color">
-                Virtual & Hybrid Memorial Services
-            </h4>
-            <h1 class="craft-cermony-secandary-heading heading-color">
-                Craft the Perfect Ceremony for Your Loved One
-            </h1>
-            <div class="cermonyTwocolumns">
-                <div class="cermony-left-section">
-                    <p>
-                        Keeper’s team of experts make it easy to host a virtual or hybrid
-                        memorial service to honor the memory of your loved one. When you
-                        partner with us, you’ll have access to our:
-                    </p>
-                    <ul class="cermony-list">
-                        <li>
-                            <span>Virtual or Hybrid Technology - </span>We provide hybrid,
-                            livestream, or fully virtual ceremony options to fit with your
-                            needs
-                        </li>
+                            <li>
+                                <span>Memorial Coordinators -</span>We’ll help you plan the
+                                event structure, coordinate speakers, and craft personalized,
+                                meaningful words.
+                            </li>
+                            <li>
+                                <span>Technical Assistants -</span>We’ll host and manage your
+                                Zoom, planned media, and guest support day-of so you can be
+                                fully present.
+                            </li>
+                        </ul>
+                        <p>
+                            And more! We’re honored to work alongside you to help you craft a
+                            personalized and heartfelt celebration of life for your loved one.
+                        </p>
+                        <div class="row bottom-section">
+                            <button class="black-background-btn">Learn more</button>
+                            <button class="white-background-btn" onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">
 
-                        <li>
-                            <span>Memorial Coordinators -</span>We’ll help you plan the
-                            event structure, coordinate speakers, and craft personalized,
-                            meaningful words.
-                        </li>
-                        <li>
-                            <span>Technical Assistants -</span>We’ll host and manage your
-                            Zoom, planned media, and guest support day-of so you can be
-                            fully present.
-                        </li>
-                    </ul>
-                    <p>
-                        And more! We’re honored to work alongside you to help you craft a
-                        personalized and heartfelt celebration of life for your loved one.
-                    </p>
-                    <div class="row bottom-section">
-                        <button class="black-background-btn">Learn more</button>
-                        <button class="white-background-btn" onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">
-
-                            Book free consultation
-                        </button>
-                    </div>
-                </div>
-                <div class="cermony-right-section">
-                    <video src="{{asset('frontend/assets/images/dummy-video')}}.mp4" class="video-item"></video>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="our-free-swipe">
-        <div class="swiper-heading-wrapper">
-            <h1 class="swipers-main-heading">Our Free Memorials
-                Allow You to:</h1>
-            <h2 class="swipers-secandary-heading">Send and Receive Tribute Messages
-            </h2>
-        </div>
-
-        <div class="memorial-swiper-wrapper">
-            <div class="swiper">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-1.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-2.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-3.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-4.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-5.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-6.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-7.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-8.jpg" loading="lazy" alt=""/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="https://swiperjs.com/demos/images/nature-9.jpg" loading="lazy"/>
-                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                Book free consultation
+                            </button>
                         </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+                    <div class="cermony-right-section">
+                        <video src="{{asset('frontend/assets/images/dummy-video')}}.mp4" class="video-item"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="our-free-swipe">
+            <div class="swiper-heading-wrapper">
+                <h1 class="swipers-main-heading">Our Free Memorials
+                    Allow You to:</h1>
+                <h2 class="swipers-secandary-heading">Send and Receive Tribute Messages
+                </h2>
+            </div>
+
+            <div class="memorial-swiper-wrapper">
+                <div class="swiper">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-4.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-5.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-6.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-7.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-8.jpg" loading="lazy" alt=""/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://swiperjs.com/demos/images/nature-9.jpg" loading="lazy"/>
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="our-free-memorials">
+            <h1 class="heading-color font-heading-large">Our Free Memorials</h1>
+            <ul class="main-box">
+                <li class="box active"><span>Store & share a life story</span>
+
+                    <div class="detail active">
+                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+                <li class="box"><span>Add Pictures & Videos</span>
+                    <div class="detail">
+                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+                <li class="box"><span>Send & Receive tribute Messages</span>
+
+                    <div class="detail">
+                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+                <li class="box"><span>Build your family tree</span>
+                    <div class="detail">
+                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+
+                <li class="box"><span>Share with world and keep it private</span>
+                    <div class="detail">
+                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+                <li class="box"><span>Receive Direction</span>
+                    <div class="detail">
+                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
+                    </div>
+                </li>
+            </ul>
+            <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>
+        </div>
+        <div class="online-memorial-site-section">
+            <h1>Creating an Online Memorial Site is Simple</h1>
+            <div class="online-memorial-site-section-list">
+                <div class="single-item-of-online-memorial">
+                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
+                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
+                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+                </div>
+                <div class="single-item-of-online-memorial">
+                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
+                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
+                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+                </div>
+                <div class="single-item-of-online-memorial">
+                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
+                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
+                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+                </div>
+                <div class="single-item-of-online-memorial">
+                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
+                    <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
+                    <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+                </div>
+            </div>
+            <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
+
+        </div>
+        <div class="share-memorial-section">
+            <div class="share-memorial-insider">
+                <h1>Create a Memorial Website</h1>
+                <h2>Preserve and share memories of your loved one.</h2>
+                <div class="share-memorial-form">
+                    <h3>I WANT TO SHARE MEMORIES OF</h3>
+                    <div class="row full-width">
+                        <input id="firstNameInput" placeholder="Enter first name" class="input-style" type="text">
+                        <input id="lastNameInput" placeholder="Enter last name" class="input-style" type="text">
+                    </div>
+                    <div class="row">
+                        <button onclick="redirectToCorrectPage()" class="black-background-btn full-width">Get Started</button>
+                    </div>
+                    <p><a href="#">Learn more</a> about our memorial website</p>
                 </div>
             </div>
         </div>
 
-    </div>
-    <div class="our-free-memorials">
-        <h1 class="heading-color font-heading-large">Our Free Memorials</h1>
-        <ul class="main-box">
-            <li class="box active"><span>Store & share a life story</span>
-
-                <div class="detail active">
-                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-            <li class="box"><span>Add Pictures & Videos</span>
-                <div class="detail">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-            <li class="box"><span>Send & Receive tribute Messages</span>
-
-                <div class="detail">
-                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-            <li class="box"><span>Build your family tree</span>
-                <div class="detail">
-                    <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-
-            <li class="box"><span>Share with world and keep it private</span>
-                <div class="detail">
-                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-            <li class="box"><span>Receive Direction</span>
-                <div class="detail">
-                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="image-of-slide">
-                </div>
-            </li>
-        </ul>
-        <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>
-    </div>
-    <div class="online-memorial-site-section">
-        <h1>Creating an Online Memorial Site is Simple</h1>
-        <div class="online-memorial-site-section-list">
-            <div class="single-item-of-online-memorial">
-                <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-            </div>
-            <div class="single-item-of-online-memorial">
-                <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-            </div>
-            <div class="single-item-of-online-memorial">
-                <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                <p class="online-memorial-paragraph">by adding basic or detailed information</p>
-            </div>
-            <div class="single-item-of-online-memorial">
-                <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="online-memorial-img">
-                <h3 class="online-memorial-main-heading">CREATE A FREE MEMORIAL</h3>
-                <p class="online-memorial-paragraph">by adding basic or detailed information</p>
+        <div class="are-you-funeral-service-provider-section">
+            <div class="service-provider-insider">
+                <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
+                <button class="custom-button">
+                    Learn more about keeper partnership
+                </button>
             </div>
         </div>
-        <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
-
-    </div>
-    <div class="share-memorial-section">
-        <div class="share-memorial-insider">
-            <h1>Create a Memorial Website</h1>
-            <h2>Preserve and share memories of your loved one.</h2>
-            <div class="share-memorial-form">
-                <h3>I WANT TO SHARE MEMORIES OF</h3>
-                <div class="row full-width">
-                    <input id="firstNameInput" placeholder="Enter first name" class="input-style" type="text">
-                    <input id="lastNameInput" placeholder="Enter last name" class="input-style" type="text">
-                </div>
-                <div class="row">
-                    <button onclick="redirectToCorrectPage()" class="black-background-btn full-width">Get Started</button>
-                </div>
-                <p><a href="#">Learn more</a> about our memorial website</p>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="are-you-funeral-service-provider-section">
-        <div class="service-provider-insider">
-            <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
-            <button class="custom-button">
-                Learn more about keeper partnership
-            </button>
-        </div>
-    </div>
 
 @endsection
-@section('index')
+@section('indexJS')
     <script>
         var getslide = $('.main-box li').length - 1;
         var slidecal = 30 / getslide + '%';

@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 80vh;
-  background: url("../assets/hero_background_1.jpg") no-repeat center center;
+    background: url("/frontend/assets/images/hero_background_1.jpg") no-repeat center center;
   background-size: 100%;
 }
 .hero_section_faqs .hero_wrapper {
@@ -62,7 +62,7 @@ body {
   flex-direction: column;
   width: 100%;
   height: 80vh;
-  background: url("../assets/hero_background_1.jpg") no-repeat center center;
+    background: url("/frontend/assets/images/hero_background_1.jpg") no-repeat center center;
   background-size: 100%;
 }
 .hero_section_faqs .hero_wrapper {
