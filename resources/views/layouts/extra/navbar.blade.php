@@ -1,5 +1,4 @@
-
-    <div class="main-header-funeralist" id="header">
+<div class="main-header-funeralist" id="header">
         <div class="main-header-funeralist-left-items">
             <!-- <img
                 src="./funeralist_white_logo.png"
@@ -22,24 +21,24 @@
                     @endif
                 </ul>
             </div>
-            <div class="funeralist-header-search-box" id="search-box-div">
-                <svg width="22px" viewBox="0 0 24 24">
-                    <circle cx="9.54" cy="9.51" r="9.08" fill="none" stroke="currentColor" stroke-miterlimit="10"
-                            stroke-width="1.4px"></circle>
-                    <path d="m17.87 17.83 5.88 5.89" fill="none" stroke="currentColor" stroke-miterlimit="10"
-                          stroke-width="1.4px"></path>
-                </svg>
-            </div>
+{{--            <div class="funeralist-header-search-box" id="search-box-div">--}}
+{{--                <svg width="22px" viewBox="0 0 24 24">--}}
+{{--                    <circle cx="9.54" cy="9.51" r="9.08" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
+{{--                            stroke-width="1.4px"></circle>--}}
+{{--                    <path d="m17.87 17.83 5.88 5.89" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
+{{--                          stroke-width="1.4px"></path>--}}
+{{--                </svg>--}}
+{{--            </div>--}}
             <!-- User Profile -->
             @if(auth()->check())
                 <?php
                 $user= \App\Models\User::where('id',auth()->user()->id)->first();
                 //                dd($user);
-                $checkMemorial = \App\Models\UserMemorial::select('users.*','users.id as user_id'.'user_memorials.*')
+                $checkMemorial = \App\Models\UserMemorial::select('users.first_name as first_name ',
+                    'users.last_name as last_name','users.id as user_id','user_memorials.memorial_user_id as id')
                     ->where('keeper_id',$user->id)
-                    ->join('users','users.id','=','user_memorials.keeper_id')
+                    ->join('users','users.id','=','user_memorials.memorial_user_id')
                     ->get();
-                //                dd($checkMemorial);
                 ?>
 
                 <div class="funeralist-header-user-box" id="user-icon-div">
@@ -54,6 +53,7 @@
                             <li><a href="{{route('edit.user.profile',$user->id)}}">{{$user->first_name.' '.$user->last_name}}</a></li>
 
                             @foreach($checkMemorial  as $memorial)
+
                                 <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
                             @endforeach
                         </ul>

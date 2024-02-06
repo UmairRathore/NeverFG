@@ -27,7 +27,7 @@
                     Comprehensive Virtual Memorial Services Call or Text (915) 800-7900
                 </h2>
 
-                <button class="blue-background-btn">SCHEDULE FREE CONSULTATION</button>
+                <button onclick="window.location.href='https://calendly.com/maniwyatt29/30min'"  class="blue-background-btn">SCHEDULE FREE CONSULTATION</button>
     </div>
 
 @elseif(request()->is('faqs'))
@@ -38,7 +38,7 @@
         </h2>
         <div class="searchBox">
             <input class="searchInput" type="text" name="" placeholder="Search something">
-            <button class="searchButton" href="#">
+            <button class="searchButton" onclick="search()"> <!-- Add onclick event -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
                     <g clip-path="url(#clip0_2_17)">
                         <g filter="url(#filter0_d_2_17)">
