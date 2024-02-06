@@ -61,8 +61,8 @@
                 </p>
             </div>
         </div>
-        <p class="call-paragraph">Call or Text (915) 800-7900</p>
-        <button class="black-background-btn half-width">
+
+        <p class="call-paragraph"><a href="tel:+19158007900">Call or Text (915) 800-7900</a></p>        <button class="black-background-btn half-width" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" >
             BOOK 30 MINUTES CONSULTATION
         </button>
     </div>
@@ -79,109 +79,17 @@
                 </h2>
             </div>
         </div>
-        <div class="div-2-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-3-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-4-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-5-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-6-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-7-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
-        <div class="div-8-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
+        @foreach($virtual as $item)
+            @if ($loop->iteration != 1 && $loop->iteration != 9)
+                <div class="div-{{ $loop->iteration }}-vf">
+                    <div class="features-div-top">
+                        <img src="{{ $item->frontend_virtual_funeral_image }}" alt="" class="feature-div-image" />
+                        <h2 class="feature-div-heading-primary">{{ $item->frontend_virtual_funeral_title }}</h2>
+                    </div>
+                    <p>{{ $item->frontend_virtual_funeral_description }}</p>
+                </div>
+            @endif
+        @endforeach
         <div class="div-9-vf">
             <svg xmlns="http://www.w3.org/2000/svg" width="currentSize" height="currentSize" viewBox="0 0 439.695 451.826">
                 <defs>
@@ -672,24 +580,9 @@
                 </g>
             </svg>
         </div>
-        <div class="div-10-vf">
-            <div class="features-div-top">
-                <img src="./assets/hero_2_backgound.jpg" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">Heading Text 1</h2>
-            </div>
-
-            <p>
-                Store memories of your loved one in their Mementos page by easily
-                uploading multiple images at once. Embed videos from YouTube, Vimeo
-                and other popular video streaming sites to include a favourite song,
-                family videos and more. Family and friends can like, comment, share,
-                and add their own photos as well. KEEPER PLUS: Native HD video
-                uploading directly from your computer or mobile device.
-            </p>
-        </div>
 
         <div class="div-12-vf">
-            <button class="black-background-btn">VIEW PLANS & PRICING</button>
+            <button class="black-background-btn" onclick="scrollToPlans()">VIEW PLANS & PRICING</button>
         </div>
     </div>
     <div class="legacy-container">
@@ -838,10 +731,11 @@
             </div>
         </div>
         <div class="view-sample-btn">
-            <button class="black-background-btn">Download Informational PDF</button>
+            <a href="{{ asset($pdf->information_pdf) }}"
+               class="black-background-btn" download>Download Informational PDF</a>
         </div>
     </div>
-    <div class="vf-all-features-container">
+    <div id="plans-and-features" class="vf-all-features-container">
         <div class="r1-c1"></div>
         <div class="r1-c2">
             <h2>Livestream only</h2>
@@ -860,7 +754,7 @@
         <div class="pp-r1-c4"></div>
         <div class="pp-r2-c1">
 
-            <p>Free 30 Minute Consultation</p>
+            <p >Free 30 Minute Consultation</p>
         </div>
         <div class="pp-r2-c2">
             <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1461,6 +1355,14 @@
 @endsection
 
 @section('virtualJS')
+    <script>
+    function scrollToPlans() {
+    // Get the target element by its ID
+    var targetElement = document.getElementById('plans-and-features');
 
+    // Scroll to the target element
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    </script>
 @endsection
 
