@@ -195,16 +195,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
     Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
 
-    Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
-    Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
-
-    Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
-    Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
-    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
-
-
-    Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
 
     //Route::get('/message',[ProfileController::class,'message'])->name('message');
@@ -214,15 +205,28 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
 
 
+    Route::group(['prefix' => 'profile'], function () {
 
-    //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-    Route::get('/mementos', [ProfileController::class, 'mementos'])->name('mementos');
-    Route::get('/events', [ProfileController::class, 'events'])->name('events');
-    Route::get('/family', [ProfileController::class, 'family'])->name('family');
 
-    Route::get('/keeperplus', [ProfileController::class, 'keeperplus'])->name('keeperplus');
+        Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
+        Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
-    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+
+        Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
+        Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
+        Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+
+
+        //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
+        Route::get('/mementos', [ProfileController::class, 'mementos'])->name('mementos');
+        Route::get('/events', [ProfileController::class, 'events'])->name('events');
+        Route::get('/family', [ProfileController::class, 'family'])->name('family');
+
+        Route::get('/keeperplus', [ProfileController::class, 'keeperplus'])->name('keeperplus');
+        Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
+
+        Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    });
 
 
 

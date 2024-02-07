@@ -1,4 +1,4 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Keeper Plus')
 @section('content')
 

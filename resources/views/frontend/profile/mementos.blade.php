@@ -1,4 +1,4 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Mementos')
 @section('content')
 
@@ -111,7 +111,7 @@
     </div>
 
 @endsection
-@section('mementos')
+@section('mementosJS')
     <script>
 
 

@@ -76,7 +76,7 @@
                     <div class="navigation-of-logged-in-profile">
                         <div class="single-item">
                             @php
-                            $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
+                                $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
                             @endphp
                             <a href="{{route('edit.memorial.profile',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"

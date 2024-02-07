@@ -1,7 +1,7 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Keeper')
 @section('content')
-    \
+
     <!-- Keeper content -->
     <div class="center-and-margin">
         <!-- Profile secion -->
@@ -79,7 +79,7 @@
         </div>
     </div>
 @endsection
-@section('keeper')
+@section('keeperJS')
     <script>
         // Declare all variables
         var theme_i, theme_tabcontent, theme_tablinks;
