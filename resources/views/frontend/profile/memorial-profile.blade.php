@@ -446,22 +446,6 @@
                     </form>
                 </div>
             </div>
-            <div class="footer-of-form-content">
-                <div class="delete-btn">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                         stroke="#ffffff">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path
-                                d="M6 5H18M9 5V5C10.5769 3.16026 13.4231 3.16026 15 5V5M9 20H15C16.1046 20 17 19.1046 17 18V9C17 8.44772 16.5523 8 16 8H8C7.44772 8 7 8.44772 7 9V18C7 19.1046 7.89543 20 9 20Z"
-                                stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </g>
-                    </svg>
-                    <button class="del-btn">Delete</button>
-                </div>
-
-            </div>
         </div>
 
         <!-- Gallery -->
@@ -585,7 +569,6 @@
                     <div class="theme-tab">
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
-                        <button class="theme-tablinks" onclick="openThemeItem(event, 'Icon')">Icon</button>
                     </div>
                     <div id="theme" class="theme-tabcontent">
                         <div class="theme-tab-of-themes-wrapper">
@@ -721,143 +704,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="Icon" class="theme-tabcontent">
-                        <div class="theme-tab-of-themes-wrapper">
-                            <div class="top-header-of-grid-wrapper">
-                                <select name="" id="">
-                                    <option value="">Space</option>
-                                    <option value="">category-1</option>
-                                    <option value="">category-1</option>
-                                    <option value="">category-1</option>
-                                    <option value="">category-1</option>
-                                </select>
-                            </div>
 
-                            <div class="grid-of-icons">
-                                <div class="whole-image-wrapper-with-overlay-of-icons" id="img-id-1">
-                                    <div class="img-wrpper-inside-gallery-of-icons">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-icons" id="img-id-2">
-                                    <div class="img-wrpper-inside-gallery-of-icons">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-icons" id="img-id-3">
-                                    <div class="img-wrpper-inside-gallery-of-icons">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-icons" id="img-id-4">
-                                    <div class="img-wrpper-inside-gallery-of-icons">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="footer-of-theme">
-                                <button class="form-btn">Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
                     <div id="Custom" class="theme-tabcontent">
                         <p>You can Upload your own unique picture here. For the best look, we recommend using a picture with a
                             High Resolution (1024X768 and higher, for example).</p>
@@ -889,44 +736,6 @@
 
         // Start here
 
-        {{--//gallery img--}}
-        {{--$(".whole-image-wrapper-with-overlay").click(function (e) {--}}
-        {{--    console.log('Image Click', e);--}}
-        {{--    let allElements = $(".grid-of-photos .whole-image-wrapper-with-overlay .overlay")--}}
-        {{--    for (let i = 0; i < allElements.length; i++) {--}}
-        {{--        console.log('Single class', allElements[i].classList[1])--}}
-        {{--        if (allElements[i].classList[1]) {--}}
-        {{--            console.log('Yes')--}}
-        {{--            allElements[i].classList.remove('show');--}}
-        {{--        }--}}
-        {{--    }--}}
-        {{--    // console.log('All elements',allElements)--}}
-        {{--    console.log('ele', e.currentTarget)--}}
-        {{--    let ele = e.currentTarget.children[1];--}}
-        {{--    ele.classList.toggle('show')--}}
-        {{--    console.log('Child', ele)--}}
-
-        {{--    // Update profile image when an image is selected--}}
-        {{--    let userId = "{{ $profile['memorialProfile']->id }}"; // Get user ID from PHP--}}
-        {{--    let formType = 'profile_image_library';--}}
-        {{--    let formData = new FormData();--}}
-        {{--    formData.append('user_id', userId);--}}
-        {{--    formData.append('form_identifier', formType);--}}
-        {{--    formData.append('is_image_upload', true);--}}
-
-        {{--    // Assuming you have an image URL associated with each image element--}}
-        {{--    let imageURL = $(this).find('img').attr('src');--}}
-
-        {{--    // Add image file to FormData (you may need to fetch the image file if it's not already in the DOM)--}}
-        {{--    fetch(imageURL)--}}
-        {{--        .then(response => response.blob())--}}
-        {{--        .then(blob => {--}}
-        {{--            formData.append('profile_image', blob);--}}
-        {{--            saveFormData(userId, formData, formType);--}}
-        {{--        })--}}
-        {{--        .catch(error => console.error('Error fetching image:', error));--}}
-        {{--});--}}
-
         //Theme gallery
         $(".whole-image-wrapper-with-overlay-of-theme").click(function (e) {
             console.log('Image Click', e);
@@ -949,27 +758,6 @@
 
         })
 
-        // Icons grid
-        $(".whole-image-wrapper-with-overlay-of-icons").click(function (e) {
-            console.log('Image Click', e);
-            let allElements = $(".grid-of-icons .whole-image-wrapper-with-overlay-of-icons .overlay")
-            for (let i = 0; i < allElements.length; i++) {
-                console.log('Single class', allElements[i].classList[1])
-                if (allElements[i].classList[1]) {
-                    console.log('Yes')
-                    allElements[i].classList.remove('show');
-                }
-
-            }
-            // console.log('All elements',allElements)
-            console.log('ele', e.currentTarget)
-            let ele = e.currentTarget.children[1];
-
-            ele.classList.toggle('show')
-            console.log('Child', ele)
-            // $(".overlay").show();
-
-        })
 
         $(document).ready(function () {
 
@@ -1518,7 +1306,6 @@
                     .catch(error => console.error('Error fetching image:', error));
             }
 
-
             //Ajax function
             function saveFormData(userId, formData, formType) {
                 alert(formData);
@@ -1562,7 +1349,7 @@
                         alert('Error: ' + errorMessage + '\nDetails: ' + errorDetails);
                     }
                 });
-            };
+            }
 
             function refreshProfileImageDiv(userId,formType) {
                 // Assuming you have a unique identifier or class for the profile image div
