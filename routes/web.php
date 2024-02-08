@@ -73,10 +73,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
 
-        Route::get('/Creatememorial', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
+        Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
         Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
         Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
-        Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+        Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
 
 
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');

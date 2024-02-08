@@ -33,230 +33,300 @@
 @endif
 
 <form method="POST" action="{{ route('memorialregistration') }}" enctype="multipart/form-data">
-    @csrf
 
-    {{--   MEMORIAL PROFILE  --}}
-    <section>
+        @csrf
+        {{-- MEMORIAL PROFILE --}}
+        <section>
+    {{-- Display general error message --}}
+{{--            @if($errors->any())--}}
+{{--                <div class="alert alert-danger" style="color: red;">--}}
+{{--{{$message}}--}}
+{{--                            <p>Some Fields are not entered. They are {{$message}}</p>--}}
 
-        <p class="step-1-top-heading">ABOUT YOUR LOVED ONE</p>
-        <div class="form-group-input">
-            <label for="memorial_first_name">Their First Name</label>
-            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design" value="{{ $firstName ?? '' }}"/>
+{{--                </div>--}}
+{{--            @endif--}}
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <p class="step-1-top-heading">ABOUT YOUR LOVED ONE</p>
+            <div class="form-group-input">
+                <label for="memorial_first_name">Their First Name</label>
+                <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design @error('memorial_first_name') is-invalid @enderror" value="{{ isset($firstName) ? $firstName : old('memorial_first_name') }}" required/>
+                @error('memorial_first_name')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>Required Field</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group-input">
+                <label for="memorial_last_name">Their Last Name</label>
+                <input name="memorial_last_name" type="text" placeholder="Their Last Name" class="input-design @error('memorial_last_name') is-invalid @enderror" value="{{ isset($lastName) ? $lastName : old('memorial_last_name') }}" required/>
+                @error('memorial_last_name')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
 
-        </div>
-        <div class="form-group-input">
-            <label for="memorial_last_name">Their Last Name</label>
-            <input name="memorial_first_name" type="text" placeholder="Their First Name" class="input-design" value="{{ $lastName ?? '' }}"/>
-
-        </div>
-
-
-        {{--Passed--}}
-        <div class="form-group-input">
-            {{--                <label for="memorial_passed">Passed</label>--}}
-            <H2>Has Passed Away?
-                <input type="checkbox" name="memorial_passed" id="memorialPassedCheckbox"  >
-                <small>
-                    <i class="fa fa-info-circle" data-tooltip="Select this option to create a Living Memorial page for a loved one who has not passed away."
-                       style="position: relative; cursor: pointer; "
-                       onmouseover="this.children[0].style.display = 'block';"
-                       onmouseout="this.children[0].style.display = 'none';">
+            {{--Passed--}}
+            <div class="form-group-input">
+                <H2>Has Passed Away?
+                    <input type="checkbox" name="memorial_passed" value="{{ old('memorial_passed') }}" id="memorialPassedCheckbox">
+                    <small>
+                        <i class="fa fa-info-circle" data-tooltip="Select this option to create a Living Memorial page for a loved one who has not passed away."
+                           style="position: relative; cursor: pointer; "
+                           onmouseover="this.children[0].style.display = 'block';"
+                           onmouseout="this.children[0].style.display = 'none';">
                        <span style="position: absolute; bottom: 100%; font-size: 10px; left: 50%;
                         transform: translateX(-50%); padding: 5px; background-color: #333; color: #fff; border-radius: 90%; display: none;">
                            Select this option to create a Living Memorial page for a loved one who has not passed away.</span>
-                    </i>             </small>
-            </H2>
-
-        </div>
-
-
-        <!-- Date of Birth -->
-        <div class="form-group-input">
-            <label for="memorial_dob">Date of birth</label>
-            <div class="row-of-select">
-                <select name="memorial_dob_year">
-                    @for ($year = 1999; $year <= 2024; $year++)
-                        <option {{ $year == 2024 ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </select>
-                <select name="memorial_dob_month">
-                    @for ($month = 1; $month <= 12; $month++)
-                        <option {{ $month == 1 ? 'selected' : '' }} value="{{ $month }}">
-                            @php
-                                echo date('F', mktime(0, 0, 0, $month, 1));
-                            @endphp
-                        </option>
-                    @endfor
-                </select>
-                <select name="memorial_dob_day">
-                    @for ($day = 1; $day <= 31; $day++)
-                        <option {{ $day == 1 ? 'selected' : '' }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
-                    @endfor
-                </select>
+                        </i>
+                    </small>
+                </H2>
             </div>
-        </div>
 
-        <!-- Date of Death -->
-        <div class="form-group-input" id="memorialDodContainer" style="display: block; text-align: left;">
-            <label for="">Their Date Of Death</label>
-            <div class="row-of-select">
-                <select name="memorial_dod_year">
-                    @for ($year = 1999; $year <= 2024; $year++)
-                        <option {{ $year == 2024 ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </select>
-                <select name="memorial_dod_month">
-                    @for ($month = 1; $month <= 12; $month++)
-                        <option {{ $month == 1 ? 'selected' : '' }} value="{{ $month }}">
-                            @php
-                                echo date('F', mktime(0, 0, 0, $month, 1));
-                            @endphp
-                        </option>
-                    @endfor
-                </select>
-                <select name="memorial_dod_day">
-                    @for ($day = 1; $day <= 31; $day++)
-                        <option {{ $day == 1 ? 'selected' : '' }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
-                    @endfor
-                </select>
+            <!-- Date of Birth -->
+            <div class="form-group-input">
+                <label for="memorial_dob">Date of birth</label>
+                <div class="row-of-select">
+                    <select name="memorial_dob_year">
+                        @for ($year = 1999; $year <= 2024; $year++)
+                            <option {{ $year == old('memorial_dob_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
+                        @endfor
+                    </select>
+                    <select name="memorial_dob_month">
+                        @for ($month = 1; $month <= 12; $month++)
+                            <option {{ $month == old('memorial_dob_month') ? 'selected' : ($month == 1 ? 'selected' : '') }} value="{{ $month }}">
+                                @php
+                                    echo date('F', mktime(0, 0, 0, $month, 1));
+                                @endphp
+                            </option>
+                        @endfor
+                    </select>
+                    <select name="memorial_dob_day">
+                        @for ($day = 1; $day <= 31; $day++)
+                            <option {{ $day == old('memorial_dob_day') ? 'selected' : ($day == 1 ? 'selected' : '') }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
+                        @endfor
+                    </select>
+                </div>
             </div>
-        </div>
-
-        <!-- Email input for when "Passed" checkbox is checked -->
-        <div class="form-group-input" id="memorialEmailContainer" style="display: none; text-align: left;">
-            <label for="memorial_email">Email</label>
-            <input type="email" name="memorial_email" placeholder="Their Email Address" class="input-design"/>
-        </div>
 
 
-        <div class="form-group-input">
-            <label for="memorial_city_of_birth">Their City of Birth</label>
-            <input name="memorial_city_of_birth" type="text" placeholder="Their City of Birth " class="input-design"/>
-        </div>
 
-        <div class="user-img-container">
-            <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="user-avatar">
-            <label for="memorial_image" class="input-file-type-design">
-                Add a photo
-                <input id="memorial_image" type="file" name="memorial_image"/>
-            </label>
-        </div>
+            <!-- Date of Death -->
+            <div class="form-group-input" id="memorialDodContainer" style="display: block; text-align: left;">
+                <label for="">Their Date Of Death</label>
+                <div class="row-of-select">
+                    <select name="memorial_dod_year" class="@error('memorial_dod_year') is-invalid @enderror">
+                        @for ($year = 1999; $year <= 2024; $year++)
+                            <option {{ $year == old('memorial_dod_year') ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
+                        @endfor
+                    </select>
+                    <select name="memorial_dod_month" class="@error('memorial_dod_month') is-invalid @enderror">
+                        @for ($month = 1; $month <= 12; $month++)
+                            <option {{ $month == old('memorial_dod_month') ? 'selected' : '' }} value="{{ $month }}">
+                                @php
+                                    echo date('F', mktime(0, 0, 0, $month, 1));
+                                @endphp
+                            </option>
+                        @endfor
+                    </select>
+                    <select name="memorial_dod_day" class="@error('memorial_dod_day') is-invalid @enderror">
+                        @for ($day = 1; $day <= 31; $day++)
+                            <option {{ $day == old('memorial_dod_day') ? 'selected' : '' }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
+                        @endfor
+                    </select>
+                </div>
+            </div>
 
+            <!-- Email input for when "Passed" checkbox is checked -->
+            <div class="form-group-input" id="memorialEmailContainer" style="display: none; text-align: left;">
+                <label for="memorial_email">Email</label>
+                <input type="email" name="memorial_email" placeholder="Their Email Address" value="{{ old('memorial_email') }}" class="input-design " />
 
-        <div class="gender-container">
-            <label class="gender-label">Gender</label>
-            <div class="radio-inputs">
-                <label class="radio">
-                    <input type="radio" name="memorial_gender" value="female" checked=""/>
-                    <span class="name">Female</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="memorial_gender" value="male"/>
-                    <span class="name">Male</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="memorial_gender" value="other"/>
-                    <span class="name">Other</span>
+            </div>
+
+            <div class="form-group-input">
+                <label for="memorial_city_of_birth">Their City of Birth</label>
+                <input name="memorial_city_of_birth" type="text" placeholder="Their City of Birth " value="{{ old('memorial_city_of_birth') }}" class="input-design @error('memorial_city_of_birth') is-invalid @enderror" required/>
+                @error('memorial_city_of_birth')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="user-img-container">
+                <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt="" class="user-avatar">
+                <label for="memorial_image" class="input-file-type-design">
+                    Add a photo
+                    <input id="memorial_image" type="file" name="memorial_image"/>
                 </label>
             </div>
-        </div>
 
-    </section>
-
-    {{--    BIOGRAPHY       --}}
-    <section>
-        <p class="step-1-top-heading">ADD MORE DETAILS</p>
-        <p class="step-2-secondary-heading">You can add more information about your love one.</p>
-        <div class="form-group-input">
-            <label for="memorial_biography">Their Obituary/Biography</label>
-            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="memorial_fav_saying">Their Favourite Saying</label>
-            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="memorial_resting_place">Resting Place:</label>
-            <input name="memorial_resting_place" type="text" placeholder="Last Name" class="input-design"/>
-        </div>
-    </section>
-
-    {{--    KEEPER PROFILE  --}}
-    <section>
-        <p class="step-1-top-heading">ABOUT YOU</p>
-        <p class="step-2-secondary-heading">You will become the "Keeper" (the administrator) of your loved one's memorial.</p>
-        <div class="form-group-input">
-            <label for="keeper_first_name">First Name</label>
-            <input name="keeper_first_name" type="text" placeholder="First Name" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="keeper_last_name">Last Name</label>
-            <input name="keeper_last_name" type="text" placeholder="Last Name" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="keeper_email">Email</label>
-            <input type="email" name="keeper_email" placeholder="Email Address" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="keeper_password">Password</label>
-            <input type="password"  name="keeper_password" placeholder="Enter Password" class="input-design"/>
-        </div>
-        <div class="form-group-input">
-            <label for="">Confirm Password</label>
-            <input type="password" placeholder="Confirm Password" class="input-design"/>
-        </div>
-
-
-        <!-- Date of Birth -->
-        <div class="form-group-input">
-            <label for="keeper_dob">Date of birth</label>
-            <div class="row-of-select">
-                <select name="keeper_dob_year">
-                    @for ($year = 1999; $year <= 2024; $year++)
-                        <option {{ $year == 2024 ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
-                    @endfor
-                </select>
-                <select name="keeper_dob_month">
-                    @for ($month = 1; $month <= 12; $month++)
-                        <option {{ $month == 1 ? 'selected' : '' }} value="{{ $month }}">
-                            @php
-                                echo date('F', mktime(0, 0, 0, $month, 1));
-                            @endphp
-                        </option>
-                    @endfor
-                </select>
-                <select name="keeper_dob_day">
-                    @for ($day = 1; $day <= 31; $day++)
-                        <option {{ $day == 1 ? 'selected' : '' }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
-                    @endfor
-                </select>
+            <div class="gender-container">
+                <label class="gender-label">Gender</label>
+                <div class="radio-inputs">
+                    <label class="radio">
+                        <input type="radio" name="memorial_gender" value="female" {{ old('memorial_gender') == 'female' ? 'checked' : '' }}>
+                        <span class="name">Female</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="memorial_gender" value="male" {{ old('memorial_gender') == 'male' ? 'checked' : 'checked' }}>
+                        <span class="name">Male</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="memorial_gender" value="other" {{ old('memorial_gender') == 'other' ? 'checked' : '' }}>
+                        <span class="name">Other</span>
+                    </label>
+                </div>
             </div>
-        </div>
-        </div>
 
 
-        <div class="gender-container">
-            <label class="gender-label">Gender</label>
-            <div class="radio-inputs">
-                <label class="radio">
-                    <input type="radio" name="keeper_gender" value="female" checked=""/>
-                    <span class="name">Female</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="keeper_gender" value="male"/>
-                    <span class="name">Male</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="keeper_gender" value="other"/>
-                    <span class="name">Other</span>
-                </label>
+            @error('memorial_gender')
+            <span class="invalid-feedback" role="alert" style="color: red;">
+        <strong>{{ $message }}</strong>
+    </span>
+            @enderror
+
+
+        </section>
+
+        {{-- BIOGRAPHY --}}
+        <section>
+            <p class="step-1-top-heading">ADD MORE DETAILS</p>
+            <p class="step-2-secondary-heading">You can add more information about your love one.</p>
+            <div class="form-group-input">
+                <label for="memorial_biography">Their Obituary/Biography</label>
+                <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ old('memorial_biography') }}" class="input-design @error('memorial_biography') is-invalid @enderror" required/>
+                @error('memorial_biography')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
             </div>
-        </div>
-        <div class="row-of-form">
-            <input type="checkbox">
-            <p class="agree-term-p">I agree to the Terms and Conditions of the site.</p>
-        </div>
-    </section>
+            <div class="form-group-input">
+                <label for="memorial_fav_saying">Their Favourite Saying</label>
+                <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ old('memorial_fav_saying') }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" required/>
+                @error('memorial_fav_saying')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group-input">
+                <label for="memorial_resting_place">Resting Place:</label>
+                <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ old('memorial_resting_place') }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" required/>
+                @error('memorial_resting_place')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+        </section>
+
+        {{-- KEEPER PROFILE --}}
+        <section>
+            <p class="step-1-top-heading">ABOUT YOU</p>
+            <p class="step-2-secondary-heading">You will become the "Keeper" (the administrator) of your loved one's memorial.</p>
+            <div class="form-group-input">
+                <label for="keeper_first_name">First Name</label>
+                <input name="keeper_first_name" type="text" placeholder="First Name" value="{{ old('keeper_first_name') }}" class="input-design @error('keeper_first_name') is-invalid @enderror" required/>
+                @error('keeper_first_name')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group-input">
+                <label for="keeper_last_name">Last Name</label>
+                <input name="keeper_last_name" type="text" placeholder="Last Name" value="{{ old('keeper_last_name') }}" class="input-design @error('keeper_last_name') is-invalid @enderror" required/>
+                @error('keeper_last_name')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <!-- Date of Birth -->
+            <div class="form-group-input">
+                <label for="keeper_dob">Date of birth</label>
+                <div class="row-of-select">
+                    <select name="keeper_dob_year">
+                        @for ($year = 1999; $year <= 2024; $year++)
+                            <option {{ $year == old('keeper_dob_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
+                        @endfor
+                    </select>
+                    <select name="keeper_dob_month">
+                        @for ($month = 1; $month <= 12; $month++)
+                            <option {{ $month == old('keeper_dob_month') ? 'selected' : ($month == 1 ? 'selected' : '') }} value="{{ $month }}">
+                                @php
+                                    echo date('F', mktime(0, 0, 0, $month, 1));
+                                @endphp
+                            </option>
+                        @endfor
+                    </select>
+                    <select name="keeper_dob_day">
+                        @for ($day = 1; $day <= 31; $day++)
+                            <option {{ $day == old('keeper_dob_day') ? 'selected' : ($day == 1 ? 'selected' : '') }} value="{{ sprintf("%02d", $day) }}">{{ sprintf("%02d", $day) }}</option>
+                        @endfor
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group-input">
+                <label for="keeper_email">Email</label>
+                <input type="email" name="keeper_email" placeholder="Email Address" value="{{ old('keeper_email') }}" class="input-design @error('keeper_email') is-invalid @enderror" required/>
+                @error('keeper_email')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group-input">
+                <label for="keeper_password">Password</label>
+                <input type="password"  name="keeper_password" placeholder="Enter Password" class="input-design @error('keeper_password') is-invalid @enderror" required/>
+                @error('keeper_password')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group-input">
+                <label for="">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" class="input-design @error('confirm_password') is-invalid @enderror" required/>
+                @error('confirm_password')
+                <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="gender-container">
+                <label class="gender-label">Gender</label>
+                <div class="radio-inputs">
+                    <label class="radio">
+                        <input type="radio" name="keeper_gender" value="female" {{ old('keeper_gender') == 'female' ? 'checked' : '' }}>
+                        <span class="name">Female</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="keeper_gender" value="male" {{ old('keeper_gender') == 'male' ? 'checked' : 'checked' }}>
+                        <span class="name">Male</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="keeper_gender" value="other" {{ old('keeper_gender') == 'other' ? 'checked' : '' }}>
+                        <span class="name">Other</span>
+                    </label>
+                </div>
+            </div>
+
+        </section>
+
+
 
     {{--    ACCOUNT TYPE    --}}
     <section>

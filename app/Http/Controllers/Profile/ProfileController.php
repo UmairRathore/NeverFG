@@ -48,6 +48,13 @@ class ProfileController extends Controller
         return view($this->_viewPath . 'user-profile', $this->data);
     }
 
+    public function Creatememorial($id)
+    {
+//        dd($id);
+        $user_id = $id;
+        return view($this->_viewPath . 'create-memorial',compact('user_id'));
+    }
+
     public function updateUserProfile(Request $request)
     {
 dd($request);
@@ -117,9 +124,47 @@ dd($request);
         }
     }
 
-    public function updateMementoInfoProfile(Request $request, $id)
+    public function updateMementoInfoProfile (Request $request, $id)
     {
-//        return $id;/
+        if ($request->form_identifier == 'basic_info_create') {
+       return $id;
+//            return $request;
+            $dobDay = $request->birth_day;
+            $dobMonth = $request->birth_month;
+            $dobYear = $request->birth_year;
+            $dob = $dobYear . '-' . $dobMonth . '-' . $dobDay;
+
+            $dodDay = $request->death_day;
+            $dodMonth = $request->death_month;
+            $dodYear = $request->death_year;
+
+            $dod = $dodYear . '-' . $dodMonth . '-' . $dodDay;
+
+            $this->data['basicInfoDod'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
+//            return $this->data['basicInfoDod'];
+            $this->data['basicInfoDod']->dod = $dod;
+            $checkInfoDod = $this->data['basicInfoDod']->save();
+            $memorialId = $this->data['basicInfoDod']->memorial_user_id;
+
+            $this->data['basicInfo'] = $this->_model::where('id', $memorialId)->first();
+            $this->data['basicInfo']->first_name = $request->first_name;
+            $this->data['basicInfo']->last_name = $request->last_name;
+            $this->data['basicInfo']->middle_name = $request->middle_name;
+            $this->data['basicInfo']->suffix = $request->suffix;
+            $this->data['basicInfo']->gender = $request->gender;
+            $this->data['basicInfo']->dob = $dob;
+
+            $checkInfo = $this->data['basicInfo']->save();
+
+            if ($checkInfo && $checkInfoDod) {
+                $data = [
+                    'success' => true,
+                    'message' => 'Your Basic info has been updated correctly'
+                ];
+                return response()->json($data);
+            }
+        }
+
         if ($request->form_identifier == 'basic_info') {
 //            return $request;
             $dobDay = $request->birth_day;
@@ -380,7 +425,7 @@ dd($request);
         }
 
         if ($request->form_identifier == 'profile_image_custom') {
-
+dd($request);
             $mementoId = $request->user_id;
 
             $this->data['mementoProfileImage'] = $this->_model::find($mementoId);
