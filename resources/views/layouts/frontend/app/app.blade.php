@@ -71,6 +71,10 @@
         @yield('mementosJS')
 
 
+
+        @yield('footerJS')
+
+
 </body>
 
 </html>
