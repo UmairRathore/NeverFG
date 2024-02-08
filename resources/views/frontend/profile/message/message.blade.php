@@ -1,4 +1,4 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Message')
 @section('content')
 
@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
-                       
+
 
 
                         <div class="container">
