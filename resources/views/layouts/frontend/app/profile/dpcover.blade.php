@@ -76,7 +76,7 @@
                     <div class="navigation-of-logged-in-profile">
                         <div class="single-item">
                             @php
-                            $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
+                                $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
                             @endphp
                             <a href="{{route('edit.memorial.profile',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
@@ -136,9 +136,9 @@
                         </div>
                     </div>
                     <div class="btn-wrapper">
-                        <button class="black-background-btn">
-                            + Create a Memorial
-                        </button>
+
+                        <button onclick="window.location='{{ route('Creatememorial') }}'" class="black-background-btn">Create Memorial</button>
+
                     </div>
                 </div>
             </div>

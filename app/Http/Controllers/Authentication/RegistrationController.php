@@ -220,11 +220,11 @@ class RegistrationController extends Controller
                     if ($checkmemorialkeeper) {
                         $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
                         if ($request->selectedCard == 'Plus') {
-                            $this->data['keeperAccountType']->account_type_id = 1;
+                            $this->data['keeperAccountType']->account_type_id = 2;
 
                         } else {
 
-                            $this->data['keeperAccountType']->account_type_id = 2;
+                            $this->data['keeperAccountType']->account_type_id = 1;
                         }
                         $check = $this->data['keeperAccountType']->update();
 

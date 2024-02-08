@@ -1,5 +1,4 @@
-<div class="main-header-funeralist-wrapper">
-    <div class="main-header-funeralist" id="header">
+<div class="main-header-funeralist" id="header">
         <div class="main-header-funeralist-left-items">
             <!-- <img
                 src="./funeralist_white_logo.png"
@@ -17,49 +16,66 @@
                     <li><a href="{{route('faqs')}}">Faq </a></li>
                     <li><a href="{{route('features')}}">Features</a></li>
                     @if(!auth()->check())
-                    <li><a href="{{route('login')}}">Login</a></li>
-                    <li><a href="{{route('usersignup')}}">Signup</a></li>
-                        @endif
+                        <li><a href="{{route('login')}}">Login</a></li>
+                        <li><a href="{{route('usersignup')}}">Signup</a></li>
+                    @endif
                 </ul>
             </div>
-            <div class="funeralist-header-search-box" id="search-box-div">
-                <svg width="22px" viewBox="0 0 24 24">
-                    <circle cx="9.54" cy="9.51" r="9.08" fill="none" stroke="currentColor" stroke-miterlimit="10"
-                            stroke-width="1.4px"></circle>
-                    <path d="m17.87 17.83 5.88 5.89" fill="none" stroke="currentColor" stroke-miterlimit="10"
-                          stroke-width="1.4px"></path>
-                </svg>
-            </div>
+{{--            <div class="funeralist-header-search-box" id="search-box-div">--}}
+{{--                <svg width="22px" viewBox="0 0 24 24">--}}
+{{--                    <circle cx="9.54" cy="9.51" r="9.08" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
+{{--                            stroke-width="1.4px"></circle>--}}
+{{--                    <path d="m17.87 17.83 5.88 5.89" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
+{{--                          stroke-width="1.4px"></path>--}}
+{{--                </svg>--}}
+{{--            </div>--}}
             <!-- User Profile -->
             @if(auth()->check())
                 <?php
                 $user= \App\Models\User::where('id',auth()->user()->id)->first();
-//                dd($user);
-                $checkMemorial = \App\Models\UserMemorial::select('users.*','users.id as user_id'.'user_memorials.*')
+                //                dd($user);
+                $checkMemorial = \App\Models\UserMemorial::select('users.first_name as first_name ',
+                    'users.last_name as last_name','users.id as user_id','user_memorials.memorial_user_id as id')
                     ->where('keeper_id',$user->id)
-                    ->join('users','users.id','=','user_memorials.keeper_id')
-                ->get();
-//                dd($checkMemorial);
+                    ->join('users','users.id','=','user_memorials.memorial_user_id')
+                    ->get();
                 ?>
 
-            <div class="funeralist-header-user-box" id="user-icon-div">
-                <svg style="width: 22px" id="user-img-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="6.47" r="5.92" fill="none" stroke="currentColor" stroke-miterlimit="10"
-                            stroke-width="1.4px"></circle>
-                    <path d="M.43 23.86c0-4.19 2.17-7.62 7.15-7.62h8.84c5 0 7.15 3.43 7.15 7.62" fill="none"
-                          stroke="currentColor" stroke-miterlimit="10" stroke-width="1.4px"></path>
-                </svg>
-                <div class="user-dropdown-of-funeralist" id="user-options">
-                    <ul class="user-unorderedlist-dropdown">
-                        <li><a href="{{route('edit.user.profile',$user->id)}}">{{$user->first_name.' '.$user->last_name}}</a></li>
+                <div class="funeralist-header-user-box" id="user-icon-div">
+                    <svg style="width: 22px" id="user-img-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="6.47" r="5.92" fill="none" stroke="currentColor" stroke-miterlimit="10"
+                                stroke-width="1.4px"></circle>
+                        <path d="M.43 23.86c0-4.19 2.17-7.62 7.15-7.62h8.84c5 0 7.15 3.43 7.15 7.62" fill="none"
+                              stroke="currentColor" stroke-miterlimit="10" stroke-width="1.4px"></path>
+                    </svg>
+                    <div class="user-dropdown-of-funeralist" id="user-options">
+                        <ul class="user-unorderedlist-dropdown">
+                            <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Profile</h3>
+                            <li><a href="{{route('edit.user.profile',$user->id)}}">{{$user->first_name.' '.$user->last_name}}</a></li>
 
-                        @foreach($checkMemorial  as $memorial)
-                        <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
-                        @endforeach
-                    </ul>
+                            @foreach($checkMemorial  as $memorial)
+                                @if ($loop->first)
+                                    <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Memorial</h3>
+                                @endif
+                                <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
+                            @endforeach
+                            <li class="dropdown-menu-footer">
+
+                                <a role="button"  class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+
+                    </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-                @endif
+            @endif
         </div>
     </div>
     <div class="small-and-medium-size-navigation-menu" id="sidebar-menu">
@@ -130,4 +146,4 @@
             </svg>
         </div>
     </div>
-</div>
+

@@ -1,4 +1,4 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Memorial Profile')
 @section('content')
 
@@ -877,7 +877,7 @@
     </div>
 
 @endsection
-@section('memorial-profile')
+@section('memorialProfileJS')
     <script>
         //Tabs
         //initially when it loads only info will shown and all other will hide

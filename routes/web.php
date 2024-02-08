@@ -34,54 +34,45 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/',[HomeController::class,'index'])->name('index');
-Route::get('/faqs',[HomeController::class,'faqs'])->name('faqs');
-Route::get('/features',[HomeController::class,'features'])->name('features');
-Route::get('/virtual-funeral',[HomeController::class,'virtualFuneral'])->name('virtualfuneral');
-Route::get('/for-business',[HomeController::class,'forBusiness'])->name('forbusiness');
-
-
-
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/faqs', [HomeController::class, 'faqs'])->name('faqs');
+Route::get('/features', [HomeController::class, 'features'])->name('features');
+Route::get('/virtual-funeral', [HomeController::class, 'virtualFuneral'])->name('virtualfuneral');
+Route::get('/for-business', [HomeController::class, 'forBusiness'])->name('forbusiness');
 
 
 //AUTHENTICATION
 
-Route::get('/login',[LoginController::class,'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postLogin'])->name('postlogin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/forgotpassword',[ForgetPasswordController::class,'showForgetPasswordForm'])->name('forgetpassword');
-Route::post('/forgotpassword',[ForgetPasswordController::class,'submitForgetPasswordForm'])->name('submitforgetpassword');
-Route::get('/resetpassword/{token}',[ForgetPasswordController::class,'showResetPasswordForm'])->name('resetpassword');
-Route::post('/resetpassword',[ForgetPasswordController::class,'submitResetPasswordForm'])->name('submitresetpassword');
+Route::get('/forgotpassword', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forgetpassword');
+Route::post('/forgotpassword', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('submitforgetpassword');
+Route::get('/resetpassword/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('resetpassword');
+Route::post('/resetpassword', [ForgetPasswordController::class, 'submitResetPasswordForm'])->name('submitresetpassword');
 
-Route::get('/usersignup',[RegistrationController::class,'userSignup'])->name('usersignup');
+Route::get('/usersignup', [RegistrationController::class, 'userSignup'])->name('usersignup');
 Route::post('/userregistration', [RegistrationController::class, 'userregistration'])->name('userregistration');
 
-Route::get('/memorialsignup',[RegistrationController::class,'memorialSignup'])->name('memorialsignup');
-Route::post('/memorialregistration',[RegistrationController::class,'memorialregistration'])->name('memorialregistration');
+Route::get('/memorialsignup', [RegistrationController::class, 'memorialSignup'])->name('memorialsignup');
+Route::post('/memorialregistration', [RegistrationController::class, 'memorialregistration'])->name('memorialregistration');
 
 
-Route::group(['middleware' => ['auth']] ,function () {
+Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/Creatememorial',[ProfileController::class,'Creatememorial'])->name('Creatememorial');
-
-
-
-
-
-
+    Route::get('/Creatememorial', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
 
 
     //DASHBOARD
-    Route::get('/dashboard',[DashboardController::class,'index'])->name('backend.index');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.index');
 
 
-    Route::get('/edit-admin/{id}',[AdminController::class,'edit'])->name('backend.edit-admin');
-    Route::put('/update-admin/{id}',[AdminController::class,'update'])->name('backend.update-admin');
+    Route::get('/edit-admin/{id}', [AdminController::class, 'edit'])->name('backend.edit-admin');
+    Route::put('/update-admin/{id}', [AdminController::class, 'update'])->name('backend.update-admin');
 
 
-//<----------CRUD User
+    //<----------CRUD User
 
     Route::group(['prefix' => 'user'], function () {
 
@@ -94,7 +85,7 @@ Route::group(['middleware' => ['auth']] ,function () {
         Route::post('/status-user/{id}', [UserController::class, 'changeStatus'])->name('status-user');
 
     });
-//User
+    //User
 
     //<----------CRUD User
 
@@ -108,9 +99,9 @@ Route::group(['middleware' => ['auth']] ,function () {
         Route::get('/delete-relation/{id}', [RelationsController::class, 'destroy'])->name('backend.delete-relation');
 
     });
-//User
+    //User
 
-//<----------CRUD ROLE
+    //<----------CRUD ROLE
 
     Route::group(['prefix' => 'role'], function () {
 
@@ -122,11 +113,10 @@ Route::group(['middleware' => ['auth']] ,function () {
         Route::get('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
 
     });
-//Role
+    //Role
 
 
-
-//<----------CRUD Faq
+    //<----------CRUD Faq
 
     Route::group(['prefix' => 'faq'], function () {
 
@@ -136,53 +126,53 @@ Route::group(['middleware' => ['auth']] ,function () {
         Route::post('/storeQuestionAnswer', [FaqController::class, 'storeQuestionAnswer'])->name('backend.topic-storeQuestionAnswer');
         Route::get('/edit-faq/{id}', [FaqController::class, 'edit'])->name('backend.edit-faq');
         Route::put('/update-faq/{id}', [FaqController::class, 'update'])->name('backend.update-faq');
-//        Route::put('/updateTopic/{id}', [FaqController::class, 'updateTopic'])->name('backend.updateTopic');
-//        Route::put('/updateQuestionAnswer/{id}', [FaqController::class, 'updateQuestionAnswer'])->name('backend.topic-updateQuestionAnswer');
+        //        Route::put('/updateTopic/{id}', [FaqController::class, 'updateTopic'])->name('backend.updateTopic');
+        //        Route::put('/updateQuestionAnswer/{id}', [FaqController::class, 'updateQuestionAnswer'])->name('backend.topic-updateQuestionAnswer');
         Route::get('/delete-faq/{id}', [FaqController::class, 'destroy'])->name('backend.delete-faq');
 
     });
-//Faq
+    //Faq
 
 
-//<----------CRUD Package
+    //<----------CRUD Package
 
-Route::group(['prefix' => 'package'], function () {
+    Route::group(['prefix' => 'package'], function () {
 
-    Route::get('/list-package', [PackageController::class, 'index'])->name('backend.package-list');
-    Route::get('/add-package', [PackageController::class, 'create']);
-    Route::post('/add-package', [PackageController::class, 'store'])->name('backend.add-package');
-    Route::get('/delete-package/{id}', [PackageController::class, 'destroy'])->name('backend.delete-package');
-    Route::post('/status-package/{id}', [PackageController::class, 'changeStatus'])->name('backend.status-package');
+        Route::get('/list-package', [PackageController::class, 'index'])->name('backend.package-list');
+        Route::get('/add-package', [PackageController::class, 'create']);
+        Route::post('/add-package', [PackageController::class, 'store'])->name('backend.add-package');
+        Route::get('/delete-package/{id}', [PackageController::class, 'destroy'])->name('backend.delete-package');
+        Route::post('/status-package/{id}', [PackageController::class, 'changeStatus'])->name('backend.status-package');
 
-});
-//Package
+    });
+    //Package
 
-//<----------CRUD Feature
+    //<----------CRUD Feature
 
-Route::group(['prefix' => 'feature'], function () {
+    Route::group(['prefix' => 'feature'], function () {
 
-    Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
-    Route::get('/add-feature', [FuneralServiceController::class, 'create']);
-    Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
-    Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
-    Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
+        Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
+        Route::get('/add-feature', [FuneralServiceController::class, 'create']);
+        Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
+        Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
+        Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
 
-});
-//Feature
+    });
+    //Feature
 
     //<----------CRUD Library
 
-Route::group(['prefix' => 'library'], function () {
+    Route::group(['prefix' => 'library'], function () {
 
-    Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
-    Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
-    Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
-    Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
-    Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
-    Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
+        Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
+        Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
+        Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
+        Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
+        Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
+        Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
 
-});
-//Library
+    });
+    //Library
     Route::get('/frontend_index', [IndexController::class, 'index'])->name('frontend_index.index');
     Route::get('/frontend_index/create', [IndexController::class, 'create'])->name('frontend_index.create');
     Route::post('/frontend_index', [IndexController::class, 'store'])->name('frontend_index.store');
@@ -205,39 +195,41 @@ Route::group(['prefix' => 'library'], function () {
     Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
     Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
 
-    Route::get('/user-profile/{id}',[ProfileController::class,'userProfile'])->name('edit.user.profile');
-    Route::put('/update-user-profile/{id}',[ProfileController::class,'updateUserProfile'])->name('update.user.profile');
-
-
-    Route::get('/memorial-profile/{id}',[ProfileController::class,'MementoInfoProfile'])->name('edit.memorial.profile');
-    Route::post('/update-memorial-profile/{id}',[ProfileController::class,'updateMementoInfoProfile']);//AJAX
-    Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class,'getUpdatedProfileImage']);//AJAX
-
-
-    Route::get('/keeper-memorial/{id}',[KeeperController::class,'keeper'])->name('keeper-memorial');
 
 
 
-
-//Route::get('/message',[ProfileController::class,'message'])->name('message');
-//Messaging
+    //Route::get('/message',[ProfileController::class,'message'])->name('message');
+    //Messaging
     Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
-    Route::post('storechat', [MessageController::class, 'store']);  //whenever use ajax don't use name function
+    Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
     Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
 
+
+    Route::group(['prefix' => 'profile'], function () {
+
+
+        Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
+        Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
+
+
+        Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
+        Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
+        Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+
+
+        //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
+        Route::get('/mementos', [ProfileController::class, 'mementos'])->name('mementos');
+        Route::get('/events', [ProfileController::class, 'events'])->name('events');
+        Route::get('/family', [ProfileController::class, 'family'])->name('family');
+
+        Route::get('/keeperplus', [ProfileController::class, 'keeperplus'])->name('keeperplus');
+        Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
+
+        Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    });
 
 
 
 });
-
-//Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-Route::get('/mementos',[ProfileController::class,'mementos'])->name('mementos');
-Route::get('/events',[ProfileController::class,'events'])->name('events');
-Route::get('/family',[ProfileController::class,'family'])->name('family');
-
-Route::get('/keeperplus',[ProfileController::class,'keeperplus'])->name('keeperplus');
-
-Route::get('/profile',[ProfileController::class,'profile'])->name('profile');
-
 
 

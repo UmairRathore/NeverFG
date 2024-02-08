@@ -10,17 +10,27 @@
                     <a href="{{route('forbusiness')}}">For Business</a>
                     <a href="{{route('features')}}">Features</a>
                 </div>
-                <div class="links-col-2">
-                    <a href="">Keeper Plus </a>
-                    <a href="">Contact</a>
-                    <a href="">Community</a>
-                    <a href="">API ACCESS</a>
-                </div>
+
+
+
                 <div class="links-col-3">
                     <a href="{{route('faqs')}}">FAQs</a>
                     <a href="">Privacy</a>
                     <a href="">Terms</a>
-                    <a href="">Career</a>
+{{--                    <div class="links-col-2">--}}
+                        @if(auth()->check())
+                            @if(auth()->user()->account_type_id == 1)
+                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" id="alertLink" target="_blank">Keeper Plus</a>
+                            @elseif(auth()->user()->account_type_id == 2)
+                                <a href="#" id="alertLink" onclick="showAlert('You already have the package.');">Keeper Plus</a>
+                            @endif
+
+{{--                            <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" id="alertLink" target="_blank">Keeper Plus</a>--}}
+                        @endauth
+{{--                    </div>--}}
+
+
+
                 </div>
             </div>
             <div class="section-social-links">
@@ -78,3 +88,11 @@
     </div>
 
 
+@section('footerJS')
+    <script>
+        function showAlert(message) {
+            alert(message);
+        }
+
+    </script>
+    @endsection

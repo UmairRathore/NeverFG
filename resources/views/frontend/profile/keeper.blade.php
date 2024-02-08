@@ -1,7 +1,7 @@
-@extends('layouts.frontend.profilelayout.master')
+@extends('layouts.frontend.app.app')
 @section('title', 'Keeper')
 @section('content')
-    \
+
     <!-- Keeper content -->
     <div class="center-and-margin">
         <!-- Profile secion -->
@@ -39,7 +39,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <button class="del-btn">Create Memorial Profile</button>
+                        <button onclick="window.location='{{ route('Creatememorial') }}'" class="del-btn">Create Memorial Profile</button>
                     </div>
                 </div>
             </div>
@@ -58,28 +58,36 @@
 
             </div>
             <div class="form-of-logged-in-user linear-background-of-form">
-                <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Become a Keeper with Keeper Plus</h1>
-                    <p>This page can have unlimited admins when the account is upgraded to Keeper Plus.</p>
-                    <button class="black-background-btn">Upgrade keeper plus</button>
-                </div>
-                <!-- <div class="form-data-of-profile-page">
-                    <div class="form-group-input">
-                      <label for="">There are no mementos for this profile</label>
-                      <input type="text" class="input-design" />
-                    </div>
+                <div class="form-of-logged-in-user linear-background-of-form">
+                    <div class="header-of-form-profile margin-top">
+                        <h1 class="form-top-main-heading-of-profile">Better Mementos with Keeper Plus</h1>
 
-                  </div> -->
-                <!-- <div class="footer-of-form-content">
-                    <button class="form-btn">Select Public Mementos</button>
-                  </div> -->
+                        @if(auth()->check())
+                            @if(auth()->user()->account_type_id == 1)
+                                <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
+                                    download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
+                                    Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                    phone, tablet or computer.</p>
+                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade Keeper Plus</a>
+                            @elseif(auth()->user()->account_type_id == 2)
+                                <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
+                                    download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
+                                    Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                    phone, tablet or computer.</p>
+                                <button class="black-background-btn">You Already have the Package Keeper Plus</button>
+                            @endif
+                        @endif
+
+                    </div>
+                </div>
+
             </div>
 
 
         </div>
     </div>
 @endsection
-@section('keeper')
+@section('keeperJS')
     <script>
         // Declare all variables
         var theme_i, theme_tabcontent, theme_tablinks;

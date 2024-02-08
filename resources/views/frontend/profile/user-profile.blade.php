@@ -1,5 +1,5 @@
-@extends('layouts.frontend.profilelayout.master')
-@section('title', 'Memorial Profile')
+@extends('layouts.frontend.app.app')
+@section('title', 'User Profile')
 @section('content')
 
     <!-- Edit Profile content -->
