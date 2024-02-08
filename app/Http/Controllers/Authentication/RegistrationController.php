@@ -101,32 +101,22 @@ class RegistrationController extends Controller
     public function memorialregistration(Request $request)
     {
 
-//        $request->validate([
-//
-//            'memorial_first_name' => 'required',
-//            'memorial_last_name' => 'required',
-//            'memorial_passed' => 'required',
-////            'memorial_dod' => $request->input('passed') != Null ? 'required' : '',
-////            'memorial_email' => $request->input('passed') != Null  ? 'required|email|unique:users' : '',
-//            'memorial_dob' => 'required',
-//            'memorial_city_of_birth' => 'required',
-//            'memorial_gender' => 'required',
-//            'memorial_image' => 'required',
-//
-//            'memorial_biography' => 'required',
-//            'memorial_fav_saying' => 'required',
-//            'memorial_resting_place' => 'required',
-//
-//            'keeper_first_name' => 'required',
-//            'keeper_last_name' => 'required',
-//            'keeper_email' => 'required',
-//            'keeper_password' => 'required',
-//            'keeper_dob' => 'required',
-//            'keeper_gender' => 'required',
-//        ], [
-//            'dod.required' => 'Date of Death is required when not null',
-//            'email.required' => 'Email is required when when not null.',
-//        ]);
+        $request->validate([
+            'memorial_first_name' => 'required',
+            'memorial_last_name' => 'required',
+            'memorial_city_of_birth' => 'required',
+            'memorial_gender' => 'required',
+
+            'memorial_biography' => 'required',
+            'memorial_fav_saying' => 'required',
+            'memorial_resting_place' => 'required',
+
+            'keeper_first_name' => 'required',
+            'keeper_last_name' => 'required',
+            'keeper_email' => 'required',
+            'keeper_password' => 'required',
+            'keeper_gender' => 'required',
+        ]);
 
         $memorialDobYear = $request->input('memorial_dob_year');
         $memorialDobMonth = $request->input('memorial_dob_month');
@@ -229,9 +219,16 @@ class RegistrationController extends Controller
                         $check = $this->data['keeperAccountType']->update();
 
                         if ($check) {
-                            $msg = ' Registered successfully, Memorial account as well';
-                            Session::flash('message', $msg);
-                            return redirect('https://buy.stripe.com/test_14k2a63F13IqfcYfYZ');
+                            if ($request->selectedCard == 'Plus') {
+                                $msg = ' Registered successfully, Memorial account as well';
+                                Session::flash('message', $msg);
+                                return redirect('https://buy.stripe.com/test_14k2a63F13IqfcYfYZ');
+                            }
+                            else {
+                                $msg = ' Registered successfully, Memorial account as well';
+                                Session::flash('message', $msg);
+                                return redirect('index');
+                            }
 
                         } else {
 

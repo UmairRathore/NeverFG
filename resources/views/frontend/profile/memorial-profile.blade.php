@@ -1256,6 +1256,8 @@
             $('#profile_image_custom_btn').click(function (e) {
                 e.preventDefault();
 
+                alert('inside profile custom  button');
+
                 var userId = $(this).data('user-id');
                 var identifier = 'profile_image_custom';
 
@@ -1267,6 +1269,7 @@
                 formData.append('form_identifier', identifier);
                 formData.append('is_image_upload', true);
 
+                alert(formData);
                 saveFormData(userId, formData, 'profile_image_custom');
                 return 0;
             });
