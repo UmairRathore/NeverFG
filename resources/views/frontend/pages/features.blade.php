@@ -106,7 +106,7 @@
                     more. <a>Learn more</a>
                 </p>
                     @if(auth()->check())
-                        <button onclick="window.location.href='{{ route('Creatememorial') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
+                        <button onclick="window.location.href='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
 
                     @else
                         <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
@@ -197,7 +197,7 @@
 
         if (firstName !== '' && lastName !== '') {
             @if(auth()->check())
-                window.location.href = '{{ route('Creatememorial') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+                window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
             @else
                 window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
             @endif

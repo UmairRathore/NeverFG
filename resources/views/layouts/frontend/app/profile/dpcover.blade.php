@@ -137,7 +137,7 @@
                     </div>
                     <div class="btn-wrapper">
 
-                        <button onclick="window.location='{{ route('Creatememorial') }}'" class="black-background-btn">Create Memorial</button>
+                        <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>
 
                     </div>
                 </div>

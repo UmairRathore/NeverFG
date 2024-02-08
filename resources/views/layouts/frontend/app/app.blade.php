@@ -71,7 +71,7 @@
         @yield('mementosJS')
 
 
-
+        @yield('CreatememorialJS')
         @yield('footerJS')
 
 

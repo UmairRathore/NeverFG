@@ -391,7 +391,7 @@
 
             if (firstName !== '' && lastName !== '') {
                 @if(auth()->check())
-                    window.location.href = '{{ route('Creatememorial') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+                    window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
                 @else
                     window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
                 @endif

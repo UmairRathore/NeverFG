@@ -11,7 +11,7 @@
             to preserve, celebrate and share a loved one's legacy.
         </h2>
         @if(auth()->check())
-            <button onclick="window.location.href='{{ route('Creatememorial') }}'" class="custom-button">Click here to create a memorial</button>
+            <button onclick="window.location.href='{{ route('Creatememorial',auth()->user()->id) }}'" class="custom-button">Click here to create a memorial</button>
 
         @else
             <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">Click here to create a memorial</button>

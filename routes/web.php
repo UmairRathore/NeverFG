@@ -61,160 +61,22 @@ Route::post('/memorialregistration', [RegistrationController::class, 'memorialre
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('/Creatememorial', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
-
-
-    //DASHBOARD
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.index');
-
-
-    Route::get('/edit-admin/{id}', [AdminController::class, 'edit'])->name('backend.edit-admin');
-    Route::put('/update-admin/{id}', [AdminController::class, 'update'])->name('backend.update-admin');
-
-
-    //<----------CRUD User
-
-    Route::group(['prefix' => 'user'], function () {
-
-        Route::get('/list-user', [UserController::class, 'index'])->name('backend.list-user');
-        Route::get('/add-user', [UserController::class, 'create']);
-        Route::post('/add-user', [UserController::class, 'store'])->name('backend.add-user');
-        Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('backend.edit-user');
-        Route::patch('/update-user/{id}', [UserController::class, 'update'])->name('backend.update-user');
-        Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('backend.delete-user');
-        Route::post('/status-user/{id}', [UserController::class, 'changeStatus'])->name('status-user');
-
-    });
-    //User
-
-    //<----------CRUD User
-
-    Route::group(['prefix' => 'relation'], function () {
-
-        Route::get('/list-relation', [RelationsController::class, 'index'])->name('backend.relation-list');
-        Route::get('/add-relation', [RelationsController::class, 'create']);
-        Route::post('/add-relation', [RelationsController::class, 'store'])->name('backend.store-relation');
-        Route::get('/edit-relation/{id}', [RelationsController::class, 'edit'])->name('backend.edit-relation');
-        Route::put('/update-relation/{id}', [RelationsController::class, 'update'])->name('backend.update-relation');
-        Route::get('/delete-relation/{id}', [RelationsController::class, 'destroy'])->name('backend.delete-relation');
-
-    });
-    //User
-
-    //<----------CRUD ROLE
-
-    Route::group(['prefix' => 'role'], function () {
-
-        Route::get('/list-role', [RoleController::class, 'index'])->name('backend.role-list');
-        Route::get('/add-role', [RoleController::class, 'create']);
-        Route::post('/add-role', [RoleController::class, 'store'])->name('backend.add-role');
-        Route::get('/edit-role/{id}', [RoleController::class, 'edit'])->name('backend.edit-role');
-        Route::patch('/update-role/{id}', [RoleController::class, 'update'])->name('backend.update-role');
-        Route::get('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
-
-    });
-    //Role
-
-
-    //<----------CRUD Faq
-
-    Route::group(['prefix' => 'faq'], function () {
-
-        Route::get('/list-faq', [FaqController::class, 'index'])->name('backend.faq-list');
-        Route::get('/add-faq', [FaqController::class, 'create'])->name('backend.add-faq');
-        Route::post('/storeTopic', [FaqController::class, 'storeTopic'])->name('backend.storeTopic');
-        Route::post('/storeQuestionAnswer', [FaqController::class, 'storeQuestionAnswer'])->name('backend.topic-storeQuestionAnswer');
-        Route::get('/edit-faq/{id}', [FaqController::class, 'edit'])->name('backend.edit-faq');
-        Route::put('/update-faq/{id}', [FaqController::class, 'update'])->name('backend.update-faq');
-        //        Route::put('/updateTopic/{id}', [FaqController::class, 'updateTopic'])->name('backend.updateTopic');
-        //        Route::put('/updateQuestionAnswer/{id}', [FaqController::class, 'updateQuestionAnswer'])->name('backend.topic-updateQuestionAnswer');
-        Route::get('/delete-faq/{id}', [FaqController::class, 'destroy'])->name('backend.delete-faq');
-
-    });
-    //Faq
-
-
-    //<----------CRUD Package
-
-    Route::group(['prefix' => 'package'], function () {
-
-        Route::get('/list-package', [PackageController::class, 'index'])->name('backend.package-list');
-        Route::get('/add-package', [PackageController::class, 'create']);
-        Route::post('/add-package', [PackageController::class, 'store'])->name('backend.add-package');
-        Route::get('/delete-package/{id}', [PackageController::class, 'destroy'])->name('backend.delete-package');
-        Route::post('/status-package/{id}', [PackageController::class, 'changeStatus'])->name('backend.status-package');
-
-    });
-    //Package
-
-    //<----------CRUD Feature
-
-    Route::group(['prefix' => 'feature'], function () {
-
-        Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
-        Route::get('/add-feature', [FuneralServiceController::class, 'create']);
-        Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
-        Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
-        Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
-
-    });
-    //Feature
-
-    //<----------CRUD Library
-
-    Route::group(['prefix' => 'library'], function () {
-
-        Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
-        Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
-        Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
-        Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
-        Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
-        Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
-
-    });
-    //Library
-    Route::get('/frontend_index', [IndexController::class, 'index'])->name('frontend_index.index');
-    Route::get('/frontend_index/create', [IndexController::class, 'create'])->name('frontend_index.create');
-    Route::post('/frontend_index', [IndexController::class, 'store'])->name('frontend_index.store');
-    Route::get('/frontend_index/{id}/edit', [IndexController::class, 'edit'])->name('frontend_index.edit');
-    Route::put('/frontend_index/{id}', [IndexController::class, 'update'])->name('frontend_index.update');
-    Route::get('/frontend_index/{id}', [IndexController::class, 'destroy'])->name('frontend_index.destroy');
-
-
-    Route::get('/frontend_feature', [FeatureController::class, 'index'])->name('frontend_feature.index');
-    Route::get('/frontend_feature/create', [FeatureController::class, 'create'])->name('frontend_feature.create');
-    Route::post('/frontend_feature', [FeatureController::class, 'store'])->name('frontend_feature.store');
-    Route::get('/frontend_feature/{id}/edit', [FeatureController::class, 'edit'])->name('frontend_feature.edit');
-    Route::put('/frontend_feature/{id}', [FeatureController::class, 'update'])->name('frontend_feature.update');
-    Route::get('/frontend_feature/{id}', [FeatureController::class, 'destroy'])->name('frontend_feature.destroy');
-
-    Route::get('/frontend_virtual_funeral', [VirtualFuneralController::class, 'index'])->name('frontend_virtual_funeral.index');
-    Route::get('/frontend_virtual_funeral/create', [VirtualFuneralController::class, 'create'])->name('frontend_virtual_funeral.create');
-    Route::post('/frontend_virtual_funeral', [VirtualFuneralController::class, 'store'])->name('frontend_virtual_funeral.store');
-    Route::get('/frontend_virtual_funeral/{id}/edit', [VirtualFuneralController::class, 'edit'])->name('frontend_virtual_funeral.edit');
-    Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
-    Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
-
-
 
 
     //Route::get('/message',[ProfileController::class,'message'])->name('message');
     //Messaging
-    Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
-    Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
-    Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
 
 
+//profile
     Route::group(['prefix' => 'profile'], function () {
-
-
         Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
         Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
 
+        Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
         Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
         Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
-        Route::get('/get-updated-profile-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+        Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
 
 
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
@@ -226,10 +88,156 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
         Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+
+
+        Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
+        Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
+        Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
     });
+//    profile
+
+//   Dashboard Admin
+    Route::group(['prefix' => 'admin'], function () {
+
+        //DASHBOARD
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.index');
+
+        Route::get('/edit-admin/{id}', [AdminController::class, 'edit'])->name('backend.edit-admin');
+        Route::put('/update-admin/{id}', [AdminController::class, 'update'])->name('backend.update-admin');
 
 
+        //<----------CRUD User
+        Route::group(['prefix' => 'user'], function () {
 
-});
+            Route::get('/list-user', [UserController::class, 'index'])->name('backend.list-user');
+            Route::get('/add-user', [UserController::class, 'create']);
+            Route::post('/add-user', [UserController::class, 'store'])->name('backend.add-user');
+            Route::get('/edit-user/{id}', [UserController::class, 'edit'])->name('backend.edit-user');
+            Route::patch('/update-user/{id}', [UserController::class, 'update'])->name('backend.update-user');
+            Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('backend.delete-user');
+            Route::post('/status-user/{id}', [UserController::class, 'changeStatus'])->name('status-user');
+
+        });
+        //User
+
+        //<----------CRUD Relation
+        Route::group(['prefix' => 'relation'], function () {
+
+            Route::get('/list-relation', [RelationsController::class, 'index'])->name('backend.relation-list');
+            Route::get('/add-relation', [RelationsController::class, 'create']);
+            Route::post('/add-relation', [RelationsController::class, 'store'])->name('backend.store-relation');
+            Route::get('/edit-relation/{id}', [RelationsController::class, 'edit'])->name('backend.edit-relation');
+            Route::put('/update-relation/{id}', [RelationsController::class, 'update'])->name('backend.update-relation');
+            Route::get('/delete-relation/{id}', [RelationsController::class, 'destroy'])->name('backend.delete-relation');
+
+        });
+        //Relation
+
+        //<----------CRUD ROLE
+        Route::group(['prefix' => 'role'], function () {
+
+            Route::get('/list-role', [RoleController::class, 'index'])->name('backend.role-list');
+            Route::get('/add-role', [RoleController::class, 'create']);
+            Route::post('/add-role', [RoleController::class, 'store'])->name('backend.add-role');
+            Route::get('/edit-role/{id}', [RoleController::class, 'edit'])->name('backend.edit-role');
+            Route::patch('/update-role/{id}', [RoleController::class, 'update'])->name('backend.update-role');
+            Route::get('/delete-role/{id}', [RoleController::class, 'destroy'])->name('backend.delete-role');
+
+        });
+        //Role
+
+
+        //<----------CRUD Faq
+        Route::group(['prefix' => 'faq'], function () {
+
+            Route::get('/list-faq', [FaqController::class, 'index'])->name('backend.faq-list');
+            Route::get('/add-faq', [FaqController::class, 'create'])->name('backend.add-faq');
+            Route::post('/storeTopic', [FaqController::class, 'storeTopic'])->name('backend.storeTopic');
+            Route::post('/storeQuestionAnswer', [FaqController::class, 'storeQuestionAnswer'])->name('backend.topic-storeQuestionAnswer');
+            Route::get('/edit-faq/{id}', [FaqController::class, 'edit'])->name('backend.edit-faq');
+            Route::put('/update-faq/{id}', [FaqController::class, 'update'])->name('backend.update-faq');
+            //        Route::put('/updateTopic/{id}', [FaqController::class, 'updateTopic'])->name('backend.updateTopic');
+            //        Route::put('/updateQuestionAnswer/{id}', [FaqController::class, 'updateQuestionAnswer'])->name('backend.topic-updateQuestionAnswer');
+            Route::get('/delete-faq/{id}', [FaqController::class, 'destroy'])->name('backend.delete-faq');
+
+        });
+        //Faq
+
+
+        //<----------CRUD Package
+        Route::group(['prefix' => 'package'], function () {
+
+            Route::get('/list-package', [PackageController::class, 'index'])->name('backend.package-list');
+            Route::get('/add-package', [PackageController::class, 'create']);
+            Route::post('/add-package', [PackageController::class, 'store'])->name('backend.add-package');
+            Route::get('/delete-package/{id}', [PackageController::class, 'destroy'])->name('backend.delete-package');
+            Route::post('/status-package/{id}', [PackageController::class, 'changeStatus'])->name('backend.status-package');
+
+        });
+        //Package
+
+        //<----------CRUD Feature
+        Route::group(['prefix' => 'feature'], function () {
+
+            Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
+            Route::get('/add-feature', [FuneralServiceController::class, 'create']);
+            Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
+            Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
+            Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
+
+        });
+        //Feature
+
+        //<----------CRUD Library
+        Route::group(['prefix' => 'library'], function () {
+
+            Route::get('/list-library', [LibraryPhotosController::class, 'index'])->name('backend.library-list');
+            Route::get('/add-library', [LibraryPhotosController::class, 'create'])->name('backend.add-library');
+            Route::post('/store-library', [LibraryPhotosController::class, 'store'])->name('backend.store-library');
+            Route::get('/edit-library/{id}', [LibraryPhotosController::class, 'edit'])->name('backend.edit-library');
+            Route::put('/update-library/{id}', [LibraryPhotosController::class, 'update'])->name('backend.update-library');
+            Route::get('/delete-library/{id}', [LibraryPhotosController::class, 'destroy'])->name('backend.delete-library');
+
+        });
+        //Library
+
+        //<----------CRUD Frontend_index
+        Route::group(['prefix' => 'frontend_index'], function () {
+
+            Route::get('/frontend_index', [IndexController::class, 'index'])->name('frontend_index.index');
+            Route::get('/frontend_index/create', [IndexController::class, 'create'])->name('frontend_index.create');
+            Route::post('/frontend_index', [IndexController::class, 'store'])->name('frontend_index.store');
+            Route::get('/frontend_index/{id}/edit', [IndexController::class, 'edit'])->name('frontend_index.edit');
+            Route::put('/frontend_index/{id}', [IndexController::class, 'update'])->name('frontend_index.update');
+            Route::get('/frontend_index/{id}', [IndexController::class, 'destroy'])->name('frontend_index.destroy');
+        });
+        //Frontend_index
+
+        //<----------CRUD Frontend_feature
+        Route::group(['prefix' => 'frontend_index'], function () {
+            Route::get('/frontend_feature', [FeatureController::class, 'index'])->name('frontend_feature.index');
+            Route::get('/frontend_feature/create', [FeatureController::class, 'create'])->name('frontend_feature.create');
+            Route::post('/frontend_feature', [FeatureController::class, 'store'])->name('frontend_feature.store');
+            Route::get('/frontend_feature/{id}/edit', [FeatureController::class, 'edit'])->name('frontend_feature.edit');
+            Route::put('/frontend_feature/{id}', [FeatureController::class, 'update'])->name('frontend_feature.update');
+            Route::get('/frontend_feature/{id}', [FeatureController::class, 'destroy'])->name('frontend_feature.destroy');
+        });
+        //Frontend_feature
+
+        //<----------CRUD Frontend_feature
+        Route::group(['prefix' => 'frontend_virtual_funeral'], function () {
+            Route::get('/frontend_virtual_funeral', [VirtualFuneralController::class, 'index'])->name('frontend_virtual_funeral.index');
+            Route::get('/frontend_virtual_funeral/create', [VirtualFuneralController::class, 'create'])->name('frontend_virtual_funeral.create');
+            Route::post('/frontend_virtual_funeral', [VirtualFuneralController::class, 'store'])->name('frontend_virtual_funeral.store');
+            Route::get('/frontend_virtual_funeral/{id}/edit', [VirtualFuneralController::class, 'edit'])->name('frontend_virtual_funeral.edit');
+            Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
+            Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
+
+        });
+        //Frontend_virtual_funeral
+    });
+//   Dashboard Admin
+
+    });
 
 
