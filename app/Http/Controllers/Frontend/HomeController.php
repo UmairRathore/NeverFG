@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FrontendIndex;
 use App\Models\FrontendVirtualFuneral;
 use App\Models\pdf;
+use App\Models\PrivacyTerms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Faq;
@@ -52,6 +53,11 @@ class HomeController extends Controller
     {
         $this->data['faq'] = Faq::all();
         return view($this->_viewPath . 'faq', $this->data);
+    }
+    public function PrivacyTerms()
+    {
+        $this->data['PrivacyTerms'] = PrivacyTerms::first();
+        return view($this->_viewPath . 'privacyAndTerms', $this->data);
     }
 
     public function features()

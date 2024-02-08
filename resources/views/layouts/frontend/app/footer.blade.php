@@ -15,8 +15,7 @@
 
                 <div class="links-col-3">
                     <a href="{{route('faqs')}}">FAQs</a>
-                    <a href="">Privacy</a>
-                    <a href="">Terms</a>
+                    <a href="{{route('privacyTerms')}}">Privacy</a>
 {{--                    <div class="links-col-2">--}}
                         @if(auth()->check())
                             @if(auth()->user()->account_type_id == 1)

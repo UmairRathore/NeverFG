@@ -7,8 +7,8 @@
 <div class="main-header-funeralist-wrapper">
     @include('layouts.frontend.app.navbar')
 </div>
-@if(request()->is('/') || request()->is('features')|| request()->is('faqs') || request()->is('virtual-funeral') || request()->is('for-business') )
-    @if(request()->is('/') || request()->is('features'))
+@if(request()->is('/') || request()->is('Terms-and-Privacy-Policy') || request()->is('features')|| request()->is('faqs') || request()->is('virtual-funeral') || request()->is('for-business') )
+    @if(request()->is('/') || request()->is('Terms-and-Privacy-Policy') || request()->is('features'))
         <div class="hero_section_home">
             @elseif(request()->is('virtual-funeral'))
                 <div class="hero_section_virtual_funeral">
@@ -37,7 +37,7 @@
 
 
                                 @yield('content')
-                                @if(request()->is('/') || request()->is('features')|| request()->is('faqs') || request()->is('virtual-funeral') || request()->is('for-business') )
+                                @if(request()->is('/') || request()->is('Terms-and-Privacy-Policy')|| request()->is('features')|| request()->is('faqs') || request()->is('virtual-funeral') || request()->is('for-business') )
 
                                     @if(request()->is('/') || request()->is('faq') || request()->is('feature'))
                                         <div class="plan-a-tree-section">

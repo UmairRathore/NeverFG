@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminPortal\FaqController;
 use App\Http\Controllers\AdminPortal\FuneralServiceController;
 use App\Http\Controllers\AdminPortal\LibraryPhotosController;
 use App\Http\Controllers\AdminPortal\PackageController;
+use App\Http\Controllers\AdminPortal\PrivacyAndTermsController;
 use App\Http\Controllers\AdminPortal\RelationsController;
 use App\Http\Controllers\Frontend\Cruds\FeatureController;
 use App\Http\Controllers\Frontend\Cruds\IndexController;
@@ -39,6 +40,7 @@ Route::get('/faqs', [HomeController::class, 'faqs'])->name('faqs');
 Route::get('/features', [HomeController::class, 'features'])->name('features');
 Route::get('/virtual-funeral', [HomeController::class, 'virtualFuneral'])->name('virtualfuneral');
 Route::get('/for-business', [HomeController::class, 'forBusiness'])->name('forbusiness');
+Route::get('/Terms-and-Privacy-Policy', [HomeController::class, 'PrivacyTerms'])->name('privacyTerms');
 
 
 //AUTHENTICATION
@@ -163,6 +165,17 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //Faq
 
+        //<----------CRUD Privacyandterms
+        Route::group(['prefix' => 'privacyandterms'], function () {
+            Route::get('/list-privacyandterms', [PrivacyAndTermsController::class, 'index'])->name('backend.privacyandterms-list');
+            Route::get('/add-privacyandterms', [PrivacyAndTermsController::class, 'create'])->name('backend.add-privacyandterms');
+            Route::get('/store-privacyandterms', [PrivacyAndTermsController::class, 'store'])->name('backend.store-privacyandterms');
+            Route::get('/edit-privacyandterms/{id}', [PrivacyAndTermsController::class, 'edit'])->name('backend.edit-privacyandterms');
+            Route::put('/update-privacyandterms/{id}', [PrivacyAndTermsController::class, 'update'])->name('backend.update-privacyandterms');
+            Route::get('/delete-privacyandterms/{id}', [PrivacyAndTermsController::class, 'destroy'])->name('backend.delete-privacyandterms');
+        });
+        //Privacyandterms
+
 
         //<----------CRUD Package
         Route::group(['prefix' => 'package'], function () {
@@ -214,7 +227,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Frontend_index
 
         //<----------CRUD Frontend_feature
-        Route::group(['prefix' => 'frontend_index'], function () {
+        Route::group(['prefix' => 'frontend_feature'], function () {
             Route::get('/frontend_feature', [FeatureController::class, 'index'])->name('frontend_feature.index');
             Route::get('/frontend_feature/create', [FeatureController::class, 'create'])->name('frontend_feature.create');
             Route::post('/frontend_feature', [FeatureController::class, 'store'])->name('frontend_feature.store');
