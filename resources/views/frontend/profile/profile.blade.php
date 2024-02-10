@@ -13,9 +13,9 @@
                         <div class="profile-header-without-logged-in ">
                             <div class="profile-header-without-logged-in-image-wrapper">
                                 @if($memorial->profile_image)
-                                <img src="{{asset($memorial->profile_image)}}" alt="" class="profile-without-logged-in-image">
+                                    <img src="{{asset($memorial->profile_image)}}" alt="" class="profile-without-logged-in-image">
                                 @else
-                                <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
                                 @endif
                             </div>
                             <h1>{{$memorial->first_name.' '.$memorial->last_name}}</h1>
@@ -229,15 +229,12 @@
                                 </div>
 
 
-
                             </div>
 
 
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div class="momentos-section">
                 <div class="insider">
@@ -265,34 +262,34 @@
     </div>
     <!-- Comment  -->
     <?php
-    $Comments =\App\Models\Comment::where('receiver_id',$memorial->memorialID)
-        ->join('users','users.id','=','comments.sender_id')->get();
+    $Comments = \App\Models\Comment::where('receiver_id', $memorial->memorialID)
+        ->join('users', 'users.id', '=', 'comments.sender_id')->get();
     ?>
+        @foreach($Comments as $comment)
     <div class="margin-all">
-                    @foreach($Comments as $comment)
-        <div class="comments-and-replies">
-            <div class="comment-wrapper" id="commentWrapper">
-                <div class="two-cols-of-comment-and-replies">
-                    <div class="two-cols-of-comment-and-replies-left">
-                        <div class="img-wrapper-of-comment">
-                            @if($comment->profile_image)
-                                <img src="{{asset($comment->profile_image)}}" alt="" class="comment-img">
-                            @else
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
+            <div class="comments-and-replies">
+                <div class="comment-wrapper" id="commentWrapper">
+                    <div class="two-cols-of-comment-and-replies">
+                        <div class="two-cols-of-comment-and-replies-left">
+                            <div class="img-wrapper-of-comment">
+                                @if($comment->profile_image)
+                                    <img src="{{asset($comment->profile_image)}}" alt="" class="comment-img">
+                                @else
+                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
                                 @endif
+                            </div>
+                        </div>
+                        <div class="two-cols-of-comment-and-replies-right">
+                            <p class="c-r-user-name">{{$comment->first_name.' '.$comment->last_name}} published a tribute <span class="time-of-comment">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                            </span></p>
+                            <p class="c-r-comment-data">{{$comment->content}}</p>
                         </div>
                     </div>
-                    <div class="two-cols-of-comment-and-replies-right">
-                        <p class="c-r-user-name">{{$comment->first_name.' '.$comment->last_name}} published a tribute <span class="time-of-comment">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
-                            </span></p>
-                        <p class="c-r-comment-data">{{$comment->content}}</p>
-                    </div>
                 </div>
-            </div>
 
-        </div>
-                    @endforeach
+            </div>
     </div>
+        @endforeach
     <!-- Comment -->
     <div class="margin-all">
         <div class="chat-section">
@@ -302,14 +299,14 @@
                     <div class="chat-left-section">
                         <div class="chat-usr-img-wrapper">
                             <?php
-                           $user =  \App\Models\User::where('id',auth()->user()->id)->first();
+                            $user = \App\Models\User::where('id', auth()->user()->id)->first();
                             ?>
-                           @if($user->profile_image)
-                            <img src="{{asset($user->profile_image)}}" alt="" class="chat-usr-photo">
+                            @if($user->profile_image)
+                                <img src="{{asset($user->profile_image)}}" alt="" class="chat-usr-photo">
                             @else
                                 <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
 
-                        @endif</div>
+                            @endif</div>
                     </div>
 
                     <div class="chat-right-section">
@@ -330,8 +327,8 @@
 
 @section('profileJS')
     <script>
-        $(document).ready(function() {
-            $('#postCommentBtn').click(function() {
+        $(document).ready(function () {
+            $('#postCommentBtn').click(function () {
                 // Get the input values
                 var content = $('#commentContent').val();
                 var senderId = $('#senderId').val();
@@ -351,7 +348,7 @@
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
-                    success: function(response) {
+                    success: function (response) {
                         // Handle success response
                         console.log(response);
                         // Clear textarea after successful post
@@ -359,7 +356,7 @@
                         // Refresh the comment section
                         refreshCommentSection();
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         // Handle error response
                         console.error(xhr.responseText);
                     }

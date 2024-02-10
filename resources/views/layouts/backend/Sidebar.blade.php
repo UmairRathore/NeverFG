@@ -58,7 +58,7 @@
                 <li> <a href="{{route('frontend_index.index')}}">Index</a> </li>
                 <li> <a href="{{route('backend.faq-list')}}">FAQ</a> </li>
                 <li> <a href="{{route('frontend_feature.index')}}">Feature</a> </li>
-                <li> <a href="{{route('frontend_feature.index')}}">Virtual Funerals</a> </li>
+                <li> <a href="{{route('frontend_virtual_funeral.index')}}">Virtual Funerals</a> </li>
                 <li> <a href="{{route('backend.privacyandterms-list')}}">Privacy & terms</a> </li>
                 <li> <a href="{{route('backend.pdf-list')}}">PDF</a> </li>
             </ul>

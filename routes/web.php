@@ -69,8 +69,22 @@ Route::group(['middleware' => ['auth']], function () {
 //    AJAX
     Route::post('/store-memento', [ProfileController::class, 'storeMemento'])->name('store-memento'); //AJAX
     Route::post('/post-comment', [ProfileController::class, 'comment'])->name('post.comment'); //
+    Route::post('/post-family', [ProfileController::class, 'createFamily'])->name('post.family'); //
 
-//    AJAX
+    Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
+
+    Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
+
+    Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
+    Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+
+    Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
+    Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
+
+
+    Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
+
+    //    AJAX
 
     //Route::get('/message',[ProfileController::class,'message'])->name('message');
     //Messaging
@@ -79,30 +93,26 @@ Route::group(['middleware' => ['auth']], function () {
 //profile
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
-        Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
 
         Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
-        Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
-        Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
-        Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
+
 
 
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
         Route::get('/mementos/{id}', [ProfileController::class, 'mementos'])->name('mementos');
 
         Route::get('/events', [ProfileController::class, 'events'])->name('events');
-        Route::get('/family', [ProfileController::class, 'family'])->name('family');
+
+        Route::get('/family/{id}', [ProfileController::class, 'family'])->name('family');
 
         Route::get('/keeperplus', [ProfileController::class, 'keeperplus'])->name('keeperplus');
-        Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
         Route::get('/memorial-user-profile/{id}', [ProfileController::class, 'profile'])->name('profile');
 
 
         Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
-        Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
-        Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
+
     });
 //    profile
 
