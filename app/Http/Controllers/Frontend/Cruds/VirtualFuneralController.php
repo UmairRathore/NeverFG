@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Cruds;
 use App\Http\Controllers\Controller;
 use App\Models\FrontendFeature;
 use App\Models\FrontendVirtualFuneral;
+use App\Models\pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -17,6 +18,7 @@ class VirtualFuneralController extends Controller
     public function __construct()
     {
         $this->_model = new FrontendVirtualFuneral();
+        $this->_pdf_model = new pdf();
         $this->setDefaultData();
     }
 
@@ -121,4 +123,107 @@ class VirtualFuneralController extends Controller
 
         return null;
     }
+
+
+
+    public function indexPdf()
+    {
+        $this->data['pdf'] = $this->_pdf_model::all();
+        return view( 'backend.pdf.list-pdf', $this->data);
+    }
+
+
+    public function createPdf()
+    {
+        return view( 'backend.pdf.create-pdf');
+    }
+
+    public function storePdf(Request $request)
+    {
+dd($request);
+        $request->validate([
+            'information_pdf' => 'required',
+        ]);
+
+        $pdf = $this->pdfhandleFileUpload($request->information_pdf, 'information_pdf', 'documents');
+
+        // Create new record with uploaded file path
+        $data = [
+            'information_pdf' => $pdf,
+        ];
+        $pdfSAVE = new pdf() ;
+        $pdfSAVE->information_pdf = $data['information_pdf'];
+        $pdfSAVE->save();
+        return redirect()->back()->with('success', 'Item created successfully.');
+    }
+
+    public function editPdf($id)
+    {
+        $this->data['pdf'] = $this->_pdf_model::findOrFail($id);
+        return view( 'backend.pdf.edit-pdf', $this->data);
+    }
+
+    public function updatePdf(Request $request, $id)
+    {
+        $request->validate([
+            'information_pdf' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $pdf = $this->_pdf_model::findOrFail($id);
+        $data = $request->all();
+
+        if ($request->hasFile('information_pdf')) {
+
+            $this->pdfdeleteFiles($pdf->information_pdf);
+
+            $data['pdf'] = $this->pdfhandleFileUpload($request, 'information_pdf', 'frontend_pdf');
+        }
+
+        $pdf->update($data);
+
+        return redirect()->back()
+            ->with('success', 'Item updated successfully.');
+    }
+
+
+    public function destroyPdf($id)
+    {
+        $pdf = $this->_pdf_model::findOrFail($id);
+        $this->pdfdeleteFiles($pdf->information_pdf);
+        $pdf->delete();
+
+        return redirect()->back()
+            ->with('success', 'Item deleted successfully.');
+    }
+
+    private function pdfdeleteFiles($filePath)
+    {
+        if ($filePath) {
+            $fullPath = public_path($filePath);
+            if (File::exists($fullPath)) {
+                File::delete($fullPath);
+            }
+        }
+    }
+
+    private function pdfhandleFileUpload($request, $fieldName,$folderName)
+    {
+        if ($request->hasFile($fieldName)) {
+            $image = $request->file($fieldName);
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $directory = public_path('assets/'.$folderName.'/');
+
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+            dd($directory);
+
+            $image->move($directory, $imageName);
+
+            return 'assets/'.$folderName.'/'. $imageName;
+        }
+
+        return null;
+    }
+
 }
