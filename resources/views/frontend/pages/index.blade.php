@@ -63,7 +63,7 @@
                             personalized and heartfelt celebration of life for your loved one.
                         </p>
                         <div class="row bottom-section">
-                            <button class="black-background-btn">Learn more</button>
+                            <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn">Learn more</button>
                             <button class="white-background-btn" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" class="custom-button">
 
                                 Book free consultation
@@ -162,8 +162,13 @@
                 @endforeach
 
             </div>
+            @if(auth()->check())
+            <button onclick="window.location.href='{{ route('profile',auth()->user()->id) }}'" class="black-background-btn half-width">View Sample Memorial</button>
+
+            @else
             <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
 
+            @endif
         </div>
         <div class="share-memorial-section">
             <div class="share-memorial-insider">
@@ -178,7 +183,7 @@
                     <div class="row">
                         <button onclick="redirectToCorrectPage()" class="black-background-btn full-width">Get Started</button>
                     </div>
-                    <p><a href="#">Learn more</a> about our memorial website</p>
+                    <p><a href="{{route('privacyTerms')}}">Learn more</a> about our memorial website</p>
                 </div>
             </div>
         </div>
@@ -186,7 +191,7 @@
         <div class="are-you-funeral-service-provider-section">
             <div class="service-provider-insider">
                 <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
-                <button class="custom-button">
+                <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="custom-button">
                     Learn more about keeper partnership
                 </button>
             </div>

@@ -19,7 +19,7 @@
                         <p>Corporation</p>
                     </div>
                     <div class="row bottom-section">
-                        <button class="black-background-btn full-width">
+                        <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn full-width">
                             Learn more about keeper enterprise solutions
                         </button>
                     </div>
@@ -38,7 +38,7 @@
                         <p>Event Coordinator</p>
                     </div>
                     <div class="row bottom-section">
-                        <button class="black-background-btn full-width">
+                        <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn full-width">
                             Learn more about keeper enterprise solutions
                         </button>
                     </div>

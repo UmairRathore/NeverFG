@@ -393,7 +393,7 @@
                         <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
                             View unlimited images in a gallery, download local copies of images,
                             create a full family tree, create unlimited memorial pages, and
-                            more. <a>Learn more</a>
+                            more. <a href="{{route('privacyTerms')}}">Learn more</a>
                         </p>
                         <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Plus')">
                             Create Memorial

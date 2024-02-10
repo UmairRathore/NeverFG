@@ -60,6 +60,8 @@ Route::post('/userregistration', [RegistrationController::class, 'userregistrati
 Route::get('/memorialsignup', [RegistrationController::class, 'memorialSignup'])->name('memorialsignup');
 Route::post('/memorialregistration', [RegistrationController::class, 'memorialregistration'])->name('memorialregistration');
 
+Route::get('/sampleProfile', [ProfileController::class, 'sampleProfile'])->name('sampleProfile');
+
 
 Route::group(['middleware' => ['auth']], function () {
 

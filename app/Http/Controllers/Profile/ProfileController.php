@@ -52,12 +52,12 @@ class ProfileController extends Controller
     {
 //        dd($id);
         $user_id = $id;
-        return view($this->_viewPath . 'create-memorial',compact('user_id'));
+        return view($this->_viewPath . 'create-memorial', compact('user_id'));
     }
 
     public function updateUserProfile(Request $request)
     {
-dd($request);
+        dd($request);
         $this->data['user'] = User::find($id);
         $this->data['user']->first_name = $request->first_name;
         $this->data['user']->middle_name = $request->middle_name;
@@ -124,10 +124,10 @@ dd($request);
         }
     }
 
-    public function updateMementoInfoProfile (Request $request, $id)
+    public function updateMementoInfoProfile(Request $request, $id)
     {
         if ($request->form_identifier == 'basic_info_create') {
-       return $id;
+            return $id;
 //            return $request;
             $dobDay = $request->birth_day;
             $dobMonth = $request->birth_month;
@@ -425,7 +425,7 @@ dd($request);
         }
 
         if ($request->form_identifier == 'profile_image_custom') {
-dd($request);
+            dd($request);
             $mementoId = $request->user_id;
 
             $this->data['mementoProfileImage'] = $this->_model::find($mementoId);
@@ -618,10 +618,6 @@ dd($request);
 
     }
 
-    public function events()
-    {
-        return view($this->_viewPath . 'events');
-    }
 
     public function family()
     {
@@ -640,8 +636,29 @@ dd($request);
     }
 
 
-    public function profile()
+    public function sampleProfile()
     {
-        return view($this->_viewPath . 'profile');
+
+            return view($this->_viewPath . 'sampleProfile');
+
     }
+    public function profile($id)
+    {
+            return view($this->_viewPath . 'profile');
+
+    }
+
+    public function comment($request)
+    {
+        if ($request->store) {
+
+        }
+
+        if ($request->delete) {
+
+        }
+
+    }
+
+
 }
