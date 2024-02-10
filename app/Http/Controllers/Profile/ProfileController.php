@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\LibraryPhoto;
+use App\Models\Memento;
 use App\Models\User;
 use App\Models\UserAcademic;
 use App\Models\UserCity;
@@ -630,10 +632,60 @@ class ProfileController extends Controller
         return view($this->_viewPath . 'keeper-plus');
     }
 
-    public function mementos()
+    public function mementos($id)
     {
-        return view($this->_viewPath . 'mementos');
+        $mementos= Memento::where('memorial_user_id',$id)->get();
+        return view($this->_viewPath . 'mementos',compact('id','mementos'));
     }
+
+    public function storeMemento(Request $request)
+    {
+        dd($request);
+        $request->validate([
+            'memento_image' => 'required'
+        ]);
+
+        $mementoId = $request->input('userID');
+
+        $memento = new Memento();
+
+        $imagePath = $this->handleFileUpload($request, 'memento_image', 'mementos');
+
+        $memento->memento_image = $imagePath;
+        $memento->memorial_user_id = $mementoId;
+
+        $memento->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Memento image updated successfully',
+            'image_url' => asset($imagePath)
+        ]);
+    }
+
+    private function handleFileUpload($request, $fieldName,$folderName)
+    {
+
+        if ($request->hasFile($fieldName)) {
+            $image = $request->file($fieldName);
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $directory = public_path('assets/images/'.$folderName.'/');
+
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+
+            $image->move($directory, $imageName);
+
+            return 'assets/images/'.$folderName.'/'. $imageName;
+        }
+
+        return null;
+    }
+
+
+
 
 
     public function sampleProfile()
@@ -642,22 +694,93 @@ class ProfileController extends Controller
             return view($this->_viewPath . 'sampleProfile');
 
     }
+
+
+
     public function profile($id)
+
     {
-            return view($this->_viewPath . 'profile');
+
+        $this->data['memorial'] = $this->_memorial_model::select(
+            'user_memorials.memorial_user_id as memorialID',
+            'users.id as user_id',
+            'users.*',
+            'user_memorials.*',
+
+            'user_occupations.*',
+            'user_occupations.id as occupation_id',
+            'user_occupations.memorial_user_id as occupation_memorial_id',
+
+            'user_milestones.*',
+            'user_milestones.id as milestone_id',
+            'user_milestones.memorial_user_id as milestone_memorial_id',
+
+            'user_interests.*',
+            'user_interests.id as interest_id',
+            'user_interests.memorial_user_id as interest_memorial_id',
+
+            'user_cities.*',
+            'user_cities.id as city_id',
+            'user_cities.memorial_user_id as city_memorial_id',
+
+            'user_academics.*',
+            'user_academics.id as academic_id',
+            'user_academics.memorial_user_id as academic_memorial_id',
+
+        )
+            ->where('user_memorials.keeper_id', auth()->user()->id)
+            ->where('user_memorials.memorial_user_id', $id)
+            ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+            ->join('user_occupations', 'user_occupations.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->join('user_milestones', 'user_milestones.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->join('user_interests', 'user_interests.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->join('user_cities', 'user_cities.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->join('user_academics', 'user_academics.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->join('mementos', 'mementos.memorial_user_id', '=', 'user_memorials.memorial_user_id')
+            ->first();
+//dd($this->data['memorial']->other_city );
+
+        $this->data['mementos'] = Memento::where('memorial_user_id','id')->get();
+//        dd($this->data['memorial']);
+            return view($this->_viewPath . 'profile',$this->data);
 
     }
 
-    public function comment($request)
+    public function comment(Request $request)
     {
-        if ($request->store) {
+        // Validate the request data
+        $request->validate([
+            'content' => 'required|string',
+            'sender_id' => 'required|numeric',
+            'receiver_id' => 'required|numeric',
+        ]);
 
+        // Create a new comment
+        $comment = Comment::create([
+            'content' => $request->input('content'),
+            'sender_id' => $request->input('sender_id'),
+            'receiver_id' => $request->input('receiver_id'),
+        ]);
+
+        // Return a response
+        return response()->json([
+            'success' => true,
+            'message' => 'Comment posted successfully',
+            'comment' => $comment,
+        ]);
+    }
+
+
+
+
+    private function deleteFiles($filePath)
+    {
+        if ($filePath) {
+            $fullPath = public_path($filePath);
+            if (File::exists($fullPath)) {
+                File::delete($fullPath);
+            }
         }
-
-        if ($request->delete) {
-
-        }
-
     }
 
 

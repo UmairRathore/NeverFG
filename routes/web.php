@@ -66,6 +66,11 @@ Route::get('/sampleProfile', [ProfileController::class, 'sampleProfile'])->name(
 Route::group(['middleware' => ['auth']], function () {
 
 
+//    AJAX
+    Route::post('/store-memento', [ProfileController::class, 'storeMemento'])->name('store-memento'); //AJAX
+    Route::post('/post-comment', [ProfileController::class, 'comment'])->name('post.comment'); //
+
+//    AJAX
 
     //Route::get('/message',[ProfileController::class,'message'])->name('message');
     //Messaging
@@ -84,14 +89,15 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
-        Route::get('/mementos', [ProfileController::class, 'mementos'])->name('mementos');
+        Route::get('/mementos/{id}', [ProfileController::class, 'mementos'])->name('mementos');
+
         Route::get('/events', [ProfileController::class, 'events'])->name('events');
         Route::get('/family', [ProfileController::class, 'family'])->name('family');
 
         Route::get('/keeperplus', [ProfileController::class, 'keeperplus'])->name('keeperplus');
         Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
-        Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+        Route::get('/memorial-user-profile/{id}', [ProfileController::class, 'profile'])->name('profile');
 
 
         Route::get('chat', [MessageController::class, 'show'])->name('chat.show');

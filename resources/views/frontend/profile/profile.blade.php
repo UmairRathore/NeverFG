@@ -12,11 +12,14 @@
                     <div class="header-of-form-profile margin-top no-border">
                         <div class="profile-header-without-logged-in ">
                             <div class="profile-header-without-logged-in-image-wrapper">
+                                @if($memorial->profile_image)
+                                <img src="{{asset($memorial->profile_image)}}" alt="" class="profile-without-logged-in-image">
+                                @else
                                 <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
-
+                                @endif
                             </div>
-                            <h1>Ghulam Dastgeer</h1>
-                            <h2>September 12th, 1970 - November 1st, 2013</h2>
+                            <h1>{{$memorial->first_name.' '.$memorial->last_name}}</h1>
+                            <h2>{{ date('F jS, Y', strtotime($memorial->dob)) }} - {{ date('F jS, Y', strtotime($memorial->dod)) }}</h2>
                             <p>Always In Our Thoughts, Forever In Our Hearts.</p>
                         </div>
 
@@ -24,17 +27,8 @@
                     <!-- Biography -->
                     <div class="without-logged-in-form-data-of-profile-page">
                         <h1 class="heading-of-unlogged-profile">Biography</h1>
-                        <p>Linda Hughes was born on September 12, 1970, in the vibrant city of Chicago, Illinois. She was a
-                            kind-hearted soul who
-                            always had a smile on her face and a willingness to help others in need. Her favorite saying,
-                            "It is nice to be
-                            important, but it's more important to be nice," truly embodied the essence of her personality.
-                        </p>
-                        <p>She completed her high school education at Chicago High from 1982 to 1988. In 1992, she welcomed
-                            her loving son Jeffrey
-                            into the world, followed by the birth of her beautiful daughter Sara in 1996. Her love for her
-                            family was boundless, and
-                            her children served as her motivation to excel in her career.</p>
+                        <p>{{ $memorial->biography }}</p>
+
                     </div>
                     <!-- About -->
                     <div class="without-logged-in-form-data-of-profile-page">
@@ -57,40 +51,42 @@
 
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Name</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
+                                    <p class="row-heading">{{$memorial->first_name.' '.$memorial->last_name}}</p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Date of Birth</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
+                                    <p class="row-heading">{{ date('F jS, Y', strtotime($memorial->dob)) }}</p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Date of Death</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
+                                    <p class="row-heading">{{ date('F jS, Y', strtotime($memorial->dob)) }}
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Home Town</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
+                                    <p class="row-heading">{{ $memorial->home_city }}
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading-1">Other City</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
+                                    <p class="row-heading">{{ $memorial->other_city }}
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading-1">Interests</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
+                                    <p class="row-heading">@if ($memorial->interest)
+                                        @php
+                                            $interests = explode(',', $memorial->interest);
+                                            $interestsString = implode(', ', $interests);
+                                        @endphp
+
+                                        <p class="row-heading">{{ $interestsString }}</p>
+
+                                    @endif
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading-1">Favourite Saying</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading-1">In Memoriam Donation</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
+                                    <p class="row-heading">{{ $memorial->fav_saying }}
                                     </p>
                                 </div>
                             </div>
@@ -126,28 +122,10 @@
                             <div class="cols-of-unlogged-in-two-cols-right">
 
                                 <div class="nested-two-cols">
-                                    <p class="row-heading">Funeral Home</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
-                                </div>
-                                <div class="nested-two-cols">
                                     <p class="row-heading">Cemetery</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
+                                    <p class="row-heading">{{ $memorial->resting_place }}</p>
                                 </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Address</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Location</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading-1">Geolocation</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
+
 
                             </div>
 
@@ -237,20 +215,20 @@
                             </div>
 
                             <div class="cols-of-unlogged-in-two-cols-right">
+                                <div class="nested-two-cols">
+                                    <p class="row-heading-1">{{$memorial->year}}</p>
+                                    <p class="row-heading">@if ($memorial->milestone)
+                                        @php
+                                            $milestones = explode(',', $memorial->milestone);
+                                            $milestonesString = implode(', ', $milestones);
+                                        @endphp
 
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">1982 - 1988</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
+                                        <p class="row-heading">{{ $milestonesString }}</p>
+
+                                    @endif
                                 </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">1982 - 1988</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">1982 - 1988</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
+
+
 
                             </div>
 
@@ -267,45 +245,16 @@
                         <h1 class="mem-heading-main">Momentos</h1>
                         <div class="pics-wrapper">
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
-                            </div>
-                            <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                @foreach($mementos as $memento)
+                                    @if($memento->memento_image)
+                                        <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
+                                    @else
+                                        <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
+                                    @endif
+                                @endforeach
+
                             </div>
                         </div>
-                    </div>
-                    <div class="div-centent-center">
-                        <h1>Celebration of Life</h1>
-                        <p>November 10th, 2021 at 1:00pm</p>
-                        <button class="black-background-btn">Event Detail & VSP</button>
-                    </div>
-                    <div class="div-centent-center">
-                        <h1>Linda's Virtual Memorial Service</h1>
-                        <p>December 30th, 2023 at 5:30pm
-                            Funeral Home
-                            Austin</p>
-                        <button class="black-background-btn">Event Detail & VSP</button>
                     </div>
 
                 </div>
@@ -314,63 +263,35 @@
         </div>
 
     </div>
-    <!-- Comment and Replies -->
+    <!-- Comment  -->
+    <?php
+    $Comments =\App\Models\Comment::where('receiver_id',$memorial->memorialID)
+        ->join('users','users.id','=','comments.sender_id')->get();
+    ?>
     <div class="margin-all">
+                    @foreach($Comments as $comment)
         <div class="comments-and-replies">
-            <div class="comment-wrapper">
+            <div class="comment-wrapper" id="commentWrapper">
                 <div class="two-cols-of-comment-and-replies">
                     <div class="two-cols-of-comment-and-replies-left">
                         <div class="img-wrapper-of-comment">
+                            @if($comment->profile_image)
+                                <img src="{{asset($comment->profile_image)}}" alt="" class="comment-img">
+                            @else
                             <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
+                                @endif
                         </div>
                     </div>
                     <div class="two-cols-of-comment-and-replies-right">
-                        <p class="c-r-user-name">username published a tribute <span class="time-of-comment">4 years
-                            ago</span></p>
-                        <p class="c-r-comment-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-                            doloremque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi, fugit impedit
-                            ea dolorem, nihil distinctio dignissimos excepturi, iusto sapiente tenetur quas necessitatibus
-                            accusantium minima voluptate sint fuga placeat ipsum?</p>
+                        <p class="c-r-user-name">{{$comment->first_name.' '.$comment->last_name}} published a tribute <span class="time-of-comment">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                            </span></p>
+                        <p class="c-r-comment-data">{{$comment->content}}</p>
                     </div>
                 </div>
             </div>
-            <div class="reply-wrapper">
-                <div class="two-cols-of-comment-and-replies">
-                    <div class="two-cols-of-comment-and-replies-left">
-                        <div class="img-wrapper-of-comment">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
-                        </div>
-                    </div>
-                    <div class="two-cols-of-comment-and-replies-right">
-                        <p class="c-r-user-name">username published a tribute <span class="time-of-comment">4 years
-                            ago</span></p>
-                        <p class="c-r-comment-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-                            doloremque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi, fugit impedit
-                            ea dolorem, nihil distinctio dignissimos excepturi, iusto sapiente tenetur quas necessitatibus
-                            accusantium minima voluptate sint fuga placeat ipsum?</p>
-                    </div>
-                </div>
-            </div>
+
         </div>
-        <div class="chat-section">
-
-            <div class="chat-wrapper">
-                <div class="two-cols-of-chat-wrapper">
-                    <div class="chat-left-section">
-                        <div class="chat-usr-img-wrapper">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
-                        </div>
-                    </div>
-
-                    <div class="chat-right-section">
-                    <textarea class="txt-area-design" name="" id="" cols="50" rows="8"
-                              placeholder="Write your comment here" class="input-design"></textarea>
-                        <button class="black-background-btn btn-width">Post comment</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+                    @endforeach
     </div>
     <!-- Comment -->
     <div class="margin-all">
@@ -380,15 +301,25 @@
                 <div class="two-cols-of-chat-wrapper">
                     <div class="chat-left-section">
                         <div class="chat-usr-img-wrapper">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
-                        </div>
+                            <?php
+                           $user =  \App\Models\User::where('id',auth()->user()->id)->first();
+                            ?>
+                           @if($user->profile_image)
+                            <img src="{{asset($user->profile_image)}}" alt="" class="chat-usr-photo">
+                            @else
+                                <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
+
+                        @endif</div>
                     </div>
 
                     <div class="chat-right-section">
-                    <textarea class="txt-area-design" name="" id="" cols="50" rows="8"
-                              placeholder="Write your comment here" class="input-design"></textarea>
-                        <button class="black-background-btn btn-width">Post comment</button>
+                        <textarea class="txt-area-design" name="content" id="commentContent" cols="50" rows="8" placeholder="Write your comment here"></textarea>
+                        <button id="postCommentBtn" class="black-background-btn btn-width">Post comment</button>
+                        <input type="hidden" id="senderId" value="{{ auth()->user()->id }}">
+                        <input type="hidden" id="receiverId" value="{{ $memorial->memorialID }}">
                     </div>
+
+
                 </div>
 
             </div>
@@ -397,14 +328,52 @@
 
 @endsection
 
-@section('profile')
+@section('profileJS')
     <script>
-        function myMap() {
-            var mapProp = {
-                center: new google.maps.LatLng(51.508742, -0.120850),
-                zoom: 5,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        $(document).ready(function() {
+            $('#postCommentBtn').click(function() {
+                // Get the input values
+                var content = $('#commentContent').val();
+                var senderId = $('#senderId').val();
+                var receiverId = $('#receiverId').val();
+
+                // Create the data object
+                var formData = {
+                    content: content,
+                    sender_id: senderId,
+                    receiver_id: receiverId,
+                    _token: '{{ csrf_token() }}' // Add CSRF token
+                };
+
+                // Send the AJAX request
+                $.ajax({
+                    url: '/post-comment',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        // Handle success response
+                        console.log(response);
+                        // Clear textarea after successful post
+                        $('#commentContent').val('');
+                        // Refresh the comment section
+                        refreshCommentSection();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+        function refreshCommentSection() {
+            // Get the updated comment content via AJAX or directly from the server
+            var updatedCommentContent = ''; // Update this variable with the new comment content
+
+            // Replace the content of the comment-wrapper div with the updated content
+            $('#commentWrapper').html(updatedCommentContent);
         }
     </script>
+
 @endsection

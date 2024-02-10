@@ -86,7 +86,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('mementos')}}" class="single-item-insider">
+                            <a href="{{route('mementos',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/rehjpyyh.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>
@@ -103,7 +103,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('family')}}" class="single-item-insider">
+                            <a href="{{route('family',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>
@@ -119,7 +119,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('keeperplus')}}" class="single-item-insider">
+                            <a href="{{route('keeperplus',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>

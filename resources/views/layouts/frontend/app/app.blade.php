@@ -69,6 +69,7 @@
         @yield('memorialProfileJS')
         @yield('keeperJS')
         @yield('mementosJS')
+        @yield('profileJS')
 
 
         @yield('CreatememorialJS')
