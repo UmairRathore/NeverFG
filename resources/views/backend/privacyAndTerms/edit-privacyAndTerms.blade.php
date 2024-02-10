@@ -12,17 +12,15 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb ps-0">
                             <li class="breadcrumb-item"><a href="{{route('backend.index')}}"><i class="material-icons">home</i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('backend.faq-list')}}">Faqs List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edit Faq</li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.privacyandterms-list')}}"> Privacy and terms List</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Privacy and terms</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-xl-12 col-md-12">
                     <div class="ms-panel">
-                        <div class="ms-panel-header ms-panel-customer">
-                            <h6>Edit Faq</h6>
-                            {{--                             <a href="{{route('backend.symptom')}}" class="ms-text-primary">Symptom--}}
-                            {{--                            </a>--}}
+                        <div class="ms-panel-header ms-panel-custome">
+                            <h6>Add  Privacy and terms</h6>
                         </div>
                         <div class="ms-panel-body">
                             @if(Session::has('message'))
@@ -35,74 +33,42 @@
 
                                 </div>
                             @endif
-                            <!-- Card for creating topics -->
-                                @if($faq->topic_id == null)
                             <div class="card">
                                 <div class="card-header">
-                                    Update Topic
+                                    Edit Privacy and Terms
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('backend.update-faq', $faq->id) }}" method="post">
+                                    <form action="{{ route('backend.update-privacyandterms',$privacyAndTerms->id) }}" method="post">
+                                        @method('put')
                                         @csrf
-                                        @method('PUT')
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="topic">Topic</label>
-                                                <input type="text" name="topic" class="form-control @error('topic') is-invalid @enderror" value="{{ $faq->topic }}" placeholder="Enter Topic">
-                                                @error('topic')
-                                                <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Update Topic</button>
-                                    </form>
-                                </div>
-                            </div>
-                                @else
-                            <!-- Card for updating FAQ -->
-                            <div class="card mt-4">
-                                <div class="card-header">
-                                    Update FAQ
-                                </div>
-                                <div class="card-body">
-                                    <form action="{{ route('backend.update-faq', $faq->id) }}" method="post">
-                                        @csrf
-                                        @method('PUT') {{-- Use the PUT method for updates --}}
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="topic_id">Topic</label>
-                                                <select name="topic_id" class="form-control">
-                                                    @foreach($topics as $topic)
-                                                        <option value="{{ $topic->id }}" {{ $faq->topic_id == $topic->id ? 'selected' : '' }}>{{ $topic->topic }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="question">Question</label>
-                                                <input type="text" name="question" class="form-control @error('question') is-invalid @enderror" value="{{ $faq->question }}" placeholder="Enter question">
-                                                @error('question')
-                                                <span class="invalid-feedback" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="answer">Answer</label>
-                                                <textarea name="answer" class="form-control @error('answer') is-invalid @enderror" placeholder="Enter answer">{{ $faq->answer }}</textarea>
-                                                @error('answer')
+                                            <div class="col-md-12 mb-6">
+                                                <label for="privacy">Privacy</label>
+                                                <textarea name="privacy" id="privacy" class="form-control form-control-lg @error('privacy') is-invalid @enderror" placeholder="Enter Privacy">{{ $privacyAndTerms->privacy }}</textarea>
+                                                @error('privacy')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Update FAQ</button>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-6">
+                                                <label for="terms">Terms</label>
+                                                <textarea name="terms" id="terms" class="form-control form-control-lg @error('terms') is-invalid @enderror" placeholder="Enter terms">{{ $privacyAndTerms->terms }}</textarea>
+                                                @error('terms')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Privacy and terms</button>
                                     </form>
                                 </div>
                             </div>
-                            @endif
+
+
                         </div>
                     </div>
                 </div>
@@ -110,4 +76,24 @@
         </div>
     </main>
 
+
+
+    <!-- Include CKEditor script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+    <!-- Initialize CKEditor -->
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#privacy'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#terms'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
 @endsection
+
