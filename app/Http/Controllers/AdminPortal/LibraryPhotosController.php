@@ -139,14 +139,19 @@ class LibraryPhotosController extends Controller
     public function delete($id)
     {
         $library = $this->_model::find($id);
-
-
         if ($library) {
             $this->deleteFiles($library->profile_image);
             $this->deleteFiles($library->icon_image);
             $this->deleteFiles($library->theme_image);
-            $library->delete();
-            return redirect()->back()->with('success', 'Library and associated files deleted successfully.');
+            $check = $library->delete();
+            if ($check) {
+                $msg = "Library deleted successfully.";
+                Session::flash('message', $msg);
+            } else {
+                $msg = "Library not deleted successfully.";
+                Session::flash('required fields empty', $msg);
+            }
+            return redirect()->back();
         }
         // Redirect back with an error message if the library doesn't exist
         return redirect()->back()->with('error', 'Library not found.');
@@ -165,7 +170,7 @@ class LibraryPhotosController extends Controller
     private function handleFileUpload($request, $fieldName,$folderName)
     {
 
-        if ($request->hasFile($fieldName)) {
+        if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 
