@@ -320,43 +320,8 @@
                     </div>
                 </div>
             </div>
-            <div class="reply-wrapper">
-                <div class="two-cols-of-comment-and-replies">
-                    <div class="two-cols-of-comment-and-replies-left">
-                        <div class="img-wrapper-of-comment">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
-                        </div>
-                    </div>
-                    <div class="two-cols-of-comment-and-replies-right">
-                        <p class="c-r-user-name">username published a tribute <span class="time-of-comment">4 years
-                            ago</span></p>
-                        <p class="c-r-comment-data">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-                            doloremque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quasi, fugit impedit
-                            ea dolorem, nihil distinctio dignissimos excepturi, iusto sapiente tenetur quas necessitatibus
-                            accusantium minima voluptate sint fuga placeat ipsum?</p>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="chat-section">
 
-            <div class="chat-wrapper">
-                <div class="two-cols-of-chat-wrapper">
-                    <div class="chat-left-section">
-                        <div class="chat-usr-img-wrapper">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
-                        </div>
-                    </div>
-
-                    <div class="chat-right-section">
-                    <textarea class="txt-area-design" name="" id="" cols="50" rows="8"
-                              placeholder="Write your comment here" class="input-design"></textarea>
-                        <button class="black-background-btn btn-width">Post comment</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
     <!-- Comment -->
     <div class="margin-all">
