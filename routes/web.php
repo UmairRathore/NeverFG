@@ -275,7 +275,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/frontend_virtual_funeral', [VirtualFuneralController::class, 'store'])->name('frontend_virtual_funeral.store');
             Route::get('/frontend_virtual_funeral/{id}/edit', [VirtualFuneralController::class, 'edit'])->name('frontend_virtual_funeral.edit');
             Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
-            Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
+            Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.delete');
 
         });
         //Frontend_virtual_funeral
