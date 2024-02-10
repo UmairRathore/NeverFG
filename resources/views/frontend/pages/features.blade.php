@@ -3,7 +3,6 @@
 
 @section('content')
 
-
     <div class="concept-of-websiteName-section">
         <div class="concept-of-websiteName-section-wrapper">
             <div class="cermonyTwocolumns">
@@ -37,7 +36,7 @@
                                 <button onclick="redirectToCorrectPage()" class="black-background-btn full-width">Get Started</button>
 
                             </div>
-                            <p><a href="">Learn more</a> about our memorial website</p>
+                            <p><a href="{{route('privacyTerms')}}">Learn more</a> about our memorial website</p>
                         </div>
                     </div>
                 </div>
@@ -56,21 +55,25 @@
             </div>
         </div>
         @foreach($features as $key => $item)
-        <div class="div-{{$key}}">
-            <div class="features-div-top">
-                <img src="{{asset($item->frontend_feature_image)}}" alt="" class="feature-div-image" />
-                <h2 class="feature-div-heading-primary">{{$item->frontend_feature_title}}</h2>
-            </div>
+            <div class="div-{{$key}}">
+                <div class="features-div-top">
+                    <img src="{{asset($item->frontend_feature_image)}}" alt="" class="feature-div-image"/>
+                    <h2 class="feature-div-heading-primary">{{$item->frontend_feature_title}}</h2>
+                </div>
 
-            <p>
-                {{$item->frontend_feature_description}}
-            </p>
-        </div>
+                <p>
+                    {{$item->frontend_feature_description}}
+                </p>
+            </div>
 
         @endforeach
         <div class="div-13">
-            <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
+{{--            @if(auth()->check())--}}
+{{--                <button onclick="window.location.href='{{ route('profile',auth()->user()->id) }}'" class="black-background-btn half-width">View Sample Memorial</button>--}}
 
+{{--            @else--}}
+                <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
+{{--            @endif--}}
         </div>
         <div class="div-14">
             <div class="create-a-true-celebaration">
@@ -103,14 +106,14 @@
                 <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
                     View unlimited images in a gallery, download local copies of images,
                     create a full family tree, create unlimited memorial pages, and
-                    more. <a>Learn more</a>
+                    more. <a href="{{route('privacyTerms')}}">Learn more</a>
                 </p>
-                    @if(auth()->check())
-                        <button onclick="window.location.href='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
+                @if(auth()->check())
+                    <button onclick="window.location.href='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
 
-                    @else
-                        <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
-                    @endif
+                @else
+                    <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
+                @endif
 
             </div>
         </div>
@@ -138,7 +141,7 @@
                 </div>
                 <div class="cermony-right-section">
                     <div class="share-memorial-insider">
-                        <img src="./assets/hero_2_backgound.jpg" alt="" />
+                        <img src="{{asset('assets/hero_2_backgound.jpg')}}" alt=""/>
                     </div>
                 </div>
             </div>
@@ -148,7 +151,7 @@
         <div class="service-provider-insider">
             <h1>FUNERAL HOME, CEMETERY OR OTHER DEATH CARE SERVICE PROVIDER?</h1>
             <h2>Offer Keeper Memorials to your families.</h2>
-            <button class="white-background-btn">
+            <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="white-background-btn">
                 Learn more about keeper partnership
             </button>
         </div>
@@ -157,10 +160,10 @@
         <div class="tablet-and-form-section-of-features-insider">
             <div class="two-cols-of-phone-and-tablet">
                 <div class="two-cols-of-phone-and-tablet-left-col">
-                    <img src="./assets/tablet-and-phone-removebg.png" alt="" class="phone-tab-img" />
+                    <img src="{{asset('frontend/assets/images/tablet-and-phone-removebg.png')}}" alt="" class="phone-tab-img"/>
                 </div>
                 <div class="two-cols-of-phone-and-tablet-right-col">
-                    <img src="./assets/dummy_logo.webp" alt="" class="two-cols-of-phone-and-tablet-right-col-logo" />
+                    <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="two-cols-of-phone-and-tablet-right-col-logo"/>
                     <h1 class="two-cols-of-phone-and-tablet-right-col-heading-main">
                         Create a Memorial Website
                     </h1>
@@ -181,7 +184,7 @@
                                 Get Started
                             </button>
                         </div>
-                        <p><a href="">Learn more</a> about our memorial website</p>
+                        <p><a href="{{route('privacyTerms')}}">Learn more</a> about our memorial website</p>
                     </div>
                 </div>
             </div>
@@ -190,21 +193,21 @@
 @endsection
 
 @section('featuresJS')
-<script>
-    function redirectToCorrectPage() {
-        var firstName = document.getElementById('firstNameInput').value.trim();
-        var lastName = document.getElementById('lastNameInput').value.trim();
+    <script>
+        function redirectToCorrectPage() {
+            var firstName = document.getElementById('firstNameInput').value.trim();
+            var lastName = document.getElementById('lastNameInput').value.trim();
 
-        if (firstName !== '' && lastName !== '') {
-            @if(auth()->check())
-                window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
-            @else
-                window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
-            @endif
-        } else {
-            alert('Please fill in both first name and last name.');
+            if (firstName !== '' && lastName !== '') {
+                @if(auth()->check())
+                    window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+                @else
+                    window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
+                @endif
+            } else {
+                alert('Please fill in both first name and last name.');
+            }
         }
-    }
 
-</script>
+    </script>
 @endsection

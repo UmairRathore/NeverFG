@@ -6,9 +6,7 @@
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
         <a class="ps-0 ms-0 text-center" href="{{route('backend.index')}}"> <img src="{{asset('/backend/assets/img/medboard-logo-216x62.png')}}" alt="logo"> </a>
-{{--        <a href="{{route('backend.update-profile')}}" class="text-center ms-logo-img-link"> <img src="{{asset('/backend/assets/img/dashboard/doctor-3.jpg')}}" alt="logo"></a>--}}
-{{--        <h5 class="text-center text-white mt-2">{{ Auth::user()->first_name }}</h5>--}}
-{{--        <h6 class="text-center text-white mb-3">{{ Auth::role()->name }}</h6>--}}
+
     </div>
     <!-- Navigation -->
 
@@ -20,15 +18,7 @@
                 <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>
             </a>
         </li>
-{{--        <li class="menu-item">--}}
-{{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#dashboard" aria-expanded="false" aria-controls="dashboard">--}}
-{{--                <span><i class="material-icons fs-16">dashboard</i>Dashboard </span>--}}
-{{--            </a>--}}
-{{--            <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-bs-parent="#side-nav-accordion">--}}
-{{--                <li> <a href="{{route('backend.index')}}">Docfindboard</a> </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
-        <!-- /Dashboard -->
+
 
         <!-- User -->
         <li class="menu-item">
@@ -39,11 +29,6 @@
         <li class="menu-item">
             <a href="{{route('backend.library-list')}}">
                 <span><i class="far fa-user-circle"></i>Library </span>
-            </a>
-        </li>
-  <li class="menu-item">
-            <a href="{{route('backend.faq-list')}}">
-                <span><i class="far fa-user-circle"></i>Faq </span>
             </a>
         </li>
         <li class="menu-item">
@@ -57,57 +42,30 @@
             </a>
         </li>
 
-{{--        <li class="menu-item">--}}
-{{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false" aria-controls="user">--}}
-{{--                <span><i class="far fa-user-circle"></i>User</span>--}}
-{{--            </a>--}}
-{{--            <ul id="user" class="collapse" aria-labelledby="user" data-bs-parent="#side-nav-accordion">--}}
-{{--                <li> <a href="{{route('backend.show-user')}}">Add Admin User</a> </li>--}}
-{{--                <li> <a href="{{route('backend.user-list')}}">Admin User List</a> </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
-{{--        <!-- User -->--}}
-{{--        <!-- Doctor -->--}}
-{{--        <li class="menu-item">--}}
-{{--            <a href="{{route('backend.doctor-list')}}">--}}
-{{--                <span><i class="fas fa-stethoscope"></i>Doctor </span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-
-{{--        <li class="menu-item">--}}
-{{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#doctor" aria-expanded="false" aria-controls="doctor">--}}
-{{--                <span><i class="fas fa-stethoscope"></i>Doctor</span>--}}
-{{--            </a>--}}
-{{--            <ul id="doctor" class="collapse" aria-labelledby="doctor" data-bs-parent="#side-nav-accordion">--}}
-{{--                <li> <a href="{{route('backend.show-doctor')}}">Add Doctor</a> </li>--}}
-{{--                <li> <a href="{{route('backend.doctor-list')}}">Doctor List</a> </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
-{{--        <!-- Doctor -->--}}
-{{--        <!-- Patient -->--}}
-{{--        <li class="menu-item">--}}
-{{--            <a href="{{route('backend.patient-list')}}">--}}
-{{--                <span><i class="far fa-user"></i>Patient </span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--        <li class="menu-item">--}}
-{{--            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#patient" aria-expanded="false" aria-controls="patient">--}}
-{{--                <span><i class="fas fa-user"></i>Patient</span>--}}
-{{--            </a>--}}
-{{--            <ul id="patient" class="collapse" aria-labelledby="patient" data-bs-parent="#side-nav-accordion">--}}
-{{--                <li> <a href="{{route('backend.show-patient')}}">Add Patient</a> </li>--}}
-{{--                <li> <a href="{{route('backend.patient-list')}}">Patient List</a> </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
-{{--        <!-- /Patient -->--}}
-
-
         <!-- Roles -->
         <li class="menu-item">
             <a href="{{route('backend.role-list')}}">
                 <span><i class="material-icons">group</i>Roles </span>
             </a>
         </li>
+
+
+        <li class="menu-item">
+            <a href="#" class="has-chevron" data-bs-toggle="collapse" data-bs-target="#patient" aria-expanded="false" aria-controls="patient">
+                <span><i class="fas fa-user"></i>Frontend</span>
+            </a>
+            <ul id="patient" class="collapse" aria-labelledby="patient" data-bs-parent="#side-nav-accordion">
+                <li> <a href="{{route('frontend_index.index')}}">Index</a> </li>
+                <li> <a href="{{route('backend.faq-list')}}">FAQ</a> </li>
+                <li> <a href="{{route('frontend_feature.index')}}">Feature</a> </li>
+                <li> <a href="{{route('frontend_feature.index')}}">Virtual Funerals</a> </li>
+                <li> <a href="{{route('backend.privacyandterms-list')}}">Privacy & terms</a> </li>
+                <li> <a href="{{route('backend.pdf-list')}}">PDF</a> </li>
+            </ul>
+        </li>
+        <!-- /Patient -->
+
+
 
 {{--        <!-- Roles -->--}}
 

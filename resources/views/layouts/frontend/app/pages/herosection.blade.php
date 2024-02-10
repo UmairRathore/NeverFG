@@ -17,7 +17,7 @@
             <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="custom-button">Click here to create a memorial</button>
         @endif
     </div>
-@elseif(request()->is('virtual-funeral'))
+@elseif(request()->is('virtual-funeral')|| request()->is('Terms-and-Privacy-Policy'))
 
     <div class="hero_wrapper">
                 <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo"/>

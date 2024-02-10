@@ -32,6 +32,10 @@ class KeeperController extends Controller
         ->where('memorial_user_id',$id)
             ->join('users','users.id','=','user_memorials.keeper_id')
             ->first();
+$keeperId =$this->data['keeper']->id ;
+        $this->data['memorials'] = $this->_memorial_model::select('user_memorials.memorial_user_id as memorialID','users.id as user_id',
+        'users.first_name','users.last_name')->where('keeper_id',$keeperId)
+            ->join('users','users.id','=','user_memorials.memorial_user_id')->get();
 
         return view($this->_viewPath . 'keeper',$this->data);
     }
