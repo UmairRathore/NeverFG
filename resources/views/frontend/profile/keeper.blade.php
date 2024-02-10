@@ -13,11 +13,24 @@
                 </div>
                 <div class="form-data-of-profile-page">
                     <div class="form-group-input">
-                        <label for="">The profiles that {{$keeper->first_name}} manages.</label>
-                        <!-- <input type="text" class="input-design" /> -->
+                        <label for="">The profiles that {{ $keeper->first_name }} manages:</label>
+                        @foreach($memorials as $memorial)
+                            <div id="profile-image-div" class="profile-pic-wrapper-of-Picture">
+                                @if($memorial->profile_image)
+                                    <img src="{{ asset($memorial->profile_image) }}" alt="{{ $memorial->profile_image }}" class="pic-of-usr">
+                                @else
+                                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                @endif
+                            </div>
+                            <a href="{{ route('profile', ['id' => $memorial->memorialID]) }}" class="profile-link">
+                                <span class="profile-name">{{ $memorial->first_name.' '.$memorial->last_name }}</span>
+                            </a>
+                        @endforeach
                     </div>
 
+
                 </div>
+
                 <div class="footer-of-form-content">
                     <div class="delete-btn backcolorChanged">
                         <svg width="16px" height="16px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -42,20 +55,6 @@
                         <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="del-btn">Create Memorial Profile</button>
                     </div>
                 </div>
-            </div>
-            <div class="form-of-logged-in-user">
-                <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Your Keepers</h1>
-
-                </div>
-                <div class="form-data-of-profile-page">
-                    <div class="form-group-input">
-                        <label for="">Your Keeper can publish and manage your profile once you have passed.</label>
-                        <label for="">Ghulam Dastgeer does not have a Keeper.</label>
-                        <!-- <input type="text" class="input-design" /> -->
-                    </div>
-                </div>
-
             </div>
             <div class="form-of-logged-in-user linear-background-of-form">
                 <div class="form-of-logged-in-user linear-background-of-form">
