@@ -135,6 +135,19 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //Relation
 
+        //<----------CRUD pdf
+        Route::group(['prefix' => 'pdf'], function () {
+
+            Route::get('/list-pdf', [VirtualFuneralController::class, 'indexPDF'])->name('backend.pdf-list');
+                Route::get('/add-pdf', [VirtualFuneralController::class, 'createPDF'])->name('backend.add-pdf');
+            Route::post('/add-pdf', [VirtualFuneralController::class, 'storePDF'])->name('backend.store-pdf');
+            Route::get('/edit-pdf/{id}', [VirtualFuneralController::class, 'editPDF'])->name('backend.edit-pdf');
+            Route::put('/update-pdf/{id}', [VirtualFuneralController::class, 'updatePDF'])->name('backend.update-pdf');
+            Route::get('/delete-pdf/{id}', [VirtualFuneralController::class, 'destroyPDF'])->name('backend.delete-pdf');
+
+        });
+        //pdf
+
         //<----------CRUD ROLE
         Route::group(['prefix' => 'role'], function () {
 
