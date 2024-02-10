@@ -47,7 +47,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="information_pdf">PDF</label>
                                                 <div class="input-group">
-                                                    <input type="file" name="information_pdf"  onchange="displayFileName(this, 'pdf')" value="{{ old('information_pdf') }}">
+                                                    <input type="file" name="information_pdf">
                                                 <span id="pdf"></span>
                                                 </div>
                                             </div>
