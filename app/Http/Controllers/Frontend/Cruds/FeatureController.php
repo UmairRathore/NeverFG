@@ -96,7 +96,6 @@ class FeatureController extends Controller
             $msg = "frontend feature not updated successfully.";
             Session::flash('required fields empty', $msg);
         }
-
         return redirect()->back();
     }
 
