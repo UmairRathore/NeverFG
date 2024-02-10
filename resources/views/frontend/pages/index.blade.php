@@ -64,7 +64,7 @@
                         </p>
                         <div class="row bottom-section">
                             <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn">Learn more</button>
-                            <button class="white-background-btn" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" class="custom-button">
+                            <button class="white-background-btn" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" >
 
                                 Book free consultation
                             </button>
@@ -136,6 +136,7 @@
         <div class="our-free-memorials">
             <h1 class="heading-color font-heading-large">Our Free Memorials</h1>
             <ul class="main-box">
+                @isset($indexImage)
                 @foreach($indexImage as $item)
                     <li class="box {{ $loop->first ? 'active' : '' }}">
                         <span>{{ $item->index_image_heading }}</span>
@@ -144,6 +145,7 @@
                         </div>
                     </li>
                 @endforeach
+                    @endisset
             </ul>
             <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>
         </div>
@@ -151,7 +153,7 @@
             <h1>Creating an Online Memorial Site is Simple</h1>
             <div class="online-memorial-site-section-list">
 
-
+                @isset($indexCard)
                 @foreach($indexCard as $item)
 
                 <div class="single-item-of-online-memorial">
@@ -160,14 +162,13 @@
                     <p class="online-memorial-paragraph">{{ $item->index_card_image_description }}</p>
                 </div>
                 @endforeach
-
+@endisset
             </div>
             @if(auth()->check())
             <button onclick="window.location.href='{{ route('profile',auth()->user()->id) }}'" class="black-background-btn half-width">View Sample Memorial</button>
 
             @else
-            <button onclick="window.location.href='{{ route('profile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
-
+            <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
             @endif
         </div>
         <div class="share-memorial-section">
