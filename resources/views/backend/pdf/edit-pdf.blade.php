@@ -41,15 +41,15 @@
                                     Update pdf
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('backend.update-pdf', $pdf->id) }}" method="post">
+                                    <form action="{{ route('backend.update-pdf', $pdf->id) }}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        @method('PUT') {{-- Use the PUT method for updates --}}
+                                        @method('PUT')
                                         <div class="row">
                                             <div class="row">
                                                 <div class="col-md-6 mb-3">
-                                                    <label for="information_pdf">Theme Image</label>
+                                                    <label for="information_pdf">PDF Image</label>
                                                     <div class="input-group">
-                                                        <input type="file" name="information_pdf" accept="image/*" onchange="displayFileName(this, 'information_pdf')" value="{{ old('information_pdf') }}">
+                                                        <input type="file" name="information_pdf"  onchange="displayFileName(this, 'information_pdf')" >
                                                         <span id="information_pdf">{{ $pdf->information_pdf }}</span>
                                                     </div>
                                                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FrontendIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
@@ -38,21 +39,34 @@ class IndexController extends Controller
 
         public function store(Request $request)
         {
+
             $request->validate([
                 'index_image_heading' => 'required',
-                'index_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'index_image' => 'required',
                 'index_card_image_heading' => 'required',
-                'index_card_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'index_card_image' => 'required',
                 'index_card_image_description' => 'required', // Add validation for index_card_image_description
             ]);
 
+            $data['frontend_index'] = $this->_model;
+            $data['frontend_index']->index_image_heading = $request->index_image_heading;
+            $data['frontend_index']->index_card_image_heading = $request->index_card_image_heading;
+            $data['frontend_index']->index_card_image_description = $request->index_card_image_description;
             $indexImageName = $this->handleFileUpload($request, 'index_image', 'frontend_index');
             $indexCardImageName = $this->handleFileUpload($request, 'index_card_image', 'frontend_index');
-            $data = $request->all();
-            $data['index_image'] = $indexImageName;
-            $data['index_card_image'] = $indexCardImageName;
-            $this->_model::create($data);
-            return redirect()->back()->with('success', 'Item created successfully.');
+            $data['frontend_index']->index_image = $indexImageName;
+            $data['frontend_index']->index_card_image = $indexCardImageName;
+            $check =  $data['frontend_index']->save();
+
+            if ($check) {
+                $msg = "frontend index added successfully.";
+                Session::flash('message', $msg);
+            } else {
+                $msg = "frontend index not added successfully.";
+                Session::flash('required fields empty', $msg);
+            }
+
+            return redirect()->back();
         }
 
         public function edit($id)
@@ -65,33 +79,40 @@ class IndexController extends Controller
         {
             $request->validate([
                 'index_image_heading' => 'required',
-                'index_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'index_image' => 'nullable',
                 'index_card_image_heading' => 'required',
-                'index_card_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'index_card_image' => 'nullable',
                 'index_card_image_description' => 'required',
 
             ]);
 
-            $frontendIndex = FrontendIndex::findOrFail($id);
+            $frontendIndex = FrontendIndex::find($id);
 
             $data = $request->all();
 
-            if ($request->hasFile('index_image')) {
+            if ($request->file('index_image')) {
 
                 $this->deleteFiles($frontendIndex->index_image);
 
                 $data['index_image'] = $this->handleFileUpload($request, 'index_image', 'frontend_index');
             }
-            if ($request->hasFile('index_card_image')) {
+            if ($request->file('index_card_image')) {
 
                 $this->deleteFiles($frontendIndex->index_card_image);
 
                 $data['index_card_image'] = $this->handleFileUpload($request, 'index_card_image', 'frontend_index');
             }
-            $frontendIndex->update($data);
+            $check = $frontendIndex->update($data);
 
-            return redirect()->back()
-                ->with('success', 'Item updated successfully.');
+            if ($check) {
+                $msg = "frontend Index updated successfully.";
+                Session::flash('message', $msg);
+            } else {
+                $msg = "frontend Index not updated successfully.";
+                Session::flash('required fields empty', $msg);
+            }
+
+            return redirect()->back();
         }
 
 
@@ -100,10 +121,16 @@ class IndexController extends Controller
             $frontendIndex = $this->_model::findOrFail($id);
             $this->deleteFiles($frontendIndex->index_image);
             $this->deleteFiles($frontendIndex->index_card_image);
-            $frontendIndex->delete();
+            $check = $frontendIndex->delete();
 
-            return redirect()->back()
-                ->with('success', 'Item deleted successfully.');
+            if ($check) {
+                $msg = "frontend Index deleted successfully.";
+                Session::flash('info_deleted', $msg);
+            } else {
+                $msg = "frontend Index not updated successfully.";
+                Session::flash('required fields empty', $msg);
+            }
+            return redirect()->back();
         }
         private function deleteFiles($filePath)
         {
@@ -118,7 +145,7 @@ class IndexController extends Controller
         private function handleFileUpload($request, $fieldName,$folderName)
         {
 
-            if ($request->hasFile($fieldName)) {
+            if ($request->file($fieldName)) {
                 $image = $request->file($fieldName);
                 $imageName = time() . '_' . $image->getClientOriginalName();
 

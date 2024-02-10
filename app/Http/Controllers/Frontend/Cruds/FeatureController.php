@@ -7,6 +7,7 @@ use App\Models\FrontendFeature;
 use App\Models\Frontendfeatures;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class FeatureController extends Controller
 {
@@ -43,14 +44,23 @@ class FeatureController extends Controller
         $request->validate([
             'frontend_feature_description' => 'required',
             'frontend_feature_title' => 'required',
-            'frontend_feature_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'frontend_feature_image' => 'required',
         ]);
 
         $FeatureImageName = $this->handleFileUpload($request, 'frontend_feature_image', 'frontend_feature');
         $data = $request->all();
         $data['frontend_feature_image'] = $FeatureImageName;
-        $this->_model::create($data);
-        return redirect()->back()->with('success', 'Item created successfully.');
+        $check = $this->_model::create($data);
+
+        if ($check) {
+            $msg = "frontend feature added successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "frontend feature not added successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -64,22 +74,29 @@ class FeatureController extends Controller
         $request->validate([
             'frontend_feature_description' => 'required',
             'frontend_feature_title' => 'required',
-            'frontend_feature_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'frontend_feature_image' => 'required',
         ]);
         $frontendFeature = $this->_model::findOrFail($id);
         $data = $request->all();
 
-        if ($request->hasFile('frontend_feature_image')) {
+        if ($request->file('frontend_feature_image')) {
 
             $this->deleteFiles($frontendFeature->frontend_feature_image);
 
             $data['frontend_feature_image'] = $this->handleFileUpload($request, 'frontend_feature_image', 'frontend_feature');
         }
 
-        $frontendFeature->update($data);
+        $check = $frontendFeature->update($data);
 
-        return redirect()->back()
-            ->with('success', 'Item updated successfully.');
+
+        if ($check) {
+            $msg = "frontend feature updated successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "frontend feature not updated successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
 
 
@@ -105,7 +122,7 @@ class FeatureController extends Controller
     private function handleFileUpload($request, $fieldName,$folderName)
     {
 
-        if ($request->hasFile($fieldName)) {
+        if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 

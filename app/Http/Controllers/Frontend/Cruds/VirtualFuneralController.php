@@ -8,6 +8,7 @@ use App\Models\FrontendVirtualFuneral;
 use App\Models\pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class VirtualFuneralController extends Controller
 {
@@ -44,14 +45,25 @@ class VirtualFuneralController extends Controller
         $request->validate([
             'frontend_virtual_funeral_description' => 'required',
             'frontend_virtual_funeral_title' => 'required',
-            'frontend_virtual_funeral_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'frontend_virtual_funeral_image' => 'required',
         ]);
 
-        $FeatureImageName = $this->handleFileUpload($request, 'virtual_funeral_image', 'frontend_feature');
-        $data = $request->all();
-        $data['frontend_virtual_funeral_image'] = $FeatureImageName;
-        $this->_model::create($data);
-        return redirect()->back()->with('success', 'Item created successfully.');
+        $data['frontend_virtual_funeral'] = $this->_model;
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_title =$request->frontend_virtual_funeral_title;
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_description =$request->frontend_virtual_funeral_description;
+        $FeatureImageName = $this->handleFileUpload($request, 'frontend_virtual_funeral_image', 'frontend_funeral');
+
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_image = $FeatureImageName;
+
+        $check = $data['frontend_virtual_funeral']->save();
+        if ($check) {
+            $msg = "Virtual Funeral added successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "Virtual Funeral not added successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -65,33 +77,45 @@ class VirtualFuneralController extends Controller
         $request->validate([
             'frontend_virtual_funeral_description' => 'required',
             'frontend_virtual_funeral_title' => 'required',
-            'frontend_virtual_funeral_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'frontend_virtual_funeral_image' => 'required',
         ]);
-        $frontendFeature = $this->_model::findOrFail($id);
-        $data = $request->all();
+        $data['frontend_virtual_funeral'] = $this->_model::find($id);
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_title =$request->frontend_virtual_funeral_title;
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_description =$request->frontend_virtual_funeral_description;
+        if ($request->file('frontend_virtual_funeral_image')) {
 
-        if ($request->hasFile('frontend_virtual_funeral_image')) {
+            $this->deleteFiles(  $data['frontend_virtual_funeral']->frontend_virtual_funeral_image);
 
-            $this->deleteFiles($frontendFeature->frontend_virtual_funeral_image);
-
-            $data['frontend_virtual_funeral_image'] = $this->handleFileUpload($request, 'virtual_funeral_image', 'frontend_feature');
+            $FeatureImageName = $this->handleFileUpload($request, 'frontend_virtual_funeral_image', 'frontend_funeral');
         }
+        $data['frontend_virtual_funeral']->frontend_virtual_funeral_image = $FeatureImageName;
 
-        $frontendFeature->update($data);
-
-        return redirect()->back()
-            ->with('success', 'Item updated successfully.');
+        $check = $data['frontend_virtual_funeral']->save();
+        if ($check) {
+            $msg = "Virtual Funeral updated successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "Virtual Funeral not updated successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
 
 
     public function destroy($id)
     {
-        $frontendFeature = $this->_model::findOrFail($id);
-        $this->deleteFiles($frontendFeature->frontend_virtual_funeral_image);
-        $frontendFeature->delete();
+        $data['frontend_virtual_funeral'] = $this->_model::find($id);
+        $this->deleteFiles( $data['frontend_virtual_funeral']->frontend_virtual_funeral_image);
 
-        return redirect()->back()
-            ->with('success', 'Item deleted successfully.');
+        $check = $data['frontend_virtual_funeral']->delete();
+        if ($check) {
+            $msg = "Virtual Funeral deleted successfully.";
+            Session::flash('info_deleted', $msg);
+        } else {
+            $msg = "Virtual Funeral not deleted successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
     private function deleteFiles($filePath)
     {
@@ -106,11 +130,11 @@ class VirtualFuneralController extends Controller
     private function handleFileUpload($request, $fieldName,$folderName)
     {
 
-        if ($request->hasFile($fieldName)) {
+        if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 
-            $directory = public_path('assets/images/library_images/'.$folderName.'/');
+            $directory = public_path('assets/images/frontend/'.$folderName.'/');
 
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0777, true, true);
@@ -118,7 +142,7 @@ class VirtualFuneralController extends Controller
 
             $image->move($directory, $imageName);
 
-            return 'assets/images/library_images/'.$folderName.'/'. $imageName;
+            return 'assets/images/frontend/'.$folderName.'/'. $imageName;
         }
 
         return null;
@@ -140,12 +164,12 @@ class VirtualFuneralController extends Controller
 
     public function storePdf(Request $request)
     {
-dd($request);
+
         $request->validate([
             'information_pdf' => 'required',
         ]);
 
-        $pdf = $this->pdfhandleFileUpload($request->information_pdf, 'information_pdf', 'documents');
+        $pdf = $this->pdfhandleFileUpload($request, 'information_pdf', 'documents');
 
         // Create new record with uploaded file path
         $data = [
@@ -153,8 +177,16 @@ dd($request);
         ];
         $pdfSAVE = new pdf() ;
         $pdfSAVE->information_pdf = $data['information_pdf'];
-        $pdfSAVE->save();
-        return redirect()->back()->with('success', 'Item created successfully.');
+        $check= $pdfSAVE->save();
+
+        if ($check) {
+            $msg = "PDf added successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "PDF not added successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
 
     public function editPdf($id)
@@ -166,22 +198,30 @@ dd($request);
     public function updatePdf(Request $request, $id)
     {
         $request->validate([
-            'information_pdf' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'information_pdf' => 'required',
         ]);
-        $pdf = $this->_pdf_model::findOrFail($id);
-        $data = $request->all();
 
-        if ($request->hasFile('information_pdf')) {
+        $pdf = $this->_pdf_model::find($id);
+//        dd($pdf);
+        $data[] = '';
+        if ($request->file('information_pdf')) {
+              $this->pdfdeleteFiles($pdf->information_pdf);
 
-            $this->pdfdeleteFiles($pdf->information_pdf);
-
-            $data['pdf'] = $this->pdfhandleFileUpload($request, 'information_pdf', 'frontend_pdf');
+            $data['information_pdf'] = $this->pdfhandleFileUpload($request, 'information_pdf', 'documents');
+//      dd($data['pdf']);
         }
 
-        $pdf->update($data);
 
-        return redirect()->back()
-            ->with('success', 'Item updated successfully.');
+        $check = $pdf->update($data);
+
+        if ($check) {
+            $msg = "PDf updated successfully.";
+            Session::flash('message', $msg);
+        } else {
+            $msg = "PDF not updated successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
 
 
@@ -189,10 +229,16 @@ dd($request);
     {
         $pdf = $this->_pdf_model::findOrFail($id);
         $this->pdfdeleteFiles($pdf->information_pdf);
-        $pdf->delete();
-
+        $check = $pdf->delete();
+        if ($check) {
+            $msg = "PDf deleted successfully.";
+            Session::flash('info_deleted', $msg);
+        } else {
+            $msg = "PDF not deleted successfully.";
+            Session::flash('required fields empty', $msg);
+        }
         return redirect()->back()
-            ->with('success', 'Item deleted successfully.');
+           ;
     }
 
     private function pdfdeleteFiles($filePath)
@@ -207,7 +253,7 @@ dd($request);
 
     private function pdfhandleFileUpload($request, $fieldName,$folderName)
     {
-        if ($request->hasFile($fieldName)) {
+        if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 
@@ -216,7 +262,6 @@ dd($request);
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0777, true, true);
             }
-            dd($directory);
 
             $image->move($directory, $imageName);
 

@@ -41,15 +41,15 @@
                                     @foreach ($virtualFuneral as $item)
                                         <tr>
                                             <td>{{$item->id}}</td>
-                                            <td>{{$item->frontend_feature_title}}</td>
+                                            <td>{{$item->frontend_virtual_funeral_title}}</td>
                                             <td>
-                                                @if($item->frontend_feature_image)
-                                                    <img src="{{ asset($item->frontend_feature_image) }}" alt="Feature Image" style="max-width: 100px;">
+                                                @if($item->frontend_virtual_funeral_image)
+                                                    <img src="{{ asset($item->frontend_virtual_funeral_image) }}" alt="Feature Image" style="max-width: 100px;">
                                                 @else
                                                     No Image
                                                 @endif
                                             </td>
-                                            <td>{{$item->frontend_feature_description}}</td>
+                                            <td>{{$item->frontend_virtual_funeral_description}}</td>
                                             <td>
                                                 <a class="fas fa-pencil alt" href="{{ route('frontend_virtual_funeral.edit',$item->id) }}">Edit Feature</a>
                                                 <a class="fas fa-trash alt" href="{{ route('frontend_virtual_funeral.delete',$item->id) }}">Delete Feature</a>

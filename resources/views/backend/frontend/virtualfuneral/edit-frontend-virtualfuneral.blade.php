@@ -34,7 +34,7 @@
                                 </div>
                             @endif
 
-                            <form method="POST" action="{{ route('frontend_virtual_funeral.update') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('frontend_virtual_funeral.update',$virtualFuneral->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="row">

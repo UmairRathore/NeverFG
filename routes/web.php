@@ -60,7 +60,7 @@ Route::post('/userregistration', [RegistrationController::class, 'userregistrati
 Route::get('/memorialsignup', [RegistrationController::class, 'memorialSignup'])->name('memorialsignup');
 Route::post('/memorialregistration', [RegistrationController::class, 'memorialregistration'])->name('memorialregistration');
 
-Route::get('/sampleProfile', [ProfileController::class, 'sampleProfile'])->name('sampleProfile');
+Route::get('profile/sampleProfile', [ProfileController::class, 'sampleProfile'])->name('sampleProfile');
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -200,7 +200,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'privacyandterms'], function () {
             Route::get('/list-privacyandterms', [PrivacyAndTermsController::class, 'index'])->name('backend.privacyandterms-list');
             Route::get('/add-privacyandterms', [PrivacyAndTermsController::class, 'create'])->name('backend.add-privacyandterms');
-            Route::get('/store-privacyandterms', [PrivacyAndTermsController::class, 'store'])->name('backend.store-privacyandterms');
+            Route::post('/store-privacyandterms', [PrivacyAndTermsController::class, 'store'])->name('backend.store-privacyandterms');
             Route::get('/edit-privacyandterms/{id}', [PrivacyAndTermsController::class, 'edit'])->name('backend.edit-privacyandterms');
             Route::put('/update-privacyandterms/{id}', [PrivacyAndTermsController::class, 'update'])->name('backend.update-privacyandterms');
             Route::get('/delete-privacyandterms/{id}', [PrivacyAndTermsController::class, 'destroy'])->name('backend.delete-privacyandterms');
@@ -268,14 +268,14 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //Frontend_feature
 
-        //<----------CRUD Frontend_feature
+        //<----------CRUD Frontend_virtual_funeral
         Route::group(['prefix' => 'frontend_virtual_funeral'], function () {
             Route::get('/frontend_virtual_funeral', [VirtualFuneralController::class, 'index'])->name('frontend_virtual_funeral.index');
             Route::get('/frontend_virtual_funeral/create', [VirtualFuneralController::class, 'create'])->name('frontend_virtual_funeral.create');
             Route::post('/frontend_virtual_funeral', [VirtualFuneralController::class, 'store'])->name('frontend_virtual_funeral.store');
             Route::get('/frontend_virtual_funeral/{id}/edit', [VirtualFuneralController::class, 'edit'])->name('frontend_virtual_funeral.edit');
             Route::put('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'update'])->name('frontend_virtual_funeral.update');
-            Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.destroy');
+            Route::get('/frontend_virtual_funeral/{id}', [VirtualFuneralController::class, 'destroy'])->name('frontend_virtual_funeral.delete');
 
         });
         //Frontend_virtual_funeral

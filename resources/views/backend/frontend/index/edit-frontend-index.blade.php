@@ -38,7 +38,7 @@
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="index_image_heading">Title</label>
+                                        <label for="index_image_heading">Index Heading</label>
                                         <div class="input-group">
                                             <input type="text" name="index_image_heading" class="form-control @error('index_image_heading') is-invalid @enderror" value="{{ $index->index_image_heading }}" placeholder="Enter Title">
                                             @error('index_image_heading')
@@ -48,19 +48,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+
                                     <div class="col-md-6 mb-3">
-                                        <label for="index_image">Image</label>
-                                        <div class="input-group">
-                                            <input type="file" name="index_image" onchange="displayFileName(this, 'indexImageFileName')">
-                                            <span id="indexImageFileName">{{ $index->index_image }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="index_card_image_heading">Title</label>
+                                        <label for="index_card_image_heading">Index Card Heading</label>
                                         <div class="input-group">
                                             <input type="text" name="index_card_image_heading" class="form-control @error('index_card_image_heading') is-invalid @enderror" value="{{ $index->index_card_image_heading }}" placeholder="Enter Title">
                                             @error('index_card_image_heading')
@@ -72,11 +62,30 @@
                                     </div>
                                 </div>
 
-
-
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label for="index_card_image_description">Description</label>
+                                        <div class="input-group">
+                                            <textarea name="index_card_image_description" class="form-control @error('index_card_image_description') is-invalid @enderror" placeholder="Enter Description">{{ $index->index_card_image_description }}</textarea>
+                                            @error('index_card_image_description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="index_card_image">Image</label>
+                                        <label for="index_image">Index Image</label>
+                                        <div class="input-group">
+                                            <input type="file" name="index_image" onchange="displayFileName(this, 'indexImageFileName')">
+                                            <span id="indexImageFileName">{{ $index->index_image }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="index_card_image">Index Card Image</label>
                                         <div class="input-group">
                                             <input type="file" name="index_card_image" onchange="displayFileName(this, 'indexCardImageFileName')">
                                             <span id="indexCardImageFileName">{{ $index->index_card_image }}</span>

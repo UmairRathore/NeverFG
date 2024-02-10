@@ -72,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                @if(auth()->check())
                 <div class="user-content-bottom-row">
                     <div class="navigation-of-logged-in-profile">
                         <div class="single-item">
@@ -133,6 +134,75 @@
 
                     </div>
                 </div>
+                @else
+                    <div class="user-content-bottom-row">
+                        <div class="navigation-of-logged-in-profile">
+                            <div class="single-item">
+                                <a href="LoggedIn_Profile.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Profile
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="MementosPage.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/rehjpyyh.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Mementos
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="Keeper.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/khheayfj.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+
+                                    Keeper
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="Family.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Family
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="Events.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/qvyppzqz.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Events
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="Message.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Messages
+                                </a>
+                            </div>
+                            <div class="single-item">
+                                <a href="KeeperPlusPage.html" class="single-item-insider">
+                                    <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"
+                                               style="width: 48px; height: 48px">
+                                    </lord-icon>
+                                    Keeper plus
+                                </a>
+                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button class="black-background-btn">
+                                + Create a Memorial
+                            </button>
+                        </div>
+                    </div>
+
+                @endif
             </div>
         </div>
     </div>

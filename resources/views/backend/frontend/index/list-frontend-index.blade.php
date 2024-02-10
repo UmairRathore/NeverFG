@@ -35,6 +35,7 @@
                                     <th>Image Image</th>
                                     <th>Index Card Image Title</th>
                                     <th>Index Card</th>
+                                    <th>Index Card Image Description</th>
                                     <th>Action</th>
                                     </thead>
 
@@ -58,6 +59,7 @@
                                                     No Image
                                                 @endif
                                             </td>
+                                            <td>{{$item->index_card_image_description}}</td>
 
 
                                             <td>

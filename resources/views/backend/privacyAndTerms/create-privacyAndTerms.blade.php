@@ -12,17 +12,15 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb ps-0">
                             <li class="breadcrumb-item"><a href="{{route('backend.index')}}"><i class="material-icons">home</i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('backend.faq-list')}}">Faqs List</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Faq</li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.privacyandterms-list')}}"> Privacy and terms List</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Privacy and terms</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-xl-12 col-md-12">
                     <div class="ms-panel">
                         <div class="ms-panel-header ms-panel-custome">
-                            <h6>Add Faq</h6>
-                            {{--                             <a href="{{route('backend.symptom')}}" class="ms-text-primary">Symptom--}}
-                            {{--                            </a>--}}
+                            <h6>Add  Privacy and terms</h6>
                         </div>
                         <div class="ms-panel-body">
                             @if(Session::has('message'))
@@ -35,72 +33,40 @@
 
                                 </div>
                             @endif
-                            <!-- Card for creating topics -->
                             <div class="card">
                                 <div class="card-header">
-                                    Create Topic
+                                    Create Privacy and Terms
                                 </div>
                                 <div class="card-body">
-                                    <form action="{{ route('backend.storeTopic') }}" method="post">
+                                    <form action="{{ route('backend.store-privacyandterms') }}" method="post">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="topic">Topic</label>
-                                                <input type="text" name="topic" class="form-control @error('topic') is-invalid @enderror" value="{{ old('topic') }}" placeholder="Enter Topic">
-                                                @error('topic')
+                                            <div class="col-md-12 mb-6">
+                                                <label for="privacy">Privacy</label>
+                                                <textarea name="privacy" id="privacy"  class="form-control form-control-lg @error('privacy') is-invalid @enderror" placeholder="Enter Privacy">{{ old('privacy') }}</textarea>
+                                                @error('privacy')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save Topic</button>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-6">
+                                                    <label for="terms">Terms</label>
+                                                    <textarea name="terms" id="terms" class="form-control form-control-lg @error('terms') is-invalid @enderror" placeholder="Enter terms">{{ old('terms') }}</textarea>
+                                                    @error('terms')
+                                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save Privacy and terms</button>
                                     </form>
                                 </div>
                             </div>
 
-                            <!-- Card for creating questions and answers -->
-                            <div class="card mt-4">
-                                <div class="card-header">
-                                    Create FAQ
-                                </div>
-                                <div class="card-body">
-                                    <form action="{{ route('backend.topic-storeQuestionAnswer') }}" method="post">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-md-6 mb-3">
-                                            <label for="topic_id">Topic</label>
-                                            <select name="topic_id" class="form-control">
-                                                <option value="" disabled selected>Select a Topic</option>
-                                                @foreach($topics as $topic)
-                                                    <option value="{{ $topic->id }}">{{ $topic->topic }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="question">Question</label>
-                                                <input type="text" name="question" class="form-control @error('question') is-invalid @enderror" value="{{ old('question') }}" placeholder="Enter question">
-                                                @error('question')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                            <!-- Add more fields for answers as needed -->
-                                            <div class="col-md-6 mb-3">
-                                                <label for="answer">Answer</label>
-                                                <textarea name="answer" class="form-control @error('answer') is-invalid @enderror" placeholder="Enter answer">{{ old('answer') }}</textarea>
-                                                @error('answer')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Save FAQ</button>
-                                    </form>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
@@ -109,4 +75,24 @@
         </div>
     </main>
 
+
+
+    <!-- Include CKEditor script -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+    <!-- Initialize CKEditor -->
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#privacy'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#terms'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
 @endsection
+
