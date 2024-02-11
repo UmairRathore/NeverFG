@@ -66,16 +66,16 @@ Route::get('profile/sampleProfile', [ProfileController::class, 'sampleProfile'])
 Route::group(['middleware' => ['auth']], function () {
 
 
+
 //    AJAX
     Route::post('/store-memento', [ProfileController::class, 'storeMemento'])->name('store-memento'); //AJAX
     Route::post('/post-comment', [ProfileController::class, 'comment'])->name('post.comment'); //
     Route::post('/post-family', [ProfileController::class, 'createFamily'])->name('post.family'); //
 
-    Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
-
-    Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
     Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
+
+    Route::post('/store-memorial', [ProfileController::class, 'storeMemorial']); //AJAX
     Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
 
     Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
@@ -85,10 +85,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
     //    AJAX
-
-    //Route::get('/message',[ProfileController::class,'message'])->name('message');
-    //Messaging
-
 
 //profile
     Route::group(['prefix' => 'profile'], function () {
@@ -102,7 +98,6 @@ Route::group(['middleware' => ['auth']], function () {
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
         Route::get('/mementos/{id}', [ProfileController::class, 'mementos'])->name('mementos');
 
-        Route::get('/events', [ProfileController::class, 'events'])->name('events');
 
         Route::get('/family/{id}', [ProfileController::class, 'family'])->name('family');
 
@@ -110,8 +105,16 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/memorial-user-profile/{id}', [ProfileController::class, 'profile'])->name('profile');
 
+        Route::get('/memorial-profile/{id}', [ProfileController::class, 'MementoInfoProfile'])->name('edit.memorial.profile');
+
+        Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
+
 
         Route::get('chat', [MessageController::class, 'show'])->name('chat.show');
+
+
+
+
 
     });
 //    profile
@@ -220,17 +223,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
         //Package
 
-        //<----------CRUD Feature
-        Route::group(['prefix' => 'feature'], function () {
-
-            Route::get('/list-feature', [FuneralServiceController::class, 'index'])->name('backend.feature-list');
-            Route::get('/add-feature', [FuneralServiceController::class, 'create']);
-            Route::post('/add-feature', [FuneralServiceController::class, 'store'])->name('backend.add-feature');
-            Route::get('/delete-feature/{id}', [FuneralServiceController::class, 'destroy'])->name('backend.delete-feature');
-            Route::get('changepermission/{id}', [FuneralServiceController::class, 'changepermission'])->name('backend.changepermission');
-
-        });
-        //Feature
 
         //<----------CRUD Library
         Route::group(['prefix' => 'library'], function () {
