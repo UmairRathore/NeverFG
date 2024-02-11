@@ -62,7 +62,6 @@
 .footer-insider .row-one .site-links-section .links-col-3 {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 33%;
 }
 .footer-insider .row-one .section-social-links {
@@ -158,11 +157,11 @@
     width: 100%;
   }
   .footer-insider .row-one .site-links-section .links-col-2 {
-    gap: 8px;
+    gap: 2px;
     width: 100%;
   }
   .footer-insider .row-one .site-links-section .links-col-3 {
-    gap: 8px;
+    gap: 2px;
     width: 100%;
   }
 }/*# sourceMappingURL=footer.css.map */

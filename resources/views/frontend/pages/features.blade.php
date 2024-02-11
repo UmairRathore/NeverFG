@@ -8,15 +8,15 @@
             <div class="cermonyTwocolumns">
                 <div class="cermony-left-section">
                     <h1 class="craft-cermony-main-heading heading-color">
-                        The concept of Keeper
+                        The concept of NeverFg
                     </h1>
                     <p>
-                        You become the Keeper of your loved one’s memorial page when you
+                        You become the NeverFg of your loved one’s memorial page when you
                         create your account. Keep your loved one’s memory alive by sharing
                         their life story, uploading photographs and videos, creating their
                         family tree and inviting others to collaborate with you. As their
-                        Keeper, you can change, add or hide any content at any time.
-                        Keepers also have total control over who can visit and post on
+                        NeverFg, you can change, add or hide any content at any time.
+                        NeverFgs also have total control over who can visit and post on
                         their loved one’s memorial page and delete any posts and images
                         added by others.
                     </p>
@@ -50,7 +50,7 @@
                     More than an Online Obituary - An Interactive Memorial
                 </h1>
                 <h1 class="features-section-header-insider-secandry-heading">
-                    All Keeper memorials come with these features:
+                    All NeverFg memorials come with these features:
                 </h1>
             </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="div-14">
             <div class="create-a-true-celebaration">
                 <h1>
-                    Create a true celebration of life with Keeper
+                    Create a true celebration of life with NeverFg
                     <span class="highlighted-section">Pro</span>
                 </h1>
             </div>
@@ -87,7 +87,7 @@
             <div class="form-of-flying-bird-wrapper">
                 <p class="most-popular-top-heading">Most popular</p>
                 <h1 class="form-of-flying-bird-wrapper-main-heading">
-                    Keeper<sup class="sup-tm-text">TM</sup>
+                    NeverFg<sup class="sup-tm-text">TM</sup>
                     <span class="plus-title">Plus</span>
                 </h1>
                 <p class="form-of-flying-bird-wrapper-paragrpah-heading">
@@ -123,15 +123,15 @@
             <div class="cermonyTwocolumns">
                 <div class="cermony-left-section">
                     <h1 class="craft-cermony-main-heading heading-color">
-                        The concept of Keeper
+                        The concept of NeverFg
                     </h1>
                     <p>
-                        You become the Keeper of your loved one’s memorial page when you
+                        You become the NeverFg of your loved one’s memorial page when you
                         create your account. Keep your loved one’s memory alive by sharing
                         their life story, uploading photographs and videos, creating their
                         family tree and inviting others to collaborate with you. As their
-                        Keeper, you can change, add or hide any content at any time.
-                        Keepers also have total control over who can visit and post on
+                        NeverFg, you can change, add or hide any content at any time.
+                        NeverFgs also have total control over who can visit and post on
                         their loved one’s memorial page and delete any posts and images
                         added by others.
                     </p>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="cermony-right-section">
                     <div class="share-memorial-insider">
-                        <img src="{{asset('assets/hero_2_backgound.jpg')}}" alt=""/>
+                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt=""/>
                     </div>
                 </div>
             </div>
@@ -150,9 +150,9 @@
     <div class="are-you-funeral-service-provider-section">
         <div class="service-provider-insider">
             <h1>FUNERAL HOME, CEMETERY OR OTHER DEATH CARE SERVICE PROVIDER?</h1>
-            <h2>Offer Keeper Memorials to your families.</h2>
+            <h2>Offer NeverFg Memorials to your families.</h2>
             <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="white-background-btn">
-                Learn more about keeper partnership
+                Learn more about NeverFg partnership
             </button>
         </div>
     </div>
@@ -163,7 +163,7 @@
                     <img src="{{asset('frontend/assets/images/tablet-and-phone-removebg.png')}}" alt="" class="phone-tab-img"/>
                 </div>
                 <div class="two-cols-of-phone-and-tablet-right-col">
-                    <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="two-cols-of-phone-and-tablet-right-col-logo"/>
+                    <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="two-cols-of-phone-and-tablet-right-col-logo"/>
                     <h1 class="two-cols-of-phone-and-tablet-right-col-heading-main">
                         Create a Memorial Website
                     </h1>

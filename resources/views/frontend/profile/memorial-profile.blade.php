@@ -7,7 +7,7 @@
         <div class="profile-content-wrapper-insider">
             <!-- Tabbed content -->
             <div class="top-header-of-profile-page">
-                <h1 class="my-profile-name">Edit Ghulam 's Profile</h1>
+                <h1 class="my-profile-name">Edit {{$profile['memorialProfile']->first_name}} 's Profile</h1>
                 <div class="tabed-menu-items">
                     <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Info')">
                         <div class="tabbed-single-item">
@@ -49,20 +49,6 @@
                                 </g>
                             </svg>
                             <p class="tab-btn-heading">Picture</p>
-                        </div>
-                    </button>
-                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Memorial')">
-                        <div class="tabbed-single-item">
-                            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M20.8477 1.87868C19.6761 0.707109 17.7766 0.707105 16.605 1.87868L2.44744 16.0363C2.02864 16.4551 1.74317 16.9885 1.62702 17.5692L1.03995 20.5046C0.760062 21.904 1.9939 23.1379 3.39334 22.858L6.32868 22.2709C6.90945 22.1548 7.44285 21.8693 7.86165 21.4505L22.0192 7.29289C23.1908 6.12132 23.1908 4.22183 22.0192 3.05025L20.8477 1.87868ZM18.0192 3.29289C18.4098 2.90237 19.0429 2.90237 19.4335 3.29289L20.605 4.46447C20.9956 4.85499 20.9956 5.48815 20.605 5.87868L17.9334 8.55027L15.3477 5.96448L18.0192 3.29289ZM13.9334 7.3787L3.86165 17.4505C3.72205 17.5901 3.6269 17.7679 3.58818 17.9615L3.00111 20.8968L5.93645 20.3097C6.13004 20.271 6.30784 20.1759 6.44744 20.0363L16.5192 9.96448L13.9334 7.3787Z"
-                                          fill="currentColor"></path>
-                                </g>
-                            </svg>
-                            <p class="tab-btn-heading">Memorial</p>
                         </div>
                     </button>
                     <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Theme')">
@@ -231,7 +217,7 @@
                 </div>
             </form>
 
-{{--            Home City--}}
+            {{--            Home City--}}
             <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
 
                 <div class="form-of-logged-in-user">
@@ -244,16 +230,17 @@
                     <div class="form-data-of-profile-page">
                         <div class="form-group-input">
                             <label for="">Search</label>
-                            <input type="text" class="input-design" name="home_city" value="@if($profile['memorialCity']->home_city){{$profile['memorialCity']->home_city}}@endif"/>
+                            <input type="text" class="input-design" name="home_city" value="@if(isset($profile['memorialCity']->home_city)){{$profile['memorialCity']->home_city}}@endif"/>
                         </div>
                     </div>
+
                     <div class="footer-of-form-content">
                         <button class="form-btn">Save Changes</button>
                     </div>
                 </div>
             </form>
 
-{{--            Other City--}}
+            {{--            Other City--}}
             <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <div class="form-of-logged-in-user">
                     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
@@ -266,7 +253,7 @@
                         <div class="form-group-input">
                             <label for="">The last city they resided in. If it is the same as their
                                 Hometown, leave it blank.</label>
-                            <input type="text" class="input-design" name="other_city" value="@if($profile['memorialCity']->other_city){{$profile['memorialCity']->other_city}}@endif"/>
+                            <input type="text" class="input-design" name="other_city" value="@if(isset($profile['memorialCity']->other_city)){{$profile['memorialCity']->other_city}}@endif"/>
                         </div>
                     </div>
                     <div class="footer-of-form-content">
@@ -457,39 +444,39 @@
                 </p>
                 <div class="grid-of-photos">
                     @foreach($profile_images as $key => $profile_image)
-                    <div class="whole-image-wrapper-with-overlay" id="img-id-{{$key}}">
-                        <div class="img-wrpper-inside-gallery">
-                            @if($profile_image->profile_image)
-                                <img id="library_image" src="{{asset($profile_image->profile_image) }}" alt="" class="grid-single-img"/>
-                            @else
-                                <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
-                            @endif
-                        </div>
-                        <div class="overlay">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                 xml:space="preserve" fill="#000000">
+                        <div class="whole-image-wrapper-with-overlay" id="img-id-{{$key}}">
+                            <div class="img-wrpper-inside-gallery">
+                                @if($profile_image->profile_image)
+                                    <img id="library_image" src="{{asset($profile_image->profile_image) }}" alt="" class="grid-single-img"/>
+                                @else
+                                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                @endif
+                            </div>
+                            <div class="overlay">
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
+                                     xml:space="preserve" fill="#000000">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
                                         <g>
                                             <g>
-                                                <path style="fill:#30562f;"
-                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                </path>
+                                                <g>
+                                                    <path style="fill:#30562f;"
+                                                          d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                    </path>
+                                                </g>
+                                            </g>
+                                            <g>
+                                                <polygon style="fill:#30562f;"
+                                                         points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                </polygon>
                                             </g>
                                         </g>
-                                        <g>
-                                            <polygon style="fill:#30562f;"
-                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                            </polygon>
-                                        </g>
                                     </g>
-                                </g>
                       </svg>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -526,10 +513,10 @@
                     </div>
                 </div>
                 <div class="form-group-input">
-                    <label for="">Keeper News and Updates</label>
+                    <label for="">NeverFg News and Updates</label>
                     <div class="row-of-inputs-checkbox">
                         <input type="checkbox">
-                        Receive updates on Keeper features, and more.
+                        Receive updates on NeverFg features, and more.
                     </div>
                 </div>
             </div>
@@ -545,7 +532,7 @@
                 <div class="form-group-input ">
                     <div class="row-of-inputs-checkbox custom-checkbox-div">
                         <input type="checkbox"/>
-                        <p>Public: Recommended Setting. Anyone visiting the Keeper site can view and contribute to the profile.
+                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.
                         </p>
                     </div>
 
@@ -570,151 +557,66 @@
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
                     </div>
-                    <div id="theme" class="theme-tabcontent">
-                        <div class="theme-tab-of-themes-wrapper">
-                            <select name="" id="">
-                                <option value="">Space</option>
-                                <option value="">category-1</option>
-                                <option value="">category-1</option>
-                                <option value="">category-1</option>
-                                <option value="">category-1</option>
-                            </select>
-                            <div class="grid-of-themes">
-                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-1">
-                                    <div class="img-wrpper-inside-gallery-of-theme">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-2">
-                                    <div class="img-wrpper-inside-gallery-of-theme">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-3">
-                                    <div class="img-wrpper-inside-gallery-of-theme">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
-                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-4">
-                                    <div class="img-wrpper-inside-gallery-of-theme">
-                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                    </div>
-                                    <div class="overlay">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path style="fill:#30562f;"
-                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                            </path>
-                                                        </g>
-                                                    </g>
-                                                    <g>
-                                                        <polygon style="fill:#30562f;"
-                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                        </polygon>
-                                                    </g>
-                                                </g>
-                                            </g>
-                    </svg>
-                                    </div>
-                                </div>
+                    {{--                    <div id="theme" class="theme-tabcontent">--}}
+                    {{--                        <div class="theme-tab-of-themes-wrapper">--}}
 
+                    {{--                            <div class="grid-of-themes">--}}
+                    {{--                                @foreach($profile_images as $key => $theme_image)--}}
+                    {{--                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">--}}
+                    {{--                                    <div class="img-wrpper-inside-gallery-of-theme">--}}
+                    {{--                                        @if($theme_image->theme_image)--}}
+                    {{--                                            <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>--}}
+                    {{--                                        @else--}}
+                    {{--                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
+                    {{--                                        @endif--}}
+                    {{--                                    </div>--}}
+                    {{--                                    <div class="overlay">--}}
+                    {{--                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
+                    {{--                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"--}}
+                    {{--                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">--}}
+                    {{--                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+                    {{--                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+                    {{--                                            <g id="SVGRepo_iconCarrier">--}}
+                    {{--                                                <g>--}}
+                    {{--                                                    <g>--}}
+                    {{--                                                        <g>--}}
+                    {{--                                                            <path style="fill:#30562f;"--}}
+                    {{--                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
+                    {{--                                                            </path>--}}
+                    {{--                                                        </g>--}}
+                    {{--                                                    </g>--}}
+                    {{--                                                    <g>--}}
+                    {{--                                                        <polygon style="fill:#30562f;"--}}
+                    {{--                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
+                    {{--                                                        </polygon>--}}
+                    {{--                                                    </g>--}}
+                    {{--                                                </g>--}}
+                    {{--                                            </g>--}}
+                    {{--                    </svg>--}}
+                    {{--                                    </div>--}}
+                    {{--                                </div>--}}
+                    {{--                                    @endforeach--}}
 
-                            </div>
-                            <div class="footer-of-theme">
-                                <button class="form-btn">Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
+                    {{--                            </div>--}}
+                    {{--                            <div class="footer-of-theme">--}}
+                    {{--                                <button id="theme_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
 
-                    <div id="Custom" class="theme-tabcontent">
-                        <p>You can Upload your own unique picture here. For the best look, we recommend using a picture with a
-                            High Resolution (1024X768 and higher, for example).</p>
-                        <div class="custom-file-chooser-wrapper">
-                            <input type="file" id="file-input" name="file-input"/>
+                    {{--                    <div id="Custom" class="theme-tabcontent">--}}
+                    {{--                        <p>You can Upload your own unique picture here. For the best look, we recommend using a picture with a High Resolution (1024X768 and higher, for example).</p>--}}
+                    {{--                        <div class="custom-file-chooser-wrapper">--}}
+                    {{--                            <form id="theme_image_form" enctype="multipart/form-data">--}}
+                    {{--                                <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom">--}}
+                    {{--                                <label id="file-input-label" for="file-input">--}}
+                    {{--                                    + Choose a File--}}
+                    {{--                                </label>--}}
+                    {{--                                <button id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>--}}
 
-                            <label id="file-input-label" for="file-input">
-                                + Choose a File
-                            </label</div>
-                    </div>
+                    {{--                            </form>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
 
 
                 </div>
@@ -774,45 +676,53 @@
                     occupation_counter++;
                     $(occupation_container).append(`
 @php
-                        $occupationArray = explode(', ', $profile['memorialOccupation']->occupation);
-                        $companyArray = explode(', ', $profile['memorialOccupation']->company);
-                        $toYearArray = explode(', ', $profile['memorialOccupation']->to_year);
-                        $fromYearArray = explode(', ', $profile['memorialOccupation']->from_year);
+                        if($profile['memorialOccupation'])
+                        {
 
-                        $data['occupations'] = [];
+                            $occupationArray = explode(', ', $profile['memorialOccupation']->occupation);
+                            $companyArray = explode(', ', $profile['memorialOccupation']->company);
+                            $toYearArray = explode(', ', $profile['memorialOccupation']->to_year);
+                            $fromYearArray = explode(', ', $profile['memorialOccupation']->from_year);
 
-                        // Assuming all arrays have the same length
-                        $length = count($occupationArray);
+                            $data['occupations'] = [];
 
-                        for ($i = 0; $i < $length; $i++) {
-                            $data['occupations'][] = [
-                                'occupation' => $occupationArray[$i],
-                                'company' => $companyArray[$i],
-                                'to_year' => $toYearArray[$i],
-                                'from_year' => $fromYearArray[$i],
-                            ];
+                            // Assuming all arrays have the same length
+                            $length = count($occupationArray);
+
+                            for ($i = 0; $i < $length; $i++) {
+                                $data['occupations'][] = [
+                                    'occupation' => $occupationArray[$i],
+                                    'company' => $companyArray[$i],
+                                    'to_year' => $toYearArray[$i],
+                                    'from_year' => $fromYearArray[$i],
+                                ];
+                            }
                         }
+                        if(empty($data['occupations'])) {
+            // Initialize $data['occupations'] with a default empty entry
+            $data['occupations'] = [['occupation' => '', 'company' => '', 'to_year' => '', 'from_year' => '']];
+        }
                     @endphp
+
                     @foreach($data['occupations'] as $occupation)
                     <div class="row-of-dynamic-inputs">
                         <div class="form-group-input">
                             <label for="">Occupation</label>
-                            <input type="text" class="input-design" name="occupation[]" value="{{ $occupation['occupation'] }}" />
-        </div>
-        <div class="form-group-input">
-            <label for="">Company</label>
-            <input type="text" class="input-design" name="company[]" value="{{ $occupation['company'] }}" />
-        </div>
-        <div class="form-group-input">
-            <label for="">From Year</label>
-            <input type="text" class="input-design" name="from_year[]" value="{{ $occupation['from_year'] }}" />
-        </div>
-        <div class="form-group-input">
-            <label for="">To Year</label>
-            <input type="text" class="input-design" name="to_year[]" value="{{ $occupation['to_year'] }}" />
-        </div>
-    </div>
-                <svg
+                            <input type="text" class="input-design" name="occupation[]" value="@if($occupation['occupation']){{ $occupation['occupation']}}@endif" />
+                         </div>
+                         <div class="form-group-input">
+                            <label for="">Company</label>
+                            <input type="text" class="input-design" name="company[]" value="@if($occupation['company']){{ $occupation['company']}}@endif" />
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">From Year</label>
+                            <input type="text" class="input-design" name="from_year[]" value="@if($occupation['from_year']){{ $occupation['from_year']}}@endif" />
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">To Year</label>
+                            <input type="text" class="input-design" name="to_year[]" value="@if($occupation['to_year']){{ $occupation['to_year']}}@endif" />
+                        </div>
+                        <svg
                 class="deleteOccupation"
                   width="128px"
                   height="128px"
@@ -833,8 +743,11 @@
                     ></path>
                   </g>
                 </svg>
+                        </div>
+
               </div>
                 @endforeach`); //add input box
+
                 } else {
                     alert("You Reached the limits");
                 }
@@ -861,25 +774,32 @@
                     academic_counter++;
                     $(academic_container).append(`
                      @php
+                        if($profile['memorialAcademic'])
+                                            {
 
-                        $diplomaArray = explode(', ', $profile['memorialAcademic']->diploma);
-                        $schoolArray = explode(', ', $profile['memorialAcademic']->school);
-                        $toYearArray = explode(', ', $profile['memorialAcademic']->to_year);
-                        $fromYearArray = explode(', ', $profile['memorialAcademic']->from_year);
+                                                $diplomaArray = explode(', ', $profile['memorialAcademic']->diploma);
+                                                $schoolArray = explode(', ', $profile['memorialAcademic']->school);
+                                                $toYearArray = explode(', ', $profile['memorialAcademic']->to_year);
+                                                $fromYearArray = explode(', ', $profile['memorialAcademic']->from_year);
 
-                        $data['academics'] = [];
+                                                $data['academics'] = [];
 
-                        // Assuming all arrays have the same length
-                        $length = count($diplomaArray);
+                                                // Assuming all arrays have the same length
+                                                $length = count($diplomaArray);
 
-                        for ($i = 0; $i < $length; $i++) {
-                            $data['academics'][] = [
-                                'diploma' => $diplomaArray[$i],
-                                'school' => $schoolArray[$i],
-                                'to_year' => $toYearArray[$i],
-                                'from_year' => $fromYearArray[$i],
-                            ];
-                        }
+                                                for ($i = 0; $i < $length; $i++) {
+                                                    $data['academics'][] = [
+                                                        'diploma' => $diplomaArray[$i],
+                                                        'school' => $schoolArray[$i],
+                                                        'to_year' => $toYearArray[$i],
+                                                        'from_year' => $fromYearArray[$i],
+                                                    ];
+                                                }
+                                                }
+                                                 if(empty($data['memorialAcademic'])) {
+        // Initialize $data['occupations'] with a default empty entry
+        $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_year' => '']];
+    }
                     @endphp
 
                     @foreach($data['academics'] as $academic)
@@ -932,21 +852,27 @@
                     milestone_counter++;
                     $(milestone_container).append(`
                     @php
+                        if ( $profile['memorialMilestone'])
+                                                {
+                                                    $milestoneArray = explode(', ', $profile['memorialMilestone']->milestone);
+                                                $yearArray = explode(', ', $profile['memorialMilestone']->year);
 
-                        $milestoneArray = explode(', ', $profile['memorialMilestone']->milestone);
-                        $yearArray = explode(', ', $profile['memorialMilestone']->year);
+                                                $data['milestone'] = [];
 
-                        $data['milestone'] = [];
+                                                // Assuming all arrays have the same length
+                                                $length = count($milestoneArray);
 
-                        // Assuming all arrays have the same length
-                        $length = count($milestoneArray);
-
-                        for ($i = 0; $i < $length; $i++) {
-                            $data['milestone'][] = [
-                                'milestone' => $milestoneArray[$i],
-                                'year' => $yearArray[$i],
-                            ];
-                        }
+                                                for ($i = 0; $i < $length; $i++) {
+                                                    $data['milestone'][] = [
+                                                        'milestone' => $milestoneArray[$i],
+                                                        'year' => $yearArray[$i],
+                                                    ];
+                                                }
+                                                }
+                         if(empty($data['memorialMilestone'])) {
+                                // Initialize $data['occupations'] with a default empty entry
+                                $data['milestone'] = [['milestone' => '', 'year' => '']];
+                            }
                     @endphp
                     @foreach( $data['milestone'] as $milestone)
                     <div class="row-of-dynamic-inputs">
@@ -1005,7 +931,14 @@
                     interests_counter++;
                     $(interests_container).append(`
                     @php
+                        if ($profile['memorialInterest'])
+                            {
+
                         $interests =explode(', ',$profile['memorialInterest']->interest) ;
+                            }
+                        if(empty($data['memorialInterest'])) {
+                                $interests = [];
+                            }
                     @endphp
                     @foreach($interests as $interest )
                     <div class="row-of-dynamic-inputs">
@@ -1130,17 +1063,39 @@
                 ele.classList.toggle('show')
                 console.log('Child', ele)
             });
+            $(".whole-image-wrapper-with-overlay-of-theme").click(function (e) {
+                e.preventDefault();
+                console.log('Image Click', e);
+                let allElements = $(".grid-of-themes .whole-image-wrapper-with-overlay-of-theme .overlay")
+                for (let i = 0; i < allElements.length; i++) {
+                    console.log('Single class', allElements[i].classList[1])
+                    if (allElements[i].classList[1]) {
+                        console.log('Yes')
+                        allElements[i].classList.remove('show');
+                    }
+
+                }
+                // console.log('All elements',allElements)
+                console.log('ele', e.currentTarget)
+                let ele = e.currentTarget.children[1];
+
+                ele.classList.toggle('show')
+                console.log('Child', ele)
+                // $(".overlay").show();
+
+            })
 
             $('#basic-info-form').submit(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
                 // Get the user_id from the form data attribute
                 var userId = $(this).data('user-id');
                 var identifier = 'basic_info';
-                // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
-                saveFormData(userId, formData);
+                // Serialize the form data along with user_id and form_identifier
+                var formData = $(this).serialize() + '&user_id=' + userId;
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
+
 
             $('#home-city-info-form').submit(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
@@ -1148,8 +1103,9 @@
                 var userId = $(this).data('user-id');
                 var identifier = 'home_info';
                 // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
-                saveFormData(userId, formData);
+                var formData = $(this).serialize() + '&user_id=' + userId
+                alert(formData);
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1159,8 +1115,8 @@
                 var userId = $(this).data('user-id');
                 var identifier = 'other_info';
                 // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
-                saveFormData(userId, formData);
+                var formData = $(this).serialize() + '&user_id=' + userId
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1179,7 +1135,7 @@
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData);
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1199,7 +1155,7 @@
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData);
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1218,7 +1174,7 @@
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData);
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1228,8 +1184,8 @@
                 var userId = $(this).data('user-id');
                 var identifier = 'religion_info';
                 // Serialize the form data along with user_id
-                var formData = $(this).serialize() + '&user_id=' + userId + '&form_identifier=' + identifier;
-                saveFormData(userId, formData);
+                var formData = $(this).serialize() + '&user_id=' + userId
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1240,7 +1196,7 @@
                 var identifier = 'interest_info';
 
                 // Serialize the form data
-                var formData = $('#interest-info form').serializeArray();
+                var formData = $('#interest-info').serializeArray();
 
                 // Add additional data manually (user_id and form_identifier)
                 formData.push({name: 'user_id', value: userId});
@@ -1248,75 +1204,22 @@
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData);
+                saveFormData(userId, formData, identifier);
                 return 0;
             });
-
-            $('#profile_image_custom_btn').click(function (e) {
-                e.preventDefault();
-
-                alert('inside profile custom  button');
-
-                var userId = $(this).data('user-id');
-                var identifier = 'profile_image_custom';
-
-                // Create a new FormData object for file upload do not serialize
-                var formData = new FormData($('#profile_image_form')[0]);
-
-                // Add additional data manually (user_id and form_identifier)
-                formData.append('user_id', userId);
-                formData.append('form_identifier', identifier);
-                formData.append('is_image_upload', true);
-
-                alert(formData);
-                saveFormData(userId, formData, 'profile_image_custom');
-                return 0;
-            });
-// Function for clicking the "Select" button
-            $('#profile_image_library').click(function (e) {
-                e.preventDefault();
-
-                var userId = $(this).data('user-id');
-                var selectedImageId = $(".overlay.show").parent().attr("id");
-
-                if (selectedImageId) {
-                    // Extract the image ID from the selected image
-                    var imageId = selectedImageId.split("-")[2];
-                    // Assuming you have the image URL associated with each image
-                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
-                    // Perform the AJAX request to update the profile image
-                    updateProfileImage(userId, imageURL);
-                } else {
-                    alert("Please select an image first.");
-                }
-            });
-            // Function to update the profile image via AJAX
-            function updateProfileImage(userId, imageURL) {
-                var formData = new FormData();
-                formData.append('user_id', userId);
-                formData.append('form_identifier', 'profile_image_library');
-                formData.append('is_image_upload', true);
-
-                fetch(imageURL)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        console.log(blob);
-                        formData.append('profile_image', blob);
-                        console.log(formData); // Log FormData object for inspection
-                        saveFormData(userId, formData, 'profile_image_custom');
-                    })
-                    .catch(error => console.error('Error fetching image:', error));
-            }
 
             //Ajax function
             function saveFormData(userId, formData, formType) {
                 alert(formData);
+                alert(formType);
                 $.ajax({
                     type: 'POST',
-                    url: '/update-memorial-profile/' + userId,
+                    url: '/update-memorial-profile/' + userId + '/' + formType,
                     data: formData,
                     processData: false,
                     contentType: false,
+                    cache: false, // Ensure the request is not cached
+
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -1324,7 +1227,6 @@
                         console.log(response);
                         if (response.success) {
                             $('#successMessage').show();
-
                             // Check if the form is for image upload and refresh the profile image div
                             if (formType === 'profile_image_custom') {
                                 refreshProfileImageDiv(userId, formType);
@@ -1353,7 +1255,66 @@
                 });
             }
 
-            function refreshProfileImageDiv(userId,formType) {
+
+            $('#profile_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+
+                var userId = $(this).data('user-id');
+                var identifier = 'profile_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#profile_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormData(userId, formData, 'profile_image_custom');
+                return 0;
+            });
+
+// Function for clicking the "Select" button
+            $('#profile_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateProfileImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+
+            // Function to update the profile image via AJAX
+
+
+            function updateProfileImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'profile_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('profile_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormData(userId, formData, 'profile_image_library');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
+
+            function refreshProfileImageDiv(userId, formType) {
                 // Assuming you have a unique identifier or class for the profile image div
                 if (formType === 'profile_image_custom') {
                     var profileImageDiv = $('#profile-image-div');
@@ -1361,7 +1322,7 @@
                 // Make an Ajax request to get the updated profile image URL based on the form type
                 $.ajax({
                     type: 'GET',
-                    url: '/get-updated-profile-image/' + userId + '/' + formType ,
+                    url: '/get-updated-image/' + userId + '/' + formType,
                     success: function (imageResponse) {
                         // Replace the content of the profile image div with the updated image
                         profileImageDiv.html(

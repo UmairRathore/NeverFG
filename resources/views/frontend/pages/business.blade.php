@@ -20,7 +20,7 @@
                     </div>
                     <div class="row bottom-section">
                         <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn full-width">
-                            Learn more about keeper enterprise solutions
+                            Learn more about NeverFg enterprise solutions
                         </button>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row bottom-section">
                         <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn full-width">
-                            Learn more about keeper enterprise solutions
+                            Learn more about NeverFg enterprise solutions
                         </button>
                     </div>
                 </div>

@@ -36,7 +36,7 @@
                 <div class="cermonyTwocolumns">
                     <div class="cermony-left-section">
                         <p>
-                            Keeper’s team of experts make it easy to host a virtual or hybrid
+                            NeverFg’s team of experts make it easy to host a virtual or hybrid
                             memorial service to honor the memory of your loved one. When you
                             partner with us, you’ll have access to our:
                         </p>
@@ -193,218 +193,218 @@
             <div class="service-provider-insider">
                 <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
                 <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="custom-button">
-                    Learn more about keeper partnership
+                    Learn more about Neverfg partnership
                 </button>
             </div>
         </div>
 
 @endsection
-@section('indexJS')
-    <script>
-        var getslide = $('.main-box li').length - 1;
-        var slidecal = 30 / getslide + '%';
+{{--@section('indexJS')--}}
+{{--    <script>--}}
+{{--        var getslide = $('.main-box li').length - 1;--}}
+{{--        var slidecal = 30 / getslide + '%';--}}
 
-        $('.box').css({"width": slidecal});
+{{--        $('.box').css({"width": slidecal});--}}
 
-        $('.box').click(function () {
-            $('.box').removeClass('active');
-            $(this).addClass('active');
-        });
+{{--        $('.box').click(function () {--}}
+{{--            $('.box').removeClass('active');--}}
+{{--            $(this).addClass('active');--}}
+{{--        });--}}
 
-        var swiper = new Swiper(".mySwiper", {
-            lazy: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-        document.addEventListener("scroll", () => {
-            const header = document.getElementById("header");
+{{--        var swiper = new Swiper(".mySwiper", {--}}
+{{--            lazy: true,--}}
+{{--            pagination: {--}}
+{{--                el: ".swiper-pagination",--}}
+{{--                clickable: true,--}}
+{{--            },--}}
+{{--            navigation: {--}}
+{{--                nextEl: ".swiper-button-next",--}}
+{{--                prevEl: ".swiper-button-prev",--}}
+{{--            },--}}
+{{--        });--}}
+{{--        document.addEventListener("scroll", () => {--}}
+{{--            const header = document.getElementById("header");--}}
 
-            console.log("Scroll y value", window.window.scrollY);
-            history.scrollRestoration = "manual";
+{{--            console.log("Scroll y value", window.window.scrollY);--}}
+{{--            history.scrollRestoration = "manual";--}}
 
-            if (window.scrollY == 0) {
-                header.classList.remove("scrolled");
+{{--            if (window.scrollY == 0) {--}}
+{{--                header.classList.remove("scrolled");--}}
 
-                header.style.color = "white";
-                header.style.backgroundColor = "#00000080";
-                //change the logo large logo
-                document.getElementById("large-screen-funeralist-logo").src =
-                    "funeralist_white_logo.png";
-                //change the logo small logo
-                document.getElementById("my-small-nav-logo").src =
-                    "funeralist_white_logo.png";
+{{--                header.style.color = "white";--}}
+{{--                header.style.backgroundColor = "#00000080";--}}
+{{--                //change the logo large logo--}}
+{{--                document.getElementById("large-screen-funeralist-logo").src =--}}
+{{--                    "funeralist_white_logo.png";--}}
+{{--                //change the logo small logo--}}
+{{--                document.getElementById("my-small-nav-logo").src =--}}
+{{--                    "funeralist_white_logo.png";--}}
 
-                document.getElementById("sidebar-menu").style.backgroundColor =
-                    "#00000080";
+{{--                document.getElementById("sidebar-menu").style.backgroundColor =--}}
+{{--                    "#00000080";--}}
 
-                document.getElementById("sidebar-menu").style.color = "white";
-            }
-            if (window.scrollY > 0) {
-                console.log("Scroll y value", window.scrollY);
-                console.log("scroll");
+{{--                document.getElementById("sidebar-menu").style.color = "white";--}}
+{{--            }--}}
+{{--            if (window.scrollY > 0) {--}}
+{{--                console.log("Scroll y value", window.scrollY);--}}
+{{--                console.log("scroll");--}}
 
-                header.style.color = "white";
-                header.style.backgroundColor = "black";
-                //changing the logo on scroll of large item
-                document.getElementById("large-screen-funeralist-logo").src =
-                    "funeralist_black_logo.png";
-                // changing small logo
-                document.getElementById("my-small-nav-logo").src =
-                    "funeralist_black_logo.png";
+{{--                header.style.color = "white";--}}
+{{--                header.style.backgroundColor = "black";--}}
+{{--                //changing the logo on scroll of large item--}}
+{{--                document.getElementById("large-screen-funeralist-logo").src =--}}
+{{--                    "funeralist_black_logo.png";--}}
+{{--                // changing small logo--}}
+{{--                document.getElementById("my-small-nav-logo").src =--}}
+{{--                    "funeralist_black_logo.png";--}}
 
-                document.getElementById("sidebar-menu").style.backgroundColor =
-                    "white";
-                document.getElementById("sidebar-menu").style.color = "black";
+{{--                document.getElementById("sidebar-menu").style.backgroundColor =--}}
+{{--                    "white";--}}
+{{--                document.getElementById("sidebar-menu").style.color = "black";--}}
 
-                //Here we change the background color of small scrren nav bar <960px
+{{--                //Here we change the background color of small scrren nav bar <960px--}}
 
-                const navLinkHome = document.getElementById("home");
-                const navLinkHomeService = document.getElementById("homeService");
-                const navLinkBrand = document.getElementById("brand");
-                navLinkHome.style.color = "black";
-                navLinkHomeService.style.color = "black";
-                navLinkBrand.style.color = "black";
-                header.classList.add("scrolled");
-            } else {
-                header.style.color = "white";
-                header.style.backgroundColor = "#00000080";
-                //changing the large screen logo
-                document.getElementById("large-screen-funeralist-logo").src =
-                    "funeralist_white_logo.png";
-                //changing the small screen logo
-                document.getElementById("my-small-nav-logo").src =
-                    "funeralist_white_logo.png";
+{{--                const navLinkHome = document.getElementById("home");--}}
+{{--                const navLinkHomeService = document.getElementById("homeService");--}}
+{{--                const navLinkBrand = document.getElementById("brand");--}}
+{{--                navLinkHome.style.color = "black";--}}
+{{--                navLinkHomeService.style.color = "black";--}}
+{{--                navLinkBrand.style.color = "black";--}}
+{{--                header.classList.add("scrolled");--}}
+{{--            } else {--}}
+{{--                header.style.color = "white";--}}
+{{--                header.style.backgroundColor = "#00000080";--}}
+{{--                //changing the large screen logo--}}
+{{--                document.getElementById("large-screen-funeralist-logo").src =--}}
+{{--                    "funeralist_white_logo.png";--}}
+{{--                //changing the small screen logo--}}
+{{--                document.getElementById("my-small-nav-logo").src =--}}
+{{--                    "funeralist_white_logo.png";--}}
 
-                document.getElementById("sidebar-menu").style.backgroundColor =
-                    "#00000080";
-                document.getElementById("sidebar-menu").style.color = "white";
+{{--                document.getElementById("sidebar-menu").style.backgroundColor =--}}
+{{--                    "#00000080";--}}
+{{--                document.getElementById("sidebar-menu").style.color = "white";--}}
 
-                header.classList.remove("scrolled");
-            }
-        });
+{{--                header.classList.remove("scrolled");--}}
+{{--            }--}}
+{{--        });--}}
 
-        //cart box close
-        $("#close-img").click(function () {
-            let cart = document.getElementById("cart-items");
-            // cart.classList.remove("slide-from-left");
+{{--        //cart box close--}}
+{{--        $("#close-img").click(function () {--}}
+{{--            let cart = document.getElementById("cart-items");--}}
+{{--            // cart.classList.remove("slide-from-left");--}}
 
-            cart.style.display = "none";
-        });
-        $("#search-box-div").click(function () {
-            let search = document.getElementById("searchBarSection");
-            search.style.display = "flex";
-        });
-        $("#search-of-sidebar-of-funeralist").click(function () {
-            let search = document.getElementById("searchBarSection");
-            search.style.display = "flex";
-        });
-        $("#closing-button-of-search").click(function () {
-            let search = document.getElementById("searchBarSection");
-            search.style.display = "none";
-        });
-        $("#user-icon-div").click(function () {
-            console.log(
-                "this",
-                $(this).children("div.user-dropdown-of-funeralist")
-            );
+{{--            cart.style.display = "none";--}}
+{{--        });--}}
+{{--        $("#search-box-div").click(function () {--}}
+{{--            let search = document.getElementById("searchBarSection");--}}
+{{--            search.style.display = "flex";--}}
+{{--        });--}}
+{{--        $("#search-of-sidebar-of-funeralist").click(function () {--}}
+{{--            let search = document.getElementById("searchBarSection");--}}
+{{--            search.style.display = "flex";--}}
+{{--        });--}}
+{{--        $("#closing-button-of-search").click(function () {--}}
+{{--            let search = document.getElementById("searchBarSection");--}}
+{{--            search.style.display = "none";--}}
+{{--        });--}}
+{{--        $("#user-icon-div").click(function () {--}}
+{{--            console.log(--}}
+{{--                "this",--}}
+{{--                $(this).children("div.user-dropdown-of-funeralist")--}}
+{{--            );--}}
 
-            $(this)
-                .children("div.user-dropdown-of-funeralist")
-                .toggleClass("show-user-profile");
-        });
-        $("#user-img-svg").click(function () {
-            console.log(
-                "this",
-                $(this).children("div.user-dropdown-of-funeralist")
-            );
+{{--            $(this)--}}
+{{--                .children("div.user-dropdown-of-funeralist")--}}
+{{--                .toggleClass("show-user-profile");--}}
+{{--        });--}}
+{{--        $("#user-img-svg").click(function () {--}}
+{{--            console.log(--}}
+{{--                "this",--}}
+{{--                $(this).children("div.user-dropdown-of-funeralist")--}}
+{{--            );--}}
 
-            $(this)
-                .children("div.user-dropdown-of-funeralist")
-                .toggleClass("show-user-profile");
-        });
-        $(document).on("click", function (a) {
+{{--            $(this)--}}
+{{--                .children("div.user-dropdown-of-funeralist")--}}
+{{--                .toggleClass("show-user-profile");--}}
+{{--        });--}}
+{{--        // $(document).on("click", function (a) {--}}
+{{--        //--}}
+{{--        //     //user image on click--}}
+{{--        //     if ($(a.target).is("#user-img-svg") === false) {--}}
+{{--        //         console.log("User click outside");--}}
+{{--        //         $("#user-options").removeClass("show-user-profile");--}}
+{{--        //     }--}}
+{{--        // });--}}
+{{--        //resizing window--}}
+{{--        $(window).resize(function () {--}}
+{{--            if ($(window).width() < 960) {--}}
+{{--                console.log("Width is <900");--}}
+{{--                $("#sidebar-menu").show();--}}
+{{--                $("#header").hide();--}}
+{{--            } else {--}}
+{{--                console.log("Width is >=960");--}}
+{{--                $("#sidebar-menu").hide();--}}
+{{--                $("#header").show();--}}
+{{--            }--}}
+{{--        });--}}
 
-            //user image on click
-            if ($(a.target).is("#user-img-svg") === false) {
-                console.log("User click outside");
-                $("#user-options").removeClass("show-user-profile");
-            }
-        });
-        //resizing window
-        $(window).resize(function () {
-            if ($(window).width() < 960) {
-                console.log("Width is <900");
-                $("#sidebar-menu").show();
-                $("#header").hide();
-            } else {
-                console.log("Width is >=960");
-                $("#sidebar-menu").hide();
-                $("#header").show();
-            }
-        });
+{{--        $(document).ready(function () {--}}
+{{--            if ($(window).width() < 960) {--}}
+{{--                console.log("Width is <900");--}}
+{{--                $("#sidebar-menu").show();--}}
+{{--                $("#header").hide();--}}
+{{--            } else {--}}
+{{--                console.log("Width is >=960");--}}
+{{--                $("#sidebar-menu").hide();--}}
+{{--                $("#header").show();--}}
+{{--            }--}}
+{{--            //jquery for toggle sub menus--}}
+{{--            $(".glamora-sidebar-sub-btn").click(function () {--}}
+{{--                $(this).next(".funeralist_sidebar_menu_item_sub-menu").slideToggle();--}}
+{{--                $(this).find(".dropdown").toggleClass("rotate");--}}
+{{--            });--}}
 
-        $(document).ready(function () {
-            if ($(window).width() < 960) {
-                console.log("Width is <900");
-                $("#sidebar-menu").show();
-                $("#header").hide();
-            } else {
-                console.log("Width is >=960");
-                $("#sidebar-menu").hide();
-                $("#header").show();
-            }
-            //jquery for toggle sub menus
-            $(".glamora-sidebar-sub-btn").click(function () {
-                $(this).next(".funeralist_sidebar_menu_item_sub-menu").slideToggle();
-                $(this).find(".dropdown").toggleClass("rotate");
-            });
+{{--            //jquery for expand and collapse the sidebar--}}
+{{--            $(".funeralist_sidebar_menu-btn").click(function () {--}}
+{{--                $(".side-bar-of-funeralist").addClass("active");--}}
+{{--                $(".funeralist_sidebar_menu-btn").css("visibility", "hidden");--}}
+{{--            });--}}
 
-            //jquery for expand and collapse the sidebar
-            $(".funeralist_sidebar_menu-btn").click(function () {
-                $(".side-bar-of-funeralist").addClass("active");
-                $(".funeralist_sidebar_menu-btn").css("visibility", "hidden");
-            });
+{{--            $(".close-btn").click(function () {--}}
+{{--                $(".side-bar-of-funeralist").removeClass("active");--}}
+{{--                $(".funeralist_sidebar_menu-btn").css("visibility", "visible");--}}
+{{--            });--}}
+{{--        });--}}
+{{--        function redirectToMemorialSignup() {--}}
+{{--            var firstName = document.getElementById('firstNameInput').value.trim();--}}
+{{--            var lastName = document.getElementById('lastNameInput').value.trim();--}}
 
-            $(".close-btn").click(function () {
-                $(".side-bar-of-funeralist").removeClass("active");
-                $(".funeralist_sidebar_menu-btn").css("visibility", "visible");
-            });
-        });
-        function redirectToMemorialSignup() {
-            var firstName = document.getElementById('firstNameInput').value.trim();
-            var lastName = document.getElementById('lastNameInput').value.trim();
-
-            if (firstName !== '' && lastName !== '') {
-                var url = '{{ route("memorialsignup") }}' + '?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
-                window.location.href = url;
-            } else {
-                alert('Please fill in both first name and last name.');
-            }
-        }
-
-
+{{--            if (firstName !== '' && lastName !== '') {--}}
+{{--                var url = '{{ route("memorialsignup") }}' + '?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);--}}
+{{--                window.location.href = url;--}}
+{{--            } else {--}}
+{{--                alert('Please fill in both first name and last name.');--}}
+{{--            }--}}
+{{--        }--}}
 
 
-        function redirectToCorrectPage() {
-            var firstName = document.getElementById('firstNameInput').value.trim();
-            var lastName = document.getElementById('lastNameInput').value.trim();
 
-            if (firstName !== '' && lastName !== '') {
-                @if(auth()->check())
-                    window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
-                @else
-                    window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);
-                @endif
-            } else {
-                alert('Please fill in both first name and last name.');
-            }
-        }
 
-    </script>
-@endsection
+{{--        function redirectToCorrectPage() {--}}
+{{--            var firstName = document.getElementById('firstNameInput').value.trim();--}}
+{{--            var lastName = document.getElementById('lastNameInput').value.trim();--}}
+
+{{--            if (firstName !== '' && lastName !== '') {--}}
+{{--                @if(auth()->check())--}}
+{{--                    window.location.href = '{{ route('Creatememorial',auth()->user()->id) }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);--}}
+{{--                @else--}}
+{{--                    window.location.href = '{{ route('memorialsignup') }}?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName);--}}
+{{--                @endif--}}
+{{--            } else {--}}
+{{--                alert('Please fill in both first name and last name.');--}}
+{{--            }--}}
+{{--        }--}}
+
+{{--    </script>--}}
+{{--@endsection--}}
