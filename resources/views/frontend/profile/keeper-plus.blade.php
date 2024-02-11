@@ -1,5 +1,5 @@
 @extends('layouts.frontend.app.app')
-@section('title', 'Keeper Plus')
+@section('title', 'NeverFg Plus')
 @section('content')
 
     <!-- Family content -->
@@ -8,7 +8,7 @@
         <div class="profile-icon-content tab-content" id="Info">
             <div class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top linear-background-of-form">
-                    <h1 class="form-top-main-heading-of-profile">Keeper Plus - $74.99 USD</h1>
+                    <h1 class="form-top-main-heading-of-profile">NeverFg Plus - $74.99 USD</h1>
                     <div class="grid-of-header-with-features">
                         <div class="single-item-of-grid-feature">
                             <h2>Mementos Images</h2>
@@ -32,7 +32,7 @@
                                 one.</p>
                         </div>
                         <div class="single-item-of-grid-feature">
-                            <h2>Keeper Administrators</h2>
+                            <h2>NeverFg Administrators</h2>
                             <p>Invite unlimited administrators to help you manage every memorial page you have.</p>
                         </div>
                         <div class="single-item-of-grid-feature">
@@ -46,21 +46,21 @@
                         </div>
                         <div class="form-of-logged-in-user linear-background-of-form">
                             <div class="header-of-form-profile margin-top">
-                                <h1 class="form-top-main-heading-of-profile">Better Mementos with Keeper Plus</h1>
+                                <h1 class="form-top-main-heading-of-profile">Better Mementos with NeverFg Plus</h1>
 
                                 @if(auth()->check())
                                     @if(auth()->user()->account_type_id == 1)
-                                        <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
-                                            download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
-                                            Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                        <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and
+                                            download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which
+                                            Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your
                                             phone, tablet or computer.</p>
-                                        <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade Keeper Plus</a>
+                                        <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade NeverFg Plus</a>
                                     @elseif(auth()->user()->account_type_id == 2)
-                                        <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
-                                            download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
-                                            Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                        <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and
+                                            download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which
+                                            Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your
                                             phone, tablet or computer.</p>
-                                        <button class="black-background-btn">You Already have the Package Keeper Plus</button>
+                                        <button class="black-background-btn">You Already have the Package NeverFg Plus</button>
                                     @endif
                                 @endif
                             </div>
@@ -75,7 +75,7 @@
     </div>
 @endsection
 
-@section('keeperJS')
+@section('NeverFgJS')
     <script>
         function showAlert(message) {
             alert(message);

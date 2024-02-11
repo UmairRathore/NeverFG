@@ -1,12 +1,12 @@
 
 @if(request()->is('/'))
     <div class="hero_wrapper">
-        <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo"/>
+        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
         <h1 class="heading_primary">KEEPING MEMORIES ALIVE</h1>
         <h2 class="heading_secandary">
             Beautiful, Free Online Memorials & Tributes
         </h2>
-        <h2 class="heading_ternary">Keeper online tributes are a simple way</h2>
+        <h2 class="heading_ternary">NeverFg online tributes are a simple way</h2>
         <h2 class="heading_ternary">
             to preserve, celebrate and share a loved one's legacy.
         </h2>
@@ -20,7 +20,7 @@
 @elseif(request()->is('virtual-funeral')|| request()->is('Terms-and-Privacy-Policy'))
 
     <div class="hero_wrapper">
-                <img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo"/>
+                <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
 
                 <h2 class="heading_secandary">KEEPING MEMORIES ALIVE TOGETHER</h2>
                 <h2 class="heading_ternary">
@@ -78,7 +78,7 @@
 
 <div class="hero_section_home">
     <div class="hero_wrapper">
-<img src="{{asset('frontend/assets/images/dummy_logo.webp')}}" alt="" class="hero_logo"/>
+        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
         <!-- <h1 class="heading_primary">KEEPING MEMORIES ALIVE</h1>
           <h2 class="heading_secandary">
             Beautiful, Free Online Memorials & Tributes
@@ -94,7 +94,7 @@
 @elseif( request()->is('for-business'))
     <div class="hero_wrapper">
         <h2 class="heading_primary">
-            KEEPER <span class="pro-background">PLUS</span>
+            NeverFg <span class="pro-background">PLUS</span>
         </h2>
         <h2 class="heading_secandary">
             Online Memorials for Businesses & Non-Profits

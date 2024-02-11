@@ -2,13 +2,13 @@
 @section('title', 'Keeper')
 @section('content')
 
-    <!-- Keeper content -->
+    <!-- NeverFg content -->
     <div class="center-and-margin">
         <!-- Profile secion -->
         <div class="profile-icon-content tab-content" id="Info">
             <div class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Keeper of:</h1>
+                    <h1 class="form-top-main-heading-of-profile">NeverFg of:</h1>
 
                 </div>
                 <div class="form-data-of-profile-page">
@@ -59,21 +59,21 @@
             <div class="form-of-logged-in-user linear-background-of-form">
                 <div class="form-of-logged-in-user linear-background-of-form">
                     <div class="header-of-form-profile margin-top">
-                        <h1 class="form-top-main-heading-of-profile">Better Mementos with Keeper Plus</h1>
+                        <h1 class="form-top-main-heading-of-profile">Better Mementos with NeverFg Plus</h1>
 
                         @if(auth()->check())
                             @if(auth()->user()->account_type_id == 1)
-                                <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
-                                    download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
-                                    Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and
+                                    download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which
+                                    Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your
                                     phone, tablet or computer.</p>
-                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade Keeper Plus</a>
+                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade NeverFg Plus</a>
                             @elseif(auth()->user()->account_type_id == 2)
-                                <p>When you upgrade to Keeper Plus, your friends and family will be able to view all uploaded Mementos and
-                                    download their own copy of these pictures in a single file. With Keeper Plus you change the order in which
-                                    Memento images and videos appear. Keeper Plus also enables you to upload full HD videos directly from your
+                                <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and
+                                    download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which
+                                    Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your
                                     phone, tablet or computer.</p>
-                                <button class="black-background-btn">You Already have the Package Keeper Plus</button>
+                                <button class="black-background-btn">You Already have the Package NeverFg Plus</button>
                             @endif
                         @endif
 
