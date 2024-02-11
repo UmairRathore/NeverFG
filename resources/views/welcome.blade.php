@@ -166,7 +166,7 @@
 {{--            <div class="cermonyTwocolumns">--}}
 {{--                <div class="cermony-left-section">--}}
 {{--                    <p>--}}
-{{--                        Keeper’s team of experts make it easy to host a virtual or hybrid--}}
+{{--                        NeverFg’s team of experts make it easy to host a virtual or hybrid--}}
 {{--                        memorial service to honor the memory of your loved one. When you--}}
 {{--                        partner with us, you’ll have access to our:--}}
 {{--                    </p>--}}
@@ -349,7 +349,7 @@
 {{--        <div class="service-provider-insider">--}}
 {{--            <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>--}}
 {{--            <button class="custom-button">--}}
-{{--                Learn more about keeper partnership--}}
+{{--                Learn more about NeverFg partnership--}}
 {{--            </button>--}}
 {{--        </div>--}}
 {{--    </div>--}}

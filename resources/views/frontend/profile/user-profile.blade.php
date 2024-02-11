@@ -5,6 +5,14 @@
     <!-- Edit Profile content -->
     <div class="center-and-margin">
         <!-- Profile secion -->
+        <style>
+            .profile-icon-content {
+                width: 100%; /* Adjust this value as needed */
+                max-width: 800px; /* Set a maximum width if necessary */
+                margin: 0 auto; /* Center the element horizontally */
+            }
+
+        </style>
         <div class="profile-icon-content tab-content" id="Info">
 
             <form method="post" action="{{route('update.user.profile',$user->id)}}" enctype="multipart/form-data">
