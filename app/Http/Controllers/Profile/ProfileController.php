@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Family;
 use App\Models\LibraryPhoto;
 use App\Models\Memento;
 use App\Models\User;
@@ -57,9 +58,9 @@ class ProfileController extends Controller
         return view($this->_viewPath . 'create-memorial', compact('user_id'));
     }
 
-    public function updateUserProfile(Request $request)
+    public function updateUserProfile(Request $request,$id)
     {
-        dd($request);
+//        dd($request);
         $this->data['user'] = User::find($id);
         $this->data['user']->first_name = $request->first_name;
         $this->data['user']->middle_name = $request->middle_name;
@@ -71,7 +72,7 @@ class ProfileController extends Controller
         if ($request->password) {
             $this->data['user']->password = bcrypt($request->password);
         }
-        if ($request->hasFile('profile_image')) {
+        if ($request->file('profile_image')) {
             $image = $request->file('profile_image');
             $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
 
@@ -440,7 +441,7 @@ class ProfileController extends Controller
                 ]);
             }
 
-            if ($request->hasFile('memento_profile_image_custom')) {
+            if ($request->file('memento_profile_image_custom')) {
                 $image = $request->file('memento_profile_image_custom');
                 $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
 
@@ -491,7 +492,7 @@ class ProfileController extends Controller
                 ]);
             }
 
-            if ($request->hasFile('profile_image')) {
+            if ($request->file('profile_image')) {
                 $image = $request->file('profile_image');
                 $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
 
@@ -583,7 +584,7 @@ class ProfileController extends Controller
             $mementoProfile = $this->_memorial_model::where('user_id', $id)->first();
             $mementoId = $mementoProfile->id;
             $mementoProfileImage = $this->_model::where('id', $mementoId)->first();
-            if ($request->hasFile('memento_profile_image')) {
+            if ($request->file('memento_profile_image')) {
                 $image = $request->file('memento_profile_image');
 
                 $imageName = time() . '_' . $image->getClientOriginalName();
@@ -621,10 +622,43 @@ class ProfileController extends Controller
     }
 
 
-    public function family()
+    public function family($id)
     {
-        return view($this->_viewPath . 'family');
+        return view($this->_viewPath . 'family',compact('id'));
     }
+
+    public function createFamily(Request $request)
+    {
+//        return $request;
+        $request->validate([
+            'name' => 'required',
+            'relation' => 'required',
+            'family_image' => 'required',
+        ], [
+            'name.required' => 'The name field is required.',
+            'relation.required' => 'The relation field is required.',
+            'family_image.required' => 'The family image field is required.',
+        ]);
+
+        // Handle file upload
+        $imagePath = $this->handleFileUpload($request, 'family_image', 'Family');
+
+        // Create family member
+        $family = Family::create([
+            'memorial_user_id' => $request->memorialID,
+            'name' => $request->name,
+            'relation' => $request->relation,
+            'family_image' =>  $imagePath,
+        ]);
+
+        if ($family) {
+            return response()->json(['success' => true, 'message' => 'Family member created successfully']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Failed to create family member']);
+        }
+    }
+
+
 
 
     public function keeperplus()
@@ -640,7 +674,7 @@ class ProfileController extends Controller
 
     public function storeMemento(Request $request)
     {
-        dd($request);
+
         $request->validate([
             'memento_image' => 'required'
         ]);
@@ -666,7 +700,7 @@ class ProfileController extends Controller
     private function handleFileUpload($request, $fieldName,$folderName)
     {
 
-        if ($request->hasFile($fieldName)) {
+        if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 
