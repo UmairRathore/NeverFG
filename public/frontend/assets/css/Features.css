@@ -49,12 +49,14 @@ body {
   padding: 3rem;
   display: flex;
   justify-content: center;
+    margin: 0 auto;
   align-items: center;
 }
 .concept-of-websiteName-section-wrapper {
   display: flex;
   width: 100%;
   overflow: hidden;
+    margin: 0 auto;
   flex-wrap: wrap;
 }
 .concept-of-websiteName-section-wrapper .cermonyTwocolumns {
@@ -126,6 +128,7 @@ body {
   gap: 16px;
   width: 100%;
   max-width: 1000px;
+    margin: 0 auto;
   grid-template-areas: "features-section-header features-section-header" "div-1 div-2" "div-3 div-4" "div-5 div-6" "div-7 div-8" "div-9 div-10" "div-11 div-12" "div-13 div-13" "div-14 div-14" "bird-flying-section bird-flying-section";
 }
 .features-page-first-grid .features-div-top {
