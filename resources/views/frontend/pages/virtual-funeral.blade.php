@@ -11,7 +11,7 @@
                 <div class="top-container">
                     <h2>WHAT IS A VIRTUAL MEMORIAL?</h2>
                     <p>
-                        A virtual memorial service with Keeper is like an in-person
+                        A virtual memorial service with NeverFg is like an in-person
                         memorial, but it’s conducted online with family and friends
                         participating virtually via video conference. A hybrid memorial
                         is an in-person gathering with a virtual element for those who
@@ -23,21 +23,21 @@
                     </p>
                 </div>
                 <div class="bottom-container">
-                    <h2>WHY USE KEEPER?</h2>
+                    <h2>WHY USE NeverFg?</h2>
                     <p>
                         As experts in online memorialization and end-of-life care since
-                        2013, you are in good hands with Keeper. We will work closely
+                        2013, you are in good hands with NeverFg. We will work closely
                         with you to craft the perfect memorial service for your loved
                         one. From finding the right words to say and hosting the video
                         conference, to online event page creation, our facilitators are
-                        with you every step of the way. Your Keeper virtual memorial
+                        with you every step of the way. Your NeverFg virtual memorial
                         service will honor the memory of your loved one in a
                         professional, personalized, and heartfelt way.
                     </p>
                 </div>
             </div>
             <div class="cermony-right-section">
-                <img src="./assets/img_overlaping.png" alt="" class="img-overlapping" />
+                <img src="{{asset('frontend/assets/images/img_overlaping.png')}}" alt="" class="img-overlapping" />
                 <svg xmlns="http://www.w3.org/2000/svg" width="114" height="110" viewBox="0 0 114 110">
                     <defs>
                         <style>
@@ -599,7 +599,7 @@
         </div>
         <div class="legacy-content-img">
             <div class="legacy-content-img-wrapper">
-                <img src="./assets/keeper-service.jpg" alt="" class="legacy-content-img-actual">
+                <img src="{{('frontend/assets/images/NeverFg-service.jpg')}}" alt="" class="legacy-content-img-actual">
             </div>
         </div>
         <div class="sample-project-heading">

@@ -1,16 +1,17 @@
 <div class="main-header-funeralist" id="header">
     <div class="main-header-funeralist-left-items">
-        <!-- <img
-            src="./funeralist_white_logo.png"
-            alt=""
-            class="logo-funeralist"
-            id="large-screen-funeralist-logo"
-          /> -->
-        {{--            Keeper--}}
+{{--         <img--}}
+{{--            src="{{asset('assets/images/logo.jpg')}}"--}}
+{{--            alt=""--}}
+{{--            class="logo-funeralist"--}}
+{{--            id="large-screen-funeralist-logo"--}}
+{{--          />--}}
+
     </div>
     <div class="main-header-funeralist-right-items">
         <div class="simple-items">
             <ul class="list">
+                <li><a href="{{route('index')}}">Home</a></li>
                 <li><a href="{{route('forbusiness')}}">For Business</a></li>
                 <li><a href="{{route('virtualfuneral')}}">Virtual funerals</a></li>
                 <li><a href="{{route('faqs')}}">Faq </a></li>
@@ -27,7 +28,7 @@
                 @endif
                 @if(!auth()->check())
                     <li><a href="{{route('login')}}">Login</a></li>
-                    <li><a href="{{route('usersignup')}}">Keeper Signup</a></li>
+                    <li><a href="{{route('usersignup')}}"> Signup</a></li>
                     <li><a href="{{route('memorialsignup')}}">Memorial Signup</a></li>
                 @endif
             </ul>
@@ -95,7 +96,7 @@
 
 {{--<div class="small-and-medium-size-navigation-menu" id="sidebar-menu">--}}
 {{--    <div class="small-nav-bar-logo-div">--}}
-{{--        <img src="{{asset('frontend/assets/images//dummy_logo.')}}webp" alt="" class="my-small-nav-logo" id="my-small-nav-logo"/>--}}
+{{--        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="my-small-nav-logo" id="my-small-nav-logo"/>--}}
 {{--    </div>--}}
 {{--    <div class="funeralist_sidebar_menu-btn" id="menu-btn">--}}
 {{--        <i class="fas fa-bars"></i>--}}

@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/post-family', [ProfileController::class, 'createFamily'])->name('post.family'); //
 
 
-    Route::post('/update-memorial-profile/{id}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
+    Route::post('/update-memorial-profile/{id}/{formType}', [ProfileController::class, 'updateMementoInfoProfile']); //AJAX
 
     Route::post('/store-memorial', [ProfileController::class, 'storeMemorial']); //AJAX
     Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
