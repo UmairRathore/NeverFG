@@ -171,20 +171,14 @@
                             </div>
 
                             <div class="cols-of-unlogged-in-two-cols-right">
+                                @foreach($familys as $family)
+                                        <div class="nested-two-cols">
+                                            <p class="row-heading">{{$family->relation}}</p>
+                                            <p class="row-heading">{{$family->name}}</p>
+                                        </div>
+                                @endforeach
 
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Significant Other</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Parents</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Grand-Parents</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
+
 
                             </div>
 
@@ -241,16 +235,16 @@
                     <div class="div-1">
                         <h1 class="mem-heading-main">Momentos</h1>
                         <div class="pics-wrapper">
-                            <div class="image-wrapper-of-not-logged-in-profile">
                                 @foreach($mementos as $memento)
+                            <div class="image-wrapper-of-not-logged-in-profile">
                                     @if($memento->memento_image)
                                         <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
                                     @else
                                         <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
                                     @endif
-                                @endforeach
 
                             </div>
+                                @endforeach
                         </div>
                     </div>
 

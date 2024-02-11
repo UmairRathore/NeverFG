@@ -231,7 +231,7 @@
                 </div>
             </form>
 
-            Home City
+{{--            Home City--}}
             <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
 
                 <div class="form-of-logged-in-user">
@@ -253,7 +253,7 @@
                 </div>
             </form>
 
-            Other City
+{{--            Other City--}}
             <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <div class="form-of-logged-in-user">
                     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
@@ -812,7 +812,6 @@
             <input type="text" class="input-design" name="to_year[]" value="{{ $occupation['to_year'] }}" />
         </div>
     </div>
-
                 <svg
                 class="deleteOccupation"
                   width="128px"
