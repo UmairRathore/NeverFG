@@ -6,11 +6,11 @@
         <!-- Profile secion -->
         <div class="profile-icon-content tab-content" id="Info">
 
-            <form id="basic-info-form" data-user-id="{{$user_id}}">
+            <form id="basic-info-form" >
                 <!--Basic Information-->
                 <div class="form-of-logged-in-user">
                     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
+                        Memorial Profile created successfully!
                     </div>
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
@@ -28,9 +28,20 @@
                             <label for="">Last Name</label>
                             <input type="text" class="input-design" name="last_name" value=""/>
                         </div>
+
                         <div class="form-group-input">
                             <label for="">Suffix(Mr., M.D., etc.)</label>
                             <input type="text" class="input-design" name="suffix" value=""/>
+                            <input type="hidden" name="keeperID" value="{{$user_id}}">
+
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">City of birth</label>
+                            <input type="text" class="input-design" name="city_of_birth" value=""/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Email </label>
+                            <input type="email" class="input-design" name="email" value=""/>
                         </div>
                         <div class="form-group-input">
                             <label for="">Date of Birth</label>
@@ -98,6 +109,34 @@
                                 </label>
                             </div>
                         </div>
+                    <div class="form-group-input">
+                            <label for="memorial_biography">Their Obituary/Biography</label>
+                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ old('memorial_biography') }}" class="input-design @error('memorial_biography') is-invalid @enderror" required/>
+                            @error('memorial_biography')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group-input">
+                            <label for="memorial_fav_saying">Their Favourite Saying</label>
+                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ old('memorial_fav_saying') }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" required/>
+                            @error('memorial_fav_saying')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group-input">
+                            <label for="memorial_resting_place">Resting Place:</label>
+                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ old('memorial_resting_place') }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" required/>
+                            @error('memorial_resting_place')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+
                         <div class="form-group-input">
 
                             <div class="custom-file-chooser-wrapper">
@@ -108,6 +147,7 @@
                         </div>
 
                     </div>
+
                     <div class="footer-of-form-content">
                         <button class="form-btn">Create memorial</button>
                     </div>
@@ -123,39 +163,39 @@
 @section('CreatememorialJS')
     <script>
 
-        $('#basic-info-form').submit(function (e) {
-            e.preventDefault(); // Prevent the form from submitting in the traditional way
-            var userId = $(this).data('user-id');
-            var formData = new FormData(this); // Create a FormData object from the form
-            formData.append('user_id', userId);
-            formData.append('form_identifier', 'basic_info_create');
+        $(document).ready(function() {
+            $('#basic-info-form').submit(function(e) {
+                e.preventDefault();
 
-            $.ajax({
-                type: 'POST',
-                url: '/update-memorial-profile/' + userId,
-                data: formData,
-                processData: false, // Prevent jQuery from processing the data
-                contentType: false, // Prevent jQuery from setting the content type
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    console.log(response);
-                    if (response.success) {
-                        $('#successMessage').show();
-                        setTimeout(function () {
-                            $('#successMessage').hide();
-                        }, 2000);
-                    } else {
-                        alert('Error: ' + response.message);
+                var formData = new FormData($(this)[0]);
+
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
                     }
-                },
-                error: function (error) {
-                    console.error(error);
-                    var errorMessage = error.responseJSON.message;
-                    var errorDetails = error.responseJSON.error_details;
-                    alert('Error: ' + errorMessage + '\nDetails: ' + errorDetails);
-                }
+                });
+                $.ajax({
+                    url: '/store-memorial',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Handle success response
+                        console.log(response);
+                        // Display success message to the user
+                        $('#successMessage').show();
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error(xhr.responseText);
+                        // Display error message to the user
+                        // You can customize this based on your error handling logic
+                        alert('An error occurred. Please try again.');
+                    }
+                });
             });
         });
 

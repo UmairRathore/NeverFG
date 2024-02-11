@@ -148,7 +148,7 @@ class RegistrationController extends Controller
         } else {
             $this->data['memorialUser']->email = Str::random(5) . ' loved one is dead ' . Str::random(5);
         }
-        if ($request->hasFile('memorial_image')) {
+        if ($request->file('memorial_image')) {
             $image = $request->file('memorial_image');
 
             $imageName = time() . '_' . $image->getClientOriginalName();

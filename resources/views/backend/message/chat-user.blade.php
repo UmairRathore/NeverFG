@@ -14,7 +14,6 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb ps-0">
                             <li class="breadcrumb-item"><a href="{{route('backend.index')}}"><i class="material-icons">home</i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('backend.feature-list')}}">Features List</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Add Service</li>
                         </ol>
                     </nav>

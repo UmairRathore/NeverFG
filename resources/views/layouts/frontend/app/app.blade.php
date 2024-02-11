@@ -24,9 +24,9 @@
                                     {{--                                Profile--}}
 
                                     <!-- Top section -->
-{{--                                    <section class="profileWrapper">--}}
-{{--                                        @include('layouts.frontend.app.profile.dpcover')--}}
-{{--                                    </section>--}}
+                                    <section class="profileWrapper">
+                                        @include('layouts.frontend.app.profile.dpcover')
+                                    </section>
 
                                 @endif
 

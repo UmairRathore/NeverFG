@@ -10,6 +10,6 @@ class Family extends Model
     use HasFactory;
     protected $table = 'families';
     protected $fillable = [
-        'name', 'relation', 'family_image'
+        'name', 'relation', 'family_image','memorial_user_id'
     ];
 }
