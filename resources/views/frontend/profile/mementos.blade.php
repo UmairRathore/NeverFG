@@ -47,7 +47,7 @@
 {{--                    --}}{{--                        </a>--}}
 {{--                    --}}{{--                    @endforeach--}}
 
-                    <form id="uploadForm" enctype="multipart/form-data">
+                    <form id="uploadForm">
                         <div class="form-group-input">
                             <label for="file">Upload Image:</label>
                             <input type="file" id="file" name="memento_image" class="input-design"/>
@@ -58,6 +58,7 @@
                             <button type="button" id="uploadButton" class="form-btn">Save mementos</button>
                         </div>
                     </form>
+
 
                 </div>
             </div>
@@ -96,24 +97,24 @@
         }
 
         $(document).ready(function () {
-            // Bind click event to the button
             $('#uploadButton').click(function () {
-                // Create FormData object from form data
+                // Get form data
                 var formData = new FormData($('#uploadForm')[0]);
                 formData.append('_token', '{{ csrf_token() }}');
 
-                // Make Ajax request
+                // Send AJAX request
                 $.ajax({
-                    url: '/store-memento', // URL to handle the form data
+                    url: '/store-memento', // Replace with your endpoint
                     type: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function (response) {
-                        // Update the profile-image-div with the uploaded image
-                        $('#profile-image-div').html('<img src="' + response.image_url + '" alt="Uploaded Image" class="pic-of-usr" />');
+                        // Handle success
+                        console.log(response);
                     },
                     error: function (xhr, status, error) {
+                        // Handle error
                         console.error(xhr.responseText);
                     }
                 });
