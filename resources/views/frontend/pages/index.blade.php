@@ -1,6 +1,7 @@
 @extends('layouts.frontend.app.app')
 @section('title', 'Home')
 @section('content')
+
         <style>
             .swiper {
                 width: 100%;
@@ -164,10 +165,17 @@
                 @endforeach
 @endisset
             </div>
-            @if(auth()->check())
-            <button onclick="window.location.href='{{ route('profile',auth()->user()->id) }}'" class="black-background-btn half-width">View Sample Memorial</button>
 
-            @else
+            @if(auth()->check())
+<?php
+$user = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first()
+?>
+    @if($user)
+            <button onclick="window.location.href='{{ route('profile',$user->memorial_user_id) }}'" class="black-background-btn half-width">View Sample Memorial</button>
+    @else
+ <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
+@endif
+@else
             <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
             @endif
         </div>
