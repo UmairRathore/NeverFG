@@ -95,11 +95,12 @@ class RegistrationController extends Controller
             Session::flash('msg', $msg);
             Session::flash('message', 'alert-danger');
         }
-        return view('auth.login');    }
+        return view('auth.login');
+    }
 
     public function memorialregistration(Request $request)
     {
-
+//        dd($request->keeper_password);
         $request->validate([
             'memorial_first_name' => 'required',
             'memorial_last_name' => 'required',
@@ -194,7 +195,7 @@ class RegistrationController extends Controller
                 $this->data['keeperUser']->first_name = $request->input('keeper_first_name');
                 $this->data['keeperUser']->last_name = $request->input('keeper_last_name');
                 $this->data['keeperUser']->email = $request->input('keeper_email');
-                $this->data['keeperUser']->password = hash::make($request->password);
+                $this->data['keeperUser']->password = hash::make($request->keeper_password);
                 $this->data['keeperUser']->dob = $keeperDob;
                 $this->data['keeperUser']->gender = $request->input('keeper_gender');
                 $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
@@ -207,38 +208,21 @@ class RegistrationController extends Controller
                     $checkmemorialkeeper = $this->data['memorialUserAdditionalInfo']->update();
 
                     if ($checkmemorialkeeper) {
-                        $this->data['keeperAccountType'] = $this->_model::find($memorialkeeperId);
-                        if ($request->selectedCard == 'Plus') {
-                            $this->data['keeperAccountType']->account_type_id = 2;
 
-                        } else {
 
-                            $this->data['keeperAccountType']->account_type_id = 1;
-                        }
-                        $check = $this->data['keeperAccountType']->update();
+                        $msg = ' Registered successfully, Memorial account as well';
+                        Session::flash('message', $msg);
+                        return redirect()->route('login');
+                    } else {
 
-                        if ($check) {
-                            if ($request->selectedCard == 'Plus') {
-                                $msg = ' Registered successfully, Memorial account as well';
-                                Session::flash('message', $msg);
-                                return redirect('https://buy.stripe.com/test_14k2a63F13IqfcYfYZ');
-                            }
-                            else {
-                                $msg = ' Registered successfully, Memorial account as well';
-                                Session::flash('message', $msg);
-                                return redirect()->route('index');
-                            }
+                        $msg = trans('lang_data.error');
+                        Session::flash('error', $msg);
+                        return redirect()->back();
 
-                        } else {
-
-                            $msg = trans('lang_data.error');
-                            Session::flash('error', $msg);
-                            return redirect()->back();
-
-                        }
                     }
                 }
             }
         }
     }
+
 }
