@@ -17,6 +17,7 @@ use App\Models\UserOccupation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -152,16 +153,15 @@ class ProfileController extends Controller
         $checkUser = $this->data['user']->save();
 
         if ($checkUser) {
-            return response()->json([
-                'success' => true,
-                'message' => 'User Information has updated correctly',
-            ]);
+            $msg = 'User updated successfully';
+            Session::flash('msg', $msg);
+            Session::flash('message', 'alert-success');
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to update profile image',
-            ]);
+            $msg = 'Error occurred while updating.';
+            Session::flash('msg', $msg);
+            Session::flash('message', 'alert-danger');
         }
+        return redirect()->back();
     }
 
     public function MementoInfoProfile($id)
