@@ -163,7 +163,7 @@
                     <img src="{{asset('frontend/assets/images/tablet-and-phone-removebg.png')}}" alt="" class="phone-tab-img"/>
                 </div>
                 <div class="two-cols-of-phone-and-tablet-right-col">
-                    <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="two-cols-of-phone-and-tablet-right-col-logo"/>
+                    <img id="logo_image" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="two-cols-of-phone-and-tablet-right-col-logo"/>
                     <h1 class="two-cols-of-phone-and-tablet-right-col-heading-main">
                         Create a Memorial Website
                     </h1>

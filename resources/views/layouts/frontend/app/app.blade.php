@@ -39,12 +39,12 @@
                                 @yield('content')
                                 @if(request()->is('/') || request()->is('Terms-and-Privacy-Policy')|| request()->is('features')|| request()->is('faqs') || request()->is('virtual-funeral') || request()->is('for-business') )
 
-                                    @if(request()->is('/') || request()->is('faq') || request()->is('feature'))
-                                        <div class="plan-a-tree-section">
-                                            @include('layouts.frontend.app.pages.plant-tree')
-                                        </div>
+{{--                                    @if(request()->is('/') || request()->is('faq') || request()->is('feature'))--}}
+{{--                                        <div class="plan-a-tree-section">--}}
+{{--                                            @include('layouts.frontend.app.pages.plant-tree')--}}
+{{--                                        </div>--}}
 
-                                    @endif
+{{--                                    @endif--}}
 
 
 

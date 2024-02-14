@@ -1,7 +1,7 @@
 
 @if(request()->is('/'))
     <div class="hero_wrapper">
-        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
+        <img id="logo_image" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="hero_logo"/>
         <h1 class="heading_primary">KEEPING MEMORIES ALIVE</h1>
         <h2 class="heading_secandary">
             Beautiful, Free Online Memorials & Tributes
@@ -20,7 +20,7 @@
 @elseif(request()->is('virtual-funeral')|| request()->is('Terms-and-Privacy-Policy'))
 
     <div class="hero_wrapper">
-                <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
+                <img id="logo_image" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="hero_logo"/>
 
                 <h2 class="heading_secandary">KEEPING MEMORIES ALIVE TOGETHER</h2>
                 <h2 class="heading_ternary">
@@ -78,7 +78,7 @@
 
 <div class="hero_section_home">
     <div class="hero_wrapper">
-        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="hero_logo"/>
+        <img id="logo_image" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="hero_logo"/>
         <!-- <h1 class="heading_primary">KEEPING MEMORIES ALIVE</h1>
           <h2 class="heading_secandary">
             Beautiful, Free Online Memorials & Tributes

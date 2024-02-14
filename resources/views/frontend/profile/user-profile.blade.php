@@ -14,7 +14,16 @@
 
         </style>
         <div class="profile-icon-content tab-content" id="Info">
+            @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">
+                    {{ Session::get('message') }}</p>
+            @endif
+            @if(Session('required_fields_empty'))
+                <div class="alert alert-danger" role="alert">
+                    {{Session('required_fields_empty')}}
 
+                </div>
+            @endif
             <form method="post" action="{{route('update.user.profile',$user->id)}}" enctype="multipart/form-data">
                 @method('put')
                 @csrf

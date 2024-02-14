@@ -95,8 +95,7 @@ class RegistrationController extends Controller
             Session::flash('msg', $msg);
             Session::flash('message', 'alert-danger');
         }
-        return redirect()->back();
-    }
+        return view('auth.login');    }
 
     public function memorialregistration(Request $request)
     {
@@ -227,7 +226,7 @@ class RegistrationController extends Controller
                             else {
                                 $msg = ' Registered successfully, Memorial account as well';
                                 Session::flash('message', $msg);
-                                return redirect('index');
+                                return redirect()->route('index');
                             }
 
                         } else {

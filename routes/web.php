@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get-updated-image/{userId}/{formType}', [ProfileController::class, 'getUpdatedProfileImage']);  //AJAX
 
     Route::post('storechat', [MessageController::class, 'store']);      //whenever use ajax don't use name function
-    Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
+
 
 
     Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
@@ -94,7 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
 
 
-
+        Route::get('chat/{id}', [MessageController::class, 'texting'])->name('chat.text');
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
         Route::get('/mementos/{id}', [ProfileController::class, 'mementos'])->name('mementos');
 

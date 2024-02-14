@@ -19,21 +19,29 @@
                             </path>
                         </g>
                     </svg>
-                    <label for="" class="label-of-edit-profile">
-                        Edit profile
-                        <input type="file" class="edit-profile-file"/>
-                    </label>
+{{--                    <label for="" class="label-of-edit-profile">--}}
+{{--                        Edit profile--}}
+{{--                        <input type="file" class="edit-profile-file"/>--}}
+{{--                    </label>--}}
                 </div>
             </div>
             <div class="user-content">
                 <div class="user-content-top-row">
+                    @if(auth()->check())
                     <?php
                     $user = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)
                     ->join('users','users.id','=','user_memorials.memorial_user_id')
                     ->first()
                     ?>
+                    @if($user)
                     <h1 class="user-name-main-heading">{{$user->first_name.' '.$user->last_name}}</h1>
-                    <div class="section-social-links">
+                        @else
+                    <h1 class="user-name-main-heading">John Dor</h1>
+                        @endif
+                    @else
+                        <h1 class="user-name-main-heading">John Dor</h1>
+@endif
+                        <div class="section-social-links">
                         <div class="parent">
                             <div class="child child-1">
                                 <button class="button btn-1">
@@ -69,12 +77,13 @@
                     </div>
                 </div>
                 @if(auth()->check())
+                    @php
+                        $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
+                    @endphp
+                    @if($memorialAccount)
                 <div class="user-content-bottom-row">
                     <div class="navigation-of-logged-in-profile">
                         <div class="single-item">
-                            @php
-                                $memorialAccount = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first();
-                            @endphp
                             <a href="{{route('edit.memorial.profile',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
@@ -115,14 +124,14 @@
                                 Messages
                             </a>
                         </div>
-                        <div class="single-item">
-                            <a href="{{route('keeperplus',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
-                                <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"
-                                           style="width: 48px; height: 48px">
-                                </lord-icon>
-                                NeverFg plus
-                            </a>
-                        </div>
+{{--                        <div class="single-item">--}}
+{{--                            <a href="{{route('keeperplus',$memorialAccount->memorial_user_id)}}" class="single-item-insider">--}}
+{{--                                <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"--}}
+{{--                                           style="width: 48px; height: 48px">--}}
+{{--                                </lord-icon>--}}
+{{--                                NeverFg plus--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="btn-wrapper">
 
@@ -130,11 +139,79 @@
 
                     </div>
                 </div>
+                    @else
+                        <div class="user-content-bottom-row">
+                            <div class="navigation-of-logged-in-profile">
+                                <div class="single-item">
+                                    <a href="#" class="single-item-insider">
+                                        <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
+                                                   style="width: 48px; height: 48px">
+                                        </lord-icon>
+                                        Profile
+                                    </a>
+                                </div>
+                                <div class="single-item">
+                                    <a href="#" class="single-item-insider">
+                                        <lord-icon src="https://cdn.lordicon.com/rehjpyyh.json" trigger="loop" delay="1000"
+                                                   style="width: 48px; height: 48px">
+                                        </lord-icon>
+                                        Mementos
+                                    </a>
+                                </div>
+                                <div class="single-item">
+                                    <a href="#" class="single-item-insider">
+                                        <lord-icon src="https://cdn.lordicon.com/khheayfj.json" trigger="loop" delay="1000"
+                                                   style="width: 48px; height: 48px">
+                                        </lord-icon>
+
+                                        NeverFg
+                                    </a>
+                                </div>
+                                <div class="single-item">
+                                    <a href="#" class="single-item-insider">
+                                        <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"
+                                                   style="width: 48px; height: 48px">
+                                        </lord-icon>
+                                        Family
+                                    </a>
+                                </div>
+{{--                                <div class="single-item">--}}
+{{--                                    <a href="#" class="single-item-insider">--}}
+{{--                                        <lord-icon src="https://cdn.lordicon.com/qvyppzqz.json" trigger="loop" delay="1000"--}}
+{{--                                                   style="width: 48px; height: 48px">--}}
+{{--                                        </lord-icon>--}}
+{{--                                        Events--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+                                <div class="single-item">
+                                    <a href="#" class="single-item-insider">
+                                        <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
+                                                   style="width: 48px; height: 48px">
+                                        </lord-icon>
+                                        Messages
+                                    </a>
+                                </div>
+{{--                                <div class="single-item">--}}
+{{--                                    <a href="#" class="single-item-insider">--}}
+{{--                                        <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"--}}
+{{--                                                   style="width: 48px; height: 48px">--}}
+{{--                                        </lord-icon>--}}
+{{--                                        NeverFg plus--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+                            </div>
+                            <div class="btn-wrapper">
+                                <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>
+
+                            </div>
+                        </div>
+
+                    @endif
                 @else
                     <div class="user-content-bottom-row">
                         <div class="navigation-of-logged-in-profile">
                             <div class="single-item">
-                                <a href="LoggedIn_Profile.html" class="single-item-insider">
+                                <a href="#" class="single-item-insider">
                                     <lord-icon src="https://cdn.lordicon.com/xzalkbkz.json" trigger="loop" delay="1000"
                                                style="width: 48px; height: 48px">
                                     </lord-icon>
@@ -142,7 +219,7 @@
                                 </a>
                             </div>
                             <div class="single-item">
-                                <a href="MementosPage.html" class="single-item-insider">
+                                <a href="#" class="single-item-insider">
                                     <lord-icon src="https://cdn.lordicon.com/rehjpyyh.json" trigger="loop" delay="1000"
                                                style="width: 48px; height: 48px">
                                     </lord-icon>
@@ -150,7 +227,7 @@
                                 </a>
                             </div>
                             <div class="single-item">
-                                <a href="Keeper.html" class="single-item-insider">
+                                <a href="#" class="single-item-insider">
                                     <lord-icon src="https://cdn.lordicon.com/khheayfj.json" trigger="loop" delay="1000"
                                                style="width: 48px; height: 48px">
                                     </lord-icon>
@@ -159,37 +236,23 @@
                                 </a>
                             </div>
                             <div class="single-item">
-                                <a href="Family.html" class="single-item-insider">
+                                <a href="#" class="single-item-insider">
                                     <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"
                                                style="width: 48px; height: 48px">
                                     </lord-icon>
                                     Family
                                 </a>
                             </div>
+
                             <div class="single-item">
-                                <a href="Events.html" class="single-item-insider">
-                                    <lord-icon src="https://cdn.lordicon.com/qvyppzqz.json" trigger="loop" delay="1000"
-                                               style="width: 48px; height: 48px">
-                                    </lord-icon>
-                                    Events
-                                </a>
-                            </div>
-                            <div class="single-item">
-                                <a href="Message.html" class="single-item-insider">
+                                <a href="#" class="single-item-insider">
                                     <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
                                                style="width: 48px; height: 48px">
                                     </lord-icon>
                                     Messages
                                 </a>
                             </div>
-                            <div class="single-item">
-                                <a href="KeeperPlusPage.html" class="single-item-insider">
-                                    <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"
-                                               style="width: 48px; height: 48px">
-                                    </lord-icon>
-                                    NeverFg plus
-                                </a>
-                            </div>
+
                         </div>
                         <div class="btn-wrapper">
                             <button class="black-background-btn">
