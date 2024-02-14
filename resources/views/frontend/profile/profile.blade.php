@@ -12,14 +12,21 @@
                     <div class="header-of-form-profile margin-top no-border">
                         <div class="profile-header-without-logged-in ">
                             <div class="profile-header-without-logged-in-image-wrapper">
+                               @isset($memorial->profile_image)
                                 @if($memorial->profile_image)
                                     <img src="{{asset($memorial->profile_image)}}" alt="" class="profile-without-logged-in-image">
                                 @else
                                     <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
                                 @endif
-                            </div>
+                                   @endisset
+                            </div> @isset($memorial->first_name) @isset($memorial->last_name)
                             <h1>{{$memorial->first_name.' '.$memorial->last_name}}</h1>
+                                @endisset
+                                @endisset
+                            @isset($memorial->dob) @isset($memorial->dod)
                             <h2>{{ date('F jS, Y', strtotime($memorial->dob)) }} - {{ date('F jS, Y', strtotime($memorial->dod)) }}</h2>
+                            @endisset
+                            @endisset
                             <p>Always In Our Thoughts, Forever In Our Hearts.</p>
                         </div>
 
@@ -51,25 +58,38 @@
 
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Name</p>
+                                    @isset($memorial->first_name )
+                                    @isset($memorial->last_name )
+
                                     <p class="row-heading">{{$memorial->first_name.' '.$memorial->last_name}}</p>
+                                        @endisset
+                                        @endisset
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Date of Birth</p>
+                                    @isset($memorial->dob )
                                     <p class="row-heading">{{ date('F jS, Y', strtotime($memorial->dob)) }}</p>
+                                        @endisset
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Date of Death</p>
+                                    @isset($memorial->dob )
                                     <p class="row-heading">{{ date('F jS, Y', strtotime($memorial->dob)) }}
+                                        @endisset
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading">Home Town</p>
+                                    @isset($memorial->home_city )
                                     <p class="row-heading">{{ $memorial->home_city }}
+                                        @endisset
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading-1">Other City</p>
+                                    @isset($memorial->other_city )
                                     <p class="row-heading">{{ $memorial->other_city }}
+                                        @endisset
                                     </p>
                                 </div>
                                 <div class="nested-two-cols">
@@ -86,7 +106,9 @@
                                 </div>
                                 <div class="nested-two-cols">
                                     <p class="row-heading-1">Favourite Saying</p>
+                                    @isset($memorial->fav_saying)
                                     <p class="row-heading">{{ $memorial->fav_saying }}
+                                        @endisset
                                     </p>
                                 </div>
                             </div>
@@ -274,7 +296,8 @@
                             </div>
                         </div>
                         <div class="two-cols-of-comment-and-replies-right">
-                            <p class="c-r-user-name">{{$comment->first_name.' '.$comment->last_name}} published a tribute <span class="time-of-comment">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                            <p class="c-r-user-name">{{$comment->first_name.' '.$comment->last_name}} published a tribute <span class="time-of-comment">
+{{--                                    {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}--}}
                             </span></p>
                             <p class="c-r-comment-data">{{$comment->content}}</p>
                         </div>

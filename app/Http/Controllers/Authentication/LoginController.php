@@ -30,12 +30,7 @@ class LoginController extends Controller
         } elseif (Auth::guard('user')->check() && auth('user')->user()->role_id == 2) /* user */ {
             return redirect('/');
         }
-        elseif (Auth::guard('user')->check() && auth('user')->user()->role_id == 3) /* memorial loved one */ {
-            return redirect('/');
-        }
-        elseif (Auth::guard('user')->check() && auth('user')->user()->role_id == 4) /* business Keeper */ {
-            return redirect('/');
-        }
+
         return view('auth.login');
     }
 
@@ -53,15 +48,10 @@ class LoginController extends Controller
 
             if ($user->role_id == 1) {
                 return view('backend.index');
-            } elseif ($user->role_id == 2) {
-                $previousUrl = URL::previous();
-                return redirect()->to($previousUrl);
-            } elseif ($user->role_id == 3) {
-                $previousUrl = URL::previous();
-                return redirect()->to($previousUrl);
-            } elseif ($user->role_id == 4) {
-                $previousUrl = URL::previous();
-                return redirect()->to($previousUrl);
+            }if ($user->role_id == 2)
+                return redirect()->route('index');
+            {
+
             }
         }
 

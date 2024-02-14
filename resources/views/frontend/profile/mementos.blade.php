@@ -16,8 +16,8 @@
             <div class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
                     <h1 class="form-top-main-heading-of-profile">Mementos</h1>
-                    <p>With NeverFg, anyone that visits the page will only be able to view the 5 photos and videos you've selected
-                        below. When you get NeverFg Plus, all photos and videos will become visible to the public.</p>
+{{--                    <p>With NeverFg, anyone that visits the page will only be able to view the 5 photos and videos you've selected--}}
+{{--                        below. When you get NeverFg Plus, all photos and videos will become visible to the public.</p>--}}
                 </div>
                 <div class="form-group-input">
 {{--                    --}}{{--                    <label for="">The profiles that {{ $keeper->first_name }} manages:</label>--}}
@@ -63,24 +63,24 @@
                 </div>
             </div>
 
-            <div class="form-of-logged-in-user linear-background-of-form">
-                <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Better Mementos with NeverFg Plus</h1>
+{{--            <div class="form-of-logged-in-user linear-background-of-form">--}}
+{{--                <div class="header-of-form-profile margin-top">--}}
+{{--                    <h1 class="form-top-main-heading-of-profile">Better Mementos with NeverFg Plus</h1>--}}
 
-                    @if(auth()->check())
-                        @if(auth()->user()->account_type_id == 1)
-                            <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and
-                                download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which
-                                Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your
-                                phone, tablet or computer.</p>
-                            <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade NeverFg Plus</a>
-                        @elseif(auth()->user()->account_type_id == 2)
-                            <p>You already have the package</p>
-                            <button class="black-background-btn" onclick="showAlert('You already have the package.');">Upgrade NeverFg Plus</button>
-                        @endif
-                    @endif
-                </div>
-            </div>
+{{--                    @if(auth()->check())--}}
+{{--                        @if(auth()->user()->account_type_id == 1)--}}
+{{--                            <p>When you upgrade to NeverFg Plus, your friends and family will be able to view all uploaded Mementos and--}}
+{{--                                download their own copy of these pictures in a single file. With NeverFg Plus you change the order in which--}}
+{{--                                Memento images and videos appear. NeverFg Plus also enables you to upload full HD videos directly from your--}}
+{{--                                phone, tablet or computer.</p>--}}
+{{--                            <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" class="black-background-btn" target="_blank">Upgrade NeverFg Plus</a>--}}
+{{--                        @elseif(auth()->user()->account_type_id == 2)--}}
+{{--                            <p>You already have the package</p>--}}
+{{--                            <button class="black-background-btn" onclick="showAlert('You already have the package.');">Upgrade NeverFg Plus</button>--}}
+{{--                        @endif--}}
+{{--                    @endif--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
 
         </div>
