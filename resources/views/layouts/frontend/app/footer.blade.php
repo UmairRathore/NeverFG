@@ -13,15 +13,15 @@
                     <a href="{{route('faqs')}}">FAQs</a>
                     <a href="{{route('privacyTerms')}}">Privacy</a>
 {{--                    <div class="links-col-2">--}}
-                        @if(auth()->check())
-                            @if(auth()->user()->account_type_id == 1)
-                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" id="alertLink" target="_blank">NeverFg Plus</a>
-                            @elseif(auth()->user()->account_type_id == 2)
-                                <a href="#" id="alertLink" onclick="showAlert('You already have the package.');">NeverFg Plus</a>
-                            @endif
+{{--                        @if(auth()->check())--}}
+{{--                            @if(auth()->user()->account_type_id == 1)--}}
+{{--                                <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" id="alertLink" target="_blank">NeverFg Plus</a>--}}
+{{--                            @elseif(auth()->user()->account_type_id == 2)--}}
+{{--                                <a href="#" id="alertLink" onclick="showAlert('You already have the package.');">NeverFg Plus</a>--}}
+{{--                            @endif--}}
 
 {{--                            <a href="https://buy.stripe.com/test_14k2a63F13IqfcYfYZ" id="alertLink" target="_blank">Keeper Plus</a>--}}
-                        @endauth
+{{--                        @endauth--}}
 {{--                    </div>--}}
                 </div>
             </div>
