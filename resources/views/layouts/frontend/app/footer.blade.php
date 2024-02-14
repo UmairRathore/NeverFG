@@ -1,7 +1,7 @@
  <div class="footer-insider">
         <div class="row-one">
             <div class="logo-section">
-                <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="footer-logo" />
+                <img id="logo_image" src="{{asset('assets/images/logo.png')}}" alt="" class="footer-logo" />
             </div>
             <div class="site-links-section">
                 <div class="links-col-1">
