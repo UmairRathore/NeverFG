@@ -329,91 +329,91 @@
 
 
     {{--    ACCOUNT TYPE    --}}
-    <section>
-        <div class="wrapper-of-cards-section">
-            <div class="rows-of-cards">
-                <div class="form-of-flying-bird-wrapper-outsider">
-                    <div class="form-of-flying-bird-wrapper">
+{{--    <section>--}}
+{{--        <div class="wrapper-of-cards-section">--}}
+{{--            <div class="rows-of-cards">--}}
+{{--                <div class="form-of-flying-bird-wrapper-outsider">--}}
+{{--                    <div class="form-of-flying-bird-wrapper">--}}
 
-                        <h1 class="form-of-flying-bird-wrapper-main-heading">
-                            Keeper<sup class="sup-tm-text">TM</sup>
+{{--                        <h1 class="form-of-flying-bird-wrapper-main-heading">--}}
+{{--                            Keeper<sup class="sup-tm-text">TM</sup>--}}
 
-                        </h1>
-                        <p class="form-of-flying-bird-wrapper-paragrpah-heading">
-                            A quick way to start
+{{--                        </h1>--}}
+{{--                        <p class="form-of-flying-bird-wrapper-paragrpah-heading">--}}
+{{--                            A quick way to start--}}
 
 
-                        </p>
-                        <div class="row-of-bird-flying-price">
-                            <div class="left-col-of-price">
-                                <h1 class="price-row-main-heading">
-                                    Free
-                                </h1>
-                            </div>
+{{--                        </p>--}}
+{{--                        <div class="row-of-bird-flying-price">--}}
+{{--                            <div class="left-col-of-price">--}}
+{{--                                <h1 class="price-row-main-heading">--}}
+{{--                                    Free--}}
+{{--                                </h1>--}}
+{{--                            </div>--}}
 
-                        </div>
-                        <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
-                            Post thoughtful tributes and view up to five non-downloadable images in a photo gallery. Memorial pages do not expire.
-                        </p>
-                        <!-- Other card details -->
-                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Free')">
-                            Create Memorial
-                        </button>
-                    </div>
-                    <div class="bottom-of-card">
-                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </g>
-                        </svg>
-                        <a href="">All Free Features</a>
-                    </div>
-                </div>
-                <div class="form-of-flying-bird-wrapper-outsider">
-                    <div class="form-of-flying-bird-wrapper form-bg-second">
-                        <p class="most-popular-top-heading">Most popular</p>
-                        <h1 class="form-of-flying-bird-wrapper-main-heading">
-                            Keeper<sup class="sup-tm-text">TM</sup>
-                            <span class="plus-title">Plus</span>
-                        </h1>
-                        <p class="form-of-flying-bird-wrapper-paragrpah-heading">
-                            A true celebration of life. Online forever.
-                        </p>
-                        <div class="row-of-bird-flying-price">
-                            <div class="left-col-of-price">
-                                <h1 class="price-row-main-heading">
-                                    $74<sup class="price-row-main-heading-sup">99</sup>
-                                </h1>
-                            </div>
-                            <div class="right-col-of-price"><h2>one time payment</h2></div>
-                        </div>
-                        <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
-                            View unlimited images in a gallery, download local copies of images,
-                            create a full family tree, create unlimited memorial pages, and
-                            more. <a href="{{route('privacyTerms')}}">Learn more</a>
-                        </p>
-                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Plus')">
-                            Create Memorial
-                        </button>
-                    </div>
-                    <div class="bottom-of-card">
-                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </g>
-                        </svg>
-                        <a href="">All Keeper Plus Features</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{{--                        </div>--}}
+{{--                        <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">--}}
+{{--                            Post thoughtful tributes and view up to five non-downloadable images in a photo gallery. Memorial pages do not expire.--}}
+{{--                        </p>--}}
+{{--                        <!-- Other card details -->--}}
+{{--                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Free')">--}}
+{{--                            Create Memorial--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    <div class="bottom-of-card">--}}
+{{--                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                            <g id="SVGRepo_iconCarrier">--}}
+{{--                                <path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                                <path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                            </g>--}}
+{{--                        </svg>--}}
+{{--                        <a href="">All Free Features</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="form-of-flying-bird-wrapper-outsider">--}}
+{{--                    <div class="form-of-flying-bird-wrapper form-bg-second">--}}
+{{--                        <p class="most-popular-top-heading">Most popular</p>--}}
+{{--                        <h1 class="form-of-flying-bird-wrapper-main-heading">--}}
+{{--                            Keeper<sup class="sup-tm-text">TM</sup>--}}
+{{--                            <span class="plus-title">Plus</span>--}}
+{{--                        </h1>--}}
+{{--                        <p class="form-of-flying-bird-wrapper-paragrpah-heading">--}}
+{{--                            A true celebration of life. Online forever.--}}
+{{--                        </p>--}}
+{{--                        <div class="row-of-bird-flying-price">--}}
+{{--                            <div class="left-col-of-price">--}}
+{{--                                <h1 class="price-row-main-heading">--}}
+{{--                                    $74<sup class="price-row-main-heading-sup">99</sup>--}}
+{{--                                </h1>--}}
+{{--                            </div>--}}
+{{--                            <div class="right-col-of-price"><h2>one time payment</h2></div>--}}
+{{--                        </div>--}}
+{{--                        <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">--}}
+{{--                            View unlimited images in a gallery, download local copies of images,--}}
+{{--                            create a full family tree, create unlimited memorial pages, and--}}
+{{--                            more. <a href="{{route('privacyTerms')}}">Learn more</a>--}}
+{{--                        </p>--}}
+{{--                        <button class="black-background-btn half-width create-memorial-btn" onclick="selectCard('Plus')">--}}
+{{--                            Create Memorial--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    <div class="bottom-of-card">--}}
+{{--                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                            <g id="SVGRepo_iconCarrier">--}}
+{{--                                <path d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                                <path d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                            </g>--}}
+{{--                        </svg>--}}
+{{--                        <a href="">All Keeper Plus Features</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <input type="hidden" id="selectedCardInput" name="selectedCard">
 
 
