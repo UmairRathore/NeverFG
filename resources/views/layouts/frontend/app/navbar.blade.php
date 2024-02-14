@@ -13,7 +13,6 @@
             <ul class="list">
                 <li><a href="{{route('index')}}">Home</a></li>
                 <li><a href="{{route('forbusiness')}}">For Business</a></li>
-                <li><a href="{{route('virtualfuneral')}}">Virtual funerals</a></li>
                 <li><a href="{{route('faqs')}}">Faq </a></li>
                 <li><a href="{{route('features')}}">Features</a></li>
                 @if(auth()->check())
@@ -33,14 +32,7 @@
                 @endif
             </ul>
         </div>
-        {{--            <div class="funeralist-header-search-box" id="search-box-div">--}}
-        {{--                <svg width="22px" viewBox="0 0 24 24">--}}
-        {{--                    <circle cx="9.54" cy="9.51" r="9.08" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
-        {{--                            stroke-width="1.4px"></circle>--}}
-        {{--                    <path d="m17.87 17.83 5.88 5.89" fill="none" stroke="currentColor" stroke-miterlimit="10"--}}
-        {{--                          stroke-width="1.4px"></path>--}}
-        {{--                </svg>--}}
-        {{--            </div>--}}
+
         <!-- User Profile -->
         @if(auth()->check())
 
@@ -94,16 +86,6 @@
     </div>
 </div>
 
-{{--<div class="small-and-medium-size-navigation-menu" id="sidebar-menu">--}}
-{{--    <div class="small-nav-bar-logo-div">--}}
-{{--        <img id="logo_image" src="{{asset('assets/images/logo.jpg')}}" alt="" class="my-small-nav-logo" id="my-small-nav-logo"/>--}}
-{{--    </div>--}}
-{{--    <div class="funeralist_sidebar_menu-btn" id="menu-btn">--}}
-{{--        <i class="fas fa-bars"></i>--}}
-{{--    </div>--}}
-
-
-{{--</div>--}}
 <!-- Sub menu -->
 <div class="side-bar-of-funeralist">
     <header class="side-bar-of-funeralist-header-of-funeralist">
