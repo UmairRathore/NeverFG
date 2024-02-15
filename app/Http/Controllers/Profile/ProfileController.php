@@ -291,7 +291,7 @@ class ProfileController extends Controller
                 }
             }
         }
-        elseif ($formType == 'occupation_form') {
+        elseif ($formType == 'occupation_info') {
 
             $occupation = $request->input('occupation', []);
             $company = $request->input('company', []);
@@ -328,8 +328,16 @@ class ProfileController extends Controller
                 ];
                 return response()->json($data);
             }
+            else
+            {
+                $data = [
+                    'success' => false,
+                    'message' => 'Your Occupation information has not been updated correctly'
+                ];
+                return response()->json($data);
+            }
         }
-        elseif ($formType == 'academic_form') {
+        elseif ($formType == 'academic_info') {
             // Retrieve the 'interest' array from the request
             $diplomas = $request->input('diploma', []);
             $schools = $request->input('school', []);
@@ -367,7 +375,7 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
-        elseif ($formType == 'milestone_form') {
+        elseif ($formType == 'milestone_info') {
             $milestone = $request->input('milestone', []);
             $year = $request->input('year', []);
 
@@ -380,7 +388,7 @@ class ProfileController extends Controller
                 $this->data['milestoneinfo']->milestone = implode(', ', $milestone);
                 $this->data['milestoneinfo']->year = implode(', ', $year);
                 $this->data['milestoneinfo']->memorial_user_id = $id;
-                $checkMilestoneInfo = $this->data['interestinfo']->save();
+                $checkMilestoneInfo = $this->data['milestoneinfo']->save();
 
             } else {
                 $this->data['milestoneinfo'] = $this->_milestone_model;
@@ -398,7 +406,7 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
-        elseif ($formType == 'religion_form') {
+        elseif ($formType == 'religion_info') {
             if ($request->custom_religion) {
                 $this->data['religionInfo'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
                 $this->data['religionInfo']->religion = $request->custom_religion;
@@ -416,7 +424,7 @@ class ProfileController extends Controller
                 return response()->json($data);
             }
         }
-        elseif ($formType == 'interest_form') {
+        elseif ($formType == 'interest_info') {
             // Retrieve the 'interest' array from the request
             $interests = $request->input('interest', []);
 
