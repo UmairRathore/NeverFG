@@ -104,10 +104,16 @@ class FeatureController extends Controller
     {
         $frontendFeature = $this->_model::findOrFail($id);
         $this->deleteFiles($frontendFeature->frontend_feature_image);
-        $frontendFeature->delete();
+        $check=   $frontendFeature->delete();
 
-        return redirect()->back()
-            ->with('success', 'Item deleted successfully.');
+        if ($check) {
+            $msg = " feature Deleted successfully.";
+            Session::flash('info_deleted', $msg);
+        } else {
+            $msg = " feature not Deleted successfully.";
+            Session::flash('required fields empty', $msg);
+        }
+        return redirect()->back();
     }
     private function deleteFiles($filePath)
     {

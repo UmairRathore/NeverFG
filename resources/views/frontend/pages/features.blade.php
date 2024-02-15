@@ -75,48 +75,7 @@
                 <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn half-width">View Sample Memorial</button>
 {{--            @endif--}}
         </div>
-        <div class="div-14">
-            <div class="create-a-true-celebaration">
-                <h1>
-                    Create a true celebration of life with NeverFg
-                    <span class="highlighted-section">Pro</span>
-                </h1>
-            </div>
-        </div>
-        <div class="bird-flying-section">
-            <div class="form-of-flying-bird-wrapper">
-                <p class="most-popular-top-heading">Most popular</p>
-                <h1 class="form-of-flying-bird-wrapper-main-heading">
-                    NeverFg<sup class="sup-tm-text">TM</sup>
-                    <span class="plus-title">Plus</span>
-                </h1>
-                <p class="form-of-flying-bird-wrapper-paragrpah-heading">
-                    A true celebration of life. Online forever.
-                </p>
-                <div class="row-of-bird-flying-price">
-                    <div class="left-col-of-price">
-                        <h1 class="price-row-main-heading">
-                            $74<sup class="price-row-main-heading-sup">99</sup>
-                        </h1>
-                    </div>
-                    <div class="right-col-of-price">
-                        <h2>one time payment</h2>
-                    </div>
-                </div>
-                <p class="form-of-flying-bird-wrapper-paragrpah-heading-2">
-                    View unlimited images in a gallery, download local copies of images,
-                    create a full family tree, create unlimited memorial pages, and
-                    more. <a href="{{route('privacyTerms')}}">Learn more</a>
-                </p>
-                @if(auth()->check())
-                    <button onclick="window.location.href='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
 
-                @else
-                    <button onclick="window.location.href='{{ route('memorialsignup') }}'" class="black-background-btn half-width create-memorial-btn"> Create Memorial</button>
-                @endif
-
-            </div>
-        </div>
     </div>
     <div class="concept-of-websiteName-section">
         <div class="concept-of-websiteName-section-wrapper">
@@ -135,9 +94,9 @@
                         their loved one’s memorial page and delete any posts and images
                         added by others.
                     </p>
-                    <button class="black-background-btn margin-top-30 half-width">
-                        Get Started
-                    </button>
+{{--                    <button class="black-background-btn margin-top-30 half-width">--}}
+{{--                        Get Started--}}
+{{--                    </button>--}}
                 </div>
                 <div class="cermony-right-section">
                     <div class="share-memorial-insider">
