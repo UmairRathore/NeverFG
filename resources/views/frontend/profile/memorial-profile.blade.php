@@ -132,9 +132,9 @@
                             <div class="row-of-inputs">
                                 @php
                                     $dobParts = explode('-', $profile['memorialProfile']->dob);
-                                    $selectedDay = $dobParts[0] ?? '';
+                                    $selectedYear = $dobParts[0] ?? '';
                                     $selectedMonth = $dobParts[1] ?? '';
-                                    $selectedYear = $dobParts[2] ?? '';
+                                    $selectedDay = $dobParts[2] ?? '';
                                 @endphp
 
                                     <!-- Day Dropdown -->
@@ -164,10 +164,10 @@
                             <label for="">Date of Death</label>
                             <div class="row-of-inputs">
                                 @php
-                                    $dobParts = explode('-', $profile['memorialAdditional']->dod);
-                                    $selectedDay = $dobParts[0] ?? '';
-                                    $selectedMonth = $dobParts[1] ?? '';
-                                    $selectedYear = $dobParts[2] ?? '';
+                                    $dodParts = explode('-', $profile['memorialAdditional']->dod);
+                                    $selectedYear = $dodParts[0] ?? '';
+                                    $selectedMonth = $dodParts[1] ?? '';
+                                    $selectedDay = $dodParts[2] ?? '';
                                 @endphp
 
                                     <!-- Day Dropdown -->
@@ -638,27 +638,6 @@
 
         // Start here
 
-        //Theme gallery
-        $(".whole-image-wrapper-with-overlay-of-theme").click(function (e) {
-            console.log('Image Click', e);
-            let allElements = $(".grid-of-themes .whole-image-wrapper-with-overlay-of-theme .overlay")
-            for (let i = 0; i < allElements.length; i++) {
-                console.log('Single class', allElements[i].classList[1])
-                if (allElements[i].classList[1]) {
-                    console.log('Yes')
-                    allElements[i].classList.remove('show');
-                }
-
-            }
-            // console.log('All elements',allElements)
-            console.log('ele', e.currentTarget)
-            let ele = e.currentTarget.children[1];
-
-            ele.classList.toggle('show')
-            console.log('Child', ele)
-            // $(".overlay").show();
-
-        })
 
 
         $(document).ready(function () {
@@ -1092,7 +1071,8 @@
                 var identifier = 'basic_info';
                 // Serialize the form data along with user_id and form_identifier
                 var formData = $(this).serialize() + '&user_id=' + userId;
-                saveFormData(userId, formData, identifier);
+                alert(formData);
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1105,7 +1085,7 @@
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
                 alert(formData);
-                saveFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1116,7 +1096,7 @@
                 var identifier = 'other_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1208,10 +1188,63 @@
                 return 0;
             });
 
+
+            function saveWithoutImageFormData(userId, formData, formType) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/update-memorial-profile-withoutimage/' + userId + '/' + formType,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.success) {
+                            $('#successMessage').show();
+
+                            // Hide success message after 2 seconds
+                            setTimeout(function () {
+                                $('#successMessage').hide();
+                            }, 2000);
+                        } else {
+                            // Handle failure, show an error message, or take appropriate action
+                            alert('Error: ' + response.message);
+                        }
+                    },
+
+                    error: function (error) {
+                        console.error(error);
+
+                        // Access the error details sent from the server
+                        var errorMessage = error.responseJSON.message;
+                        var errorDetails = error.responseJSON.error_details;
+
+                        // Display the error message to the user or log it for debugging
+                        alert('Error: ' + errorMessage + '\nDetails: ' + errorDetails);
+                    }
+                });
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //Ajax function
             function saveFormData(userId, formData, formType) {
-                alert(formData);
-                alert(formType);
+
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile/' + userId + '/' + formType,
