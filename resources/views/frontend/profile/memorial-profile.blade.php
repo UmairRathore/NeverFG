@@ -898,62 +898,54 @@
             });
 
             //Interests
-
             var max_fields_of_interests = 10;
             var interests_counter = 1;
             var interests_container = $(".interests_container");
             var add_interests_field_btn = $(".add_interests_field");
+
             $(add_interests_field_btn).click(function (e) {
                 e.preventDefault();
                 console.log("inside click");
                 if (interests_counter < max_fields_of_interests) {
                     interests_counter++;
-                    $(interests_container).append(`
-                    @php
-                        if ($profile['memorialInterest'])
-                            {
-
-                        $interests =explode(', ',$profile['memorialInterest']->interest) ;
-                            }
-                        if(empty($data['memorialInterest'])) {
-                                $interests = [];
-                            }
+                    var interestsHTML = `
+@php
+                        $interests = [];
+                        if (!empty($profile['memorialInterest'])) {
+                            $interests = explode(', ', $profile['memorialInterest']->interest);
+                        }
                     @endphp
-                    @foreach($interests as $interest )
+                        @if($interests)
+                        @foreach($interests as $interest)
                     <div class="row-of-dynamic-inputs">
-            <div class="form-group-input">
-                <label for="">Interest Name</label>
-                <input type="text" class="input-design" name="interest[]" value="@if($interest){{$interest}}@endif" />
-            </div>
-
-                <svg
-                class="deleteAcademic"
-                  width="64px"
-                  height="64px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z"
-                      fill="#0F0F0F"
-                    ></path>
-                  </g>
-                </svg>
-              </div>
-                @endforeach`);
+                                    <div class="form-group-input">
+                                        <label for="">Interest Name</label>
+                                        <input type="text" class="input-design" name="interest[]" value="@if($interest){{$interest}}@endif" />
+                                    </div>
+                                    <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                                    </svg>
+                                </div>
+                                  @endforeach
+                    @else
+                    <div class="row-of-dynamic-inputs">
+                        <div class="form-group-input">
+                            <label for="">Interest Name</label>
+                            <input type="text" class="input-design" name="interest[]" value="" />
+                        </div>
+                        <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                        </svg>
+                    </div>
+@endif
+                                `;
+                    $(interests_container).append(interestsHTML);
                 } else {
                     alert("You Reached the limits");
                 }
             });
-            $(interests_container).on("click", ".deleteAcademic", function (e) {
+
+            $(interests_container).on("click", ".deleteInterest", function (e) {
                 e.preventDefault();
                 $(this).parent("div").remove();
                 interests_counter--;
@@ -1100,61 +1092,91 @@
                 return 0;
             });
 
+            $('#occupation-info-btn').click(function (e) {
+                e.preventDefault();
+                var userId = $(this).data('user-id');
+                var identifier = 'occupation_info';
+
+                // Serialize the form data manually
+                var formData = {};
+                formData['occupation'] = [];
+                formData['company'] = [];
+                formData['from_year'] = [];
+                formData['to_year'] = [];
+
+                $('.row-of-dynamic-inputs').each(function () {
+                    formData['occupation'].push($(this).find('[name="occupation[]"]').val());
+                    formData['company'].push($(this).find('[name="company[]"]').val());
+                    formData['from_year'].push($(this).find('[name="from_year[]"]').val());
+                    formData['to_year'].push($(this).find('[name="to_year[]"]').val());
+                });
+
+                formData['user_id'] = userId;
+                formData['form_identifier'] = identifier;
+
+                // Convert formData to a serialized string
+                formData = $.param(formData);
+
+                saveWithoutImageFormData(userId, formData, identifier);
+                return 0;
+            });
+
             $('#academic-info-btn').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting in the traditional way
-                // Get the user_id from the form data attribute
+                e.preventDefault();
                 var userId = $(this).data('user-id');
                 var identifier = 'academic_info';
 
-                // Serialize the form data
-                var formData = $('#academic-info form').serializeArray();
+                // Serialize the form data manually
+                var formData = {};
+                formData['diploma'] = [];
+                formData['school'] = [];
+                formData['from_year'] = [];
+                formData['to_year'] = [];
+
+                $('.row-of-dynamic-inputs').each(function () {
+                    formData['diploma'].push($(this).find('[name="diploma[]"]').val());
+                    formData['school'].push($(this).find('[name="school[]"]').val());
+                    formData['from_year'].push($(this).find('[name="from_year[]"]').val());
+                    formData['to_year'].push($(this).find('[name="to_year[]"]').val());
+                });
 
                 // Add additional data manually (user_id and form_identifier)
-                formData.push({name: 'user_id', value: userId});
-                formData.push({name: 'form_identifier', value: identifier});
+                formData['user_id'] = userId;
+                formData['form_identifier'] = identifier;
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData, identifier);
+
+                // Send form data via AJAX
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
-            $('#occupation-info-btn').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting in the traditional way
-                // Get the user_id from the form data attribute
-                var userId = $(this).data('user-id');
-                var identifier = 'occupation_info';
-                // Serialize the form data along with user_id
-
-                // Serialize the form data
-                var formData = $('#occupation-history form').serializeArray();
-
-                // Add additional data manually (user_id and form_identifier)
-                formData.push({name: 'user_id', value: userId});
-                formData.push({name: 'form_identifier', value: identifier});
-
-                // Convert formData to a serialized string
-                formData = $.param(formData);
-                saveFormData(userId, formData, identifier);
-                return 0;
-            });
 
             $('#milestone-info-btn').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting in the traditional way
-                // Get the user_id from the form data attribute
+                e.preventDefault();
                 var userId = $(this).data('user-id');
                 var identifier = 'milestone_info';
 
-                // Serialize the form data
-                var formData = $('#milestone-info form').serializeArray();
+                // Serialize the form data manually
+                var formData = {};
+                formData['milestone'] = [];
+                formData['year'] = [];
+
+                $('.row-of-dynamic-inputs').each(function () {
+                    formData['milestone'].push($(this).find('[name="milestone[]"]').val());
+                    formData['year'].push($(this).find('[name="year[]"]').val());
+                });
 
                 // Add additional data manually (user_id and form_identifier)
-                formData.push({name: 'user_id', value: userId});
-                formData.push({name: 'form_identifier', value: identifier});
+                formData['user_id'] = userId;
+                formData['form_identifier'] = identifier;
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData, identifier);
+
+                // Send form data via AJAX
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1165,26 +1187,32 @@
                 var identifier = 'religion_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
             $('#interest-info-btn').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting in the traditional way
-                // Get the user_id from the form data attribute
+                e.preventDefault();
                 var userId = $(this).data('user-id');
                 var identifier = 'interest_info';
 
-                // Serialize the form data
-                var formData = $('#interest-info').serializeArray();
+                // Serialize the form data manually
+                var formData = {};
+                formData['interest'] = [];
+
+                $('.row-of-dynamic-inputs').each(function () {
+                    formData['interest'].push($(this).find('[name="interest[]"]').val());
+                });
 
                 // Add additional data manually (user_id and form_identifier)
-                formData.push({name: 'user_id', value: userId});
-                formData.push({name: 'form_identifier', value: identifier});
+                formData['user_id'] = userId;
+                formData['form_identifier'] = identifier;
 
                 // Convert formData to a serialized string
                 formData = $.param(formData);
-                saveFormData(userId, formData, identifier);
+
+                // Send form data via AJAX
+                saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
 
@@ -1225,21 +1253,6 @@
                     }
                 });
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             //Ajax function
