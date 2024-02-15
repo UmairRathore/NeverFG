@@ -82,13 +82,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-    Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile');
 
     //    AJAX
 
 //profile
     Route::group(['prefix' => 'profile'], function () {
-        Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile');
+        Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile'); //user profile update
+        Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile'); //user profile update
 
 
         Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');

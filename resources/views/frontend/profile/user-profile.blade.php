@@ -14,28 +14,31 @@
 
         </style>
         <div class="profile-icon-content tab-content" id="Info">
-            @if(Session::has('message'))
-                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">
-                    {{ Session::get('message') }}</p>
-            @endif
-            @if(Session('required_fields_empty'))
-                <div class="alert alert-danger" role="alert">
-                    {{Session('required_fields_empty')}}
 
-                </div>
-            @endif
             <form method="post" action="{{route('update.user.profile',$user->id)}}" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <!--Basic Information-->
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
-                    </div>
+{{--                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">--}}
+
+                    {{--                    </div>--}}
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
                     </div>
+                    @if(Session::has('message'))
 
+                    <div class="alert {{ Session::get('alert-class', 'alert-info') }}" role="alert">
+                        <i class="fas fa-check-circle me-2">{{ Session::get('message') }}</i>
+                    </div>
+                    @endif
+
+
+                    @if(Session('required_fields_empty'))
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-circle me-2">{{Session('required_fields_empty')}}</i>
+                        </div>
+                    @endif
                     <div class="form-data-of-profile-page">
                         <div class="row">
                             <input type="hidden" name="user_id" value="{{$user->id}}">
@@ -75,9 +78,9 @@
                                 <div class="row-of-inputs">
                                     @php
                                         $dobParts = explode('-', $user->dob);
-                                        $selectedDay = $dobParts[0] ?? '';
+                                        $selectedYear = $dobParts[0] ?? '';
                                         $selectedMonth = $dobParts[1] ?? '';
-                                        $selectedYear = $dobParts[2] ?? '';
+                                        $selectedDay = $dobParts[2] ?? '';
                                     @endphp
 
                                         <!-- Day Dropdown -->

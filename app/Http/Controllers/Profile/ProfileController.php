@@ -154,12 +154,10 @@ class ProfileController extends Controller
 
         if ($checkUser) {
             $msg = 'User updated successfully';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-success');
+            Session::flash('message', $msg);
         } else {
             $msg = 'Error occurred while updating.';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-danger');
+            Session::flash('required_fields_empty', $msg);
         }
         return redirect()->back();
     }
