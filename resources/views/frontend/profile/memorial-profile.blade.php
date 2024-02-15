@@ -1274,7 +1274,7 @@
                         if (response.success) {
                             $('#successMessage').show();
                             // Check if the form is for image upload and refresh the profile image div
-                            if (formType === 'profile_image_custom') {
+                            if (formType === 'profile_image_custom' || formType === 'profile_image_library' ) {
                                 refreshProfileImageDiv(userId, formType);
                             }
 
@@ -1362,8 +1362,9 @@
 
             function refreshProfileImageDiv(userId, formType) {
                 // Assuming you have a unique identifier or class for the profile image div
-                if (formType === 'profile_image_custom') {
+                if (formType === 'profile_image_custom' || formType === 'profile_image_library' ) {
                     var profileImageDiv = $('#profile-image-div');
+                    var profileImageDivDp = $('#profile-image-div-dp');
                 }
                 // Make an Ajax request to get the updated profile image URL based on the form type
                 $.ajax({
@@ -1374,6 +1375,11 @@
                         profileImageDiv.html(
                             '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
                         );
+                        profileImageDivDp.html(
+
+                            '<img src="' + imageResponse.updatedImageURL + '" alt="" class="profile-img-user"/>'
+                        );
+
                     },
                     error: function (error) {
                         console.error(error);
