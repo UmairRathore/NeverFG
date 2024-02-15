@@ -489,60 +489,60 @@
         <h1>Memorial</h1>
     </div>
 
-    <!-- Settings -->
-    <div class="Setting tab-content" id="Setting">
-        <div class="form-of-logged-in-user">
-            <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Settings</h1>
-            </div>
-            <div class="form-data-of-profile-page">
-                <div class="form-group-input">
-                    <label for="">Language</label>
-                    <select name="" id="">
-                        <option value="">English</option>
-                        <option value="">English</option>
-                        <option value="">English</option>
-                        <option value="">English</option>
-                    </select>
-                </div>
-                <div class="form-group-input">
-                    <label for="">Email Notification</label>
-                    <div class="row-of-inputs-checkbox">
-                        <input type="checkbox">
-                        Receive emails for each notification
-                    </div>
-                </div>
-                <div class="form-group-input">
-                    <label for="">NeverFg News and Updates</label>
-                    <div class="row-of-inputs-checkbox">
-                        <input type="checkbox">
-                        Receive updates on NeverFg features, and more.
-                    </div>
-                </div>
-            </div>
-            <div class="footer-of-form-content">
-                <button class="form-btn">Save Changes</button>
-            </div>
-        </div>
-        <div class="form-of-logged-in-user">
-            <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Privacy Settings</h1>
-            </div>
-            <div class="form-data-of-profile-page">
-                <div class="form-group-input ">
-                    <div class="row-of-inputs-checkbox custom-checkbox-div">
-                        <input type="checkbox"/>
-                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.
-                        </p>
-                    </div>
+{{--    <!-- Settings -->--}}
+{{--    <div class="Setting tab-content" id="Setting">--}}
+{{--        <div class="form-of-logged-in-user">--}}
+{{--            <div class="header-of-form-profile margin-top">--}}
+{{--                <h1 class="form-top-main-heading-of-profile">Settings</h1>--}}
+{{--            </div>--}}
+{{--            <div class="form-data-of-profile-page">--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">Language</label>--}}
+{{--                    <select name="" id="">--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                    </select>--}}
+{{--                </div>--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">Email Notification</label>--}}
+{{--                    <div class="row-of-inputs-checkbox">--}}
+{{--                        <input type="checkbox">--}}
+{{--                        Receive emails for each notification--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">NeverFg News and Updates</label>--}}
+{{--                    <div class="row-of-inputs-checkbox">--}}
+{{--                        <input type="checkbox">--}}
+{{--                        Receive updates on NeverFg features, and more.--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <button class="form-btn">Save Changes</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="form-of-logged-in-user">--}}
+{{--            <div class="header-of-form-profile margin-top">--}}
+{{--                <h1 class="form-top-main-heading-of-profile">Privacy Settings</h1>--}}
+{{--            </div>--}}
+{{--            <div class="form-data-of-profile-page">--}}
+{{--                <div class="form-group-input ">--}}
+{{--                    <div class="row-of-inputs-checkbox custom-checkbox-div">--}}
+{{--                        <input type="checkbox"/>--}}
+{{--                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
 
-                </div>
-            </div>
-            <div class="footer-of-form-content">
-                <button class="form-btn">Save Changes</button>
-            </div>
-        </div>
-    </div>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <button class="form-btn">Save Changes</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">
@@ -557,66 +557,66 @@
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
                     </div>
-                    {{--                    <div id="theme" class="theme-tabcontent">--}}
-                    {{--                        <div class="theme-tab-of-themes-wrapper">--}}
+                                        <div id="theme" class="theme-tabcontent">
+                                            <div class="theme-tab-of-themes-wrapper">
 
-                    {{--                            <div class="grid-of-themes">--}}
-                    {{--                                @foreach($profile_images as $key => $theme_image)--}}
-                    {{--                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">--}}
-                    {{--                                    <div class="img-wrpper-inside-gallery-of-theme">--}}
-                    {{--                                        @if($theme_image->theme_image)--}}
-                    {{--                                            <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>--}}
-                    {{--                                        @else--}}
-                    {{--                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-                    {{--                                        @endif--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="overlay">--}}
-                    {{--                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-                    {{--                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"--}}
-                    {{--                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">--}}
-                    {{--                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-                    {{--                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-                    {{--                                            <g id="SVGRepo_iconCarrier">--}}
-                    {{--                                                <g>--}}
-                    {{--                                                    <g>--}}
-                    {{--                                                        <g>--}}
-                    {{--                                                            <path style="fill:#30562f;"--}}
-                    {{--                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-                    {{--                                                            </path>--}}
-                    {{--                                                        </g>--}}
-                    {{--                                                    </g>--}}
-                    {{--                                                    <g>--}}
-                    {{--                                                        <polygon style="fill:#30562f;"--}}
-                    {{--                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-                    {{--                                                        </polygon>--}}
-                    {{--                                                    </g>--}}
-                    {{--                                                </g>--}}
-                    {{--                                            </g>--}}
-                    {{--                    </svg>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                                    @endforeach--}}
+                                                <div class="grid-of-themes">
+                                                    @foreach($profile_images as $key => $theme_image)
+                                                    <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">
+                                                        <div class="img-wrpper-inside-gallery-of-theme">
+                                                            @if($theme_image->theme_image)
+                                                                <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>
+                                                            @else
+                                                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                                            @endif
+                                                        </div>
+                                                        <div class="overlay">
+                                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
+                                                                 viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
+                                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <g>
+                                                                        <g>
+                                                                            <g>
+                                                                                <path style="fill:#30562f;"
+                                                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                                                </path>
+                                                                            </g>
+                                                                        </g>
+                                                                        <g>
+                                                                            <polygon style="fill:#30562f;"
+                                                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                                            </polygon>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                        </svg>
+                                                        </div>
+                                                    </div>
+                                                        @endforeach
 
-                    {{--                            </div>--}}
-                    {{--                            <div class="footer-of-theme">--}}
-                    {{--                                <button id="theme_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+                                                </div>
+                                                <div class="footer-of-theme">
+                                                    <button id="theme_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                    {{--                    <div id="Custom" class="theme-tabcontent">--}}
-                    {{--                        <p>You can Upload your own unique picture here. For the best look, we recommend using a picture with a High Resolution (1024X768 and higher, for example).</p>--}}
-                    {{--                        <div class="custom-file-chooser-wrapper">--}}
-                    {{--                            <form id="theme_image_form" enctype="multipart/form-data">--}}
-                    {{--                                <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom">--}}
-                    {{--                                <label id="file-input-label" for="file-input">--}}
-                    {{--                                    + Choose a File--}}
-                    {{--                                </label>--}}
-                    {{--                                <button id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>--}}
+                    <div id="Custom" class="theme-tabcontent">
+                        <p>You can upload your own unique picture here. For the best look, we recommend using a picture with a high resolution (1024x768 and higher, for example).</p>
+                        <div class="custom-file-chooser-wrapper">
+                            <form id="theme_image_form" enctype="multipart/form-data">
+                                <label for="memorial_theme_image_custom" class="file-input-label">
+                                    <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
+                                    <span>+ Choose a File</span>
+                                </label>
+                                <button type="submit" id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>
+                            </form>
+                        </div>
+                    </div>
 
-                    {{--                            </form>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
 
 
                 </div>
@@ -1255,8 +1255,120 @@
             }
 
 
+
+            $('#profile_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+
+                var userId = $(this).data('user-id');
+                var identifier = 'profile_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#profile_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormImageData(userId, formData, 'profile_image_custom');
+                return 0;
+            });
+            // Function for clicking the "Select" button
+            $('#profile_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateProfileImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            // Function to update the profile image via AJAX
+            function updateProfileImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'profile_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('profile_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormImageData(userId, formData, 'profile_image_library');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
             //Ajax function
-            function saveFormData(userId, formData, formType) {
+
+
+
+
+            $('#theme_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+
+                var userId = $(this).data('user-id');
+                var identifier = 'theme_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#theme_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormImageData(userId, formData, 'theme_image_custom');
+                return 0;
+            });
+            $('#theme_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateThemeImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            function updateThemeImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'theme_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('theme_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormImageData(userId, formData, 'theme_image_library');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
+
+            //Ajax function
+
+            function saveFormImageData(userId, formData, formType) {
 
                 $.ajax({
                     type: 'POST',
@@ -1274,9 +1386,9 @@
                         if (response.success) {
                             $('#successMessage').show();
                             // Check if the form is for image upload and refresh the profile image div
-                            if (formType === 'profile_image_custom' || formType === 'profile_image_library' ) {
                                 refreshProfileImageDiv(userId, formType);
-                            }
+
+
 
                             // Hide success message after 2 seconds
                             setTimeout(function () {
@@ -1302,83 +1414,34 @@
             }
 
 
-            $('#profile_image_custom_btn').click(function (e) {
-                e.preventDefault();
 
 
-                var userId = $(this).data('user-id');
-                var identifier = 'profile_image_custom';
-
-                // Create a new FormData object for file upload do not serialize
-                var formData = new FormData($('#profile_image_form')[0]);
-
-                // Add additional data manually (user_id and form_identifier)
-                formData.append('user_id', userId);
-                formData.append('form_identifier', identifier);
-                formData.append('is_image_upload', true);
-
-                saveFormData(userId, formData, 'profile_image_custom');
-                return 0;
-            });
-
-// Function for clicking the "Select" button
-            $('#profile_image_library').click(function (e) {
-                e.preventDefault();
-
-                var userId = $(this).data('user-id');
-                var selectedImageId = $(".overlay.show").parent().attr("id");
-
-                if (selectedImageId) {
-                    // Extract the image ID from the selected image
-                    var imageId = selectedImageId.split("-")[2];
-                    // Assuming you have the image URL associated with each image
-                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
-                    // Perform the AJAX request to update the profile image
-                    updateProfileImage(userId, imageURL);
-                } else {
-                    alert("Please select an image first.");
-                }
-            });
-
-            // Function to update the profile image via AJAX
-
-
-            function updateProfileImage(userId, imageURL) {
-                var formData = new FormData();
-                formData.append('user_id', userId);
-                formData.append('form_identifier', 'profile_image_library');
-                formData.append('is_image_upload', true);
-
-                fetch(imageURL)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        console.log(blob);
-                        formData.append('profile_image', blob);
-                        console.log(formData); // Log FormData object for inspection
-                        saveFormData(userId, formData, 'profile_image_library');
-                    })
-                    .catch(error => console.error('Error fetching image:', error));
-            }
 
             function refreshProfileImageDiv(userId, formType) {
                 // Assuming you have a unique identifier or class for the profile image div
-                if (formType === 'profile_image_custom' || formType === 'profile_image_library' ) {
-                    var profileImageDiv = $('#profile-image-div');
-                    var profileImageDivDp = $('#profile-image-div-dp');
-                }
+                var profileImageDiv = $('#profile-image-div');
+                var profileImageDivDp = $('#profile-image-div-dp');
+                var themeImageDivDp = $('#theme-image-div-dp');
                 // Make an Ajax request to get the updated profile image URL based on the form type
                 $.ajax({
                     type: 'GET',
                     url: '/get-updated-image/' + userId + '/' + formType,
                     success: function (imageResponse) {
                         // Replace the content of the profile image div with the updated image
-                        profileImageDiv.html(
-                            '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
-                        );
-                        profileImageDivDp.html(
-
-                            '<img src="' + imageResponse.updatedImageURL + '" alt="" class="profile-img-user"/>'
-                        );
+                        if (formType === 'theme_image_custom' || formType === 'theme_image_library') {
+                            // Update theme image
+                            themeImageDivDp.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="back-img"/>'
+                            );
+                        } else {
+                            // Update profile images
+                            profileImageDiv.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
+                            );
+                            profileImageDivDp.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="profile-img-user"/>'
+                            );
+                        }
 
                     },
                     error: function (error) {

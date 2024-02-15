@@ -1,8 +1,12 @@
 
 <section class="profileWrapper">
     <div class="profile-common-top-wrapper">
-        <div class="background-img-wrapper">
-            <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
+        <div id="theme-image-div-dp" class="background-img-wrapper">
+            @if($profile['memorialProfile']->theme_image)
+                <img src="{{asset($profile['memorialProfile']->theme_image) }}" alt="" class="back-img"/>
+            @else
+                <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
+            @endif
         </div>
         <div class="user-profile-section-2-wrapper">
             <div id="profile-image-div-dp" class="profile-img-of-user">
