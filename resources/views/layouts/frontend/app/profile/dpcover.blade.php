@@ -2,16 +2,22 @@
 <section class="profileWrapper">
     <div class="profile-common-top-wrapper">
         <div id="theme-image-div-dp" class="background-img-wrapper">
-            @if($profile['memorialProfile']->theme_image)
-                <img src="{{asset($profile['memorialProfile']->theme_image) }}" alt="" class="back-img"/>
+            <?php
+            $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
+                ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
+                ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+                ->first();
+            ?>
+            @if($user->theme_image)
+                <img src="{{asset($user->theme_image) }}" alt="" class="back-img"/>
             @else
                 <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
             @endif
         </div>
         <div class="user-profile-section-2-wrapper">
             <div id="profile-image-div-dp" class="profile-img-of-user">
-                @if($profile['memorialProfile']->profile_image)
-                    <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="profile-img-user"/>
+                @if($user->profile_image)
+                    <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
                 @else
                     <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
                 @endif
@@ -19,11 +25,7 @@
             <div class="user-content">
                 <div class="user-content-top-row">
                     @if(auth()->check())
-                    <?php
-                    $user = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)
-                    ->join('users','users.id','=','user_memorials.memorial_user_id')
-                    ->first()
-                    ?>
+
                     @if($user)
                     <h1 class="user-name-main-heading">{{$user->first_name.' '.$user->last_name}}</h1>
                         @else
