@@ -103,13 +103,11 @@ class RelationsController extends Controller
     {
         $this->data['relations'] = $this->_model::find($id);
         $check = $this->data['relations']->delete();
-        if (!$check) {
+        if ($check) {
             $msg = 'relation deleted successfully';
-//            Session::flash('msg', $msg);
             Session::flash('info_deleted', $msg);
         } else {
             $msg = 'relation not deleted successfully';
-//                Session::flash('msg', $msg);
             Session::flash('required fields empty', $msg);
         }
         return redirect()->back();
