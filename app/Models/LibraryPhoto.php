@@ -13,9 +13,7 @@ class LibraryPhoto extends Model
 
     protected $fillable =
         [
-            'icon_image',
             'profile_image',
             'theme_image',
-            'category',
         ];
 }

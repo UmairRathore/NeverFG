@@ -41,9 +41,7 @@ class LibraryPhotosController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
-            'icon_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'theme_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category'=>'required'
         ]);
 
         if ($validator->fails()) {
@@ -56,14 +54,11 @@ class LibraryPhotosController extends Controller
         $this->data['libraries'] = $this->_model;
 
         $profile_image = $this->handleFileUpload($request, 'profile_image','profile_image');
-        $icon_image = $this->handleFileUpload($request, 'icon_image','icon_image');
         $theme_image = $this->handleFileUpload($request, 'theme_image','theme_image');
 
 
         $this->data['libraries']->profile_image = $profile_image;
-        $this->data['libraries']->icon_image = $icon_image;
         $this->data['libraries']->theme_image = $theme_image;
-        $this->data['libraries']->category = $request->category;
 
         $check = $this->data['libraries']->save();
         if ($check) {
@@ -88,9 +83,8 @@ class LibraryPhotosController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust max file size as needed
-            'icon_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'theme_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'profile_image' => 'image|mimes:jpeg,png,jpg,gif|max:6048',
+            'theme_image' => 'image|mimes:jpeg,png,jpg,gif|max:6048',
         ]);
 
         if ($validator->fails()) {
@@ -104,21 +98,17 @@ class LibraryPhotosController extends Controller
         if ($library) {
             // Delete existing files before updating
             $this->deleteFiles($library->profile_image);
-            $this->deleteFiles($library->icon_image);
 
             $this->deleteFiles($library->theme_image);
 
             // Handle file uploads
             $profile_image = $this->handleFileUpload($request, 'profile_image', 'profile_image');
-            $icon_image = $this->handleFileUpload($request, 'icon_image', 'icon_image');
             $theme_image = $this->handleFileUpload($request, 'theme_image', 'theme_image');
 
 
             // Update library record
             $library->profile_image = $profile_image;
-            $library->icon = $icon_image;
-            $library->theme = $theme_image;
-            $library->category = $request->category;
+            $library->theme_image = $theme_image;
 
 
             $check = $library->save();
@@ -136,17 +126,16 @@ class LibraryPhotosController extends Controller
         // Redirect back with an error message if the library doesn't exist
         return redirect()->back()->with('error', 'Library not found.');
     }
-    public function delete($id)
+    public function destroy($id)
     {
         $library = $this->_model::find($id);
         if ($library) {
             $this->deleteFiles($library->profile_image);
-            $this->deleteFiles($library->icon_image);
             $this->deleteFiles($library->theme_image);
             $check = $library->delete();
             if ($check) {
                 $msg = "Library deleted successfully.";
-                Session::flash('message', $msg);
+                Session::flash('info_deleted', $msg);
             } else {
                 $msg = "Library not deleted successfully.";
                 Session::flash('required fields empty', $msg);

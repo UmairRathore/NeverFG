@@ -36,19 +36,7 @@
 
                                 <form method="POST" action="{{ route('backend.store-library') }}" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="name">Category</label>
-                                            <div class="input-group">
-                                                <input type="text" name="category" class="form-control @error('category') is-invalid @enderror" value="{{ old('category') }}" placeholder="Enter Category">
-                                                @error('category')
-                                                <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
@@ -60,15 +48,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="icon_image">Icon Image</label>
-                                            <div class="input-group">
-                                                <input type="file" name="icon_image" onchange="displayFileName(this, 'iconFileName')">
-                                                <span id="iconFileName"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">

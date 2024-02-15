@@ -33,7 +33,6 @@
                                         <thead>
                                         <th>No</th>
                                         <th>Library Profile</th>
-                                        <th>Library Icon</th>
                                         <th>Library Theme</th>
                                         <th>Action</th>
                                         </thead>
@@ -48,13 +47,7 @@
                                                         <img src="{{ asset('path/to/placeholder/image.jpg') }}" alt="Library Profile" style="max-width: 100px;">
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    @if ($library->icon_image && file_exists(public_path($library->icon_image)))
-                                                        <img src="{{ asset($library->icon_image) }}" alt="Library Icon" style="max-width: 100px;">
-                                                    @else
-                                                        <img src="{{ asset('path/to/placeholder/image.jpg') }}" alt="Library Icon" style="max-width: 100px;">
-                                                    @endif
-                                                </td>
+
                                                 <td>
                                                     @if ($library->theme_image && file_exists(public_path($library->theme_image)))
                                                         <img src="{{ asset($library->theme_image) }}" alt="Library Theme" style="max-width: 100px;">

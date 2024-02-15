@@ -50,34 +50,26 @@
 
                                 <form method="POST" action="{{ route('backend.update-library', $library->id) }}" enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT') {{-- Assuming you are using the PUT method for updates --}}
+                                    @method('PUT')
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="profile">Profile Image</label>
+                                            <label for="profile_image">Profile Image</label>
                                             <div class="input-group">
-                                                <input type="file" name="profile" accept="image/*" onchange="displayFileName(this, 'profileFileName')" value="{{ old('profile') }}">
-                                                <span id="profileFileName">{{ $library->profile }}</span>
+                                                <input type="file" name="profile_image" accept="image/*" onchange="displayFileName(this, 'profileFileName')" value="{{ old('profile_image') }}">
+                                                <span id="profileFileName">{{ $library->profile_image }}</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="icon">Icon Image</label>
-                                            <div class="input-group">
-                                                <input type="file" name="icon" accept="image/*" onchange="displayFileName(this, 'iconFileName')" value="{{ old('icon') }}">
-                                                <span id="iconFileName">{{ $library->icon }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="theme">Theme Image</label>
+                                            <label for="theme_image">Theme Image</label>
                                             <div class="input-group">
-                                                <input type="file" name="theme" accept="image/*" onchange="displayFileName(this, 'themeFileName')" value="{{ old('theme') }}">
-                                                <span id="themeFileName">{{ $library->theme }}</span>
+                                                <input type="file" name="theme_image" accept="image/*" onchange="displayFileName(this, 'themeFileName')" value="{{ old('theme_image') }}">
+                                                <span id="themeFileName">{{ $library->theme_image }}</span>
                                             </div>
                                         </div>
                                     </div>
