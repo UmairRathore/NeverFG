@@ -8,7 +8,7 @@
                 ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
                 ->first();
             ?>
-            @if($user->theme_image)
+            @if(isset($user->theme_image))
                 <img src="{{asset($user->theme_image) }}" alt="" class="back-img"/>
             @else
                 <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
@@ -16,7 +16,7 @@
         </div>
         <div class="user-profile-section-2-wrapper">
             <div id="profile-image-div-dp" class="profile-img-of-user">
-                @if($user->profile_image)
+                @if(isset($user->profile_image))
                     <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
                 @else
                     <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
@@ -98,7 +98,7 @@
                                            style="width: 48px; height: 48px">
                                 </lord-icon>
 
-                                NeverFg
+                                Keeper
                             </a>
                         </div>
                         <div class="single-item">
@@ -110,7 +110,7 @@
                             </a>
                         </div>
                         <div class="single-item">
-                            <a href="{{route('chat.show')}}" class="single-item-insider">
+                            <a href="{{route('chat.show',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                 <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
                                            style="width: 48px; height: 48px">
                                 </lord-icon>
