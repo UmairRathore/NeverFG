@@ -782,8 +782,18 @@ class ProfileController extends Controller
 
     public function family($id)
     {
-        $familys = Family::where('id', $id)->get();
-        return view($this->_viewPath . 'family', compact('id', 'familys'));
+        $this->data['familys'] = Family::where('memorial_user_id',$id)->get();
+        $this->data['grandFatherPaternal'] = $this->data['familys']->where('relation','grandfatherpaternal')->first();
+        $this->data['grandMotherPaternal']= $this->data['familys']->where('relation','grandmotherpaternal')->first();
+        $this->data['grandFathermaternal'] = $this->data['familys']->where('relation','grandfathermaternal')->first();
+        $this->data['grandMothermaternal']= $this->data['familys']->where('relation','grandmothermaternal')->first();
+        $this->data['Mother']= $this->data['familys']->where('relation','mother')->first();
+        $this->data['Father']= $this->data['familys']->where('relation','father')->first();
+       ;$this->data['memorial'] =  User::select('users.profile_image','users.first_name','users.last_name')->where('id',$id)->first();
+
+
+//        $familys = Family::where('id', $id)->get();
+        return view($this->_viewPath . 'family', $this->data,compact('id', ));
     }
 
 
@@ -803,7 +813,7 @@ class ProfileController extends Controller
         ]);
 
         // Handle file upload
-        $imagePath = $this->handleFileUpload($request, 'family_image', 'Family');
+        $imagePath = $this->handleFileUpload($request, 'family_image', 'Family','image');
 
         // Create family member
         $family = Family::create([
