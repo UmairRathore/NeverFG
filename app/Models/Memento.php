@@ -10,6 +10,6 @@ class Memento extends Model
     use HasFactory;
     protected $table = 'mementos';
     protected $fillable = [
-        'memento_image'
+        'memento_image','memento_video'
     ];
 }

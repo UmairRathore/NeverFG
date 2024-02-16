@@ -15,11 +15,11 @@ class CreateMementosTable extends Migration
     {
         Schema::create('mementos', function (Blueprint $table) {
             $table->id();
-            $table->string('memento_image');
+            $table->string('memento_image')->nullable();
+            $table->string('memento_video')->nullable(); // New column for video
             $table->unsignedBigInteger('memorial_user_id');
             $table->timestamps();
             $table->foreign('memorial_user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 
