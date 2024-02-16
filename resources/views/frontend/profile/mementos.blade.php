@@ -49,15 +49,19 @@
 
                     <form id="uploadForm">
                         <div class="form-group-input">
-                            <label for="file">Upload Image:</label>
-                            <input type="file" id="file" name="memento_image" class="input-design"/>
-                            <input type="hidden" name="userID" value="{{$id}}" class="input-design"/>
+                            <label for="imageFile">Upload Image:</label>
+                            <input type="file" id="imageFile" name="memento_image" class="input-design"/>
                         </div>
+                        <div class="form-group-input">
+                            <label for="videoFile">Upload Video:</label>
+                            <input type="file" id="videoFile" name="memento_video" class="input-design"/>
+                        </div>
+                        <input type="hidden" name="userID" value="{{$id}}" class="input-design"/>
                         <div class="footer-of-form-content">
-                            <!-- Change the button type to "button" -->
                             <button type="button" id="uploadButton" class="form-btn">Save mementos</button>
                         </div>
                     </form>
+
 
 
                 </div>

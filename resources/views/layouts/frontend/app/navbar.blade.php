@@ -65,6 +65,7 @@
                             @endif
                             <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
                         @endforeach
+                        <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Logout</h3>
                         <li class="dropdown-menu-footer">
 
                             <a role="button" class="dropdown-item" href="{{ route('logout') }}"

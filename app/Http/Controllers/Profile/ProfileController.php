@@ -828,45 +828,63 @@ class ProfileController extends Controller
 
     public function storeMemento(Request $request)
     {
-
         $request->validate([
-            'memento_image' => 'required'
+            'memento_image' => 'image', // Validate image
+            'memento_video' => 'mimes:mp4,avi,wmv,mov', // Validate video
         ]);
 
         $mementoId = $request->input('userID');
 
         $memento = new Memento();
 
-        $imagePath = $this->handleFileUpload($request, 'memento_image', 'mementos');
+        $imagePath = $this->handleFileUpload($request, 'memento_image', 'mementos','image');
+        $videoPath = $this->handleFileUpload($request, 'memento_video', 'videos','video');
 
         $memento->memento_image = $imagePath;
+        $memento->memento_video = $videoPath;
         $memento->memorial_user_id = $mementoId;
 
         $memento->save();
 
         return response()->json([
             'success' => true,
-            'message' => 'Memento image updated successfully',
-            'image_url' => asset($imagePath)
+            'message' => 'Memento image and video updated successfully',
+            'image_url' => asset($imagePath),
+            'video_url' => asset($videoPath)
         ]);
     }
-
-    private function handleFileUpload($request, $fieldName, $folderName)
+    private function handleFileUpload($request, $fieldName, $folderName, $type)
     {
+        if ($type === 'image') {
+            if ($request->file($fieldName)) {
+                $image = $request->file($fieldName);
+                $imageName = time() . '_' . $image->getClientOriginalName();
 
-        if ($request->file($fieldName)) {
-            $image = $request->file($fieldName);
-            $imageName = time() . '_' . $image->getClientOriginalName();
+                $directory = public_path('assets/images/' . $folderName . '/');
 
-            $directory = public_path('assets/images/' . $folderName . '/');
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
 
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0777, true, true);
+                $image->move($directory, $imageName);
+
+                return 'assets/images/' . $folderName . '/' . $imageName;
             }
+        } elseif ($type === 'video') {
+            if ($request->file($fieldName)) {
+                $video = $request->file($fieldName);
+                $videoName = time() . '_' . $video->getClientOriginalName();
 
-            $image->move($directory, $imageName);
+                $directory = public_path('assets/videos/' . $folderName . '/');
 
-            return 'assets/images/' . $folderName . '/' . $imageName;
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $video->move($directory, $videoName);
+
+                return 'assets/videos/' . $folderName . '/' . $videoName;
+            }
         }
 
         return null;
