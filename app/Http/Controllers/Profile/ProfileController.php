@@ -913,48 +913,20 @@ class ProfileController extends Controller
 
     {
 
-        $this->data['memorial'] = $this->_memorial_model::select(
-            'user_memorials.memorial_user_id as memorialID',
-            'users.id as user_id',
-            'users.*',
-            'user_memorials.*',
-
-            'user_occupations.*',
-            'user_occupations.id as occupation_id',
-            'user_occupations.memorial_user_id as occupation_memorial_id',
-
-            'user_milestones.*',
-            'user_milestones.id as milestone_id',
-            'user_milestones.memorial_user_id as milestone_memorial_id',
-
-            'user_interests.*',
-            'user_interests.id as interest_id',
-            'user_interests.memorial_user_id as interest_memorial_id',
-
-            'user_cities.*',
-            'user_cities.id as city_id',
-            'user_cities.memorial_user_id as city_memorial_id',
-
-            'user_academics.*',
-            'user_academics.id as academic_id',
-            'user_academics.memorial_user_id as academic_memorial_id',
-
-        )
-            ->where('user_memorials.keeper_id', auth()->user()->id)
-            ->where('user_memorials.memorial_user_id', $id)
+        $this->data['memorial'] = $this->_memorial_model::
+            where('user_memorials.memorial_user_id', $id)
             ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
-            ->join('user_occupations', 'user_occupations.memorial_user_id', '=', 'user_memorials.memorial_user_id')
-            ->join('user_milestones', 'user_milestones.memorial_user_id', '=', 'user_memorials.memorial_user_id')
-            ->join('user_interests', 'user_interests.memorial_user_id', '=', 'user_memorials.memorial_user_id')
-            ->join('user_cities', 'user_cities.memorial_user_id', '=', 'user_memorials.memorial_user_id')
-            ->join('user_academics', 'user_academics.memorial_user_id', '=', 'user_memorials.memorial_user_id')
-            ->join('mementos', 'mementos.memorial_user_id', '=', 'user_memorials.memorial_user_id')
             ->first();
-//dd($this->data['memorial']->other_city );
+
+// Query and attach related data
+        $this->data['memorial']->city = UserCity::where('memorial_user_id', $id)->first();
+        $this->data['memorial']->occupation = UserOccupation::where('memorial_user_id', $id)->first();
+        $this->data['memorial']->academics = UserAcademic::where('memorial_user_id', $id)->first();
+        $this->data['memorial']->milestone = UserMilestone::where('memorial_user_id', $id)->first();
+        $this->data['memorial']->interests = UserInterest::where('memorial_user_id', $id)->first();
 
         $this->data['mementos'] = Memento::where('memorial_user_id', $id)->get();
         $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
-//        dd($this->data['memorial']);
         return view($this->_viewPath . 'profile', $this->data);
 
     }
