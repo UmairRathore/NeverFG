@@ -562,6 +562,106 @@ class ProfileController extends Controller
             }
 
         }
+        elseif ($formType == 'theme_image_custom') {
+
+            $mementoId = $request->user_id;
+
+            $this->data['mementoThemeImage'] = $this->_model::find($mementoId);
+
+            if (!$this->data['mementoThemeImage']) {
+                // Handle the case where the user is not found
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ]);
+            }
+
+            if ($request->file('memorial_theme_image_custom')) {
+                $image = $request->file('memorial_theme_image_custom');
+                $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+
+                $directory = public_path('assets/images/theme_images');
+
+                // Create the directory if it doesn't exist
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $image->move($directory, time() . '_' . $imageName);
+
+                $this->data['mementoThemeImage']->theme_image = 'assets/images/theme_images/' . time() . '_' . $imageName;
+
+                $checkMemorialUser = $this->data['mementoThemeImage']->save();
+
+                if ($checkMemorialUser) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Your Theme Image Custom  has been updated correctly',
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update Theme image Custom ',
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file provided for Theme Custom image update',
+                ]);
+            }
+
+        }
+        elseif ($formType == 'theme_image_library') {
+//return $request;
+            $mementoId = $request->user_id;
+
+            $this->data['mementoThemeImage'] = $this->_model::find($mementoId);
+
+            if (!$this->data['mementoThemeImage']) {
+                // Handle the case where the user is not found
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ]);
+            }
+
+            if ($request->file('theme_image')) {
+                $image = $request->file('theme_image');
+                $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+
+                $directory = public_path('assets/images/theme_images');
+
+                // Create the directory if it doesn't exist
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $image->move($directory, time() . '_' . $imageName);
+
+                $this->data['mementoThemeImage']->theme_image = 'assets/images/theme_images/' . time() . '_' . $imageName;
+
+                $checkMemorialUser = $this->data['mementoThemeImage']->save();
+
+                if ($checkMemorialUser) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Your Theme Library Image has been updated correctly',
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update Theme Library  image',
+                    ]);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No file provided for Theme image Library  update',
+                ]);
+            }
+
+        }
 
         else {
             $data = [
@@ -587,6 +687,21 @@ class ProfileController extends Controller
             if (File::exists(public_path($userProfile->profile_image))) {
                 return response()->json([
                     'updatedImageURL' => asset($userProfile->profile_image),
+                ]);
+            } else {
+                // Handle the case where the file doesn't exist
+                return response()->json([
+                    'error' => 'File not found',
+                ], 404);
+            }
+        }
+        if ($formType === 'theme_image_custom' || $formType == 'theme_image_library') {
+
+            $userTheme = $this->_model::where('id', $userId)->first();
+
+            if (File::exists(public_path($userTheme->theme_image))) {
+                return response()->json([
+                    'updatedImageURL' => asset($userTheme->theme_image),
                 ]);
             } else {
                 // Handle the case where the file doesn't exist

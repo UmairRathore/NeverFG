@@ -75,23 +75,23 @@
                             <p class="tab-btn-heading">Theme</p>
                         </div>
                     </button>
-                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">
-                        <div class="tabbed-single-item">
-                            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M11.0175 19C10.6601 19 10.3552 18.7347 10.297 18.373C10.2434 18.0804 10.038 17.8413 9.76171 17.75C9.53658 17.6707 9.31645 17.5772 9.10261 17.47C8.84815 17.3365 8.54289 17.3565 8.30701 17.522C8.02156 17.7325 7.62943 17.6999 7.38076 17.445L6.41356 16.453C6.15326 16.186 6.11944 15.7651 6.33361 15.458C6.49878 15.2105 6.52257 14.8914 6.39601 14.621C6.31262 14.4332 6.23906 14.2409 6.17566 14.045C6.08485 13.7363 5.8342 13.5051 5.52533 13.445C5.15287 13.384 4.8779 13.0559 4.87501 12.669V11.428C4.87303 10.9821 5.18705 10.6007 5.61601 10.528C5.94143 10.4645 6.21316 10.2359 6.33751 9.921C6.37456 9.83233 6.41356 9.74433 6.45451 9.657C6.61989 9.33044 6.59705 8.93711 6.39503 8.633C6.1424 8.27288 6.18119 7.77809 6.48668 7.464L7.19746 6.735C7.54802 6.37532 8.1009 6.32877 8.50396 6.625L8.52638 6.641C8.82735 6.84876 9.21033 6.88639 9.54428 6.741C9.90155 6.60911 10.1649 6.29424 10.2375 5.912L10.2473 5.878C10.3275 5.37197 10.7536 5.00021 11.2535 5H12.1115C12.6248 4.99976 13.0629 5.38057 13.1469 5.9L13.1625 5.97C13.2314 6.33617 13.4811 6.63922 13.8216 6.77C14.1498 6.91447 14.5272 6.87674 14.822 6.67L14.8707 6.634C15.2842 6.32834 15.8528 6.37535 16.2133 6.745L16.8675 7.417C17.1954 7.75516 17.2366 8.28693 16.965 8.674C16.7522 8.99752 16.7251 9.41325 16.8938 9.763L16.9358 9.863C17.0724 10.2045 17.3681 10.452 17.7216 10.521C18.1837 10.5983 18.5235 11.0069 18.525 11.487V12.6C18.5249 13.0234 18.2263 13.3846 17.8191 13.454C17.4842 13.5199 17.2114 13.7686 17.1083 14.102C17.0628 14.2353 17.0121 14.3687 16.9562 14.502C16.8261 14.795 16.855 15.1364 17.0323 15.402C17.2662 15.7358 17.2299 16.1943 16.9465 16.485L16.0388 17.417C15.7792 17.6832 15.3698 17.7175 15.0716 17.498C14.8226 17.3235 14.5001 17.3043 14.2331 17.448C14.0428 17.5447 13.8475 17.6305 13.6481 17.705C13.3692 17.8037 13.1636 18.0485 13.1099 18.346C13.053 18.7203 12.7401 18.9972 12.3708 19H11.0175Z"
-                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M13.9747 12C13.9747 13.2885 12.9563 14.333 11.7 14.333C10.4437 14.333 9.42533 13.2885 9.42533 12C9.42533 10.7115 10.4437 9.66699 11.7 9.66699C12.9563 9.66699 13.9747 10.7115 13.9747 12Z"
-                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </g>
-                            </svg>
-                            <p class="tab-btn-heading">Setting</p>
-                        </div>
-                    </button>
+{{--                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">--}}
+{{--                        <div class="tabbed-single-item">--}}
+{{--                            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+{{--                                <g id="SVGRepo_iconCarrier">--}}
+{{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
+{{--                                          d="M11.0175 19C10.6601 19 10.3552 18.7347 10.297 18.373C10.2434 18.0804 10.038 17.8413 9.76171 17.75C9.53658 17.6707 9.31645 17.5772 9.10261 17.47C8.84815 17.3365 8.54289 17.3565 8.30701 17.522C8.02156 17.7325 7.62943 17.6999 7.38076 17.445L6.41356 16.453C6.15326 16.186 6.11944 15.7651 6.33361 15.458C6.49878 15.2105 6.52257 14.8914 6.39601 14.621C6.31262 14.4332 6.23906 14.2409 6.17566 14.045C6.08485 13.7363 5.8342 13.5051 5.52533 13.445C5.15287 13.384 4.8779 13.0559 4.87501 12.669V11.428C4.87303 10.9821 5.18705 10.6007 5.61601 10.528C5.94143 10.4645 6.21316 10.2359 6.33751 9.921C6.37456 9.83233 6.41356 9.74433 6.45451 9.657C6.61989 9.33044 6.59705 8.93711 6.39503 8.633C6.1424 8.27288 6.18119 7.77809 6.48668 7.464L7.19746 6.735C7.54802 6.37532 8.1009 6.32877 8.50396 6.625L8.52638 6.641C8.82735 6.84876 9.21033 6.88639 9.54428 6.741C9.90155 6.60911 10.1649 6.29424 10.2375 5.912L10.2473 5.878C10.3275 5.37197 10.7536 5.00021 11.2535 5H12.1115C12.6248 4.99976 13.0629 5.38057 13.1469 5.9L13.1625 5.97C13.2314 6.33617 13.4811 6.63922 13.8216 6.77C14.1498 6.91447 14.5272 6.87674 14.822 6.67L14.8707 6.634C15.2842 6.32834 15.8528 6.37535 16.2133 6.745L16.8675 7.417C17.1954 7.75516 17.2366 8.28693 16.965 8.674C16.7522 8.99752 16.7251 9.41325 16.8938 9.763L16.9358 9.863C17.0724 10.2045 17.3681 10.452 17.7216 10.521C18.1837 10.5983 18.5235 11.0069 18.525 11.487V12.6C18.5249 13.0234 18.2263 13.3846 17.8191 13.454C17.4842 13.5199 17.2114 13.7686 17.1083 14.102C17.0628 14.2353 17.0121 14.3687 16.9562 14.502C16.8261 14.795 16.855 15.1364 17.0323 15.402C17.2662 15.7358 17.2299 16.1943 16.9465 16.485L16.0388 17.417C15.7792 17.6832 15.3698 17.7175 15.0716 17.498C14.8226 17.3235 14.5001 17.3043 14.2331 17.448C14.0428 17.5447 13.8475 17.6305 13.6481 17.705C13.3692 17.8037 13.1636 18.0485 13.1099 18.346C13.053 18.7203 12.7401 18.9972 12.3708 19H11.0175Z"--}}
+{{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
+{{--                                          d="M13.9747 12C13.9747 13.2885 12.9563 14.333 11.7 14.333C10.4437 14.333 9.42533 13.2885 9.42533 12C9.42533 10.7115 10.4437 9.66699 11.7 9.66699C12.9563 9.66699 13.9747 10.7115 13.9747 12Z"--}}
+{{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                                </g>--}}
+{{--                            </svg>--}}
+{{--                            <p class="tab-btn-heading">Setting</p>--}}
+{{--                        </div>--}}
+{{--                    </button>--}}
                 </div>
             </div>
         </div>
@@ -489,60 +489,60 @@
         <h1>Memorial</h1>
     </div>
 
-    <!-- Settings -->
-    <div class="Setting tab-content" id="Setting">
-        <div class="form-of-logged-in-user">
-            <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Settings</h1>
-            </div>
-            <div class="form-data-of-profile-page">
-                <div class="form-group-input">
-                    <label for="">Language</label>
-                    <select name="" id="">
-                        <option value="">English</option>
-                        <option value="">English</option>
-                        <option value="">English</option>
-                        <option value="">English</option>
-                    </select>
-                </div>
-                <div class="form-group-input">
-                    <label for="">Email Notification</label>
-                    <div class="row-of-inputs-checkbox">
-                        <input type="checkbox">
-                        Receive emails for each notification
-                    </div>
-                </div>
-                <div class="form-group-input">
-                    <label for="">NeverFg News and Updates</label>
-                    <div class="row-of-inputs-checkbox">
-                        <input type="checkbox">
-                        Receive updates on NeverFg features, and more.
-                    </div>
-                </div>
-            </div>
-            <div class="footer-of-form-content">
-                <button class="form-btn">Save Changes</button>
-            </div>
-        </div>
-        <div class="form-of-logged-in-user">
-            <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Privacy Settings</h1>
-            </div>
-            <div class="form-data-of-profile-page">
-                <div class="form-group-input ">
-                    <div class="row-of-inputs-checkbox custom-checkbox-div">
-                        <input type="checkbox"/>
-                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.
-                        </p>
-                    </div>
+{{--    <!-- Settings -->--}}
+{{--    <div class="Setting tab-content" id="Setting">--}}
+{{--        <div class="form-of-logged-in-user">--}}
+{{--            <div class="header-of-form-profile margin-top">--}}
+{{--                <h1 class="form-top-main-heading-of-profile">Settings</h1>--}}
+{{--            </div>--}}
+{{--            <div class="form-data-of-profile-page">--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">Language</label>--}}
+{{--                    <select name="" id="">--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                        <option value="">English</option>--}}
+{{--                    </select>--}}
+{{--                </div>--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">Email Notification</label>--}}
+{{--                    <div class="row-of-inputs-checkbox">--}}
+{{--                        <input type="checkbox">--}}
+{{--                        Receive emails for each notification--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="form-group-input">--}}
+{{--                    <label for="">NeverFg News and Updates</label>--}}
+{{--                    <div class="row-of-inputs-checkbox">--}}
+{{--                        <input type="checkbox">--}}
+{{--                        Receive updates on NeverFg features, and more.--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <button class="form-btn">Save Changes</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="form-of-logged-in-user">--}}
+{{--            <div class="header-of-form-profile margin-top">--}}
+{{--                <h1 class="form-top-main-heading-of-profile">Privacy Settings</h1>--}}
+{{--            </div>--}}
+{{--            <div class="form-data-of-profile-page">--}}
+{{--                <div class="form-group-input ">--}}
+{{--                    <div class="row-of-inputs-checkbox custom-checkbox-div">--}}
+{{--                        <input type="checkbox"/>--}}
+{{--                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
 
-                </div>
-            </div>
-            <div class="footer-of-form-content">
-                <button class="form-btn">Save Changes</button>
-            </div>
-        </div>
-    </div>
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="footer-of-form-content">--}}
+{{--                <button class="form-btn">Save Changes</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">
@@ -557,66 +557,67 @@
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
                     </div>
-                    {{--                    <div id="theme" class="theme-tabcontent">--}}
-                    {{--                        <div class="theme-tab-of-themes-wrapper">--}}
+                                        <div id="theme" class="theme-tabcontent">
+                                            <div class="theme-tab-of-themes-wrapper">
 
-                    {{--                            <div class="grid-of-themes">--}}
-                    {{--                                @foreach($profile_images as $key => $theme_image)--}}
-                    {{--                                <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">--}}
-                    {{--                                    <div class="img-wrpper-inside-gallery-of-theme">--}}
-                    {{--                                        @if($theme_image->theme_image)--}}
-                    {{--                                            <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>--}}
-                    {{--                                        @else--}}
-                    {{--                                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">--}}
-                    {{--                                        @endif--}}
-                    {{--                                    </div>--}}
-                    {{--                                    <div class="overlay">--}}
-                    {{--                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"--}}
-                    {{--                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"--}}
-                    {{--                                             viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">--}}
-                    {{--                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-                    {{--                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-                    {{--                                            <g id="SVGRepo_iconCarrier">--}}
-                    {{--                                                <g>--}}
-                    {{--                                                    <g>--}}
-                    {{--                                                        <g>--}}
-                    {{--                                                            <path style="fill:#30562f;"--}}
-                    {{--                                                                  d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">--}}
-                    {{--                                                            </path>--}}
-                    {{--                                                        </g>--}}
-                    {{--                                                    </g>--}}
-                    {{--                                                    <g>--}}
-                    {{--                                                        <polygon style="fill:#30562f;"--}}
-                    {{--                                                                 points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">--}}
-                    {{--                                                        </polygon>--}}
-                    {{--                                                    </g>--}}
-                    {{--                                                </g>--}}
-                    {{--                                            </g>--}}
-                    {{--                    </svg>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                                    @endforeach--}}
+                                                <div id="theme_images" class="grid-of-themes">
+                                                    @foreach($profile_images as $key => $theme_image)
+{{--                                                        {{dd($theme_image)}}--}}
+                                                    <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">
+                                                        <div class="img-wrpper-inside-gallery-of-theme">
+                                                            @if($theme_image->theme_image)
+                                                                <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>
+                                                            @else
+                                                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
+                                                            @endif
+                                                        </div>
+                                                        <div class="overlay">
+                                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
+                                                                 viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
+                                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                                <g id="SVGRepo_iconCarrier">
+                                                                    <g>
+                                                                        <g>
+                                                                            <g>
+                                                                                <path style="fill:#30562f;"
+                                                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
+                                                                                </path>
+                                                                            </g>
+                                                                        </g>
+                                                                        <g>
+                                                                            <polygon style="fill:#30562f;"
+                                                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
+                                                                            </polygon>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                        </svg>
+                                                        </div>
+                                                    </div>
+                                                        @endforeach
 
-                    {{--                            </div>--}}
-                    {{--                            <div class="footer-of-theme">--}}
-                    {{--                                <button id="theme_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
+                                                </div>
+                                                <div class="footer-of-theme">
+                                                    <button id="theme_image_library_btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                    {{--                    <div id="Custom" class="theme-tabcontent">--}}
-                    {{--                        <p>You can Upload your own unique picture here. For the best look, we recommend using a picture with a High Resolution (1024X768 and higher, for example).</p>--}}
-                    {{--                        <div class="custom-file-chooser-wrapper">--}}
-                    {{--                            <form id="theme_image_form" enctype="multipart/form-data">--}}
-                    {{--                                <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom">--}}
-                    {{--                                <label id="file-input-label" for="file-input">--}}
-                    {{--                                    + Choose a File--}}
-                    {{--                                </label>--}}
-                    {{--                                <button id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>--}}
+                    <div id="Custom" class="theme-tabcontent">
+                        <p>You can upload your own unique picture here. For the best look, we recommend using a picture with a high resolution (1024x768 and higher, for example).</p>
+                        <div class="custom-file-chooser-wrapper">
+                            <form id="theme_image_form" enctype="multipart/form-data">
+                                <label for="memorial_theme_image_custom" class="file-input-label">
+                                    <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
+                                    <span>+ Choose a File</span>
+                                </label>
+                                <button type="submit" id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>
+                            </form>
+                        </div>
+                    </div>
 
-                    {{--                            </form>--}}
-                    {{--                        </div>--}}
-                    {{--                    </div>--}}
 
 
                 </div>
@@ -1063,7 +1064,6 @@
                 var identifier = 'basic_info';
                 // Serialize the form data along with user_id and form_identifier
                 var formData = $(this).serialize() + '&user_id=' + userId;
-                alert(formData);
                 saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
@@ -1076,7 +1076,6 @@
                 var identifier = 'home_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                alert(formData);
                 saveWithoutImageFormData(userId, formData, identifier);
                 return 0;
             });
@@ -1255,8 +1254,122 @@
             }
 
 
+
+            $('#profile_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+
+                var userId = $(this).data('user-id');
+                var identifier = 'profile_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#profile_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormImageData(userId, formData, 'profile_image_custom');
+                return 0;
+            });
+            // Function for clicking the "Select" button
+            $('#profile_image_library').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateProfileImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            // Function to update the profile image via AJAX
+            function updateProfileImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'profile_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('profile_image', blob);
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormImageData(userId, formData, 'profile_image_library');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
             //Ajax function
-            function saveFormData(userId, formData, formType) {
+
+
+
+
+            $('#theme_image_custom_btn').click(function (e) {
+                e.preventDefault();
+
+
+                var userId = $(this).data('user-id');
+                var identifier = 'theme_image_custom';
+
+                // Create a new FormData object for file upload do not serialize
+                var formData = new FormData($('#theme_image_form')[0]);
+
+                // Add additional data manually (user_id and form_identifier)
+                formData.append('user_id', userId);
+                formData.append('form_identifier', identifier);
+                formData.append('is_image_upload', true);
+
+                saveFormImageData(userId, formData, 'theme_image_custom');
+                return 0;
+            });
+            $('#theme_image_library_btn').click(function (e) {
+                e.preventDefault();
+
+                var userId = $(this).data('user-id');
+                var selectedImageId = $(".overlay.show").parent().attr("id");
+
+                if (selectedImageId) {
+                    // Extract the image ID from the selected image
+                    var imageId = selectedImageId.split("-")[2];
+                    // Assuming you have the image URL associated with each image
+                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
+                    // Perform the AJAX request to update the profile image
+                    updateThemeImage(userId, imageURL);
+                } else {
+                    alert("Please select an image first.");
+                }
+            });
+            function updateThemeImage(userId, imageURL) {
+                var formData = new FormData();
+                formData.append('user_id', userId);
+                formData.append('form_identifier', 'theme_image_library');
+                formData.append('is_image_upload', true);
+
+                fetch(imageURL)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        console.log(blob);
+                        formData.append('theme_image', blob);
+
+                        console.log(formData); // Log FormData object for inspection
+                        saveFormImageData(userId, formData, 'theme_image_library');
+                    })
+                    .catch(error => console.error('Error fetching image:', error));
+            }
+
+            //Ajax function
+
+            function saveFormImageData(userId, formData, formType) {
+
 
                 $.ajax({
                     type: 'POST',
@@ -1274,9 +1387,9 @@
                         if (response.success) {
                             $('#successMessage').show();
                             // Check if the form is for image upload and refresh the profile image div
-                            if (formType === 'profile_image_custom') {
                                 refreshProfileImageDiv(userId, formType);
-                            }
+
+
 
                             // Hide success message after 2 seconds
                             setTimeout(function () {
@@ -1302,78 +1415,35 @@
             }
 
 
-            $('#profile_image_custom_btn').click(function (e) {
-                e.preventDefault();
 
 
-                var userId = $(this).data('user-id');
-                var identifier = 'profile_image_custom';
-
-                // Create a new FormData object for file upload do not serialize
-                var formData = new FormData($('#profile_image_form')[0]);
-
-                // Add additional data manually (user_id and form_identifier)
-                formData.append('user_id', userId);
-                formData.append('form_identifier', identifier);
-                formData.append('is_image_upload', true);
-
-                saveFormData(userId, formData, 'profile_image_custom');
-                return 0;
-            });
-
-// Function for clicking the "Select" button
-            $('#profile_image_library').click(function (e) {
-                e.preventDefault();
-
-                var userId = $(this).data('user-id');
-                var selectedImageId = $(".overlay.show").parent().attr("id");
-
-                if (selectedImageId) {
-                    // Extract the image ID from the selected image
-                    var imageId = selectedImageId.split("-")[2];
-                    // Assuming you have the image URL associated with each image
-                    var imageURL = $("#img-id-" + imageId + " .grid-single-img").attr("src");
-                    // Perform the AJAX request to update the profile image
-                    updateProfileImage(userId, imageURL);
-                } else {
-                    alert("Please select an image first.");
-                }
-            });
-
-            // Function to update the profile image via AJAX
-
-
-            function updateProfileImage(userId, imageURL) {
-                var formData = new FormData();
-                formData.append('user_id', userId);
-                formData.append('form_identifier', 'profile_image_library');
-                formData.append('is_image_upload', true);
-
-                fetch(imageURL)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        console.log(blob);
-                        formData.append('profile_image', blob);
-                        console.log(formData); // Log FormData object for inspection
-                        saveFormData(userId, formData, 'profile_image_library');
-                    })
-                    .catch(error => console.error('Error fetching image:', error));
-            }
 
             function refreshProfileImageDiv(userId, formType) {
                 // Assuming you have a unique identifier or class for the profile image div
-                if (formType === 'profile_image_custom') {
-                    var profileImageDiv = $('#profile-image-div');
-                }
+                var profileImageDiv = $('#profile-image-div');
+                var profileImageDivDp = $('#profile-image-div-dp');
+                var themeImageDivDp = $('#theme-image-div-dp');
                 // Make an Ajax request to get the updated profile image URL based on the form type
                 $.ajax({
                     type: 'GET',
                     url: '/get-updated-image/' + userId + '/' + formType,
                     success: function (imageResponse) {
                         // Replace the content of the profile image div with the updated image
-                        profileImageDiv.html(
-                            '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
-                        );
+                        if (formType === 'theme_image_custom' || formType === 'theme_image_library') {
+                            // Update theme image
+                            themeImageDivDp.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="back-img"/>'
+                            );
+                        } else {
+                            // Update profile images
+                            profileImageDiv.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="pic-of-usr"/>'
+                            );
+                            profileImageDivDp.html(
+                                '<img src="' + imageResponse.updatedImageURL + '" alt="" class="profile-img-user"/>'
+                            );
+                        }
+
                     },
                     error: function (error) {
                         console.error(error);
