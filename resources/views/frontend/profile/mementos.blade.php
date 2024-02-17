@@ -55,20 +55,28 @@
 {{--                    --}}{{--                        </a>--}}
 {{--                    --}}{{--                    @endforeach--}}
 
-                    <form id="uploadForm">
+                    <form id="imageUploadForm">
                         <div class="form-group-input">
                             <label for="imageFile">Upload Image:</label>
                             <input type="file" id="imageFile" name="memento_image" class="input-design"/>
                         </div>
+                        <input type="hidden" name="userID" value="{{$id}}" class="input-design"/>
+                        <div class="footer-of-form-content">
+                            <button type="button" id="uploadImageButton" class="form-btn">Upload Image</button>
+                        </div>
+                    </form>
+
+                    <form id="videoUploadForm">
                         <div class="form-group-input">
                             <label for="videoFile">Upload Video:</label>
                             <input type="file" id="videoFile" name="memento_video" class="input-design"/>
                         </div>
                         <input type="hidden" name="userID" value="{{$id}}" class="input-design"/>
                         <div class="footer-of-form-content">
-                            <button type="button" id="uploadButton" class="form-btn">Save mementos</button>
+                            <button type="button" id="uploadVideoButton" class="form-btn">Upload Video</button>
                         </div>
                     </form>
+
 
 
 
@@ -109,29 +117,38 @@
         }
 
         $(document).ready(function () {
-            $('#uploadButton').click(function () {
-                // Get form data
-                var formData = new FormData($('#uploadForm')[0]);
-                formData.append('_token', '{{ csrf_token() }}');
+            $('#uploadImageButton').click(function () {
+                uploadMemento('imageUploadForm');
+            });
 
-                // Send AJAX request
-                $.ajax({
-                    url: '/store-memento', // Replace with your endpoint
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        // Handle success
-                        console.log(response);
-                    },
-                    error: function (xhr, status, error) {
-                        // Handle error
-                        console.error(xhr.responseText);
-                    }
-                });
+            $('#uploadVideoButton').click(function () {
+                uploadMemento('videoUploadForm');
             });
         });
+
+        function uploadMemento(formId) {
+            // Get form data
+            var formData = new FormData($('#' + formId)[0]);
+            formData.append('_token', '{{ csrf_token() }}');
+
+            // Send AJAX request
+            $.ajax({
+                url: '/store-memento', // Replace with your endpoint
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    // Handle success
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
 
 
     </script>

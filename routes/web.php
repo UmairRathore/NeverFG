@@ -96,8 +96,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile'); //user profile update
 
 
+        Route::get('/all-videos/{id}', [ProfileController::class, 'videos'])->name('all_videos');
+        Route::get('/all-images/{id}', [ProfileController::class, 'images'])->name('all_images');
+
+
         Route::get('/Creatememorial/{id}', [ProfileController::class, 'Creatememorial'])->name('Creatememorial');
 
+        Route::post('/delete-file',  [ProfileController::class, 'deleteFile'])->name('delete.file');
 
         Route::get('textchat/{id}', [MessageController::class, 'texting'])->name('chat.text');
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
@@ -129,6 +134,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         //DASHBOARD
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.index');
+
 
         Route::get('/edit-admin/{id}', [AdminController::class, 'edit'])->name('backend.edit-admin');
         Route::put('/update-admin/{id}', [AdminController::class, 'update'])->name('backend.update-admin');

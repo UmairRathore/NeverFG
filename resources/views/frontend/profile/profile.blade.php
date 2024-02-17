@@ -235,24 +235,60 @@
                     </div>
                 </div>
             </div>
+
             <div class="momentos-section">
                 <div class="insider">
                     <div class="div-1">
                         <h1 class="mem-heading-main">Momentos</h1>
+                        <h3 class="mem-heading-main">Images</h3>
                         <div class="pics-wrapper">
-                                @foreach($mementos as $memento)
-                            <div class="image-wrapper-of-not-logged-in-profile">
+                            @php $firstVideoDisplayed = false; @endphp
+
+                            @foreach($mementos as $memento)
+                                <div class="image-wrapper-of-not-logged-in-profile">
                                     @if($memento->memento_image)
                                         <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
                                     @else
                                         <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
                                     @endif
 
-                            </div>
-                                @endforeach
+                                </div>
+                                    @if($memento->memento_video && !$firstVideoDisplayed)
+                                           <?php
+                                               $data = $memento->memento_video;
+                                               $datai = $memento->memento_image;
+                                               ?>
+
+                                    @endif
+                            @endforeach
+
                         </div>
+                        @if(isset($datai))
+                            <a href="{{ route('all_images',$memorial->memorial_user_id) }}">See All Images</a>
+                        @endif
                     </div>
 
+                </div>
+                <div class="insider">
+                    <div class="div-1">
+                        <h3 class="mem-heading-main">VIDEOS</h3>
+
+                        @if(isset($data))
+                        <div class="pics-wrapper">
+
+                                <video width="260" height="200" controls>
+                                    <source src="{{ asset($data) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                @php $firstVideoDisplayed = true; @endphp
+
+
+                        </div>
+                        <p><a href="{{ route('all_videos',$memorial->memorial_user_id) }}">See All Videos</a></p>
+                        @endif
+
+                        @php $firstVideoDisplayed = true; @endphp
+                    </div>
                 </div>
 
             </div>
@@ -303,9 +339,10 @@
     <!-- Comment -->
     <div class="margin-all">
         <div class="chat-section">
+            <div id="message-container" class="mt-3"></div>
 
             <div class="chat-wrapper">
-                <div class="two-cols-of-chat-wrapper">
+                <div id="success-chat" class="two-cols-of-chat-wrapper">
                     <div class="chat-left-section">
                         <div class="chat-usr-img-wrapper">
 
@@ -340,6 +377,7 @@
 
 @section('profileJS')
     <script>
+
         $(document).ready(function () {
             $('#postCommentBtn').click(function () {
                 // Get the input values
@@ -376,6 +414,17 @@
                 });
             });
         });
+        // Function to show the success message
+        function showSuccessMessage(message) {
+            // Create a new element for the success message
+            var successMessage = $('<div class="success-message"></div>').text(message);
+            // Append the success message to the chat div
+            $('#success-chat').prepend(successMessage);
+            // Automatically remove the success message after 5 seconds
+            setTimeout(function () {
+                successMessage.remove();
+            }, 5000);
+        }
 
         function refreshCommentSection() {
             // Get the updated comment content via AJAX or directly from the server
