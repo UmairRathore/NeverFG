@@ -53,8 +53,8 @@ class LibraryPhotosController extends Controller
 
         $this->data['libraries'] = $this->_model;
 
-        $profile_image = $this->handleFileUpload($request, 'profile_image','profile_image');
-        $theme_image = $this->handleFileUpload($request, 'theme_image','theme_image');
+        $profile_image = $this->handleFileUpload($request, 'profile_image', 'profile_image');
+        $theme_image = $this->handleFileUpload($request, 'theme_image', 'theme_image');
 
 
         $this->data['libraries']->profile_image = $profile_image;
@@ -74,7 +74,7 @@ class LibraryPhotosController extends Controller
     public function edit($id)
     {
         $this->data['library'] = $this->_model::find($id);
-        return view($this->_viewPath . 'edit-library',$this->data);
+        return view($this->_viewPath . 'edit-library', $this->data);
 
 
     }
@@ -97,18 +97,25 @@ class LibraryPhotosController extends Controller
 
         if ($library) {
             // Delete existing files before updating
-            $this->deleteFiles($library->profile_image);
+            if ($request->profile_image) {
+                $this->deleteFiles($library->profile_image);
 
-            $this->deleteFiles($library->theme_image);
+                $profile_image = $this->handleFileUpload($request, 'profile_image', 'profile_image');
+                $library->profile_image = $profile_image;
+
+            }
+
+            if ($request->theme_image) {
+                $this->deleteFiles($library->theme_image);
+                $theme_image = $this->handleFileUpload($request, 'theme_image', 'theme_image');
+                $library->theme_image = $theme_image;
+
+            }
 
             // Handle file uploads
-            $profile_image = $this->handleFileUpload($request, 'profile_image', 'profile_image');
-            $theme_image = $this->handleFileUpload($request, 'theme_image', 'theme_image');
 
 
             // Update library record
-            $library->profile_image = $profile_image;
-            $library->theme_image = $theme_image;
 
 
             $check = $library->save();
@@ -126,6 +133,7 @@ class LibraryPhotosController extends Controller
         // Redirect back with an error message if the library doesn't exist
         return redirect()->back()->with('error', 'Library not found.');
     }
+
     public function destroy($id)
     {
         $library = $this->_model::find($id);
@@ -156,14 +164,14 @@ class LibraryPhotosController extends Controller
         }
     }
 
-    private function handleFileUpload($request, $fieldName,$folderName)
+    private function handleFileUpload($request, $fieldName, $folderName)
     {
 
         if ($request->file($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '_' . $image->getClientOriginalName();
 
-            $directory = public_path('assets/images/library_images/'.$folderName.'/');
+            $directory = public_path('assets/images/library_images/' . $folderName . '/');
 
             if (!File::exists($directory)) {
                 File::makeDirectory($directory, 0777, true, true);
@@ -171,7 +179,7 @@ class LibraryPhotosController extends Controller
 
             $image->move($directory, $imageName);
 
-            return 'assets/images/library_images/'.$folderName.'/'. $imageName;
+            return 'assets/images/library_images/' . $folderName . '/' . $imageName;
         }
 
         return null;

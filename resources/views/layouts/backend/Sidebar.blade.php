@@ -37,7 +37,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="{{route('chat.show')}}">
+            <a href="{{route('backend.chat.show')}}">
                 <span><i class="far fa-user-circle"></i>Messages </span>
             </a>
         </li>

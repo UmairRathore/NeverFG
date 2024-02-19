@@ -2,12 +2,14 @@
 <section class="profileWrapper">
     <div class="profile-common-top-wrapper">
         <div id="theme-image-div-dp" class="background-img-wrapper">
+            @if(auth()->check())
             <?php
             $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
                 ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
                 ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
                 ->first();
             ?>
+            @endif
             @if(isset($user->theme_image))
                 <img src="{{asset($user->theme_image) }}" alt="" class="back-img"/>
             @else
