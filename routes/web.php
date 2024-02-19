@@ -120,8 +120,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/keeper-memorial/{id}', [KeeperController::class, 'keeper'])->name('keeper-memorial');
 
 
+// Route 1
         Route::get('chat/{id}', [MessageController::class, 'show'])->name('chat.show');
 
+// Route 2 (with optional ID)
+        Route::get('chat', [MessageController::class, 'show'])->name('backend.chat.show');
 
 
 
