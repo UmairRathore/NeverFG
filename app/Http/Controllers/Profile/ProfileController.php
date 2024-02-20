@@ -811,8 +811,8 @@ class ProfileController extends Controller
     public function storeMemento(Request $request)
     {
         $request->validate([
-            'memento_image' => 'image', // Validate image
-            'memento_video' => 'mimes:mp4,avi,wmv,mov', // Validate video
+            'memento_image' => 'image|max:6000',
+            'memento_video' => 'max:30720'
         ]);
 
         $mementoId = $request->input('userID');
@@ -826,14 +826,34 @@ class ProfileController extends Controller
         $memento->memento_video = $videoPath;
         $memento->memorial_user_id = $mementoId;
 
-        $memento->save();
+        $check = $memento->save();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Memento image and video updated successfully',
-            'image_url' => asset($imagePath),
-            'video_url' => asset($videoPath)
-        ]);
+        if ($check) {
+            $response = [
+                'success' => true,
+                'message' => '',
+            ];
+
+            if (!empty($imagePath) && !empty($videoPath)) {
+                $response['message'] = 'Memento image and video updated successfully';
+                $response['image_url'] = asset($imagePath);
+                $response['video_url'] = asset($videoPath);
+            } elseif (!empty($imagePath)) {
+                $response['message'] = 'Memento image updated successfully';
+                $response['image_url'] = asset($imagePath);
+            } elseif (!empty($videoPath)) {
+                $response['message'] = 'Memento video updated successfully';
+                $response['video_url'] = asset($videoPath);
+            }
+
+            return response()->json($response);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update memento image and video',
+            ]);
+        }
+
     }
 
     private function handleFileUpload($request, $fieldName, $folderName, $type)
