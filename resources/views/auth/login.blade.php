@@ -22,7 +22,11 @@
 
         <p class="signup-link">
             No account?
-            <a href="{{ route('usersignup') }}">Sign up</a>
+            <a href="{{ route('usersignup') }}">Sign up As User</a>
+
+        </p>
+        <p class="signup-link">
+            <a href="{{ route('memorialsignup') }}">Sign up For Memorial</a>
         </p>
         <p class="signup-link">
             Forgot Password?

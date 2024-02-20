@@ -12,7 +12,7 @@
         <div class="simple-items">
             <ul class="list">
                 <li><a href="{{route('index')}}">Home</a></li>
-                <li><a href="{{route('forbusiness')}}">For Business</a></li>
+{{--                <li><a href="{{route('forbusiness')}}">For Business</a></li>--}}
                 <li><a href="{{route('faqs')}}">Faq </a></li>
                 <li><a href="{{route('features')}}">Features</a></li>
                 @if(auth()->check())
@@ -28,7 +28,6 @@
                 @if(!auth()->check())
                     <li><a href="{{route('login')}}">Login</a></li>
                     <li><a href="{{route('usersignup')}}"> Signup</a></li>
-                    <li><a href="{{route('memorialsignup')}}">Memorial Signup</a></li>
                 @endif
             </ul>
         </div>
