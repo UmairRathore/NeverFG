@@ -28,9 +28,7 @@
 
         <div class="craft-cermony-home-section">
             <div class="craft-cermony-home-section-wrapper">
-                <h4 class="craft-cermony-main-heading heading-color">
-                    Virtual & Hybrid Memorial Services
-                </h4>
+
                 <h1 class="craft-cermony-secandary-heading heading-color">
                     Craft the Perfect Ceremony for Your Loved One
                 </h1>
@@ -42,22 +40,7 @@
                             partner with us, you’ll have access to our:
                         </p>
                         <ul class="cermony-list">
-                            <li>
-                                <span>Virtual or Hybrid Technology - </span>We provide hybrid,
-                                livestream, or fully virtual ceremony options to fit with your
-                                needs
-                            </li>
 
-                            <li>
-                                <span>Memorial Coordinators -</span>We’ll help you plan the
-                                event structure, coordinate speakers, and craft personalized,
-                                meaningful words.
-                            </li>
-                            <li>
-                                <span>Technical Assistants -</span>We’ll host and manage your
-                                Zoom, planned media, and guest support day-of so you can be
-                                fully present.
-                            </li>
                         </ul>
                         <p>
                             And more! We’re honored to work alongside you to help you craft a
@@ -77,79 +60,23 @@
                 </div>
             </div>
         </div>
-        <div class="our-free-swipe">
-            <div class="swiper-heading-wrapper">
-                <h1 class="swipers-main-heading">Our Free Memorials
-                    Allow You to:</h1>
-                <h2 class="swipers-secandary-heading">Send and Receive Tribute Messages
-                </h2>
-            </div>
 
-            <div class="memorial-swiper-wrapper">
-                <div class="swiper">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-1.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-2.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-3.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-4.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-5.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-6.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-7.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-8.jpg" loading="lazy" alt=""/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://swiperjs.com/demos/images/nature-9.jpg" loading="lazy"/>
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="our-free-memorials">
-            <h1 class="heading-color font-heading-large">Our Free Memorials</h1>
-            <ul class="main-box">
-                @isset($indexImage)
-                @foreach($indexImage as $item)
-                    <li class="box {{ $loop->first ? 'active' : '' }}">
-                        <span>{{ $item->index_image_heading }}</span>
-                        <div class="detail {{ $loop->first ? 'active' : '' }}">
-                            <img src="{{ asset($item->index_image) }}" alt="" class="image-of-slide">
-                        </div>
-                    </li>
-                @endforeach
-                    @endisset
-            </ul>
-            <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>
-        </div>
+{{--        <div class="our-free-memorials">--}}
+{{--            <h1 class="heading-color font-heading-large">Our Free Memorials</h1>--}}
+{{--            <ul class="main-box">--}}
+{{--                @isset($indexImage)--}}
+{{--                @foreach($indexImage as $item)--}}
+{{--                    <li class="box {{ $loop->first ? 'active' : '' }}">--}}
+{{--                        <span>{{ $item->index_image_heading }}</span>--}}
+{{--                        <div class="detail {{ $loop->first ? 'active' : '' }}">--}}
+{{--                            <img src="{{ asset($item->index_image) }}" alt="" class="image-of-slide">--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                @endforeach--}}
+{{--                    @endisset--}}
+{{--            </ul>--}}
+{{--            <button onclick="window.location.href='{{ route('features') }}'" class="black-background-btn half-width">All Features</button>--}}
+{{--        </div>--}}
         <div class="online-memorial-site-section">
             <h1>Creating an Online Memorial Site is Simple</h1>
             <div class="online-memorial-site-section-list">

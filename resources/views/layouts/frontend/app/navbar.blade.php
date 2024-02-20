@@ -11,10 +11,12 @@
     <div class="main-header-funeralist-right-items">
         <div class="simple-items">
             <ul class="list">
+                @if(!auth()->check())
                 <li><a href="{{route('index')}}">Home</a></li>
 {{--                <li><a href="{{route('forbusiness')}}">For Business</a></li>--}}
                 <li><a href="{{route('faqs')}}">Faq </a></li>
                 <li><a href="{{route('features')}}">Features</a></li>
+                @endif
                 @if(auth()->check())
                     <?php
                     $userROLE = \App\Models\User::where('id', auth()->user()->id)->where('role_id', '1')->first();
