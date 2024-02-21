@@ -8,12 +8,12 @@
 </head>
 <body>
 <div class="login-wrapper">
+    <form method="post" action="{{ route('submitforgetpassword') }}" class="custom-form">
     @if (Session::has('message'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('message') }}
         </div>
     @endif
-    <form method="post" action="{{ route('submitforgetpassword') }}" class="custom-form">
         @csrf
         <p class="custom-form-title">Enter Email To Recover Password</p>
         <div class="input-container">

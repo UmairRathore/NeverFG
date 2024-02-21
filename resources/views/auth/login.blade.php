@@ -9,6 +9,11 @@
 <body>
 <div class="login-wrapper">
     <form method="post" action="{{ route('postlogin') }}" class="custom-form">
+    @if (Session::has('message'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('message') }}
+        </div>
+    @endif
         @csrf
         <p class="custom-form-title">Sign in to your account</p>
         <div class="input-container">

@@ -45,13 +45,14 @@ class ForgetPasswordController extends Controller
 
     public function showResetPasswordForm($token)
     {
+
         return view('auth.resetpassword', ['token' => $token]);
     }
 
 
     public function submitResetPasswordForm(Request $request)
     {
-        $request->token = 'uBWCv2vtvjqmgjgVBCPf8WTL2XCa9Z00phk62coYrxOgO9uEfs';
+//        $request->token = 'uBWCv2vtvjqmgjgVBCPf8WTL2XCa9Z00phk62coYrxOgO9uEfs';
 //        dd($request->token);
         $request->validate([
             'email' => 'required|email|exists:users',
@@ -62,7 +63,7 @@ class ForgetPasswordController extends Controller
         $updatePassword = DB::table('password_resets')
             ->where([
                 'email' => $request->email,
-                'token' => 'uBWCv2vtvjqmgjgVBCPf8WTL2XCa9Z00phk62coYrxOgO9uEfsZe0ToT6YbRTmGM',
+                'token' => $request->token,
             ])
             ->first();
 
