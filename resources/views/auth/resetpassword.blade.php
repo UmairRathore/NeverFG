@@ -18,6 +18,7 @@
         <p class="custom-form-title">Enter email and new password</p>
         <div class="input-container">
             <input type="email" name="email" placeholder="Enter email" />
+            <input type="hidden" name="token" value="{{$token}}" placeholder="Enter email" />
             <span> </span>
         </div>
         <div class="input-container">
