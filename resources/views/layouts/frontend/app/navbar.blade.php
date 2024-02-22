@@ -1,3 +1,5 @@
+
+
 <div class="main-header-funeralist" id="header">
     <div class="main-header-funeralist-left-items">
 {{--         <img--}}
@@ -87,7 +89,17 @@
         @endif
     </div>
 </div>
+<div class="small-and-medium-size-navigation-menu" id="sidebar-menu">
+    <div class="small-nav-bar-logo-div">
+        <img src="./assets//dummy_logo.webp" alt="" class="my-small-nav-logo" id="my-small-nav-logo" />
+    </div>
+    <div class="funeralist_sidebar_menu-btn" id="menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
 
+
+
+</div>
 <!-- Sub menu -->
 <div class="side-bar-of-funeralist">
     <header class="side-bar-of-funeralist-header-of-funeralist">
@@ -95,33 +107,76 @@
             <i class="fas fa-times"></i>
         </div>
 
-        <img src="{{asset('frontend/assets/images/funeralist_black_logo.png')}}" alt="" class="small-sidebar-funeralist-logo"/>
+        <img src="{{asset('assets/images/logo.jpg')}}" alt="" class="small-sidebar-funeralist-logo"/>
     </header>
     <div class="funeralist_sidebar_menu">
+        @if(auth()->check())
+            <?php
+            $userROLE = \App\Models\User::where('id', auth()->user()->id)->where('role_id', '1')->first();
+            ?>
+            @isset($userROLE)
+                @if($userROLE->role_id == 1)
+                        <div class="funeralist_sidebar_menu_item">
+                            <a href="{{route('backend.index')}}">Dashboard</a>
+                        </div>
+                @endif
+            @endisset
+        @endif
+        @if(!auth()->check())
         <div class="funeralist_sidebar_menu_item">
-            <a href="#">HOME</a>
+            <a href="{{route('index')}}">Home</a>
         </div>
         <div class="funeralist_sidebar_menu_item">
-            <a class="glamora-sidebar-sub-btn">COLLECTION<i class="fas fa-angle-right dropdown"></i></a>
-            <div class="funeralist_sidebar_menu_item_sub-menu">
-                <a href="#" class="sub-item">Sub Item 01</a>
-                <a href="#" class="sub-item">Sub Item 02</a>
-                <a href="#" class="sub-item">Sub Item 03</a>
-            </div>
+            <a href="{{route('faqs')}}">Faq </a>
         </div>
         <div class="funeralist_sidebar_menu_item">
-            <a href="#">HOME SERVICE</a>
-        </div>
-        <div class="funeralist_sidebar_menu_item">
-            <a href="#">THE BRAND</a>
+            <a href="{{route('features')}}">Features</a>
         </div>
         <div class="funeralist_sidebar_menu_item" id="search-of-sidebar-of-funeralist">
-            <a href="#">Search</a>
+            <a href="{{route('login')}}">Login</a>
         </div>
 
         <div class="funeralist_sidebar_menu_item">
-            <a href="#">WISHLIST</a>
+            <a href="{{route('usersignup')}}"> Signup</a>
         </div>
+            @endif
+            @if(auth()->check())
+
+                <?php
+                $user = \App\Models\User::where('id', auth()->user()->id)->first();
+                //                dd($user);
+                $checkMemorial = \App\Models\UserMemorial::select('users.first_name as first_name ',
+                    'users.last_name as last_name', 'users.id as user_id', 'user_memorials.memorial_user_id as id')
+                    ->where('keeper_id', $user->id)
+                    ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+                    ->get();
+
+
+                ?>
+                    <div class="funeralist_sidebar_menu_item">
+                        <a class="glamora-sidebar-sub-btn">Profile<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="funeralist_sidebar_menu_item_sub-menu">
+                            <a href="{{route('edit.user.profile',$user->id)}}"  class="sub-item">{{$user->first_name.' '.$user->last_name}}</a>
+                            @foreach($checkMemorial  as $memorial)
+                                @if ($loop->first)
+                                    <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Memorial</h3>
+                                @endif
+                            <a href="{{route('edit.memorial.profile',$memorial->id)}}" class="sub-item">{{$memorial->first_name.' '.$memorial->last_name}}</a>
+                            @endforeach
+                            <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">logout</h3>
+                            <a role="button" class="sub-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </div>
+
+                           @endif
     </div>
 </div>
 

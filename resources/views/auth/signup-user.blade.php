@@ -57,6 +57,9 @@
             Already have an account?
             <a href="{{ route('login') }}">Sign in</a>
         </p>
+        <p class="signup-link">
+            <a href="{{ route('memorialsignup') }}">Sign up For Memorial</a>
+        </p>
     </form>
 </div>
 </body>

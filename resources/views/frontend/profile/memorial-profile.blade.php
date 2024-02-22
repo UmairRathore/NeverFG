@@ -623,7 +623,7 @@
                             <form id="theme_image_form" enctype="multipart/form-data">
                                 <label for="memorial_theme_image_custom" class="file-input-label">
                                     <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
-                                    <span>+ Choose a File</span>
+                                    <span class="form-btn" >+ Choose a File</span>
                                 </label>
                                 <button type="submit" id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>
                             </form>
