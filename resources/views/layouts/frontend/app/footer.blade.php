@@ -5,7 +5,7 @@
             </div>
             <div class="site-links-section">
                 <div class="links-col-1">
-                    <a href="">About Us</a>
+{{--                    <a href="">About Us</a>--}}
                     <a href="{{route('forbusiness')}}">For Business</a>
                     <a href="{{route('features')}}">Features</a>
                 </div>
