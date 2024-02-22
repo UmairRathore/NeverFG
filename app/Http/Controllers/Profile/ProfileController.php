@@ -105,6 +105,9 @@ class ProfileController extends Controller
 
     public function storeMemorial(Request $request)
     {
+        $check = UserMemorial::where('keeper_id',$request->keeperID)->exists();
+       if (!$check)
+       {
         $this->data['user'] = new User();
         $this->data['user']->first_name = $request->first_name;
         $this->data['user']->middle_name = $request->middle_name;
@@ -160,6 +163,13 @@ class ProfileController extends Controller
             return response()->json(['success' => false,
                 'message' => 'Failed to update memorial profile',]);
         }
+       }
+       else
+       {
+           return response()->json(['success' => false,
+               'message' => 'Memorial already exists for this keeper',]);
+       }
+
     }
 
 

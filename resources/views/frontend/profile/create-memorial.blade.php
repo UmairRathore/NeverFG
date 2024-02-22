@@ -18,8 +18,13 @@
                 <!--Basic Information-->
                 <div class="form-of-logged-in-user">
                     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Memorial Profile created successfully!
+                        <!-- Dynamic success message will be displayed here -->
                     </div>
+
+                    <div id="errorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                        <!-- Dynamic error message will be displayed here -->
+                    </div>
+
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
                     </div>
@@ -194,7 +199,11 @@
                         // Handle success response
                         console.log(response);
                         // Display success message to the user
-                        $('#successMessage').show();
+                        if (response.success) {
+                            $('#successMessage').text(response.message).show();
+                        } else {
+                            $('#errorMessage').text(response.message).show();
+                        }
                     },
                     error: function(xhr, status, error) {
                         // Handle error response
