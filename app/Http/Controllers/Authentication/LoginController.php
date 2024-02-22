@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmailVerify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -25,10 +26,11 @@ class LoginController extends Controller
     //Login Page
     function Login()
     {
-        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 1) /* admin */{
+
+        if (Auth::guard('user')->check() && auth('user')->user()->role_id == 1) /* admin */ {
             return redirect('/dashboard');
         } elseif (Auth::guard('user')->check() && auth('user')->user()->role_id == 2) /* user */ {
-            return redirect('/');
+            return redirect()->route('edit.user.profile', ['id' => \auth()->user()->id]);
         }
 
         return view('auth.login');
@@ -48,17 +50,24 @@ class LoginController extends Controller
 
             if ($user->role_id == 1) {
                 return view('backend.index');
-            }if ($user->role_id == 2)
-                return redirect()->route('index');
-            {
-
             }
-        }
+            if ($user->role_id == 2) {
+                // Check if email is verified
+                $isEmailVerified = EmailVerify::where('email', $user->email)->exists();
+                if (!$isEmailVerified) {
+                    // If email is not verified, logout the user and redirect back
+                    Auth::guard('user')->logout();
+                    return redirect()->back()->with('message', 'Your email is not verified.');
+                }
 
+                // Email is verified, redirect to edit user profile
+                return redirect()->route('edit.user.profile', ['id' => $user->id]);
+            }
+
+        }
         // If authentication fails
         $msg = "Your credentials do not match our records. Please try again.";
-        Session::flash('msg', $msg);
-        Session::flash('message', 'alert-danger');
+        Session::flash('message', $msg);
         return redirect()->back();
     }
 }
