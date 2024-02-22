@@ -57,6 +57,9 @@ Route::post('/resetpassword', [ForgetPasswordController::class, 'submitResetPass
 Route::get('/usersignup', [RegistrationController::class, 'userSignup'])->name('usersignup');
 Route::post('/userregistration', [RegistrationController::class, 'userregistration'])->name('userregistration');
 
+
+Route::get('/email/verify/{email}/{token}', [RegistrationController::class, 'verify'])->name('verification.verify');
+
 Route::get('/memorialsignup', [RegistrationController::class, 'memorialSignup'])->name('memorialsignup');
 Route::post('/memorialregistration', [RegistrationController::class, 'memorialregistration'])->name('memorialregistration');
 

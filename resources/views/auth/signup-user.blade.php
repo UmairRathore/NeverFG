@@ -9,6 +9,28 @@
 <body>
 <div class="login-wrapper">
     <form method="post" action="{{ route('userregistration') }}" class="custom-form">
+        <!-- Display validation errors -->
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <!-- Display other types of errors -->
+        @if (session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session()->get('error') }}
+            </div>
+        @endif
+        @if (Session::has('message'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message') }}
+            </div>
+        @endif
         @csrf
         <p class="custom-form-title">Sign up account</p>
         <div class="input-container">

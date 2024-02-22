@@ -12,8 +12,11 @@ use App\Models\Package;
 use App\Models\User;
 use App\Models\UserMemorial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -85,21 +88,35 @@ class RegistrationController extends Controller
 
         $check = $this->data['user']->save();
 
-        $name = $this->data['user']->first_name . ' ' . $this->data['user']->last_name;
         if ($check) {
-            $msg = $name . ' registered successfully';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-success');
-        } else {
-            $msg = 'Error occurred while registering.';
-            Session::flash('msg', $msg);
-            Session::flash('message', 'alert-danger');
+//            dd($check);
+            $token = Str::random(64);
+$email = $request->email;
+            DB::table('email_verifies')->insert([
+                'email' => $email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+            Mail::send('auth.email.verifyEmail', ['email'=>$email,'token' => $token], function ($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Verify Email');
+            });
+            session()->flash('message', 'We have e-mailed your Signup Verification link!');
+
+            return back();
         }
-        return view('auth.login');
+        else
+        {
+            session()->flash('message', 'Failed to register');
+
+            return back();
+        }
+
     }
 
     public function memorialregistration(Request $request)
     {
+
 //        dd($request->keeper_password);
         $request->validate([
             'memorial_first_name' => 'required',
@@ -201,6 +218,7 @@ class RegistrationController extends Controller
                 $this->data['keeperUser']->role_id = '2'; /* Keeper self User Account*/
                 $checkKeeper = $this->data['keeperUser']->save();
                 $memorialkeeperId = $this->data['keeperUser']->id;
+                $keeperemail = $this->data['keeperUser']->email;
 
                 if ($checkKeeper) {
                     $this->data['memorialUserAdditionalInfo'] = $this->user_memorial_model::where('id', $MemorialUserAdditionalInfoIDForKeeper)->first();
@@ -209,20 +227,54 @@ class RegistrationController extends Controller
 
                     if ($checkmemorialkeeper) {
 
+                        $token = Str::random(64);
 
-                        $msg = ' Registered successfully, Memorial account as well';
-                        Session::flash('message', $msg);
-                        return redirect()->route('login');
-                    } else {
+                        DB::table('email_verifies')->insert([
+                            'email' => $keeperemail,
+                            'token' => $token,
+                            'created_at' => Carbon::now()
+                        ]);
+                        Mail::send('auth.email.verifyEmail', ['email'=>$keeperemail,'token' => $token], function ($message) use ($request) {
+                            $message->to($request->keeper_email);
+                            $message->subject('Verify Email');
+                        });
+                        session()->flash('message', 'We have e-mailed your Signup Verification link!, Check email and click on click to verify link');
 
-                        $msg = trans('lang_data.error');
-                        Session::flash('error', $msg);
-                        return redirect()->back();
-
+                        return back();
                     }
+                    else
+                    {
+                        $msg = trans('lang_data.error');
+                        Session::flash('message', $msg);
+
+                        return back();
+                    }
+
+
                 }
             }
         }
     }
 
+
+    public function verify(Request $request, $email,$token)
+    {
+
+        $isValidToken =  // Your token verification logic here;
+        DB::table('email_verifies')->where('email', $email)
+            ->where('token',$token)->exists();
+
+    if ($isValidToken) {
+        $msg = 'Registration successful. Please log in.';
+    } else {
+        $msg = 'Error occurred while registering.';
+    }
+
+        // Flash the message and message type to the session
+        $request->session()->flash('message', $msg);
+
+        // Redirect the user to the login page
+        return redirect()->route('login');
+
+    }
 }
