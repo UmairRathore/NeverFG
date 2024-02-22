@@ -26,40 +26,7 @@
             }
         </style>
 
-        <div class="craft-cermony-home-section">
-            <div class="craft-cermony-home-section-wrapper">
 
-                <h1 class="craft-cermony-secandary-heading heading-color">
-                    Craft the Perfect Ceremony for Your Loved One
-                </h1>
-                <div class="cermonyTwocolumns">
-                    <div class="cermony-left-section">
-                        <p>
-                            NeverFg’s team of experts make it easy to host a virtual or hybrid
-                            memorial service to honor the memory of your loved one. When you
-                            partner with us, you’ll have access to our:
-                        </p>
-                        <ul class="cermony-list">
-
-                        </ul>
-                        <p>
-                            And more! We’re honored to work alongside you to help you craft a
-                            personalized and heartfelt celebration of life for your loved one.
-                        </p>
-                        <div class="row bottom-section">
-                            <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="black-background-btn">Learn more</button>
-                            <button class="white-background-btn" onclick="window.location.href='https://calendly.com/maniwyatt29/30min'" >
-
-                                Book free consultation
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cermony-right-section">
-                        <video src="{{asset('frontend/assets/images/dummy-video')}}.mp4" class="video-item"></video>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 {{--        <div class="our-free-memorials">--}}
 {{--            <h1 class="heading-color font-heading-large">Our Free Memorials</h1>--}}
@@ -127,7 +94,7 @@ $user = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first()
         <div class="are-you-funeral-service-provider-section">
             <div class="service-provider-insider">
                 <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
-                <button onclick="window.location.href='{{ route('sampleProfile') }}'" class="custom-button">
+                <button onclick="window.location.href='{{ route('privacyTerms') }}'" class="custom-button">
                     Learn more about Neverfg partnership
                 </button>
             </div>

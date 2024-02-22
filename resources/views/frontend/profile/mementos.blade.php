@@ -23,7 +23,7 @@
             </div>
             <div class="form-of-logged-in-user">
                 <div class="header-of-form-profile margin-top">
-                    <h1 class="form-top-main-heading-of-profile">Mementos</h1>
+                    <h1 class="form-top-main-heading-of-profile">Photos and videos</h1>
                     {{--                    <p>With NeverFg, anyone that visits the page will only be able to view the 5 photos and videos you've selected--}}
                     {{--                        below. When you get NeverFg Plus, all photos and videos will become visible to the public.</p>--}}
                 </div>
