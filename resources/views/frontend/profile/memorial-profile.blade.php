@@ -128,6 +128,18 @@
                             <input type="text" class="input-design" name="suffix" value="@if($profile['memorialProfile']->suffix){{$profile['memorialProfile']->suffix}}@endif"/>
                         </div>
                         <div class="form-group-input">
+                            <label for="">Instagram</label>
+                            <input type="url" class="input-design" name="instagram" value="@if($profile['memorialProfile']->instagram){{$profile['memorialProfile']->instagram}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">Facebook</label>
+                            <input type="url" class="input-design" name="facebook" value="@if($profile['memorialProfile']->facebook){{$profile['memorialProfile']->facebook}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">tiktok</label>
+                            <input type="url" class="input-design" name="tiktok" value="@if($profile['memorialProfile']->tiktok){{$profile['memorialProfile']->tiktok}}@endif"/>
+                        </div>
+                        <div class="form-group-input">
                             <label for="">Date of Birth</label>
                             <div class="row-of-inputs">
                                 @php

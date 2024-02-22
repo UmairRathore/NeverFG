@@ -216,6 +216,9 @@ class ProfileController extends Controller
             $this->data['basicInfo']->suffix = $request->suffix;
             $this->data['basicInfo']->gender = $request->gender;
             $this->data['basicInfo']->dob = $dob;
+            $this->data['basicInfo']->facebook = $request->facebook;
+            $this->data['basicInfo']->instagram = $request->instagram;
+            $this->data['basicInfo']->tiktok = $request->tiktok;
 
             $checkInfo = $this->data['basicInfo']->save();
 
