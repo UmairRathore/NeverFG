@@ -40,11 +40,13 @@
             <?php
             $user = \App\Models\User::where('id', auth()->user()->id)->first();
             //                dd($user);
-            $checkMemorial = \App\Models\UserMemorial::select('users.first_name as first_name ',
+            $check = \App\Models\UserMemorial::select('users.first_name as first_name ',
                 'users.last_name as last_name', 'users.id as user_id', 'user_memorials.memorial_user_id as id')
                 ->where('keeper_id', $user->id)
                 ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
                 ->get();
+            $checkMemorial = $check->isNotEmpty() ? $check : null;
+
 
 
             ?>
@@ -59,13 +61,17 @@
                     <ul class="user-unorderedlist-dropdown">
                         <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Profile</h3>
                         <li><a href="{{route('edit.user.profile',$user->id)}}">{{$user->first_name.' '.$user->last_name}}</a></li>
-
-                        @foreach($checkMemorial  as $memorial)
-                            @if ($loop->first)
-                                <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Memorial</h3>
-                            @endif
-                            <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
-                        @endforeach
+                        @if($checkMemorial)
+                            @foreach($checkMemorial  as $memorial)
+                                @if ($loop->first)
+                                    <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Memorial</h3>
+                                @endif
+                                <li><a href="{{route('edit.memorial.profile',$memorial->id)}}">{{$memorial->first_name.' '.$memorial->last_name}}</a></li>
+                            @endforeach
+                        @else
+                            <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Memorial</h3>
+                            <li><a href="{{ route('Creatememorial',auth()->user()->id) }}">Create Memorial</a></li>
+                        @endif
                         <h3 style="margin: 10px 0 5px; padding: 5px 16px; background-color: #ddd;">Logout</h3>
                         <li class="dropdown-menu-footer">
 

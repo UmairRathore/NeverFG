@@ -31,7 +31,7 @@
                             @if($user)
                                 <h1 class="user-name-main-heading">{{$user->first_name.' '.$user->last_name}}</h1>
                             @else
-                                <h1 class="user-name-main-heading">John Dor</h1>
+                                <h1 class="user-name-main-heading"></h1>
                             @endif
                         @else
                             <h1 class="user-name-main-heading">John Dor</h1>
@@ -184,18 +184,11 @@
                                             Admin Helpdesk
                                         </a>
                                     </div>
-                                    {{--                        <div class="single-item">--}}
-                                    {{--                            <a href="{{route('keeperplus',$memorialAccount->memorial_user_id)}}" class="single-item-insider">--}}
-                                    {{--                                <lord-icon src="https://cdn.lordicon.com/zrkkrrpl.json" trigger="loop" delay="1000"--}}
-                                    {{--                                           style="width: 48px; height: 48px">--}}
-                                    {{--                                </lord-icon>--}}
-                                    {{--                                NeverFg plus--}}
-                                    {{--                            </a>--}}
-                                    {{--                        </div>--}}
+
                                 </div>
                                 <div class="btn-wrapper">
 
-                                    <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>
+{{--                                    <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>--}}
 
                                 </div>
                             </div>
@@ -261,7 +254,7 @@
                                     {{--                                </div>--}}
                                 </div>
                                 <div class="btn-wrapper">
-                                    <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>
+{{--                                    <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="black-background-btn">Create Memorial</button>--}}
 
                                 </div>
                             </div>
