@@ -64,7 +64,7 @@ class LoginController extends Controller
                 $memorial = UserMemorial::select('users.*','users.id as user_id','user_memorials.*')
                     ->where('keeper_id',$user->id)
                     ->join('users','users.id','=','user_memorials.memorial_user_id')->first();
-                // Email is verified, redirect to edit user profile
+
                 return redirect()->route('profile', ['id' => $memorial->memorial_user_id]);
             }
 
