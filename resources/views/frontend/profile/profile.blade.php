@@ -320,7 +320,6 @@ $count = $mementos->whereNotNull('memento_image')->count();
 
     <?php
 
-
     $Comments = \App\Models\Comment::where('receiver_id', $memorial->memorial_user_id)
         ->join('users', 'users.id', '=', 'comments.sender_id')->get();
 
