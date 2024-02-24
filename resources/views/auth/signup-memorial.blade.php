@@ -96,7 +96,7 @@
                 <label for="memorial_dob">Date of birth</label>
                 <div class="row-of-select">
                     <select name="memorial_dob_year">
-                        @for ($year = 1999; $year <= 2024; $year++)
+                        @for ($year = 1900; $year <= 2024; $year++)
                             <option {{ $year == old('memorial_dob_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
                         @endfor
                     </select>
@@ -124,7 +124,7 @@
                 <label for="">Their Date Of Death</label>
                 <div class="row-of-select">
                     <select name="memorial_dod_year" class="@error('memorial_dod_year') is-invalid @enderror">
-                        @for ($year = 1999; $year <= 2024; $year++)
+                        @for ($year = 1900; $year <= 2024; $year++)
                             <option {{ $year == old('memorial_dod_year') ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
                         @endfor
                     </select>
@@ -258,7 +258,7 @@
                 <label for="keeper_dob">Date of birth</label>
                 <div class="row-of-select">
                     <select name="keeper_dob_year">
-                        @for ($year = 1999; $year <= 2024; $year++)
+                        @for ($year = 1900; $year <= 2024; $year++)
                             <option {{ $year == old('keeper_dob_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
                         @endfor
                     </select>

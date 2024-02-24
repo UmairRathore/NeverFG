@@ -24,7 +24,7 @@
 
                     {{--                    </div>--}}
                     <div class="header-of-form-profile margin-top">
-                        <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
+                        <h1 class="form-top-main-heading-of-profile">Account Keeper Information</h1>
                     </div>
                     @if(Session::has('message'))
 

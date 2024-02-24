@@ -108,7 +108,7 @@
                         Your changes have been saved successfully!
                     </div>
                     <div class="header-of-form-profile margin-top">
-                        <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
+                        <h1 class="form-top-main-heading-of-profile">who is this memorial for</h1>
                     </div>
                     <div class="form-data-of-profile-page">
                         <div class="form-group-input">
@@ -165,7 +165,7 @@
 
                                 <!-- Year Dropdown -->
                                 <select name="birth_year" id="birth_year">
-                                    @for ($year = 1970; $year <= 2023; $year++)
+                                    @for ($year = 1900; $year <= 2023; $year++)
                                         Adjust the end year as needed
                                         <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
                                     @endfor
@@ -198,7 +198,7 @@
 
                                 <!-- Year Dropdown -->
                                 <select name="death_year" id="death_year">
-                                    @for ($year = 1970; $year <= 2023; $year++)
+                                    @for ($year = 1900; $year <= 2024; $year++)
                                         Adjust the end year as needed
                                         <option value="{{ $year }}" @if($selectedYear == $year) selected @endif>{{ $year }}</option>
                                     @endfor

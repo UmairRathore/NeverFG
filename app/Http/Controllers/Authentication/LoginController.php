@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmailVerify;
+use App\Models\UserMemorial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -60,8 +61,11 @@ class LoginController extends Controller
                     return redirect()->back()->with('message', 'Your email is not verified.');
                 }
 
+                $memorial = UserMemorial::select('users.*','users.id as user_id','user_memorials.*')
+                    ->where('keeper_id',$user->id)
+                    ->join('users','users.id','=','user_memorials.memorial_user_id')->first();
                 // Email is verified, redirect to edit user profile
-                return redirect()->route('edit.user.profile', ['id' => $user->id]);
+                return redirect()->route('profile', ['id' => $memorial->memorial_user_id]);
             }
 
         }

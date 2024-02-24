@@ -241,24 +241,45 @@
                     <div class="div-1">
                         <h1 class="mem-heading-main">Momentos</h1>
                         <h3 class="mem-heading-main">Images</h3>
+
                         <div class="pics-wrapper">
                             @php $firstVideoDisplayed = false; @endphp
+{{--                            {{dd($mementos)}}--}}
+                            <?php
+$count = $mementos->whereNotNull('memento_image')->count();
+
+?>
+                            @if($count == 0)
+
+
+                            <div class="image-wrapper-of-not-logged-in-profile">
+
+                                    <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
+
+
+                            </div>
+
+                                @endif
 
                             @foreach($mementos as $memento)
                                 <div class="image-wrapper-of-not-logged-in-profile">
-                                    @if($memento->memento_image)
+
+                                    @if($memento->memento_image )
                                         <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
-                                    @else
-                                        <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
                                     @endif
 
                                 </div>
                                     @if($memento->memento_video && !$firstVideoDisplayed)
                                            <?php
                                                $data = $memento->memento_video;
-                                               $datai = $memento->memento_image;
                                                ?>
+<?php
+                                    if ($memento->memento_image)
+{
 
+                                    $datai = $memento->memento_image;
+}
+                                    ?>
                                     @endif
                             @endforeach
 

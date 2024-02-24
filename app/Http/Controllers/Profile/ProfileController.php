@@ -948,7 +948,31 @@ class ProfileController extends Controller
         $this->data['memorial']->milestone = UserMilestone::where('memorial_user_id', $id)->first();
         $this->data['memorial']->interests = UserInterest::where('memorial_user_id', $id)->first();
 
-        $this->data['mementos'] = Memento::where('memorial_user_id', $id)->get();
+// Fetch mementos with both images and videos
+        $mementosWithImagesAndVideos = Memento::where('memorial_user_id', $id)
+            ->whereNotNull('memento_image')
+            ->whereNotNull('memento_video')
+            ->get();
+
+// If there are mementos with both images and videos, use them
+        if ($mementosWithImagesAndVideos->isNotEmpty()) {
+            $mementos = $mementosWithImagesAndVideos;
+        } else {
+            // If there are no mementos with both images and videos, fetch separately
+            // Fetch mementos with images
+            $mementosWithImages = Memento::where('memorial_user_id', $id)
+                ->whereNotNull('memento_image')
+                ->get();
+
+            // Fetch mementos with videos
+            $mementosWithVideos = Memento::where('memorial_user_id', $id)
+                ->whereNotNull('memento_video')
+                ->get();
+
+            // Merge the two collections
+            $mementos = $mementosWithImages->merge($mementosWithVideos);
+        }
+        $this->data['mementos'] = $mementos;
         $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
         return view($this->_viewPath . 'profile', $this->data);
 

@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="header-of-form-profile margin-top">
-                        <h1 class="form-top-main-heading-of-profile">Basic Information</h1>
+                        <h1 class="form-top-main-heading-of-profile">who is this memorial for</h1>
                     </div>
                     <div class="form-data-of-profile-page">
                         <div class="form-group-input">
@@ -61,7 +61,7 @@
                             <div class="row-of-inputs">
                                     <!-- Day Dropdown -->
                                 <select name="dob_year">
-                                    @for ($year = 1999; $year <= 2024; $year++)
+                                    @for ($year = 1900; $year <= 2024; $year++)
                                         <option {{ $year == old('dob_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
                                     @endfor
                                 </select>
@@ -85,7 +85,7 @@
                             <label for="">Date of Death</label>
                             <div class="row-of-inputs">
                                 <select name="dod_year">
-                                    @for ($year = 1999; $year <= 2024; $year++)
+                                    @for ($year = 1900; $year <= 2024; $year++)
                                         <option {{ $year == old('dod_year') ? 'selected' : ($year == 2024 ? 'selected' : '') }} value="{{ $year }}">{{ $year }}</option>
                                     @endfor
                                 </select>
