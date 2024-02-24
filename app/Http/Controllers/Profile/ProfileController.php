@@ -973,7 +973,6 @@ class ProfileController extends Controller
             $mementos = $mementosWithImages->merge($mementosWithVideos);
         }
         $this->data['mementos'] = $mementos;
-
         $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
         return view($this->_viewPath . 'profile', $this->data);
 
