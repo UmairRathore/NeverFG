@@ -323,7 +323,6 @@ $count = $mementos->whereNotNull('memento_image')->count();
     $Comments = \App\Models\Comment::where('receiver_id', $memorial->memorial_user_id)
         ->join('users', 'users.id', '=', 'comments.sender_id')->get();
 
-
     ?>
 @if($Comments)
     @foreach($Comments as $comment)
