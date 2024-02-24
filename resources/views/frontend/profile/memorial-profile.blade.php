@@ -195,7 +195,6 @@
                                         <option value="{{ $month }}" @if($selectedMonth == $month) selected @endif>{{ $month }}</option>
                                     @endfor
                                 </select>
-
                                 <!-- Year Dropdown -->
                                 <select name="death_year" id="death_year">
                                     @for ($year = 1900; $year <= 2024; $year++)
