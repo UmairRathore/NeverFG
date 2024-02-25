@@ -177,7 +177,9 @@
                                         </a>
                                     </div>
                                     <div class="single-item">
-                                        <a href="{{route('chat.show',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
+                                        <?php
+                                        $user = \App\Models\User::where('role_id','1')->first();?>
+                                        <a href="{{route('chat.text',$user->id)}}" class="single-item-insider">
                                             <lord-icon src="https://cdn.lordicon.com/aycieyht.json" trigger="loop" delay="1000"
                                                        style="width: 48px; height: 48px">
                                             </lord-icon>
