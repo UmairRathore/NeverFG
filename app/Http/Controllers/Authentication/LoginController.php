@@ -61,11 +61,17 @@ class LoginController extends Controller
                     return redirect()->back()->with('message', 'Your email is not verified.');
                 }
 
-                $memorial = UserMemorial::select('users.*','users.id as user_id','user_memorials.*')
-                    ->where('keeper_id',$user->id)
-                    ->join('users','users.id','=','user_memorials.memorial_user_id')->first();
+                $memorial = UserMemorial::select('users.*', 'users.id as user_id', 'user_memorials.*')
+                    ->where('keeper_id', $user->id)
+                    ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')->first();
+                if ($memorial) {
 
-                return redirect()->route('profile', ['id' => $memorial->memorial_user_id]);
+                    return redirect()->route('profile', ['id' => $memorial->memorial_user_id]);
+                } else {
+
+
+                    return redirect()->route('Creatememorial', ['id' => $user->id]);
+                }
             }
 
         }
