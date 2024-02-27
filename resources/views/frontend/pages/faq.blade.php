@@ -3,7 +3,6 @@
 
 @section('content')
 
-    @foreach($faq->groupBy('topic_id') as $topicId => $faqs)
         <div class="faqs-browse-by-topic-wrapper">
             <div class="faqs-browse-by-topic-wrapper-insider">
                 <h1 class="faqs-main-heading">Browse By Topic</h1>
@@ -30,12 +29,13 @@
                 </div>
 
                 <!-- On-page search -->
-                <div class="on-page-search">
-                    <input type="text" id="searchInput" placeholder="Search on this page" onkeyup="searchOnPage()">
-                    <div id="searchResult"></div>
-                </div>
+{{--                <div class="on-page-search">--}}
+{{--                    <input type="text" id="searchInput" placeholder="Search on this page" onkeyup="searchOnPage()">--}}
+{{--                    <div id="searchResult"></div>--}}
+{{--                </div>--}}
             </div>
         </div>
+    @foreach($faq->groupBy('topic_id') as $topicId => $faqs)
 
         @if($topicId)
             @php

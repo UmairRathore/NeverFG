@@ -6,12 +6,14 @@
             <div class="site-links-section">
                 <div class="links-col-1">
 {{--                    <a href="">About Us</a>--}}
-                    <a href="{{route('forbusiness')}}">For Business</a>
+{{--                    <a href="{{route('forbusiness')}}">For Business</a>--}}
+                    <a href="{{route('faqs')}}">FAQs</a>
+                    <a href="{{route('privacyTerms')}}">Privacy</a>
                     <a href="{{route('features')}}">Features</a>
                 </div>
                 <div class="links-col-3">
-                    <a href="{{route('faqs')}}">FAQs</a>
-                    <a href="{{route('privacyTerms')}}">Privacy</a>
+{{--                    <a href="{{route('faqs')}}">FAQs</a>--}}
+{{--                    <a href="{{route('privacyTerms')}}">Privacy</a>--}}
 {{--                    <div class="links-col-2">--}}
 {{--                        @if(auth()->check())--}}
 {{--                            @if(auth()->user()->account_type_id == 1)--}}
