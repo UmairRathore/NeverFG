@@ -72,7 +72,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <p class="tab-btn-heading">Theme</p>
+                            <p class="tab-btn-heading">Cover Photo</p>
                         </div>
                     </button>
 {{--                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">--}}
@@ -558,14 +558,14 @@
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">
             <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Theme</h1>
+                <h1 class="form-top-main-heading-of-profile">Cover Photo</h1>
             </div>
             <div class="form-data-of-profile-page">
                 <p>Personalize a profile easily by choosing a cover photo from our library or
                     Upload your own picture in the "Custom" Tab</p>
                 <div class="tab-wrapper-of-theme">
                     <div class="theme-tab">
-                        <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
+                        <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Cover Photo</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
                     </div>
                                         <div id="theme" class="theme-tabcontent">
