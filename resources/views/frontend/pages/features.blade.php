@@ -8,7 +8,7 @@
             <div class="cermonyTwocolumns">
                 <div class="cermony-left-section">
                     <h1 class="craft-cermony-main-heading heading-color">
-                        The concept of NeverFg
+                        The concept of Holder
                     </h1>
                     <p>
                         You become the NeverFg of your loved one’s memorial page when you
@@ -77,35 +77,7 @@
         </div>
 
     </div>
-    <div class="concept-of-websiteName-section">
-        <div class="concept-of-websiteName-section-wrapper">
-            <div class="cermonyTwocolumns">
-                <div class="cermony-left-section">
-                    <h1 class="craft-cermony-main-heading heading-color">
-                        The concept of NeverFg
-                    </h1>
-                    <p>
-                        You become the NeverFg of your loved one’s memorial page when you
-                        create your account. Keep your loved one’s memory alive by sharing
-                        their life story, uploading photographs and videos, creating their
-                        family tree and inviting others to collaborate with you. As their
-                        NeverFg, you can change, add or hide any content at any time.
-                        NeverFgs also have total control over who can visit and post on
-                        their loved one’s memorial page and delete any posts and images
-                        added by others.
-                    </p>
-{{--                    <button class="black-background-btn margin-top-30 half-width">--}}
-{{--                        Get Started--}}
-{{--                    </button>--}}
-                </div>
-                <div class="cermony-right-section">
-                    <div class="share-memorial-insider">
-                        <img src="{{asset('frontend/assets/images/hero_2_backgound.jpg')}}" alt=""/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="are-you-funeral-service-provider-section">
         <div class="service-provider-insider">
             <h1>FUNERAL HOME, CEMETERY OR OTHER DEATH CARE SERVICE PROVIDER?</h1>

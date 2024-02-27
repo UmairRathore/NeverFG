@@ -100,7 +100,8 @@ class ProfileController extends Controller
     public function Creatememorial($id)
     {
         $user_id = $id;
-        return view($this->_viewPath . 'create-memorial', compact('user_id'));
+        $check = UserMemorial::where('keeper_id',$id)->exists();
+        return view($this->_viewPath . 'create-memorial', compact('user_id','check'));
     }
 
     public function storeMemorial(Request $request)
@@ -151,7 +152,7 @@ class ProfileController extends Controller
             if ($checkmemorial) {
                 return response()->json([
                     'success' => true,
-                    'message' => 'User Information has updated correctly',
+                    'message' => 'Memorial  has been created successfully',
                 ]);
             } else {
                 return response()->json([
@@ -593,18 +594,18 @@ class ProfileController extends Controller
                 if ($checkMemorialUser) {
                     return response()->json([
                         'success' => true,
-                        'message' => 'Your Theme Image Custom  has been updated correctly',
+                        'message' => 'Your Cover Photo Image Custom  has been updated correctly',
                     ]);
                 } else {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Failed to update Theme image Custom ',
+                        'message' => 'Failed to update Cover Photo image Custom ',
                     ]);
                 }
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'No file provided for Theme Custom image update',
+                    'message' => 'No file provided for Cover Photo Custom image update',
                 ]);
             }
 
@@ -642,18 +643,18 @@ class ProfileController extends Controller
                 if ($checkMemorialUser) {
                     return response()->json([
                         'success' => true,
-                        'message' => 'Your Theme Library Image has been updated correctly',
+                        'message' => 'Your Cover Photo from Library Image has been updated correctly',
                     ]);
                 } else {
                     return response()->json([
                         'success' => false,
-                        'message' => 'Failed to update Theme Library  image',
+                        'message' => 'Failed to update Cover Photo from Library  image',
                     ]);
                 }
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'No file provided for Theme image Library  update',
+                    'message' => 'No file provided for Cover Photo image Library  update',
                 ]);
             }
 
