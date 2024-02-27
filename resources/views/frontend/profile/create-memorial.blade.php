@@ -17,13 +17,6 @@
             <form id="basic-info-form" >
                 <!--Basic Information-->
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        <!-- Dynamic success message will be displayed here -->
-                    </div>
-
-                    <div id="errorMessage" class="alert alert-danger" role="alert" style="display: none;">
-                        <!-- Dynamic error message will be displayed here -->
-                    </div>
 
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">who is this memorial for</h1>
@@ -150,6 +143,12 @@
                             @enderror
                         </div>
 
+
+                        <div id="imageLoader" style="display: none;">
+                            <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                            <p>Loading...</p>
+                        </div>
+                        <div id="formMessage" style="display: none;"></div>
                         <div class="form-group-input">
 
                             <div class="custom-file-chooser-wrapper">
@@ -160,13 +159,24 @@
                         </div>
 
                     </div>
-
-                    <div class="footer-of-form-content">
+@if(!$check)
+                    <div id="divmemorial" class="footer-of-form-content ">
                         <button class="form-btn">Create memorial</button>
                     </div>
+@endif
+
                 </div>
+
             </form>
 
+            <div id="divalready" class="footer-of-form-content" style="display: none;">
+                        <button class="form-btn" type="button">You have Already Created a Memorial</button>
+                    </div>
+@if($check)
+            <div id="divalready" class="footer-of-form-content" ">
+                <button class="form-btn" type="button">You have Already Created a Memorial</button>
+            </div>
+          @endif
         </div>
 
 
@@ -176,10 +186,18 @@
 @section('CreatememorialJS')
     <script>
 
+
+
         $(document).ready(function() {
             $('#basic-info-form').submit(function(e) {
                 e.preventDefault();
+                var loaderId = '#imageLoader'; // Define loaderId here with the appropriate ID of your loader element
+                var messageId = '#formMessage'; // Assuming you have a message element with ID 'message'
 
+                // Show loader
+                $(loaderId).show();
+                // Hide previous message
+                $(messageId).hide();
                 var formData = new FormData($(this)[0]);
 
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -196,21 +214,38 @@
                     processData: false,
                     contentType: false,
                     success: function(response) {
+
+                        // Hide loader on success
+                        setTimeout(function() {
+                            $(loaderId).hide();
+
                         // Handle success response
                         console.log(response);
                         // Display success message to the user
                         if (response.success) {
                             $('#successMessage').text(response.message).show();
+
+                            $('#divmemorial').hide();
+                            $('#divalready').show();
+
                         } else {
                             $('#errorMessage').text(response.message).show();
                         }
+                        }, 2000); // 2000 milliseconds = 2 seconds
+
                     },
                     error: function(xhr, status, error) {
                         // Handle error response
+                        // Hide loader on success
+                        setTimeout(function() {
+                            $(loaderId).hide();
+
+
                         console.error(xhr.responseText);
                         // Display error message to the user
                         // You can customize this based on your error handling logic
                         alert('An error occurred. Please try again.');
+                        }, 2000); // 2000 milliseconds = 2 seconds
                     }
                 });
             });

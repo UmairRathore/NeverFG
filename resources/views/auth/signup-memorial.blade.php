@@ -74,22 +74,6 @@
                 @enderror
             </div>
 
-            {{--Passed--}}
-            <div class="form-group-input">
-                <H2>Has Passed Away?
-                    <input type="checkbox" name="memorial_passed" value="{{ old('memorial_passed') }}" id="memorialPassedCheckbox">
-                    <small>
-                        <i class="fa fa-info-circle" data-tooltip="Select this option to create a Living Memorial page for a loved one who has not passed away."
-                           style="position: relative; cursor: pointer; "
-                           onmouseover="this.children[0].style.display = 'block';"
-                           onmouseout="this.children[0].style.display = 'none';">
-                       <span style="position: absolute; bottom: 100%; font-size: 10px; left: 50%;
-                        transform: translateX(-50%); padding: 5px; background-color: #333; color: #fff; border-radius: 90%; display: none;">
-                           Select this option to create a Living Memorial page for a loved one who has not passed away.</span>
-                        </i>
-                    </small>
-                </H2>
-            </div>
 
             <!-- Date of Birth -->
             <div class="form-group-input">
@@ -145,12 +129,7 @@
                 </div>
             </div>
 
-            <!-- Email input for when "Passed" checkbox is checked -->
-            <div class="form-group-input" id="memorialEmailContainer" style="display: none; text-align: left;">
-                <label for="memorial_email">Email</label>
-                <input type="email" name="memorial_email" placeholder="Their Email Address" value="{{ old('memorial_email') }}" class="input-design " />
 
-            </div>
 
             <div class="form-group-input">
                 <label for="memorial_city_of_birth">Their City of Birth</label>
@@ -530,20 +509,7 @@
     });
 
 
-    var memorialPassedCheckbox = document.getElementById("memorialPassedCheckbox");
-    var memorialEmailContainer = document.getElementById("memorialEmailContainer");
-    var memorialDodContainer = document.getElementById("memorialDodContainer");
 
-    // Set the default state of the checkbox to checked
-    memorialPassedCheckbox.checked = true;
-
-
-    memorialPassedCheckbox.addEventListener('change', function () {
-        // If "Passed" checkbox is checked, show email input and hide Date of Birth
-        memorialDodContainer.style.display = this.checked ? 'block' : 'none';
-        memorialEmailContainer.style.display = this.checked ? 'none' : 'block';
-
-        // Update the checkbox value
 
     });
     function selectCard(cardType) {

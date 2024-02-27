@@ -72,7 +72,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <p class="tab-btn-heading">Theme</p>
+                            <p class="tab-btn-heading">Cover Photos</p>
                         </div>
                     </button>
 {{--                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">--}}
@@ -104,9 +104,7 @@
             <form id="basic-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <!--Basic Information-->
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
-                    </div>
+
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">who is this memorial for</h1>
                     </div>
@@ -222,6 +220,17 @@
                             </div>
                         </div>
                     </div>
+                    <div id="basicSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="basicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="basicLoader" style="display: none;">
+                        <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                        <p>Loading...</p>
+                    </div>
+
                     <div class="footer-of-form-content">
                         <button class="form-btn">Save Changes</button>
                     </div>
@@ -232,9 +241,7 @@
             <form id="home-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
 
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
-                    </div>
+
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Home Town</h1>
                     </div>
@@ -243,6 +250,16 @@
                             <label for="">Search</label>
                             <input type="text" class="input-design" name="home_city" value="@if(isset($profile['memorialCity']->home_city)){{$profile['memorialCity']->home_city}}@endif"/>
                         </div>
+                    </div>
+                    <div id="homeSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="homeErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="homeLoader" style="display: none;">
+                        <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                        <p>Loading...</p>
                     </div>
 
                     <div class="footer-of-form-content">
@@ -254,9 +271,7 @@
             {{--            Other City--}}
             <form id="other-city-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
-                    </div>
+
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Other city</h1>
                     </div>
@@ -267,6 +282,17 @@
                             <input type="text" class="input-design" name="other_city" value="@if(isset($profile['memorialCity']->other_city)){{$profile['memorialCity']->other_city}}@endif"/>
                         </div>
                     </div>
+                    <div id="otherSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="otherErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="otherLoader" style="display: none;">
+                        <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                        <p>Loading...</p>
+                    </div>
+
                     <div class="footer-of-form-content">
                         <button class="form-btn">Save Changes</button>
                     </div>
@@ -291,6 +317,16 @@
                         </button>
                     </div>
                 </div>
+                <div id="occupationSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div> <div id="occupatioErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div>
+                <div id="occupationLoader" style="display: none;">
+                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                    <p>Loading...</p>
+                </div>
+
                 <div class="footer-of-form-content">
                     <button id="occupation-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                 </div>
@@ -310,6 +346,16 @@
                         </button>
                     </div>
                 </div>
+                <div id="academicSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div> <div id="academicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div>
+                <div id="academicLoader" style="display: none;">
+                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                    <p>Loading...</p>
+                </div>
+
                 <div class="footer-of-form-content">
                     <button id="academic-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                 </div>
@@ -334,6 +380,16 @@
                         </button>
                     </div>
                 </div>
+                <div id="milestoneSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div> <div id="milestoneErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div>
+                <div id="milestoneLoader" style="display: none;">
+                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                    <p>Loading...</p>
+                </div>
+
                 <div class="footer-of-form-content">
                     <button id="milestone-info-btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Save Changes</button>
                 </div>
@@ -343,9 +399,7 @@
             {{--                        Religious Values--}}
             <form id="religion-info-form" data-user-id="{{$profile['memorialProfile']->id}}">
                 <div class="form-of-logged-in-user">
-                    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
-                        Your changes have been saved successfully!
-                    </div>
+
                     <div class="header-of-form-profile margin-top">
                         <h1 class="form-top-main-heading-of-profile">Religious Values</h1>
                     </div>
@@ -380,6 +434,17 @@
                             </div>
                         </div>
                     </div>
+                    <div id="religionSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="religionErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                        <!-- Dynamic success message will be displayed here -->
+                    </div>
+                    <div id="religionLoader" style="display: none;">
+                        <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                        <p>Loading...</p>
+                    </div>
+
                     <div class="footer-of-form-content">
                         <button class="form-btn">Save Changes</button>
                     </div>
@@ -403,6 +468,16 @@
                         </button>
                     </div>
                 </div>
+                <div id="interestSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div> <div id="ErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    <!-- Dynamic success message will be displayed here -->
+                </div>
+                <div id="interestLoader" style="display: none;">
+                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                    <p>Loading...</p>
+                </div>
+
                 <div class="footer-of-form-content">
                     <button id="interest-info-btn" class="form-btn" data-user-id="{{$profile['memorialProfile']->id}}">Save Changes</button>
                 </div>
@@ -433,6 +508,17 @@
                                     <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
                                 @endif
                             </div>
+                            <div id="profileCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                                <!-- Dynamic success message will be displayed here -->
+                            </div>
+                            <div id="profileCustomErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                                <!-- Dynamic success message will be displayed here -->
+                            </div>
+                            <div id="profileCustomLoader" style="display: none;">
+                                <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                                <p>Loading...</p>
+                            </div>
+
                             <div class="custom-file-chooser-wrapper">
                                 <input type="file" id="file-input" name="memento_profile_image_custom"/>
 
@@ -491,6 +577,17 @@
                     @endforeach
                 </div>
             </div>
+            <div id="profileSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                <!-- Dynamic success message will be displayed here -->
+            </div>
+            <div id="profileErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                <!-- Dynamic success message will be displayed here -->
+            </div>
+            <div id="profileLoader" style="display: none;">
+                <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                <p>Loading...</p>
+            </div>
+
             <div class="footer-of-form-content">
                 <button id="profile_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
             </div>
@@ -558,14 +655,14 @@
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">
             <div class="header-of-form-profile margin-top">
-                <h1 class="form-top-main-heading-of-profile">Theme</h1>
+                <h1 class="form-top-main-heading-of-profile">Cover Photos</h1>
             </div>
             <div class="form-data-of-profile-page">
                 <p>Personalize a profile easily by choosing a cover photo from our library or
                     Upload your own picture in the "Custom" Tab</p>
                 <div class="tab-wrapper-of-theme">
                     <div class="theme-tab">
-                        <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Theme</button>
+                        <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Cover Photos</button>
                         <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
                     </div>
                                         <div id="theme" class="theme-tabcontent">
@@ -610,6 +707,17 @@
                                                         @endforeach
 
                                                 </div>
+                                                <div id="themeSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                                                    <!-- Dynamic success message will be displayed here -->
+                                                </div>
+                                                <div id="themeErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                                                    <!-- Dynamic success message will be displayed here -->
+                                                </div>
+                                                <div id="themeLoader" style="display: none;">
+                                                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                                                    <p>Loading...</p>
+                                                </div>
+
                                                 <div class="footer-of-theme">
                                                     <button id="theme_image_library_btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
                                                 </div>
@@ -619,6 +727,17 @@
                     <div id="Custom" class="theme-tabcontent">
                         <p>You can upload your own unique picture here. For the best look, we recommend using a picture with a high resolution (1024x768 and higher, for example).</p>
                         <div class="custom-file-chooser-wrapper">
+                            <div id="themeCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                                <!-- Dynamic success message will be displayed here -->
+                            </div>
+                            <div id="themeCustomErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                                <!-- Dynamic success message will be displayed here -->
+                            </div>
+                            <div id="themeCustomLoader" style="display: none;">
+                                <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                                <p>Loading...</p>
+                            </div>
+
                             <form id="theme_image_form" enctype="multipart/form-data">
                                 <label for="memorial_theme_image_custom" class="file-input-label">
                                     <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
@@ -1075,10 +1194,9 @@
                 var identifier = 'basic_info';
                 // Serialize the form data along with user_id and form_identifier
                 var formData = $(this).serialize() + '&user_id=' + userId;
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#basicSuccessMessage','#basicErrorMessage','#basicLoader');
                 return 0;
             });
-
 
             $('#home-city-info-form').submit(function (e) {
                 e.preventDefault(); // Prevent the form from submitting in the traditional way
@@ -1087,7 +1205,7 @@
                 var identifier = 'home_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#homeSuccessMessage','homeErrorMessage','#homeLoader');
                 return 0;
             });
 
@@ -1098,7 +1216,7 @@
                 var identifier = 'other_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#otherSuccessMessage','#otherErrorMessage','#otherLoader');
                 return 0;
             });
 
@@ -1127,7 +1245,7 @@
                 // Convert formData to a serialized string
                 formData = $.param(formData);
 
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#occupationSuccessMessage','#occuptionErrorMessage','#occupationLoader');
                 return 0;
             });
 
@@ -1158,7 +1276,7 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#academicSuccessMessage','#academicErrorMessage','#academicLoader');
                 return 0;
             });
 
@@ -1186,7 +1304,7 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#milestoneSuccessMessage','#milestoneErrorMessage','#milestoneLoader');
                 return 0;
             });
 
@@ -1197,7 +1315,7 @@
                 var identifier = 'religion_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#religionSuccessMessage','#religionErrorMessage','#religionLoader');
                 return 0;
             });
 
@@ -1222,13 +1340,23 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier);
+                saveWithoutImageFormData(userId, formData, identifier,'#interestSuccessMessage','#interestErrorMessage','#interestLoader');
                 return 0;
             });
 
 
-            function saveWithoutImageFormData(userId, formData, formType) {
+            function saveWithoutImageFormData(userId, formData, formType,formSuccessMessage,formErrorMessage,loaderName) {
 
+                var loaderId = loaderName; // Define loaderId here with the appropriate ID of your loader element
+                var successMessageId = formSuccessMessage; // Assuming you have a message element with ID 'message'
+                var errorMessageId = formErrorMessage; // Assuming you have a message element with ID 'message'
+
+
+                // Show loader
+                $(loaderId).show();
+                // Hide previous message
+                $(successMessageId).hide();
+                $(errorMessageId).hide();
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile-withoutimage/' + userId + '/' + formType,
@@ -1239,12 +1367,19 @@
                     success: function (response) {
                         console.log(response);
                         if (response.success) {
-                            $('#successMessage').show();
+                            setTimeout(function() {
+                                $(loaderId).hide();
+                                // Handle success response
+                                console.log(response);
+                                // Display success message to the user
+                                if (response.success) {
+                                    $(successMessageId).text(response.message).show();
 
-                            // Hide success message after 2 seconds
-                            setTimeout(function () {
-                                $('#successMessage').hide();
-                            }, 2000);
+                                } else {
+                                    $(errorMessageId).text(response.message).show();
+                                }
+                            }, 2000); // 2000 milliseconds = 2 seconds
+
                         } else {
                             // Handle failure, show an error message, or take appropriate action
                             alert('Error: ' + response.message);
@@ -1253,7 +1388,10 @@
 
                     error: function (error) {
                         console.error(error);
+                        setTimeout(function () {
+                            $(loaderId).hide();
 
+                        }, 2000);
                         // Access the error details sent from the server
                         var errorMessage = error.responseJSON.message;
                         var errorDetails = error.responseJSON.error_details;
@@ -1281,7 +1419,7 @@
                 formData.append('form_identifier', identifier);
                 formData.append('is_image_upload', true);
 
-                saveFormImageData(userId, formData, 'profile_image_custom');
+                saveFormImageData(userId, formData, 'profile_image_custom','#profileCustomSuccessMessage','#profileCustomErrorMessage','#profileCustomLoader');
                 return 0;
             });
             // Function for clicking the "Select" button
@@ -1315,7 +1453,7 @@
                         console.log(blob);
                         formData.append('profile_image', blob);
                         console.log(formData); // Log FormData object for inspection
-                        saveFormImageData(userId, formData, 'profile_image_library');
+                        saveFormImageData(userId, formData, 'profile_image_library','#profileSuccessMessage','#profileErrorMessage','#profileLoader');
                     })
                     .catch(error => console.error('Error fetching image:', error));
             }
@@ -1339,7 +1477,7 @@
                 formData.append('form_identifier', identifier);
                 formData.append('is_image_upload', true);
 
-                saveFormImageData(userId, formData, 'theme_image_custom');
+                saveFormImageData(userId, formData, 'theme_image_custom','#themeCustomSuccessMessage','#themeCustomErrorMessage','#themeCustomLoader');
                 return 0;
             });
             $('#theme_image_library_btn').click(function (e) {
@@ -1372,16 +1510,24 @@
                         formData.append('theme_image', blob);
 
                         console.log(formData); // Log FormData object for inspection
-                        saveFormImageData(userId, formData, 'theme_image_library');
+                        saveFormImageData(userId, formData, 'theme_image_library','#themeSuccessMessage','#themeErrorMessage','#themeLoader');
                     })
                     .catch(error => console.error('Error fetching image:', error));
             }
 
             //Ajax function
 
-            function saveFormImageData(userId, formData, formType) {
+            function saveFormImageData(userId, formData, formType,formSuccessMessage,formErrorMessage,loaderName) {
 
+                var loaderId = loaderName; // Define loaderId here with the appropriate ID of your loader element
+                var successMessageId = formSuccessMessage; // Assuming you have a message element with ID 'message'
+                var errorMessageId = formErrorMessage; // Assuming you have a message element with ID 'message'
 
+                // Show loader
+                $(loaderId).show();
+                // Hide previous message
+                $(successMessageId).hide();
+                $(errorMessageId).hide();
                 $.ajax({
                     type: 'POST',
                     url: '/update-memorial-profile/' + userId + '/' + formType,
@@ -1396,16 +1542,20 @@
                     success: function (response) {
                         console.log(response);
                         if (response.success) {
-                            $('#successMessage').show();
-                            // Check if the form is for image upload and refresh the profile image div
+                            setTimeout(function() {
+                                $(loaderId).hide();
                                 refreshProfileImageDiv(userId, formType);
+                                // Handle success response
+                                console.log(response);
+                                // Display success message to the user
+                                if (response.success) {
+                                    $(successMessageId).text(response.message).show();
 
+                                } else {
+                                    $(errorMessageId).text(response.message).show();
+                                }
+                            }, 2000); // 2000 milliseconds = 2 seconds
 
-
-                            // Hide success message after 2 seconds
-                            setTimeout(function () {
-                                $('#successMessage').hide();
-                            }, 2000);
                         } else {
                             // Handle failure, show an error message, or take appropriate action
                             alert('Error: ' + response.message);
@@ -1415,6 +1565,9 @@
                     error: function (error) {
                         console.error(error);
 
+                        setTimeout(function() {
+                            $(loaderId).hide();
+                        }, 2000); // 2000 milliseconds = 2 seconds
                         // Access the error details sent from the server
                         var errorMessage = error.responseJSON.message;
                         var errorDetails = error.responseJSON.error_details;

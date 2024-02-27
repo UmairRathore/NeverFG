@@ -60,7 +60,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="del-btn">Create Memorial Profile</button>
+{{--                        <button onclick="window.location='{{ route('Creatememorial',auth()->user()->id) }}'" class="del-btn">Create Memorial Profile</button>--}}
                     </div>
                 </div>
             </div>

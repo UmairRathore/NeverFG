@@ -191,13 +191,13 @@ $email = $request->email;
             $this->data['memorialUserAdditionalInfo']->memorial_user_id = $memorialUserId;
             $this->data['memorialUserAdditionalInfo']->dod = $memorialDod;
 //            dd($request->has('memorial_passed'));
-            if ($request->has('memorial_passed')) {
-                $passedValue = 'alive';
-            } else {
-                $passedValue = 'deceased';
-            }
+//            if ($request->has('memorial_passed')) {
+//                $passedValue = 'alive';
+//            } else {
+//                $passedValue = 'deceased';
+//            }
 //            dd($passedValue);
-            $this->data['memorialUserAdditionalInfo']->passed = $passedValue;
+//            $this->data['memorialUserAdditionalInfo']->passed = $passedValue;
             $this->data['memorialUserAdditionalInfo']->biography = $request->input('memorial_biography');
             $this->data['memorialUserAdditionalInfo']->fav_saying = $request->input('memorial_fav_saying');
             $this->data['memorialUserAdditionalInfo']->resting_place = $request->input('memorial_resting_place');
@@ -238,7 +238,7 @@ $email = $request->email;
                             $message->to($request->keeper_email);
                             $message->subject('Verify Email');
                         });
-                        session()->flash('message', 'We have e-mailed your Signup Verification link!, Check email and click on click to verify link');
+                        session()->flash('message', 'We have e-mailed your Signup Verification link!, Check email and click on link to verify link');
 
                         return back();
                     }
