@@ -11,10 +11,12 @@
                     ?>
                 @endif
                 @if(isset($user->theme_image))
-                    <img src="{{asset($user->theme_image) }}" alt="" class="back-img"/>
+
+                        <img src="{{asset($user->theme_image) }}" alt="" class="back-img"/>
                 @else
                     <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
                 @endif
+
             </div>
             <div class="user-profile-section-2-wrapper">
                 <div id="profile-image-div-dp" class="profile-img-of-user">
@@ -24,6 +26,7 @@
                         <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
                     @endif
                 </div>
+
                 <div class="user-content">
                     <div class="user-content-top-row">
                         @if(auth()->check())
