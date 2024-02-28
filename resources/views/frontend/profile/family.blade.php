@@ -176,6 +176,8 @@
 
         </div>
         <div class="form-data-of-profile-page">
+
+
             <div id="message" class="message"></div> <!-- Add this div for displaying messages -->
             <div class="two-cols-flex">
                 <div class="input-wrapper">
@@ -237,6 +239,10 @@
                     </svg>
                     <button class="btn-of-add-family">Add family member</button>
                 </div>
+            <div id="imageLoader" style="display: none;">
+                <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                <p>Loading...</p>
+            </div>
             </div>
         </div>
 
@@ -264,6 +270,11 @@
                 formData.append('relation', relationship);
                 formData.append('family_image', image);
                 formData.append('memorialID', memorialId);
+                // Show loader
+
+                var loaderId = '#imageLoader';
+
+                $(loaderId).show();
 
                 // Send AJAX request
                 $.ajax({
@@ -274,8 +285,19 @@
                     processData: false,
                     success: function(response) {
                         // Display success message
-                        $('#message').html('<div class="success-message">Family member created successfully</div>');
-                        console.log(response);
+
+                        setTimeout(function() {
+                            if (response.success) {
+                            $(loaderId).hide();
+
+                            console.log(response);
+                            // Display success message to the user
+
+                                $('#message').html('<div class="success-message">Family member created successfully</div>');
+
+                            }
+                        }, 3000); // 2000 milliseconds = 2 seconds
+
                     },
                     error: function(xhr, status, error) {
                         // Display error message
