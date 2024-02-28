@@ -126,28 +126,10 @@
                             <div class="cols-of-unlogged-in-two-cols-right">
 
                                 <div class="nested-two-cols">
-                                    <p class="row-heading">Funeral Home</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
-                                </div>
-                                <div class="nested-two-cols">
                                     <p class="row-heading">Cemetery</p>
                                     <p class="row-heading">Lorem ipsum dolor sit amet consectetur</p>
                                 </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Address</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading">Location</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
-                                <div class="nested-two-cols">
-                                    <p class="row-heading-1">Geolocation</p>
-                                    <p class="row-heading">Lorem ipsum dolor sit amet consectetur
-                                    </p>
-                                </div>
+
 
                             </div>
 
