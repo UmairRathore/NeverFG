@@ -48,7 +48,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <p class="tab-btn-heading">Picture</p>
+                            <p class="tab-btn-heading">Profile Picture</p>
                         </div>
                     </button>
                     <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Theme')">
@@ -596,61 +596,6 @@
     <div class="Memorial tab-content" id="Memorial">
         <h1>Memorial</h1>
     </div>
-
-{{--    <!-- Settings -->--}}
-{{--    <div class="Setting tab-content" id="Setting">--}}
-{{--        <div class="form-of-logged-in-user">--}}
-{{--            <div class="header-of-form-profile margin-top">--}}
-{{--                <h1 class="form-top-main-heading-of-profile">Settings</h1>--}}
-{{--            </div>--}}
-{{--            <div class="form-data-of-profile-page">--}}
-{{--                <div class="form-group-input">--}}
-{{--                    <label for="">Language</label>--}}
-{{--                    <select name="" id="">--}}
-{{--                        <option value="">English</option>--}}
-{{--                        <option value="">English</option>--}}
-{{--                        <option value="">English</option>--}}
-{{--                        <option value="">English</option>--}}
-{{--                    </select>--}}
-{{--                </div>--}}
-{{--                <div class="form-group-input">--}}
-{{--                    <label for="">Email Notification</label>--}}
-{{--                    <div class="row-of-inputs-checkbox">--}}
-{{--                        <input type="checkbox">--}}
-{{--                        Receive emails for each notification--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="form-group-input">--}}
-{{--                    <label for="">NeverFg News and Updates</label>--}}
-{{--                    <div class="row-of-inputs-checkbox">--}}
-{{--                        <input type="checkbox">--}}
-{{--                        Receive updates on NeverFg features, and more.--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="footer-of-form-content">--}}
-{{--                <button class="form-btn">Save Changes</button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="form-of-logged-in-user">--}}
-{{--            <div class="header-of-form-profile margin-top">--}}
-{{--                <h1 class="form-top-main-heading-of-profile">Privacy Settings</h1>--}}
-{{--            </div>--}}
-{{--            <div class="form-data-of-profile-page">--}}
-{{--                <div class="form-group-input ">--}}
-{{--                    <div class="row-of-inputs-checkbox custom-checkbox-div">--}}
-{{--                        <input type="checkbox"/>--}}
-{{--                        <p>Public: Recommended Setting. Anyone visiting the NeverFg site can view and contribute to the profile.--}}
-{{--                        </p>--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="footer-of-form-content">--}}
-{{--                <button class="form-btn">Save Changes</button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
     <div class="Theme tab-content" id="Theme">
         <div class="form-of-logged-in-user">

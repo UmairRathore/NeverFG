@@ -135,10 +135,7 @@
 
                         </div>
                     </div>
-                    <!-- Google Maps -->
-                    <div class="without-logged-in-form-data-of-profile-page">
-                        <div id="googleMap" style="width:100%;height:200px;"></div>
-                    </div>
+
                     <!-- Family -->
                     <div class="without-logged-in-form-data-of-profile-page">
                         <h1 class="heading-of-unlogged-profile">Family</h1>
@@ -191,7 +188,7 @@
                     <!-- Family tree link -->
                     <div class="without-logged-in-form-data-of-profile-page">
                         <div class="align-items-to-end">
-                            <a href="" class="famil-tree-right-align">View Family tree</a>
+                            <a href="{{route('family',$memorial->memorial_user_id)}}" class="famil-tree-right-align">View Family tree</a>
                         </div>
                     </div>
                     <!-- Milestone -->
