@@ -1,10 +1,22 @@
 @extends('layouts.frontend.app.app')
 @section('title', 'Profile')
 @section('content')
-
+<style>
+    @media screen and (max-width: 600px) {
+        .profile-icon-content {
+            width: 100%;
+            float: left;
+        }
+        .momentos-section {
+            width: 100%;
+            float: left;
+        }
+    }
+</style>
     <!-- Edit Profile content -->
     <div class="margin-all">
         <!-- Profile section -->
+
         <div class="grid-of-not-logged-in-profile">
             <div class="profile-icon-content ">
                 <div class="form-of-unlogged-in-user width-800px">
