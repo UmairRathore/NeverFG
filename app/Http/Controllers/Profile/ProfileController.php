@@ -1033,5 +1033,73 @@ class ProfileController extends Controller
         }
     }
 
+    public function profilePicture(Request $request)
+    {
+        try {
+            $user = User::where('id', $request->memorial_id)
+                ->whereNotNull('profile_image')
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+
+        $fieldName = 'profilePicture';
+
+        if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+            $image = $request->file($fieldName);
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $directory = public_path('assets/images/profile_images/');
+
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+
+            $image->move($directory, $imageName);
+
+            $user->profile_image = 'assets/images/profile_images/' . $imageName;
+            $user->save();
+
+            return redirect()->back()->with('success', 'Profile picture updated successfully');
+        }
+
+        return redirect()->back()->with('error', 'No valid file uploaded');
+    }
+
+    public function coverPicture(Request $request)
+    {
+        try {
+            $user = User::where('id', $request->memorial_id)
+                ->whereNotNull('theme_image')
+                ->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+
+        $fieldName = 'coverPicture';
+
+        if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+            $image = $request->file($fieldName);
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $directory = public_path('assets/images/theme_images/');
+
+            if (!File::exists($directory)) {
+                File::makeDirectory($directory, 0777, true, true);
+            }
+
+            $image->move($directory, $imageName);
+
+            $user->theme_image = 'assets/images/theme_images/' . $imageName;
+            $user->save();
+
+            return redirect()->back()->with('success', 'Cover picture updated successfully');
+        }
+
+        return redirect()->back()->with('error', 'No valid file uploaded');
+
+    }
+
+
 
 }

@@ -95,6 +95,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 //profile
     Route::group(['prefix' => 'profile'], function () {
+
+        Route::post('/profilePicture', [ProfileController::class, 'profilePicture'])->name('update.user.profilePicture'); //user profile update
+        Route::post('/coverPicture', [ProfileController::class, 'coverPicture'])->name('update.user.coverPicture'); //user profile update
+
+
         Route::get('/user-profile/{id}', [ProfileController::class, 'userProfile'])->name('edit.user.profile'); //user profile update
         Route::put('/update-user-profile/{id}', [ProfileController::class, 'updateUserProfile'])->name('update.user.profile'); //user profile update
 
