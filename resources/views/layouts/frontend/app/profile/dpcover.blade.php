@@ -142,6 +142,9 @@
                             <img src="{{asset($user->theme_image)}}" alt="" class="back-img"/>
                         </a>
                     @else
+                        <a href="javascript:void(0);" id="themeShowModal">
+                            <img src="{{asset($user->theme_image)}}" alt="" class="back-img"/>
+                        </a>
                         <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
                     @endif
                 @else
@@ -159,6 +162,9 @@
                                 <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
                             </a>
                         @else
+                            <a href="javascript:void(0);" id="profileShowModal">
+                                <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
+                            </a>
                             <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
                         @endif
                     @else
