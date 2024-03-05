@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
 //    AJAX
     Route::post('/store-memento', [ProfileController::class, 'storeMemento'])->name('store-memento'); //AJAX
     Route::post('/post-comment', [ProfileController::class, 'comment'])->name('post.comment'); //
+    Route::post('/approve-comment', [ProfileController::class, 'approvecomment'])->name('approve.comment'); //
+    Route::post('/deny-comment', [ProfileController::class, 'denycomment'])->name('deny.comment'); //
     Route::post('/post-family', [ProfileController::class, 'createFamily'])->name('post.family'); //
 
 
@@ -112,7 +114,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/delete-file',  [ProfileController::class, 'deleteFile'])->name('delete.file');
 
-        Route::get('textchat/{id}', [MessageController::class, 'texting'])->name('chat.text');
+        Route::get('/textchat/{id}', [MessageController::class, 'texting'])->name('chat.text');
         //Route::get('/memorial-profile',[ProfileController::class,'memorialprofile'])->name('memorialprofile');
         Route::get('/mementos/{id}', [ProfileController::class, 'mementos'])->name('mementos');
 

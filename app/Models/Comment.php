@@ -10,6 +10,6 @@ class Comment extends Model
     use HasFactory;
 
     protected $table ='comments';
-    protected $fillable = ['sender_id', 'receiver_id', 'content'];
+    protected $fillable = ['sender_id', 'receiver_id', 'content','status'];
 
 }

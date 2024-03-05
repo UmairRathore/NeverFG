@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Family;
 use App\Models\LibraryPhoto;
 use App\Models\Memento;
+use App\Models\Relation;
 use App\Models\User;
 use App\Models\UserAcademic;
 use App\Models\UserCity;
@@ -100,76 +101,73 @@ class ProfileController extends Controller
     public function Creatememorial($id)
     {
         $user_id = $id;
-        $check = UserMemorial::where('keeper_id',$id)->exists();
-        return view($this->_viewPath . 'create-memorial', compact('user_id','check'));
+        $check = UserMemorial::where('keeper_id', $id)->exists();
+        return view($this->_viewPath . 'create-memorial', compact('user_id', 'check'));
     }
 
     public function storeMemorial(Request $request)
     {
-        $check = UserMemorial::where('keeper_id',$request->keeperID)->exists();
-       if (!$check)
-       {
-        $this->data['user'] = new User();
-        $this->data['user']->first_name = $request->first_name;
-        $this->data['user']->middle_name = $request->middle_name;
-        $this->data['user']->last_name = $request->last_name;
-        $this->data['user']->suffix = $request->suffix;
-        $this->data['user']->dob = $request->dob_year . '-' . $request->dob_month . '-' . $request->dob_day; // Correct the date format
-        $this->data['user']->gender = $request->gender;
-        $this->data['user']->email = $request->email;
-        $this->data['user']->role_id = '3';
-        $this->data['user']->password = hash::make(Str::random('6'));;
+        $check = UserMemorial::where('keeper_id', $request->keeperID)->exists();
+        if (!$check) {
+            $this->data['user'] = new User();
+            $this->data['user']->first_name = $request->first_name;
+            $this->data['user']->middle_name = $request->middle_name;
+            $this->data['user']->last_name = $request->last_name;
+            $this->data['user']->suffix = $request->suffix;
+            $this->data['user']->dob = $request->dob_year . '-' . $request->dob_month . '-' . $request->dob_day; // Correct the date format
+            $this->data['user']->gender = $request->gender;
+            $this->data['user']->email = $request->email;
+            $this->data['user']->role_id = '3';
+            $this->data['user']->password = hash::make(Str::random('6'));;
 
-        if ($request->file('profile_image')) {
-            $image = $request->file('profile_image');
-            $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
+            if ($request->file('profile_image')) {
+                $image = $request->file('profile_image');
+                $imageName = $image->getClientOriginalName(); // Use the original file name without timestamp
 
-            $directory = public_path('assets/images/profile_images');
+                $directory = public_path('assets/images/profile_images');
 
-            // Create the directory if it doesn't exist
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0777, true, true);
+                // Create the directory if it doesn't exist
+                if (!File::exists($directory)) {
+                    File::makeDirectory($directory, 0777, true, true);
+                }
+
+                $image->move($directory, time() . '_' . $imageName);
+
+                $this->data['user']->profile_image = 'assets/images/profile_images/' . time() . '_' . $imageName;
+
             }
 
-            $image->move($directory, time() . '_' . $imageName);
+            $checkUser = $this->data['user']->save();
 
-            $this->data['user']->profile_image = 'assets/images/profile_images/' . time() . '_' . $imageName;
-
-        }
-
-        $checkUser = $this->data['user']->save();
-
-        if ($checkUser) {
-            $this->data['MemorialUser'] = new UserMemorial();
-            $this->data['MemorialUser']->dod = $request->dod_year . '-' . $request->dod_month . '-' . $request->dod_day;
-            $this->data['MemorialUser']->memorial_user_id = $this->data['user']->id;
-            $this->data['MemorialUser']->keeper_id = $request->keeperID;
-            $this->data['MemorialUser']->city_of_birth = $request->city_of_birth;
-            $this->data['MemorialUser']->fav_saying = $request->fav_saying;
-            $this->data['MemorialUser']->resting_place = $request->resting_place;
-            $this->data['MemorialUser']->biography = $request->biography;
-            $checkmemorial = $this->data['MemorialUser']->save();
-            if ($checkmemorial) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Memorial  has been created successfully',
-                ]);
+            if ($checkUser) {
+                $this->data['MemorialUser'] = new UserMemorial();
+                $this->data['MemorialUser']->dod = $request->dod_year . '-' . $request->dod_month . '-' . $request->dod_day;
+                $this->data['MemorialUser']->memorial_user_id = $this->data['user']->id;
+                $this->data['MemorialUser']->keeper_id = $request->keeperID;
+                $this->data['MemorialUser']->city_of_birth = $request->city_of_birth;
+                $this->data['MemorialUser']->fav_saying = $request->fav_saying;
+                $this->data['MemorialUser']->resting_place = $request->resting_place;
+                $this->data['MemorialUser']->biography = $request->biography;
+                $checkmemorial = $this->data['MemorialUser']->save();
+                if ($checkmemorial) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Memorial  has been created successfully',
+                    ]);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Failed to update memorial profile',
+                    ]);
+                }
             } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Failed to update memorial profile',
-                ]);
+                return response()->json(['success' => false,
+                    'message' => 'Failed to update memorial profile',]);
             }
         } else {
             return response()->json(['success' => false,
-                'message' => 'Failed to update memorial profile',]);
+                'message' => 'Memorial already exists for this keeper',]);
         }
-       }
-       else
-       {
-           return response()->json(['success' => false,
-               'message' => 'Memorial already exists for this keeper',]);
-       }
 
     }
 
@@ -770,14 +768,26 @@ class ProfileController extends Controller
 
     public function family($id)
     {
-        $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
-        $this->data['grandFatherPaternal'] = $this->data['familys']->where('relation', 'grandfatherpaternal')->first();
-        $this->data['grandMotherPaternal'] = $this->data['familys']->where('relation', 'grandmotherpaternal')->first();
-        $this->data['grandFathermaternal'] = $this->data['familys']->where('relation', 'grandfathermaternal')->first();
-        $this->data['grandMothermaternal'] = $this->data['familys']->where('relation', 'grandmothermaternal')->first();
-        $this->data['Mother'] = $this->data['familys']->where('relation', 'mother')->first();
-        $this->data['Father'] = $this->data['familys']->where('relation', 'father')->first();;
-        $this->data['memorial'] = User::select('users.profile_image', 'users.first_name', 'users.last_name')->where('id', $id)->first();
+
+        $deadPerson = User::findOrFail($id); // Fetch the dead person by their ID
+        $familyMembers = Family::where('memorial_user_id', $id)
+            ->select('users.first_name as dead_person_name', 'families.name as family_member_name',
+                'families.relation_id', 'families.family_image', 'relations.relation', 'families.memorial_user_id')
+            ->join('users', 'users.id', '=', 'families.memorial_user_id')
+            ->join('relations', 'relations.id', '=', 'families.relation_id')
+            ->get();
+
+        $this->data['deadPerson'] = $deadPerson;
+        $this->data['familyMembers'] = $familyMembers;
+
+        $this->data['relations'] = Relation::all();
+//        $this->data['grandFatherPaternal'] = $this->data['familys']->where('relation', 'grandfatherpaternal')->first();
+//        $this->data['grandMotherPaternal'] = $this->data['familys']->where('relation', 'grandmotherpaternal')->first();
+//        $this->data['grandFathermaternal'] = $this->data['familys']->where('relation', 'grandfathermaternal')->first();
+//        $this->data['grandMothermaternal'] = $this->data['familys']->where('relation', 'grandmothermaternal')->first();
+//        $this->data['Mother'] = $this->data['familys']->where('relation', 'mother')->first();
+//        $this->data['Father'] = $this->data['familys']->where('relation', 'father')->first();
+//        $this->data['memorial'] = User::select('users.profile_image', 'users.first_name', 'users.last_name')->where('id', $id)->first();
 
 
 //        $familys = Family::where('id', $id)->get();
@@ -787,97 +797,324 @@ class ProfileController extends Controller
 
     public function createFamily(Request $request)
     {
-//        return $request;
+//
+        // Validate the request data
         $request->validate([
             'name' => 'required',
             'relation' => 'required',
-            'family_image' => 'required',
-        ], [
-            'name.required' => 'The name field is required.',
-            'relation.required' => 'The relation field is required.',
-            'family_image.required' => 'The family image field is required.',
+            'family_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'memorialID' => 'required', //
+            'parent_id' => 'nullable|exists:families,id',
         ]);
 
-        // Handle file upload
-        $imagePath = $this->handleFileUpload($request, 'family_image', 'Family', 'image');
+        // Check if there's an existing family member with the same name and memorialID
+        $familyMember = Family::where('name', $request->name)
+            ->where('memorial_user_id', $request->memorialID)
+            ->first();
 
-        // Create family member
-        $family = Family::create([
-            'memorial_user_id' => $request->memorialID,
-            'name' => $request->name,
-            'relation' => $request->relation,
-            'family_image' => $imagePath,
-        ]);
+        if ($familyMember) {
+            // Update existing family member
+            $familyMember->update([
+                'relation' => $request->relation,
+                'family_image' => $request->file('family_image') ? $request->file('family_image')->store('family_images', 'public') : $familyMember->family_image,
+                'parent_id' => $request->parent_id,
+            ]);
 
-        if ($family) {
-            return response()->json(['success' => true, 'message' => 'Family member created successfully']);
+            $message = 'Family member updated successfully.';
         } else {
-            return response()->json(['success' => false, 'message' => 'Failed to create family member']);
+            // Create new family member
+            $familyMember = new Family();
+            $familyMember->name = $request->name;
+            $familyMember->relation = $request->relation;
+            $familyMember->family_image = $request->file('family_image') ? $request->file('family_image')->store('family_images', 'public') : null;
+            $familyMember->memorial_user_id = $request->memorialID;
+            $familyMember->parent_id = $request->parent_id;
+            $family = $familyMember->save();
+
+
+            if ($family) {
+                return response()->json(['success' => true, 'message' => 'Family member created successfully']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Failed to create family member']);
+            }
         }
     }
 
-    public function mementos($id)
-    {
-        $mementos = Memento::where('memorial_user_id', $id)->get();
-        return view($this->_viewPath . 'mementos', compact('id', 'mementos'));
-    }
 
-    public function storeMemento(Request $request)
-    {
-        $request->validate([
-            'memento_image' => 'image|max:6000',
-            'memento_video' => 'max:30720'
-        ]);
+        public
+        function mementos($id)
+        {
+            $mementos = Memento::where('memorial_user_id', $id)->get();
+            return view($this->_viewPath . 'mementos', compact('id', 'mementos'));
+        }
 
-        $mementoId = $request->input('userID');
+        public
+        function storeMemento(Request $request)
+        {
+            $request->validate([
+                'memento_image' => 'image|max:6000',
+                'memento_video' => 'max:30720'
+            ]);
 
-        $memento = new Memento();
+            $mementoId = $request->input('userID');
 
-        $imagePath = $this->handleFileUpload($request, 'memento_image', 'mementos', 'image');
-        $videoPath = $this->handleFileUpload($request, 'memento_video', 'videos', 'video');
+            $memento = new Memento();
 
-        $memento->memento_image = $imagePath;
-        $memento->memento_video = $videoPath;
-        $memento->memorial_user_id = $mementoId;
+            $imagePath = $this->handleFileUpload($request, 'memento_image', 'mementos', 'image');
+            $videoPath = $this->handleFileUpload($request, 'memento_video', 'videos', 'video');
 
-        $check = $memento->save();
+            $memento->memento_image = $imagePath;
+            $memento->memento_video = $videoPath;
+            $memento->memorial_user_id = $mementoId;
 
-        if ($check) {
-            $response = [
-                'success' => true,
-                'message' => '',
-            ];
+            $check = $memento->save();
 
-            if (!empty($imagePath) && !empty($videoPath)) {
-                $response['message'] = 'Memento image and video updated successfully';
-                $response['image_url'] = asset($imagePath);
-                $response['video_url'] = asset($videoPath);
-            } elseif (!empty($imagePath)) {
-                $response['message'] = 'Memento image updated successfully';
-                $response['image_url'] = asset($imagePath);
-            } elseif (!empty($videoPath)) {
-                $response['message'] = 'Memento video updated successfully';
-                $response['video_url'] = asset($videoPath);
+            if ($check) {
+                $response = [
+                    'success' => true,
+                    'message' => '',
+                ];
+
+                if (!empty($imagePath) && !empty($videoPath)) {
+                    $response['message'] = 'Memento image and video updated successfully';
+                    $response['image_url'] = asset($imagePath);
+                    $response['video_url'] = asset($videoPath);
+                } elseif (!empty($imagePath)) {
+                    $response['message'] = 'Memento image updated successfully';
+                    $response['image_url'] = asset($imagePath);
+                } elseif (!empty($videoPath)) {
+                    $response['message'] = 'Memento video updated successfully';
+                    $response['video_url'] = asset($videoPath);
+                }
+
+                return response()->json($response);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to update memento image and video',
+                ]);
             }
 
-            return response()->json($response);
-        } else {
+        }
+
+        private
+        function handleFileUpload($request, $fieldName, $folderName, $type)
+        {
+            if ($type === 'image') {
+                if ($request->file($fieldName)) {
+                    $image = $request->file($fieldName);
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+
+                    $directory = public_path('assets/images/' . $folderName . '/');
+
+                    if (!File::exists($directory)) {
+                        File::makeDirectory($directory, 0777, true, true);
+                    }
+
+                    $image->move($directory, $imageName);
+
+                    return 'assets/images/' . $folderName . '/' . $imageName;
+                }
+            } elseif ($type === 'video') {
+                if ($request->file($fieldName)) {
+                    $video = $request->file($fieldName);
+                    $videoName = time() . '_' . $video->getClientOriginalName();
+
+                    $directory = public_path('assets/videos/' . $folderName . '/');
+
+                    if (!File::exists($directory)) {
+                        File::makeDirectory($directory, 0777, true, true);
+                    }
+
+                    $video->move($directory, $videoName);
+
+                    return 'assets/videos/' . $folderName . '/' . $videoName;
+                }
+            }
+
+            return null;
+        }
+
+
+        public
+        function sampleProfile()
+        {
+
+            return view($this->_viewPath . 'sampleProfile');
+
+        }
+
+        public
+        function videos($id)
+        {
+            $this->data['mementos'] = Memento::select('mementos.id', 'mementos.memento_video')
+                ->where('memento_video', '!=', null)
+                ->where('memorial_user_id', $id)->get();
+            return view($this->_viewPath . 'memorial-profile.videos', $this->data);
+
+        }
+
+        public
+        function images($id)
+        {
+            $this->data['mementos'] = Memento::select('mementos.id', 'mementos.memento_image')
+                ->where('memento_image', '!=', null)
+                ->where('memorial_user_id', $id)->get();
+            return view($this->_viewPath . 'memorial-profile.images', $this->data);
+
+        }
+
+        public
+        function profile($id)
+
+        {
+
+            $this->data['memorial'] = $this->_memorial_model::
+            where('user_memorials.memorial_user_id', $id)
+                ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+                ->first();
+
+// Query and attach related data
+            $this->data['memorial']->city = UserCity::where('memorial_user_id', $id)->first();
+            $this->data['memorial']->occupation = UserOccupation::where('memorial_user_id', $id)->first();
+            $this->data['memorial']->academics = UserAcademic::where('memorial_user_id', $id)->first();
+            $this->data['memorial']->milestone = UserMilestone::where('memorial_user_id', $id)->first();
+            $this->data['memorial']->interests = UserInterest::where('memorial_user_id', $id)->first();
+
+// Fetch mementos with both images and videos
+            $mementosWithImagesAndVideos = Memento::where('memorial_user_id', $id)
+                ->whereNotNull('memento_image')
+                ->whereNotNull('memento_video')
+                ->get();
+
+// If there are mementos with both images and videos, use them
+            if ($mementosWithImagesAndVideos->isNotEmpty()) {
+                $mementos = $mementosWithImagesAndVideos;
+            } else {
+                // If there are no mementos with both images and videos, fetch separately
+                // Fetch mementos with images
+                $mementosWithImages = Memento::where('memorial_user_id', $id)
+                    ->whereNotNull('memento_image')
+                    ->get();
+
+                // Fetch mementos with videos
+                $mementosWithVideos = Memento::where('memorial_user_id', $id)
+                    ->whereNotNull('memento_video')
+                    ->get();
+
+                // Merge the two collections
+                $mementos = $mementosWithImages->merge($mementosWithVideos);
+            }
+            $this->data['mementos'] = $mementos;
+            $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
+            return view($this->_viewPath . 'profile', $this->data);
+
+        }
+
+        public
+        function comment(Request $request)
+        {
+            // Validate the request data
+            $request->validate([
+                'content' => 'required|string',
+                'sender_id' => 'required|numeric',
+                'receiver_id' => 'required|numeric',
+            ]);
+
+            // Create a new comment
+            $comment = Comment::create([
+                'content' => $request->input('content'),
+                'sender_id' => $request->input('sender_id'),
+                'receiver_id' => $request->input('receiver_id'),
+            ]);
+
+            // Return a response
             return response()->json([
-                'success' => false,
-                'message' => 'Failed to update memento image and video',
+                'success' => true,
+                'message' => 'Comment posted successfully',
+                'comment' => $comment,
             ]);
         }
 
+    public
+    function approvecomment(Request $request)
+    {
+//        dd($request->approve);
+        $commentID = $request->comment_id;
+        $approve = $request->approve;
+
+       $commentApprove = Comment::where('id',$commentID)->first();
+//       dd($commentApprove);
+        $commentApprove->status = $approve;
+        $commentApprove ->save();
+
+        return redirect()->back()->with('success', 'Comment approved successfully');
+
     }
 
-    private function handleFileUpload($request, $fieldName, $folderName, $type)
+    function denycomment(Request $request)
     {
-        if ($type === 'image') {
-            if ($request->file($fieldName)) {
+//        dd($request->approve);
+        $commentID = $request->comment_id;
+        $deny = $request->denied;
+        $commentApprove = Comment::where('id',$commentID)->first();
+        $commentApprove->status = $request->deny;
+        $commentApprove->save();
+
+        return redirect()->back()->with('success', 'Comment denied successfully');
+
+    }
+
+        public
+        function deleteFile(Request $request)
+        {
+            $fileId = $request->input('fileId');
+            $filePath = $request->input('filePath');
+
+            // Delete file from storage
+            $this->deleteFiles($filePath);
+
+            // Delete file entry from database
+            $file = Memento::find($fileId);
+            if ($file) {
+                $file->delete();
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'File deleted successfully',
+            ]);
+        }
+
+        private
+        function deleteFiles($filePath)
+        {
+            if ($filePath) {
+                $fullPath = public_path($filePath);
+                if (File::exists($fullPath)) {
+                    File::delete($fullPath);
+                }
+            }
+        }
+
+        public
+        function profilePicture(Request $request)
+        {
+            try {
+                $user = User::where('id', $request->memorial_id)
+                    ->whereNotNull('profile_image')
+                    ->firstOrFail();
+            } catch (ModelNotFoundException $e) {
+                return redirect()->back()->with('error', 'User not found');
+            }
+
+            $fieldName = 'profilePicture';
+
+            if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
                 $image = $request->file($fieldName);
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
-                $directory = public_path('assets/images/' . $folderName . '/');
+                $directory = public_path('assets/images/profile_images/');
 
                 if (!File::exists($directory)) {
                     File::makeDirectory($directory, 0777, true, true);
@@ -885,221 +1122,49 @@ class ProfileController extends Controller
 
                 $image->move($directory, $imageName);
 
-                return 'assets/images/' . $folderName . '/' . $imageName;
-            }
-        } elseif ($type === 'video') {
-            if ($request->file($fieldName)) {
-                $video = $request->file($fieldName);
-                $videoName = time() . '_' . $video->getClientOriginalName();
+                $user->profile_image = 'assets/images/profile_images/' . $imageName;
+                $user->save();
 
-                $directory = public_path('assets/videos/' . $folderName . '/');
+                return redirect()->back()->with('success', 'Profile picture updated successfully');
+            }
+
+            return redirect()->back()->with('error', 'No valid file uploaded');
+        }
+
+        public
+        function coverPicture(Request $request)
+        {
+            try {
+                $user = User::where('id', $request->memorial_id)
+                    ->whereNotNull('theme_image')
+                    ->firstOrFail();
+            } catch (ModelNotFoundException $e) {
+                return redirect()->back()->with('error', 'User not found');
+            }
+
+            $fieldName = 'coverPicture';
+
+            if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+                $image = $request->file($fieldName);
+                $imageName = time() . '_' . $image->getClientOriginalName();
+
+                $directory = public_path('assets/images/theme_images/');
 
                 if (!File::exists($directory)) {
                     File::makeDirectory($directory, 0777, true, true);
                 }
 
-                $video->move($directory, $videoName);
+                $image->move($directory, $imageName);
 
-                return 'assets/videos/' . $folderName . '/' . $videoName;
-            }
-        }
+                $user->theme_image = 'assets/images/theme_images/' . $imageName;
+                $user->save();
 
-        return null;
-    }
-
-
-    public function sampleProfile()
-    {
-
-        return view($this->_viewPath . 'sampleProfile');
-
-    }
-
-    public function videos($id)
-    {
-        $this->data['mementos'] = Memento::select('mementos.id','mementos.memento_video')
-            ->where('memento_video', '!=', null)
-            ->where('memorial_user_id', $id)->get();
-        return view($this->_viewPath . 'memorial-profile.videos', $this->data);
-
-    }
-
-    public function images($id)
-    {
-        $this->data['mementos'] = Memento::select('mementos.id','mementos.memento_image')
-            ->where('memento_image', '!=', null)
-            ->where('memorial_user_id', $id)->get();
-        return view($this->_viewPath . 'memorial-profile.images', $this->data);
-
-    }
-
-    public function profile($id)
-
-    {
-
-        $this->data['memorial'] = $this->_memorial_model::
-        where('user_memorials.memorial_user_id', $id)
-            ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
-            ->first();
-
-// Query and attach related data
-        $this->data['memorial']->city = UserCity::where('memorial_user_id', $id)->first();
-        $this->data['memorial']->occupation = UserOccupation::where('memorial_user_id', $id)->first();
-        $this->data['memorial']->academics = UserAcademic::where('memorial_user_id', $id)->first();
-        $this->data['memorial']->milestone = UserMilestone::where('memorial_user_id', $id)->first();
-        $this->data['memorial']->interests = UserInterest::where('memorial_user_id', $id)->first();
-
-// Fetch mementos with both images and videos
-        $mementosWithImagesAndVideos = Memento::where('memorial_user_id', $id)
-            ->whereNotNull('memento_image')
-            ->whereNotNull('memento_video')
-            ->get();
-
-// If there are mementos with both images and videos, use them
-        if ($mementosWithImagesAndVideos->isNotEmpty()) {
-            $mementos = $mementosWithImagesAndVideos;
-        } else {
-            // If there are no mementos with both images and videos, fetch separately
-            // Fetch mementos with images
-            $mementosWithImages = Memento::where('memorial_user_id', $id)
-                ->whereNotNull('memento_image')
-                ->get();
-
-            // Fetch mementos with videos
-            $mementosWithVideos = Memento::where('memorial_user_id', $id)
-                ->whereNotNull('memento_video')
-                ->get();
-
-            // Merge the two collections
-            $mementos = $mementosWithImages->merge($mementosWithVideos);
-        }
-        $this->data['mementos'] = $mementos;
-        $this->data['familys'] = Family::where('memorial_user_id', $id)->get();
-        return view($this->_viewPath . 'profile', $this->data);
-
-    }
-
-    public function comment(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'content' => 'required|string',
-            'sender_id' => 'required|numeric',
-            'receiver_id' => 'required|numeric',
-        ]);
-
-        // Create a new comment
-        $comment = Comment::create([
-            'content' => $request->input('content'),
-            'sender_id' => $request->input('sender_id'),
-            'receiver_id' => $request->input('receiver_id'),
-        ]);
-
-        // Return a response
-        return response()->json([
-            'success' => true,
-            'message' => 'Comment posted successfully',
-            'comment' => $comment,
-        ]);
-    }
-
-    public function deleteFile(Request $request)
-    {
-        $fileId = $request->input('fileId');
-        $filePath = $request->input('filePath');
-
-        // Delete file from storage
-        $this->deleteFiles($filePath);
-
-        // Delete file entry from database
-        $file = Memento::find($fileId);
-        if ($file) {
-            $file->delete();
-        }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'File deleted successfully',
-        ]);
-    }
-
-    private function deleteFiles($filePath)
-    {
-        if ($filePath) {
-            $fullPath = public_path($filePath);
-            if (File::exists($fullPath)) {
-                File::delete($fullPath);
-            }
-        }
-    }
-
-    public function profilePicture(Request $request)
-    {
-        try {
-            $user = User::where('id', $request->memorial_id)
-                ->whereNotNull('profile_image')
-                ->firstOrFail();
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'User not found');
-        }
-
-        $fieldName = 'profilePicture';
-
-        if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
-            $image = $request->file($fieldName);
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            $directory = public_path('assets/images/profile_images/');
-
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0777, true, true);
+                return redirect()->back()->with('success', 'Cover picture updated successfully');
             }
 
-            $image->move($directory, $imageName);
+            return redirect()->back()->with('error', 'No valid file uploaded');
 
-            $user->profile_image = 'assets/images/profile_images/' . $imageName;
-            $user->save();
-
-            return redirect()->back()->with('success', 'Profile picture updated successfully');
         }
 
-        return redirect()->back()->with('error', 'No valid file uploaded');
-    }
-
-    public function coverPicture(Request $request)
-    {
-        try {
-            $user = User::where('id', $request->memorial_id)
-                ->whereNotNull('theme_image')
-                ->firstOrFail();
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->with('error', 'User not found');
-        }
-
-        $fieldName = 'coverPicture';
-
-        if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
-            $image = $request->file($fieldName);
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            $directory = public_path('assets/images/theme_images/');
-
-            if (!File::exists($directory)) {
-                File::makeDirectory($directory, 0777, true, true);
-            }
-
-            $image->move($directory, $imageName);
-
-            $user->theme_image = 'assets/images/theme_images/' . $imageName;
-            $user->save();
-
-            return redirect()->back()->with('success', 'Cover picture updated successfully');
-        }
-
-        return redirect()->back()->with('error', 'No valid file uploaded');
 
     }
-
-
-
-}

@@ -83,44 +83,46 @@
     @if(auth()->check())
         <?php
         $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
-            ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
+//            ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
             ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
             ->first();
         ?>
+        @if($user)
             <!-- Cover Picture Update Modal -->
-        <div id="themeModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 class="modal-heading">Update Cover Picture</h2>
-                <form id="coverPictureForm" action="{{ route('update.user.coverPicture') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="coverPictureInput" class="file-label">Choose a picture:</label>
-                        <input type="file" name="coverPicture" id="coverPictureInput" class="file-input" accept="image/*" required>
-                    </div>
-                    <input type="hidden" name="memorial_id" value="{{ $user->memorial_user_id }}">
-                    <button type="submit" class="form-btn">Upload</button>
-                </form>
+            <div id="themeModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 class="modal-heading">Update Cover Picture</h2>
+                    <form id="coverPictureForm" action="{{ route('update.user.coverPicture') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="coverPictureInput" class="file-label">Choose a picture:</label>
+                            <input type="file" name="coverPicture" id="coverPictureInput" class="file-input" accept="image/*" required>
+                        </div>
+                        <input type="hidden" name="memorial_id" value="{{ $user->memorial_user_id }}">
+                        <button type="submit" class="form-btn">Upload</button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <!-- Second Modal -->
-        <div id="profileModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 class="modal-heading">Update Profile Picture</h2>
-                <form id="profilePictureForm" action="{{route('update.user.profilePicture')}}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="profilePictureInput" class="file-label">Choose a picture:</label>
-                        <input type="file" name="profilePicture" id="profilePictureInput" class="file-input" accept="image/*" required>
-                    </div>
-                    <input type="hidden" name="id" value="{{$user->id}}">
-                    <button type="submit" class="form-btn">Upload</button>
-                </form>
+            <!-- Second Modal -->
+            <div id="profileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 class="modal-heading">Update Profile Picture</h2>
+                    <form id="profilePictureForm" action="{{route('update.user.profilePicture')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="profilePictureInput" class="file-label">Choose a picture:</label>
+                            <input type="file" name="profilePicture" id="profilePictureInput" class="file-input" accept="image/*" required>
+                        </div>
+                        <input type="hidden" name="id" value="{{$user->id}}">
+                        <button type="submit" class="form-btn">Upload</button>
+                    </form>
+                </div>
             </div>
-        </div>
         @endif
+    @endif
 
 
 
@@ -128,13 +130,20 @@
     <section class="profileWrapper">
         <div class="profile-common-top-wrapper">
             <div id="theme-image-div-dp" class="background-img-wrapper">
-                @if(auth()->check())
-                    <?php
-                    $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
-                        ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
-                        ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
-                        ->first();
-                    ?>
+                <?php
+                $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
+                    ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
+                    ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+                    ->first();
+                //                dd($user);
+                $memorial = \App\Models\UserMemorial::where('keeper_id', '!=', auth()->user()->id)
+                    ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
+                    ->join('users', 'users.id', '=', 'user_memorials.memorial_user_id')
+                    ->first();
+                //                dd(auth()->user()->id);
+                //                dd($memorial);
+                ?>
+                @if(isset($user) && $user->keeper_id == auth()->user()->id)
                     @if(isset($user->theme_image))
 
                         <!-- Link to open the modal -->
@@ -143,12 +152,24 @@
                         </a>
                     @else
                         <a href="javascript:void(0);" id="themeShowModal">
-                            <img src="{{asset($user->theme_image)}}" alt="" class="back-img"/>
+
+                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="back-img"/>
                         </a>
-                        <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
+                    @endif
+                @elseif(isset($memorial) && $memorial->keeper_id != auth()->user()->id)
+                    @if(isset($memorial->theme_image))
+
+                        <!-- Link to open the modal -->
+
+                        <img src="{{asset($memorial->theme_image)}}" alt="" class="back-img"/>
+
+                    @else
+
+                        <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="back-img"/>
+
                     @endif
                 @else
-                    <img src="{{asset('frontend/assets/images/profileBackground.jpg')}}" alt="" class="back-img"/>
+                    <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="back-img"/>
 
                 @endif
 
@@ -156,20 +177,26 @@
             </div>
             <div class="user-profile-section-2-wrapper">
                 <div id="profile-image-div-dp" class="profile-img-of-user">
-                    @if(auth()->check())
+                    @if(isset($user) && $user->keeper_id == auth()->user()->id)
                         @if(isset($user->profile_image))
                             <a href="javascript:void(0);" id="profileShowModal">
                                 <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
                             </a>
                         @else
                             <a href="javascript:void(0);" id="profileShowModal">
-                                <img src="{{asset($user->profile_image) }}" alt="" class="profile-img-user"/>
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user"/>
                             </a>
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
+                        @endif
+                    @elseif(isset($memorial) && $memorial->keeper_id != auth()->user()->id)
+                        @if(isset($memorial->profile_image))
+                            <img src="{{asset($memorial->profile_image) }}" alt="" class="profile-img-user"/>
+
+                        @else
+                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user"/>
+
                         @endif
                     @else
-                        <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-img-user"/>
-
+                        <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user"/>
                     @endif
                 </div>
 
@@ -311,7 +338,7 @@
                                         </a>
                                     </div>
                                     <div class="single-item">
-                                        <a href="{{route('keeper-memorial',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
+                                        <a href="{{route('profile',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
                                             <lord-icon src="https://cdn.lordicon.com/khheayfj.json" trigger="loop" delay="1000"
                                                        style="width: 48px; height: 48px">
                                             </lord-icon>
@@ -319,14 +346,14 @@
                                             Obituary
                                         </a>
                                     </div>
-                                    <div class="single-item">
-                                        <a href="{{route('family',$memorialAccount->memorial_user_id)}}" class="single-item-insider">
-                                            <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"
-                                                       style="width: 48px; height: 48px">
-                                            </lord-icon>
-                                            Family
-                                        </a>
-                                    </div>
+                                    {{--                                    <div class="single-item">--}}
+                                    {{--                                        <a href="{{route('family',$memorialAccount->memorial_user_id)}}" class="single-item-insider">--}}
+                                    {{--                                            <lord-icon src="https://cdn.lordicon.com/kndkiwmf.json" trigger="loop" delay="1000"--}}
+                                    {{--                                                       style="width: 48px; height: 48px">--}}
+                                    {{--                                            </lord-icon>--}}
+                                    {{--                                            Family--}}
+                                    {{--                                        </a>--}}
+                                    {{--                                    </div>--}}
                                     <div class="single-item">
                                         <?php
                                         $user = \App\Models\User::where('role_id', '1')->first();?>
@@ -490,27 +517,27 @@
         var span2 = modal2.getElementsByClassName("close")[0];
 
         // Function to open the first modal
-        link1.onclick = function() {
+        link1.onclick = function () {
             modal1.style.display = "block";
         }
 
         // Function to close the first modal
-        span1.onclick = function() {
+        span1.onclick = function () {
             modal1.style.display = "none";
         }
 
         // Function to open the second modal
-        link2.onclick = function() {
+        link2.onclick = function () {
             modal2.style.display = "block";
         }
 
         // Function to close the second modal
-        span2.onclick = function() {
+        span2.onclick = function () {
             modal2.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modals, close them
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal1) {
                 modal1.style.display = "none";
             }
