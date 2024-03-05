@@ -75,23 +75,23 @@
                             <p class="tab-btn-heading">Cover Photos</p>
                         </div>
                     </button>
-{{--                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">--}}
-{{--                        <div class="tabbed-single-item">--}}
-{{--                            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
-{{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
-{{--                                <g id="SVGRepo_iconCarrier">--}}
-{{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
-{{--                                          d="M11.0175 19C10.6601 19 10.3552 18.7347 10.297 18.373C10.2434 18.0804 10.038 17.8413 9.76171 17.75C9.53658 17.6707 9.31645 17.5772 9.10261 17.47C8.84815 17.3365 8.54289 17.3565 8.30701 17.522C8.02156 17.7325 7.62943 17.6999 7.38076 17.445L6.41356 16.453C6.15326 16.186 6.11944 15.7651 6.33361 15.458C6.49878 15.2105 6.52257 14.8914 6.39601 14.621C6.31262 14.4332 6.23906 14.2409 6.17566 14.045C6.08485 13.7363 5.8342 13.5051 5.52533 13.445C5.15287 13.384 4.8779 13.0559 4.87501 12.669V11.428C4.87303 10.9821 5.18705 10.6007 5.61601 10.528C5.94143 10.4645 6.21316 10.2359 6.33751 9.921C6.37456 9.83233 6.41356 9.74433 6.45451 9.657C6.61989 9.33044 6.59705 8.93711 6.39503 8.633C6.1424 8.27288 6.18119 7.77809 6.48668 7.464L7.19746 6.735C7.54802 6.37532 8.1009 6.32877 8.50396 6.625L8.52638 6.641C8.82735 6.84876 9.21033 6.88639 9.54428 6.741C9.90155 6.60911 10.1649 6.29424 10.2375 5.912L10.2473 5.878C10.3275 5.37197 10.7536 5.00021 11.2535 5H12.1115C12.6248 4.99976 13.0629 5.38057 13.1469 5.9L13.1625 5.97C13.2314 6.33617 13.4811 6.63922 13.8216 6.77C14.1498 6.91447 14.5272 6.87674 14.822 6.67L14.8707 6.634C15.2842 6.32834 15.8528 6.37535 16.2133 6.745L16.8675 7.417C17.1954 7.75516 17.2366 8.28693 16.965 8.674C16.7522 8.99752 16.7251 9.41325 16.8938 9.763L16.9358 9.863C17.0724 10.2045 17.3681 10.452 17.7216 10.521C18.1837 10.5983 18.5235 11.0069 18.525 11.487V12.6C18.5249 13.0234 18.2263 13.3846 17.8191 13.454C17.4842 13.5199 17.2114 13.7686 17.1083 14.102C17.0628 14.2353 17.0121 14.3687 16.9562 14.502C16.8261 14.795 16.855 15.1364 17.0323 15.402C17.2662 15.7358 17.2299 16.1943 16.9465 16.485L16.0388 17.417C15.7792 17.6832 15.3698 17.7175 15.0716 17.498C14.8226 17.3235 14.5001 17.3043 14.2331 17.448C14.0428 17.5447 13.8475 17.6305 13.6481 17.705C13.3692 17.8037 13.1636 18.0485 13.1099 18.346C13.053 18.7203 12.7401 18.9972 12.3708 19H11.0175Z"--}}
-{{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
-{{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
-{{--                                          d="M13.9747 12C13.9747 13.2885 12.9563 14.333 11.7 14.333C10.4437 14.333 9.42533 13.2885 9.42533 12C9.42533 10.7115 10.4437 9.66699 11.7 9.66699C12.9563 9.66699 13.9747 10.7115 13.9747 12Z"--}}
-{{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
-{{--                                </g>--}}
-{{--                            </svg>--}}
-{{--                            <p class="tab-btn-heading">Setting</p>--}}
-{{--                        </div>--}}
-{{--                    </button>--}}
+                    {{--                    <button class="tab-btn-styling tab-single-link" onclick="openProfileItem(event,'Setting')">--}}
+                    {{--                        <div class="tabbed-single-item">--}}
+                    {{--                            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">--}}
+                    {{--                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>--}}
+                    {{--                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>--}}
+                    {{--                                <g id="SVGRepo_iconCarrier">--}}
+                    {{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
+                    {{--                                          d="M11.0175 19C10.6601 19 10.3552 18.7347 10.297 18.373C10.2434 18.0804 10.038 17.8413 9.76171 17.75C9.53658 17.6707 9.31645 17.5772 9.10261 17.47C8.84815 17.3365 8.54289 17.3565 8.30701 17.522C8.02156 17.7325 7.62943 17.6999 7.38076 17.445L6.41356 16.453C6.15326 16.186 6.11944 15.7651 6.33361 15.458C6.49878 15.2105 6.52257 14.8914 6.39601 14.621C6.31262 14.4332 6.23906 14.2409 6.17566 14.045C6.08485 13.7363 5.8342 13.5051 5.52533 13.445C5.15287 13.384 4.8779 13.0559 4.87501 12.669V11.428C4.87303 10.9821 5.18705 10.6007 5.61601 10.528C5.94143 10.4645 6.21316 10.2359 6.33751 9.921C6.37456 9.83233 6.41356 9.74433 6.45451 9.657C6.61989 9.33044 6.59705 8.93711 6.39503 8.633C6.1424 8.27288 6.18119 7.77809 6.48668 7.464L7.19746 6.735C7.54802 6.37532 8.1009 6.32877 8.50396 6.625L8.52638 6.641C8.82735 6.84876 9.21033 6.88639 9.54428 6.741C9.90155 6.60911 10.1649 6.29424 10.2375 5.912L10.2473 5.878C10.3275 5.37197 10.7536 5.00021 11.2535 5H12.1115C12.6248 4.99976 13.0629 5.38057 13.1469 5.9L13.1625 5.97C13.2314 6.33617 13.4811 6.63922 13.8216 6.77C14.1498 6.91447 14.5272 6.87674 14.822 6.67L14.8707 6.634C15.2842 6.32834 15.8528 6.37535 16.2133 6.745L16.8675 7.417C17.1954 7.75516 17.2366 8.28693 16.965 8.674C16.7522 8.99752 16.7251 9.41325 16.8938 9.763L16.9358 9.863C17.0724 10.2045 17.3681 10.452 17.7216 10.521C18.1837 10.5983 18.5235 11.0069 18.525 11.487V12.6C18.5249 13.0234 18.2263 13.3846 17.8191 13.454C17.4842 13.5199 17.2114 13.7686 17.1083 14.102C17.0628 14.2353 17.0121 14.3687 16.9562 14.502C16.8261 14.795 16.855 15.1364 17.0323 15.402C17.2662 15.7358 17.2299 16.1943 16.9465 16.485L16.0388 17.417C15.7792 17.6832 15.3698 17.7175 15.0716 17.498C14.8226 17.3235 14.5001 17.3043 14.2331 17.448C14.0428 17.5447 13.8475 17.6305 13.6481 17.705C13.3692 17.8037 13.1636 18.0485 13.1099 18.346C13.053 18.7203 12.7401 18.9972 12.3708 19H11.0175Z"--}}
+                    {{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+                    {{--                                    <path fill-rule="evenodd" clip-rule="evenodd"--}}
+                    {{--                                          d="M13.9747 12C13.9747 13.2885 12.9563 14.333 11.7 14.333C10.4437 14.333 9.42533 13.2885 9.42533 12C9.42533 10.7115 10.4437 9.66699 11.7 9.66699C12.9563 9.66699 13.9747 10.7115 13.9747 12Z"--}}
+                    {{--                                          stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>--}}
+                    {{--                                </g>--}}
+                    {{--                            </svg>--}}
+                    {{--                            <p class="tab-btn-heading">Setting</p>--}}
+                    {{--                        </div>--}}
+                    {{--                    </button>--}}
                 </div>
             </div>
         </div>
@@ -319,7 +319,8 @@
                 </div>
                 <div id="occupationSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
-                </div> <div id="occupatioErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                </div>
+                <div id="occupatioErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="occupationLoader" style="display: none;">
@@ -348,7 +349,8 @@
                 </div>
                 <div id="academicSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
-                </div> <div id="academicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                </div>
+                <div id="academicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="academicLoader" style="display: none;">
@@ -382,7 +384,8 @@
                 </div>
                 <div id="milestoneSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
-                </div> <div id="milestoneErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                </div>
+                <div id="milestoneErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="milestoneLoader" style="display: none;">
@@ -470,7 +473,8 @@
                 </div>
                 <div id="interestSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
-                </div> <div id="ErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                </div>
+                <div id="ErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="interestLoader" style="display: none;">
@@ -532,66 +536,7 @@
             </div>
         </div>
 
-        <!-- Gallery -->
-        <div class="form-of-logged-in-user">
 
-            <div class="form-data-of-profile-page">
-                <p>
-                    Don't have access to a photo at the moment? Select a profile image from our library.
-                </p>
-                <div class="grid-of-photos">
-                    @foreach($profile_images as $key => $profile_image)
-                        <div class="whole-image-wrapper-with-overlay" id="img-id-{{$key}}">
-                            <div class="img-wrpper-inside-gallery">
-                                @if($profile_image->profile_image)
-                                    <img id="library_image" src="{{asset($profile_image->profile_image) }}" alt="" class="grid-single-img"/>
-                                @else
-                                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
-                                @endif
-                            </div>
-                            <div class="overlay">
-                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px" viewBox="0 0 363.025 363.024"
-                                     xml:space="preserve" fill="#000000">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <g>
-                                            <g>
-                                                <g>
-                                                    <path style="fill:#30562f;"
-                                                          d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                    </path>
-                                                </g>
-                                            </g>
-                                            <g>
-                                                <polygon style="fill:#30562f;"
-                                                         points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                </polygon>
-                                            </g>
-                                        </g>
-                                    </g>
-                      </svg>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-            <div id="profileSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
-                <!-- Dynamic success message will be displayed here -->
-            </div>
-            <div id="profileErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
-                <!-- Dynamic success message will be displayed here -->
-            </div>
-            <div id="profileLoader" style="display: none;">
-                <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
-                <p>Loading...</p>
-            </div>
-
-            <div class="footer-of-form-content">
-                <button id="profile_image_library" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
-            </div>
-        </div>
     </div>
     <div class="Memorial tab-content" id="Memorial">
         <h1>Memorial</h1>
@@ -603,73 +548,17 @@
                 <h1 class="form-top-main-heading-of-profile">Cover Photos</h1>
             </div>
             <div class="form-data-of-profile-page">
-                <p>Personalize a profile easily by choosing a cover photo from our library or
-                    Upload your own picture in the "Custom" Tab</p>
+
                 <div class="tab-wrapper-of-theme">
                     <div class="theme-tab">
-                        <button class="theme-tablinks" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Cover Photos</button>
-                        <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>
+                        <button class="theme-tablinks " style="display: none" onclick="openThemeItem(event, 'theme')" id="defaultOpen">Cover Photos</button>
+{{--                        <button class="theme-tablinks" onclick="openThemeItem(event, 'Custom')">Custom</button>--}}
                     </div>
-                                        <div id="theme" class="theme-tabcontent">
-                                            <div class="theme-tab-of-themes-wrapper">
+                    <div id="Custom" sclass="theme-tabcontent">
 
-                                                <div id="theme_images" class="grid-of-themes">
-                                                    @foreach($profile_images as $key => $theme_image)
-{{--                                                        {{dd($theme_image)}}--}}
-                                                    <div class="whole-image-wrapper-with-overlay-of-theme" id="img-id-{{$key}}">
-                                                        <div class="img-wrpper-inside-gallery-of-theme">
-                                                            @if($theme_image->theme_image)
-                                                                <img id="theme_library_image" src="{{asset($theme_image->theme_image) }}" alt="" class="grid-single-img"/>
-                                                            @else
-                                                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="grid-single-img">
-                                                            @endif
-                                                        </div>
-                                                        <div class="overlay">
-                                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="64px" height="64px"
-                                                                 viewBox="0 0 363.025 363.024" xml:space="preserve" fill="#000000">
-                                          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                                <g id="SVGRepo_iconCarrier">
-                                                                    <g>
-                                                                        <g>
-                                                                            <g>
-                                                                                <path style="fill:#30562f;"
-                                                                                      d="M181.512,363.024C81.43,363.024,0,281.601,0,181.513C0,81.424,81.43,0,181.512,0 c100.083,0,181.513,81.424,181.513,181.513C363.025,281.601,281.595,363.024,181.512,363.024z M181.512,11.71 C87.88,11.71,11.71,87.886,11.71,181.513s76.17,169.802,169.802,169.802c93.633,0,169.803-76.175,169.803-169.802 S275.145,11.71,181.512,11.71z">
-                                                                                </path>
-                                                                            </g>
-                                                                        </g>
-                                                                        <g>
-                                                                            <polygon style="fill:#30562f;"
-                                                                                     points="147.957,258.935 83.068,194.046 91.348,185.767 147.957,242.375 271.171,119.166 279.451,127.445 ">
-                                                                            </polygon>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                        </svg>
-                                                        </div>
-                                                    </div>
-                                                        @endforeach
+                    </div>
 
-                                                </div>
-                                                <div id="themeSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
-                                                    <!-- Dynamic success message will be displayed here -->
-                                                </div>
-                                                <div id="themeErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
-                                                    <!-- Dynamic success message will be displayed here -->
-                                                </div>
-                                                <div id="themeLoader" style="display: none;">
-                                                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
-                                                    <p>Loading...</p>
-                                                </div>
-
-                                                <div class="footer-of-theme">
-                                                    <button id="theme_image_library_btn" data-user-id="{{$profile['memorialProfile']->id}}" class="form-btn">Select</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                    <div id="Custom" class="theme-tabcontent">
+                    <div id="theme" class="theme-tabcontent">
                         <p>You can upload your own unique picture here. For the best look, we recommend using a picture with a high resolution (1024x768 and higher, for example).</p>
                         <div class="custom-file-chooser-wrapper">
                             <div id="themeCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
@@ -686,13 +575,12 @@
                             <form id="theme_image_form" enctype="multipart/form-data">
                                 <label for="memorial_theme_image_custom" class="file-input-label">
                                     <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
-                                    <span class="form-btn" >+ Choose a File</span>
+                                    <span class="form-btn">+ Choose a File</span>
                                 </label>
-                                <button type="submit" id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>
+                                <button type="submit" class="form-btn" id="theme_image_custom_btn" data-user-id="{{$profile['memorialProfile']->id}}">Upload Image</button>
                             </form>
                         </div>
                     </div>
-
 
 
                 </div>
@@ -713,7 +601,6 @@
         }
 
         // Start here
-
 
 
         $(document).ready(function () {
@@ -991,8 +878,8 @@
                             $interests = explode(', ', $profile['memorialInterest']->interest);
                         }
                     @endphp
-                        @if($interests)
-                        @foreach($interests as $interest)
+                    @if($interests)
+                    @foreach($interests as $interest)
                     <div class="row-of-dynamic-inputs">
                                     <div class="form-group-input">
                                         <label for="">Interest Name</label>
@@ -1014,7 +901,7 @@
                         </svg>
                     </div>
 @endif
-                                `;
+                    `;
                     $(interests_container).append(interestsHTML);
                 } else {
                     alert("You Reached the limits");
@@ -1139,7 +1026,7 @@
                 var identifier = 'basic_info';
                 // Serialize the form data along with user_id and form_identifier
                 var formData = $(this).serialize() + '&user_id=' + userId;
-                saveWithoutImageFormData(userId, formData, identifier,'#basicSuccessMessage','#basicErrorMessage','#basicLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#basicSuccessMessage', '#basicErrorMessage', '#basicLoader');
                 return 0;
             });
 
@@ -1150,7 +1037,7 @@
                 var identifier = 'home_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier,'#homeSuccessMessage','homeErrorMessage','#homeLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#homeSuccessMessage', 'homeErrorMessage', '#homeLoader');
                 return 0;
             });
 
@@ -1161,7 +1048,7 @@
                 var identifier = 'other_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier,'#otherSuccessMessage','#otherErrorMessage','#otherLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#otherSuccessMessage', '#otherErrorMessage', '#otherLoader');
                 return 0;
             });
 
@@ -1190,7 +1077,7 @@
                 // Convert formData to a serialized string
                 formData = $.param(formData);
 
-                saveWithoutImageFormData(userId, formData, identifier,'#occupationSuccessMessage','#occuptionErrorMessage','#occupationLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#occupationSuccessMessage', '#occuptionErrorMessage', '#occupationLoader');
                 return 0;
             });
 
@@ -1221,7 +1108,7 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier,'#academicSuccessMessage','#academicErrorMessage','#academicLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#academicSuccessMessage', '#academicErrorMessage', '#academicLoader');
                 return 0;
             });
 
@@ -1249,7 +1136,7 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier,'#milestoneSuccessMessage','#milestoneErrorMessage','#milestoneLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#milestoneSuccessMessage', '#milestoneErrorMessage', '#milestoneLoader');
                 return 0;
             });
 
@@ -1260,7 +1147,7 @@
                 var identifier = 'religion_info';
                 // Serialize the form data along with user_id
                 var formData = $(this).serialize() + '&user_id=' + userId
-                saveWithoutImageFormData(userId, formData, identifier,'#religionSuccessMessage','#religionErrorMessage','#religionLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#religionSuccessMessage', '#religionErrorMessage', '#religionLoader');
                 return 0;
             });
 
@@ -1285,12 +1172,12 @@
                 formData = $.param(formData);
 
                 // Send form data via AJAX
-                saveWithoutImageFormData(userId, formData, identifier,'#interestSuccessMessage','#interestErrorMessage','#interestLoader');
+                saveWithoutImageFormData(userId, formData, identifier, '#interestSuccessMessage', '#interestErrorMessage', '#interestLoader');
                 return 0;
             });
 
 
-            function saveWithoutImageFormData(userId, formData, formType,formSuccessMessage,formErrorMessage,loaderName) {
+            function saveWithoutImageFormData(userId, formData, formType, formSuccessMessage, formErrorMessage, loaderName) {
 
                 var loaderId = loaderName; // Define loaderId here with the appropriate ID of your loader element
                 var successMessageId = formSuccessMessage; // Assuming you have a message element with ID 'message'
@@ -1312,7 +1199,7 @@
                     success: function (response) {
                         console.log(response);
                         if (response.success) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $(loaderId).hide();
                                 // Handle success response
                                 console.log(response);
@@ -1348,7 +1235,6 @@
             }
 
 
-
             $('#profile_image_custom_btn').click(function (e) {
                 e.preventDefault();
 
@@ -1364,7 +1250,7 @@
                 formData.append('form_identifier', identifier);
                 formData.append('is_image_upload', true);
 
-                saveFormImageData(userId, formData, 'profile_image_custom','#profileCustomSuccessMessage','#profileCustomErrorMessage','#profileCustomLoader');
+                saveFormImageData(userId, formData, 'profile_image_custom', '#profileCustomSuccessMessage', '#profileCustomErrorMessage', '#profileCustomLoader');
                 return 0;
             });
             // Function for clicking the "Select" button
@@ -1385,6 +1271,7 @@
                     alert("Please select an image first.");
                 }
             });
+
             // Function to update the profile image via AJAX
             function updateProfileImage(userId, imageURL) {
                 var formData = new FormData();
@@ -1398,13 +1285,12 @@
                         console.log(blob);
                         formData.append('profile_image', blob);
                         console.log(formData); // Log FormData object for inspection
-                        saveFormImageData(userId, formData, 'profile_image_library','#profileSuccessMessage','#profileErrorMessage','#profileLoader');
+                        saveFormImageData(userId, formData, 'profile_image_library', '#profileSuccessMessage', '#profileErrorMessage', '#profileLoader');
                     })
                     .catch(error => console.error('Error fetching image:', error));
             }
+
             //Ajax function
-
-
 
 
             $('#theme_image_custom_btn').click(function (e) {
@@ -1422,7 +1308,7 @@
                 formData.append('form_identifier', identifier);
                 formData.append('is_image_upload', true);
 
-                saveFormImageData(userId, formData, 'theme_image_custom','#themeCustomSuccessMessage','#themeCustomErrorMessage','#themeCustomLoader');
+                saveFormImageData(userId, formData, 'theme_image_custom', '#themeCustomSuccessMessage', '#themeCustomErrorMessage', '#themeCustomLoader');
                 return 0;
             });
             $('#theme_image_library_btn').click(function (e) {
@@ -1442,6 +1328,7 @@
                     alert("Please select an image first.");
                 }
             });
+
             function updateThemeImage(userId, imageURL) {
                 var formData = new FormData();
                 formData.append('user_id', userId);
@@ -1455,14 +1342,14 @@
                         formData.append('theme_image', blob);
 
                         console.log(formData); // Log FormData object for inspection
-                        saveFormImageData(userId, formData, 'theme_image_library','#themeSuccessMessage','#themeErrorMessage','#themeLoader');
+                        saveFormImageData(userId, formData, 'theme_image_library', '#themeSuccessMessage', '#themeErrorMessage', '#themeLoader');
                     })
                     .catch(error => console.error('Error fetching image:', error));
             }
 
             //Ajax function
 
-            function saveFormImageData(userId, formData, formType,formSuccessMessage,formErrorMessage,loaderName) {
+            function saveFormImageData(userId, formData, formType, formSuccessMessage, formErrorMessage, loaderName) {
 
                 var loaderId = loaderName; // Define loaderId here with the appropriate ID of your loader element
                 var successMessageId = formSuccessMessage; // Assuming you have a message element with ID 'message'
@@ -1487,7 +1374,7 @@
                     success: function (response) {
                         console.log(response);
                         if (response.success) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $(loaderId).hide();
                                 refreshProfileImageDiv(userId, formType);
                                 // Handle success response
@@ -1510,7 +1397,7 @@
                     error: function (error) {
                         console.error(error);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $(loaderId).hide();
                         }, 2000); // 2000 milliseconds = 2 seconds
                         // Access the error details sent from the server
@@ -1522,9 +1409,6 @@
                     }
                 });
             }
-
-
-
 
 
             function refreshProfileImageDiv(userId, formType) {

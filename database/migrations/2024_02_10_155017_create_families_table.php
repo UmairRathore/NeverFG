@@ -16,12 +16,13 @@ class CreateFamiliesTable extends Migration
         Schema::create('families', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('relation');
             $table->string('family_image')->nullable();
             $table->unsignedBigInteger('memorial_user_id');
+            $table->unsignedBigInteger('relation_id');
             $table->timestamps();
 
             $table->foreign('memorial_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('relation_id')->references('id')->on('relations')->onDelete('cascade');
 
         });
     }
