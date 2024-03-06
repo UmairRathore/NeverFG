@@ -111,33 +111,7 @@
                                 </label>
                             </div>
                         </div>
-                    <div class="form-group-input">
-                            <label for="memorial_biography">Their Obituary/Biography</label>
-                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ $check && $check->biography ? $check->biography : '' }}" class="input-design @error('memorial_biography') is-invalid @enderror" />
-                            @error('memorial_biography')
-                            <span class="invalid-feedback" role="alert" style="color: red;">
-                    <strong>{{$message}}</strong>
-                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group-input">
-                            <label for="memorial_fav_saying">Their Favourite Saying</label>
-                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ $check && $check->fav_saying ? $check->fav_saying : '' }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" />
-                            @error('memorial_fav_saying')
-                            <span class="invalid-feedback" role="alert" style="color: red;">
-                    <strong>{{$message}}</strong>
-                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group-input">
-                            <label for="memorial_resting_place">Resting Place:</label>
-                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ $check && $check->resting_place ? $check->resting_place : '' }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" />
-                            @error('memorial_resting_place')
-                            <span class="invalid-feedback" role="alert" style="color: red;">
-                    <strong>{{$message}}</strong>
-                </span>
-                            @enderror
-                        </div>
+
 
 
                         <div id="imageLoader" style="display: none;">

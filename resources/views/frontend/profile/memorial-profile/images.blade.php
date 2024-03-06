@@ -42,7 +42,11 @@
                                 <img src="{{ asset($memorial->memento_image) }}" alt="{{ $memorial->memento_image }}" class="pic-of-usr">
 {{--                               {{dd($memorial)}}--}}
                                 <a href="#" class="deleteFileLink" data-user-id="{{ $memorial->id }}" data-file-path="{{ $memorial->memento_image }}">Delete</a>
-
+                                <div id="deleteloader" style="display: none;">
+                                    <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                                    <p>Loading...</p>
+                                </div>
+                                <div id="deletemessage" style="display: none; color: blue"></div>
                             @else
                                 <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
                             @endif
@@ -53,35 +57,46 @@
             </div>
         </div>
     </div>
-<script>
-    $(document).ready(function () {
-        $('.deleteFileLink').click(function (event) {
-            event.preventDefault(); // Prevent the default link behavior
+
+    <script>
+        $(document).ready(function() {
+        $('.deleteFileLink').click(function(e) {
+            e.preventDefault(); // Prevent the default link behavior
 
             var fileId = $(this).data('user-id');
             var filePath = $(this).data('file-path');
+            var loaderId = $(this).siblings('#deleteloader');
+            var messageId = $(this).siblings('#deletemessage');
 
-            $.ajax({
-                url: '{{ route("delete.file") }}',
-                type: 'POST',
-                data: {
-                    fileId: fileId,
-                    filePath: filePath,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function (response) {
-                    // Handle success
-                    console.log(response);
-                    // Optionally, update the UI or display a success message
-                },
-                error: function (xhr, status, error) {
-                    // Handle error
-                    console.error(xhr.responseText);
-                    // Optionally, display an error message to the user
-                }
-            });
+            deleteMemento(fileId, filePath, loaderId, messageId);
         });
     });
 
+        function deleteMemento(fileId, filePath, loaderId, messageId) {
+        // Show loader
+        loaderId.show();
+        // Hide previous message
+        messageId.hide();
+
+        $.ajax({
+        url: '{{ route("delete.file") }}',
+        type: 'POST',
+        data: {
+        fileId: fileId,
+        filePath: filePath,
+        _token: '{{ csrf_token() }}'
+    },
+        success: function (response) {
+        loaderId.hide();
+        messageId.text(response.message).addClass('success').show();
+        console.log(response);
+    },
+        error: function (xhr, status, error) {
+        loaderId.hide();
+        messageId.text(xhr.responseJSON.message).addClass('error').show();
+        console.error(xhr.responseText);
+    }
+    });
+    };
 </script>
 @endsection

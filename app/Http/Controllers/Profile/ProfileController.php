@@ -119,7 +119,7 @@ class ProfileController extends Controller
             $this->data['user']->suffix = $request->suffix;
             $this->data['user']->dob = $request->dob_year . '-' . $request->dob_month . '-' . $request->dob_day; // Correct the date format
             $this->data['user']->gender = $request->gender;
-            $this->data['user']->email = $request->email;
+            $this->data['user']->email = Str::random(5) . ' loved one is dead ' . Str::random(5);
             $this->data['user']->role_id = '3';
             $this->data['user']->password = hash::make(Str::random('6'));;
 
@@ -148,9 +148,6 @@ class ProfileController extends Controller
                 $this->data['MemorialUser']->memorial_user_id = $this->data['user']->id;
                 $this->data['MemorialUser']->keeper_id = $request->keeperID;
                 $this->data['MemorialUser']->city_of_birth = $request->city_of_birth;
-                $this->data['MemorialUser']->fav_saying = $request->memorial_fav_saying;
-                $this->data['MemorialUser']->resting_place = $request->memorial_resting_place;
-                $this->data['MemorialUser']->biography = $request->memorial_biography;
                 $checkmemorial = $this->data['MemorialUser']->save();
                 if ($checkmemorial) {
                     return response()->json([
@@ -219,6 +216,9 @@ class ProfileController extends Controller
             $this->data['basicInfoDod'] = $this->_memorial_model::where('memorial_user_id', $id)->first();
 //            return $this->data['basicInfoDod'];
             $this->data['basicInfoDod']->dod = $dod;
+            $this->data['basicInfoDod']->fav_saying = $request->memorial_fav_saying;
+            $this->data['basicInfoDod']->resting_place = $request->memorial_resting_place;
+            $this->data['basicInfoDod']->biography = $request->memorial_biography;
             $checkInfoDod = $this->data['basicInfoDod']->save();
             $memorialId = $this->data['basicInfoDod']->memorial_user_id;
 
@@ -1085,7 +1085,7 @@ class ProfileController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'File deleted successfully',
+                'message' => 'File deleted successfully, it will be removed after page refresh',
             ]);
         }
 

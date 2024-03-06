@@ -138,6 +138,33 @@
                             <input type="url" class="input-design" name="tiktok" value="@if($profile['memorialProfile']->tiktok){{$profile['memorialProfile']->tiktok}}@endif"/>
                         </div>
                         <div class="form-group-input">
+                            <label for="memorial_biography">Their Obituary/Biography</label>
+                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="@if($profile['memorialAdditional']->biography){{$profile['memorialAdditional']->biography }}@endif" class="input-design @error('memorial_biography') is-invalid @enderror" />
+                            @error('memorial_biography')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group-input">
+                            <label for="memorial_fav_saying">Their Favourite Saying</label>
+                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="@if($profile['memorialAdditional']->fav_saying){{$profile['memorialAdditional']->fav_saying }}@endif" class="input-design @error('memorial_fav_saying') is-invalid @enderror" />
+                            @error('memorial_fav_saying')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group-input">
+                            <label for="memorial_resting_place">Resting Place:</label>
+                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="@if($profile['memorialAdditional']->resting_place){{$profile['memorialAdditional']->resting_place }}@endif" class="input-design @error('memorial_resting_place') is-invalid @enderror" />
+                            @error('memorial_resting_place')
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                    <strong>{{$message}}</strong>
+                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group-input">
                             <label for="">Date of Birth</label>
                             <div class="row-of-inputs">
                                 @php
