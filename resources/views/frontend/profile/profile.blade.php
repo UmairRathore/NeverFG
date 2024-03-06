@@ -22,13 +22,89 @@
                 <div class="form-of-unlogged-in-user width-800px">
                     <!-- Header -->
                     <div class="header-of-form-profile margin-top no-border">
+                        <div class="momentos-section">
+                            <div class="insider">
+                                <div class="div-1">
+                                    <h1 class="mem-heading-main">Momentos</h1>
+                                    <h3 class="mem-heading-main">Images</h3>
+
+                                    <div class="pics-wrapper">
+                                        @php $firstVideoDisplayed = false; @endphp
+                                        {{--                            {{dd($mementos)}}--}}
+                                        <?php
+                                        $count = $mementos->whereNotNull('memento_image')->count();
+
+                                        ?>
+                                        @if($count == 0)
+
+
+                                            <div class="image-wrapper-of-not-logged-in-profile">
+
+                                                <img src="{{ asset('assets/images/blacklogo.jpg') }}" alt="" class="mem-pic">
+
+
+                                            </div>
+
+                                        @endif
+
+                                        @foreach($mementos as $memento)
+                                            <div class="image-wrapper-of-not-logged-in-profile">
+
+                                                @if($memento->memento_image )
+                                                    <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
+                                                @endif
+
+                                            </div>
+                                            @if($memento->memento_video && !$firstVideoDisplayed)
+                                                <?php
+                                                $data = $memento->memento_video;
+                                                ?>
+                                                <?php
+                                                if ($memento->memento_image)
+                                                {
+                                                    $datai = $memento->memento_image;
+                                                }
+                                                ?>
+                                            @endif
+                                        @endforeach
+
+                                    </div>
+                                    @if(isset($datai))
+                                        <a href="{{ route('all_images',$memorial->memorial_user_id) }}">See All Images</a>
+                                    @endif
+                                </div>
+
+                            </div>
+                            <div class="insider">
+                                <div class="div-1">
+                                    <h3 class="mem-heading-main">VIDEOS</h3>
+
+                                    @if(isset($data))
+                                        <div class="pics-wrapper">
+
+                                            <video width="260" height="200" controls>
+                                                <source src="{{ asset($data) }}" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            @php $firstVideoDisplayed = true; @endphp
+
+
+                                        </div>
+                                        <p><a href="{{ route('all_videos',$memorial->memorial_user_id) }}">See All Videos</a></p>
+                                    @endif
+
+                                    @php $firstVideoDisplayed = true; @endphp
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="profile-header-without-logged-in ">
                             <div class="profile-header-without-logged-in-image-wrapper">
 {{--                                {{dd($memorial)}}--}}
                                 @if(isset($memorial->profile_image))
                                     <img src="{{asset($memorial->profile_image)}}" alt="" class="profile-without-logged-in-image">
                                 @else
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
+                                    <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-without-logged-in-image">
                                 @endif
 
                             </div>
@@ -245,91 +321,17 @@
                 </div>
             </div>
 
-            <div class="momentos-section">
-                <div class="insider">
-                    <div class="div-1">
-                        <h1 class="mem-heading-main">Momentos</h1>
-                        <h3 class="mem-heading-main">Images</h3>
 
-                        <div class="pics-wrapper">
-                            @php $firstVideoDisplayed = false; @endphp
-{{--                            {{dd($mementos)}}--}}
-                            <?php
-$count = $mementos->whereNotNull('memento_image')->count();
-
-?>
-                            @if($count == 0)
-
-
-                            <div class="image-wrapper-of-not-logged-in-profile">
-
-                                    <img src="{{ asset('frontend/assets/images/bird.webp') }}" alt="" class="mem-pic">
-
-
-                            </div>
-
-                                @endif
-
-                            @foreach($mementos as $memento)
-                                <div class="image-wrapper-of-not-logged-in-profile">
-
-                                    @if($memento->memento_image )
-                                        <img src="{{ asset($memento->memento_image) }}" alt="" class="mem-pic">
-                                    @endif
-
-                                </div>
-                                    @if($memento->memento_video && !$firstVideoDisplayed)
-                                           <?php
-                                               $data = $memento->memento_video;
-                                               ?>
-<?php
-                                    if ($memento->memento_image)
-{
-
-                                    $datai = $memento->memento_image;
-}
-                                    ?>
-                                    @endif
-                            @endforeach
-
-                        </div>
-                        @if(isset($datai))
-                            <a href="{{ route('all_images',$memorial->memorial_user_id) }}">See All Images</a>
-                        @endif
-                    </div>
-
-                </div>
-                <div class="insider">
-                    <div class="div-1">
-                        <h3 class="mem-heading-main">VIDEOS</h3>
-
-                        @if(isset($data))
-                        <div class="pics-wrapper">
-
-                                <video width="260" height="200" controls>
-                                    <source src="{{ asset($data) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                @php $firstVideoDisplayed = true; @endphp
-
-
-                        </div>
-                        <p><a href="{{ route('all_videos',$memorial->memorial_user_id) }}">See All Videos</a></p>
-                        @endif
-
-                        @php $firstVideoDisplayed = true; @endphp
-                    </div>
-                </div>
-
-            </div>
         </div>
 
     </div>
     <!-- Comment  -->
+@if(auth()->user()->id != $memorial->keeper_id)
 
     <?php
 
     $Comments = \App\Models\Comment::where('receiver_id', $memorial->memorial_user_id)
+        ->where('status','approved')
         ->join('users', 'users.id', '=', 'comments.sender_id')->get();
 
     ?>
@@ -344,17 +346,16 @@ $count = $mementos->whereNotNull('memento_image')->count();
                                 @if(isset($comment->profile_image))
                                     <img src="{{asset($comment->profile_image)}}" alt="" class="comment-img">
                                 @else
-                                    <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
+                                    <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="comment-img">
                                 @endif
                             </div>
                         </div>
                         <div class="two-cols-of-comment-and-replies-right">
                             <p class="c-r-user-name">
-                                    {{$comment->first_name.' '.$comment->last_name}} published a tribute
-
+                                {{$comment->first_name.' '.$comment->last_name}} published a tribute
                                 <span class="time-of-comment">
-                                {{-- Carbon\Carbon::parse($comment->created_at)->diffForHumans() --}}
-                            </span>
+                            {{-- Carbon\Carbon::parse($comment->created_at)->diffForHumans() --}}
+                        </span>
                             </p>
                             <p class="c-r-comment-data">{{  $comment->content  }}</p>
                         </div>
@@ -362,9 +363,84 @@ $count = $mementos->whereNotNull('memento_image')->count();
                 </div>
             </div>
         </div>
+
+
     @endforeach
 @endif
-    <!-- Comment -->
+    @endif
+@if(auth()->user()->id == $memorial->keeper_id)
+
+
+<?php
+
+$Comments = \App\Models\Comment::select('users.first_name','users.last_name','users.profile_image',
+    'comments.id as commentID','comments.content','comments.status')
+    ->where('receiver_id', $memorial->memorial_user_id)
+    ->join('users', 'users.id', '=', 'comments.sender_id')->get();
+
+?>
+@if($Comments)
+    @foreach($Comments as $comment)
+
+<div class="margin-all">
+            <div class="comments-and-replies">
+                <div class="comment-wrapper" id="commentWrapper">
+                    <div class="two-cols-of-comment-and-replies">
+                        <div class="two-cols-of-comment-and-replies-left">
+                            <div class="img-wrapper-of-comment">
+                                @if(isset($comment->profile_image))
+                                    <img src="{{asset($comment->profile_image)}}" alt="" class="comment-img">
+                                @else
+                                    <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="comment-img">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="two-cols-of-comment-and-replies-right">
+                            <p class="c-r-user-name">
+                                {{$comment->first_name.' '.$comment->last_name}} published a tribute
+                                <span class="time-of-comment">
+                            {{-- Carbon\Carbon::parse($comment->created_at)->diffForHumans() --}}
+                        </span>
+                            </p>
+                            <p class="c-r-comment-data">{{  $comment->content  }}</p>
+                            @if(strtolower($comment->status) == 'pending')
+                               <style>
+                                   .button-row {
+                                       display: flex;
+
+                                   }
+                               </style>
+                                <div class="button-row">
+                                    <form action="{{ route('approve.comment') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="comment_id" value="{{ $comment->commentID }}">
+                                        <input type="hidden" name="approve" value="approved">
+                                        <button type="submit" class="black-background-btn btn-width">Approve</button>
+                                    </form>
+                                    <div style="width: 10px;"></div> <!-- Adjust width for desired space -->
+
+                                    <form action="{{ route('deny.comment') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="comment_id" value="{{ $comment->commentID }}">
+                                        <input type="hidden" name="deny" value="denied">
+                                        <button type="submit" class="black-background-btn btn-width">Deny</button>
+                                    </form>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    @endforeach
+@endif
+@endif
+
+
+
+<!-- Comment -->
     <div class="margin-all">
         <div class="chat-section">
             <div id="message-container" class="mt-3"></div>
@@ -380,7 +456,7 @@ $count = $mementos->whereNotNull('memento_image')->count();
                             @if($user->profile_image)
                                 <img src="{{asset($user->profile_image)}}" alt="" class="chat-usr-photo">
                             @else
-                                <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="chat-usr-photo">
 
                             @endif</div>
 

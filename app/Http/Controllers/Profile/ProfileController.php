@@ -101,7 +101,10 @@ class ProfileController extends Controller
     public function Creatememorial($id)
     {
         $user_id = $id;
-        $check = UserMemorial::where('keeper_id', $id)->exists();
+        $check = UserMemorial::where('keeper_id', $id)
+            ->join('users','users.id','=','user_memorials.memorial_user_id')
+            ->first();
+
         return view($this->_viewPath . 'create-memorial', compact('user_id', 'check'));
     }
 
@@ -145,9 +148,9 @@ class ProfileController extends Controller
                 $this->data['MemorialUser']->memorial_user_id = $this->data['user']->id;
                 $this->data['MemorialUser']->keeper_id = $request->keeperID;
                 $this->data['MemorialUser']->city_of_birth = $request->city_of_birth;
-                $this->data['MemorialUser']->fav_saying = $request->fav_saying;
-                $this->data['MemorialUser']->resting_place = $request->resting_place;
-                $this->data['MemorialUser']->biography = $request->biography;
+                $this->data['MemorialUser']->fav_saying = $request->memorial_fav_saying;
+                $this->data['MemorialUser']->resting_place = $request->memorial_resting_place;
+                $this->data['MemorialUser']->biography = $request->memorial_biography;
                 $checkmemorial = $this->data['MemorialUser']->save();
                 if ($checkmemorial) {
                     return response()->json([
@@ -237,14 +240,16 @@ class ProfileController extends Controller
                     'message' => 'Your Basic info has been updated correctly'
                 ];
                 return response()->json($data);
-            } else {
+            }
+            else {
                 $data = [
                     'success' => false,
                     'message' => 'Your Basic info has not been updated correctly'
                 ];
                 return response()->json($data);
             }
-        } elseif ($formType == 'home_info') {
+        }
+        elseif ($formType == 'home_info') {
 
             $this->data['homeCity'] = $this->_city_model::where('memorial_user_id', $id)->first();
             if ($this->data['homeCity']) {
@@ -296,7 +301,8 @@ class ProfileController extends Controller
                     return response()->json($data);
                 }
             }
-        } elseif ($formType == 'occupation_info') {
+        }
+        elseif ($formType == 'occupation_info') {
 
             $occupation = $request->input('occupation', []);
             $company = $request->input('company', []);
@@ -339,8 +345,9 @@ class ProfileController extends Controller
                 ];
                 return response()->json($data);
             }
-        } elseif ($formType == 'academic_info') {
-            // Retrieve the 'interest' array from the request
+        }
+        elseif ($formType == 'academic_info') {
+
             $diplomas = $request->input('diploma', []);
             $schools = $request->input('school', []);
             $toYears = $request->input('to_year', []);
@@ -443,7 +450,6 @@ class ProfileController extends Controller
                 $this->data['interestinfo']->memorial_user_id = $id;
                 $checkInterestInfo = $this->data['interestinfo']->save();
             }
-//dd($checkInterestInfo);
             if ($checkInterestInfo) {
                 $data = [
                     'success' => true,
@@ -853,7 +859,6 @@ class ProfileController extends Controller
         {
             $request->validate([
                 'memento_image' => 'image|max:6000',
-                'memento_video' => 'max:30720'
             ]);
 
             $mementoId = $request->input('userID');
@@ -1039,12 +1044,10 @@ class ProfileController extends Controller
     public
     function approvecomment(Request $request)
     {
-//        dd($request->approve);
         $commentID = $request->comment_id;
         $approve = $request->approve;
 
        $commentApprove = Comment::where('id',$commentID)->first();
-//       dd($commentApprove);
         $commentApprove->status = $approve;
         $commentApprove ->save();
 
@@ -1054,7 +1057,6 @@ class ProfileController extends Controller
 
     function denycomment(Request $request)
     {
-//        dd($request->approve);
         $commentID = $request->comment_id;
         $deny = $request->denied;
         $commentApprove = Comment::where('id',$commentID)->first();

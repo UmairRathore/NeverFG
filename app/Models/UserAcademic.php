@@ -12,6 +12,7 @@ class UserAcademic extends Model
 
     protected $fillable =
         [
+            'memorial_user_id',
             'school',
             'diploma',
             'to_year',

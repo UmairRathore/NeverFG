@@ -605,50 +605,56 @@
 
         $(document).ready(function () {
 
-
-            // Add Occupation
-            var max_fields_of_occupation = 50;
-            var occupation_container = $(".occupation_container");
-            var add_occupation_button = $(".add_occupation_field");
-
+            var max_fields_of_occupation = 10;
             var occupation_counter = 1;
-            $(add_occupation_button).click(function (e) {
+            var occupation_container = $(".occupation_container");
+            var add_occupation_field_btn = $(".add_occupation_field");
+            appendOccupation();
+            @php
+                if($profile['memorialOccupation'])
+                {
+
+                    $occupationArray = explode(', ', $profile['memorialOccupation']->occupation);
+                    $companyArray = explode(', ', $profile['memorialOccupation']->company);
+                    $toYearArray = explode(', ', $profile['memorialOccupation']->to_year);
+                    $fromYearArray = explode(', ', $profile['memorialOccupation']->from_year);
+
+                    $data['occupations'] = [];
+
+                    // Assuming all arrays have the same length
+                    $length = count($occupationArray);
+
+                    for ($i = 0; $i < $length; $i++) {
+                        $data['occupations'][] = [
+                            'occupation' => $occupationArray[$i],
+                            'company' => $companyArray[$i],
+                            'to_year' => $toYearArray[$i],
+                            'from_year' => $fromYearArray[$i],
+                        ];
+                    }
+                }
+                if(empty($data['occupations'])) {
+    // Initialize $data['occupations'] with a default empty entry
+    $data['occupations'] = [['occupation' => '', 'company' => '', 'to_year' => '', 'from_year' => '']];
+}
+            @endphp
+            $(add_occupation_field_btn).click(function(e) {
                 e.preventDefault();
+                console.log("inside click");
                 if (occupation_counter < max_fields_of_occupation) {
+                    appendEmptyOccupationField();
                     occupation_counter++;
-                    $(occupation_container).append(`
-@php
-                        if($profile['memorialOccupation'])
-                        {
-
-                            $occupationArray = explode(', ', $profile['memorialOccupation']->occupation);
-                            $companyArray = explode(', ', $profile['memorialOccupation']->company);
-                            $toYearArray = explode(', ', $profile['memorialOccupation']->to_year);
-                            $fromYearArray = explode(', ', $profile['memorialOccupation']->from_year);
-
-                            $data['occupations'] = [];
-
-                            // Assuming all arrays have the same length
-                            $length = count($occupationArray);
-
-                            for ($i = 0; $i < $length; $i++) {
-                                $data['occupations'][] = [
-                                    'occupation' => $occupationArray[$i],
-                                    'company' => $companyArray[$i],
-                                    'to_year' => $toYearArray[$i],
-                                    'from_year' => $fromYearArray[$i],
-                                ];
-                            }
-                        }
-                        if(empty($data['occupations'])) {
-            // Initialize $data['occupations'] with a default empty entry
-            $data['occupations'] = [['occupation' => '', 'company' => '', 'to_year' => '', 'from_year' => '']];
-        }
-                    @endphp
-
+                } else {
+                    alert("You Reached the limits");
+                }
+            });
+            function appendOccupation() {
+                var occupationHTML = ``;
+                @if($data['occupations'])
                     @foreach($data['occupations'] as $occupation)
-                    <div class="row-of-dynamic-inputs">
-                        <div class="form-group-input">
+                    occupationHTML += `
+                <div class="row-of-dynamic-inputs">
+                    <div class="form-group-input">
                             <label for="">Occupation</label>
                             <input type="text" class="input-design" name="occupation[]" value="@if($occupation['occupation']){{ $occupation['occupation']}}@endif" />
                          </div>
@@ -664,256 +670,307 @@
                             <label for="">To Year</label>
                             <input type="text" class="input-design" name="to_year[]" value="@if($occupation['to_year']){{ $occupation['to_year']}}@endif" />
                         </div>
-                        <svg
-                class="deleteOccupation"
-                  width="128px"
-                  height="128px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z"
-                      fill="#0F0F0F"
-                    ></path>
-                  </g>
+                    <svg class="deleteOccupation" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                    </svg>
+                </div>`;
+                @endforeach
+                @endif
+                $(occupation_container).append(occupationHTML);
+            }
+            function appendEmptyOccupationField() {
+                var emptyOccupationHTML = `
+             <div class="row-of-dynamic-inputs">
+                <div class="form-group-input">
+                    <label for="">Occupation</label>
+                    <input type="text" class="input-design" name="occupation[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">Company</label>
+                    <input type="text" class="input-design" name="company[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">From Year</label>
+                    <input type="text" class="input-design" name="from_year[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">To Year</label>
+                    <input type="text" class="input-design" name="to_year[]" value="" />
+                </div>
+                <svg class="deleteOccupation" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                    <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
                 </svg>
-                        </div>
-
-              </div>
-                @endforeach`); //add input box
-
-                } else {
-                    alert("You Reached the limits");
-                }
-            });
+            </div>`;
+                $(occupation_container).append(emptyOccupationHTML);
+            }
 
             $(occupation_container).on("click", ".deleteOccupation", function (e) {
                 e.preventDefault();
                 $(this).parent("div").remove();
                 occupation_counter--;
             });
-
-
-            //Add Academic
+        });
+        $(document).ready(function () {
 
             var max_fields_of_academic = 10;
             var academic_counter = 1;
             var academic_container = $(".academic_container");
             var add_academic_field_btn = $(".add_academic_field");
+            appendAcademic();
+            @php
 
-            $(add_academic_field_btn).click(function (e) {
+                if($profile['memorialAcademic'])
+                                    {
+
+                                        $diplomaArray = explode(', ', $profile['memorialAcademic']->diploma);
+                                        $schoolArray = explode(', ', $profile['memorialAcademic']->school);
+                                        $toYearArray = explode(', ', $profile['memorialAcademic']->to_year);
+                                        $fromYearArray = explode(', ', $profile['memorialAcademic']->from_year);
+
+                                        $data['academics'] = [];
+
+                                        // Assuming all arrays have the same length
+                                        $length = count($diplomaArray);
+
+                                        for ($i = 0; $i < $length; $i++) {
+                                            $data['academics'][] = [
+                                                'diploma' => $diplomaArray[$i],
+                                                'school' => $schoolArray[$i],
+                                                'to_year' => $toYearArray[$i],
+                                                'from_year' => $fromYearArray[$i],
+                                            ];
+                                        }
+                                        }
+                                         if(empty($data['memorialAcademic'])) {
+// Initialize $data['occupations'] with a default empty entry
+$data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_year' => '']];
+}
+            @endphp
+            $(add_academic_field_btn).click(function(e) {
                 e.preventDefault();
                 console.log("inside click");
                 if (academic_counter < max_fields_of_academic) {
+                    appendEmptyAcademicField();
                     academic_counter++;
-                    $(academic_container).append(`
-                     @php
-                        if($profile['memorialAcademic'])
-                                            {
-
-                                                $diplomaArray = explode(', ', $profile['memorialAcademic']->diploma);
-                                                $schoolArray = explode(', ', $profile['memorialAcademic']->school);
-                                                $toYearArray = explode(', ', $profile['memorialAcademic']->to_year);
-                                                $fromYearArray = explode(', ', $profile['memorialAcademic']->from_year);
-
-                                                $data['academics'] = [];
-
-                                                // Assuming all arrays have the same length
-                                                $length = count($diplomaArray);
-
-                                                for ($i = 0; $i < $length; $i++) {
-                                                    $data['academics'][] = [
-                                                        'diploma' => $diplomaArray[$i],
-                                                        'school' => $schoolArray[$i],
-                                                        'to_year' => $toYearArray[$i],
-                                                        'from_year' => $fromYearArray[$i],
-                                                    ];
-                                                }
-                                                }
-                                                 if(empty($data['memorialAcademic'])) {
-        // Initialize $data['occupations'] with a default empty entry
-        $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_year' => '']];
-    }
-                    @endphp
-
-                    @foreach($data['academics'] as $academic)
-                    <div class="row-of-dynamic-inputs">
-            <div class="form-group-input">
-                <label for="">Diploma</label>
-                <input type="text" class="input-design" name="diploma[]" value="@if($academic['diploma']){{ $academic['diploma']}}@endif" />
-            </div>
-            <div class="form-group-input">
-                <label for="">School</label>
-                <input type="text" class="input-design" name="school[]" value="@if($academic['school']){{$academic['school']}}@endif" />
-            </div>
-            <div class="form-group-input">
-                <label for="">From Year</label>
-                <input type="text" class="input-design" name="from_year[]" value="@if($academic['to_year']){{$academic['to_year']}}@endif" />
-            </div>
-            <div class="form-group-input">
-                <label for="">To Year</label>
-                <input type="text" class="input-design" name="to_year[]" value="@if($academic['from_year']){{$academic['from_year']}}@endif" />
-            </div>
-            <svg class="deleteAcademic" width="128px" height="128px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                    <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
-                </g>
-            </svg>
-        </div>
-    @endforeach`);
                 } else {
                     alert("You Reached the limits");
                 }
             });
+            function appendAcademic() {
+                var academicHTML = ``;
+                @if($data['academics'])
+                    @foreach($data['academics'] as $academic)
+                    academicHTML += `
+                <div class="row-of-dynamic-inputs">
+                    <div class="form-group-input">
+                            <label for="">School</label>
+                            <input type="text" class="input-design" name="diploma[]" value="@if($academic['diploma']){{ $academic['diploma']}}@endif" />
+                         </div>
+                         <div class="form-group-input">
+                            <label for="">Diploma</label>
+                            <input type="text" class="input-design" name="school[]" value="@if($academic['school']){{ $academic['school']}}@endif" />
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">From Year</label>
+                            <input type="text" class="input-design" name="from_year[]" value="@if($academic['from_year']){{ $academic['from_year']}}@endif" />
+                        </div>
+                        <div class="form-group-input">
+                            <label for="">To Year</label>
+                            <input type="text" class="input-design" name="to_year[]" value="@if($academic['to_year']){{ $academic['to_year']}}@endif" />
+                        </div>
+                    <svg class="deleteAcademic" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                    </svg>
+                </div>`;
+                @endforeach
+                @endif
+                $(academic_container).append(academicHTML);
+            }
+            function appendEmptyAcademicField() {
+                var emptyAcademicHTML = `
+             <div class="row-of-dynamic-inputs">
+                <div class="form-group-input">
+                    <label for="">School</label>
+                    <input type="text" class="input-design" name="school[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">Diploma</label>
+                    <input type="text" class="input-design" name="diploma[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">From Year</label>
+                    <input type="text" class="input-design" name="from_year[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">To Year</label>
+                    <input type="text" class="input-design" name="to_year[]" value="" />
+                </div>
+                <svg class="deleteAcademic" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                    <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                </svg>
+            </div>`;
+                $(academic_container).append(emptyAcademicHTML);
+            }
+
             $(academic_container).on("click", ".deleteAcademic", function (e) {
                 e.preventDefault();
                 $(this).parent("div").remove();
                 academic_counter--;
             });
+        });
+        $(document).ready(function () {
 
-            //Milestones
-
-            var max_fields_of_milestones = 10;
+            var max_fields_of_milestone = 10;
             var milestone_counter = 1;
             var milestone_container = $(".milestone_container");
             var add_milestone_field_btn = $(".add_milestone_field");
-            $(add_milestone_field_btn).click(function (e) {
+            appendMilestone();
+            @php
+                if ( $profile['memorialMilestone'])
+                                        {
+                                            $milestoneArray = explode(', ', $profile['memorialMilestone']->milestone);
+                                        $yearArray = explode(', ', $profile['memorialMilestone']->year);
+
+                                        $data['milestone'] = [];
+
+                                        // Assuming all arrays have the same length
+                                        $length = count($milestoneArray);
+
+                                        for ($i = 0; $i < $length; $i++) {
+                                            $data['milestone'][] = [
+                                                'milestone' => $milestoneArray[$i],
+                                                'year' => $yearArray[$i],
+                                            ];
+                                        }
+                                        }
+                 if(empty($data['memorialMilestone'])) {
+                        // Initialize $data['occupations'] with a default empty entry
+                        $data['milestone'] = [['milestone' => '', 'year' => '']];
+                    }
+            @endphp
+            $(add_milestone_field_btn).click(function(e) {
                 e.preventDefault();
                 console.log("inside click");
-                if (milestone_counter < max_fields_of_milestones) {
+                if (milestone_counter < max_fields_of_milestone) {
+                    appendEmptyMilestoneField();
                     milestone_counter++;
-                    $(milestone_container).append(`
-                    @php
-                        if ( $profile['memorialMilestone'])
-                                                {
-                                                    $milestoneArray = explode(', ', $profile['memorialMilestone']->milestone);
-                                                $yearArray = explode(', ', $profile['memorialMilestone']->year);
-
-                                                $data['milestone'] = [];
-
-                                                // Assuming all arrays have the same length
-                                                $length = count($milestoneArray);
-
-                                                for ($i = 0; $i < $length; $i++) {
-                                                    $data['milestone'][] = [
-                                                        'milestone' => $milestoneArray[$i],
-                                                        'year' => $yearArray[$i],
-                                                    ];
-                                                }
-                                                }
-                         if(empty($data['memorialMilestone'])) {
-                                // Initialize $data['occupations'] with a default empty entry
-                                $data['milestone'] = [['milestone' => '', 'year' => '']];
-                            }
-                    @endphp
-                    @foreach( $data['milestone'] as $milestone)
-                    <div class="row-of-dynamic-inputs">
-                                    <div class="form-group-input">
-                                      <label for="">Description</label>
-                                      <input type="text" class="input-design" name="milestone[]" value="@if($milestone['milestone']){{$milestone['milestone']}}@endif"  />
-                </div>
-                <div class="form-group-input">
-                  <label for="">Year</label>
-                  <input type="text" class="input-design" name="year[]" value="@if($milestone['year']){{$milestone['year']}}@endif"/>
-                </div>
-
-                <svg
-                class="deleteAcademic"
-                  width="128px"
-                  height="128px"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <path
-                      d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z"
-                      fill="#0F0F0F"
-                    ></path>
-                  </g>
-                </svg>
-              </div>
-              @endforeach`);
                 } else {
                     alert("You Reached the limits");
                 }
             });
-            $(milestone_container).on("click", ".deleteAcademic", function (e) {
+            function appendMilestone() {
+                var milestoneHTML = ``;
+                @if($data['milestone'])
+                    @foreach($data['milestone'] as $milestone)
+                    milestoneHTML += `
+                <div class="row-of-dynamic-inputs">
+                    <div class="form-group-input">
+                            <label for="">MileStone</label>
+                            <input type="text" class="input-design" name="milestone[]" value="@if($milestone['milestone']){{ $milestone['milestone']}}@endif" />
+                         </div>
+                         <div class="form-group-input">
+                            <label for="">Year</label>
+                            <input type="text" class="input-design" name="year[]" value="@if($milestone['year']){{ $milestone['year']}}@endif" />
+                        </div>
+                    <svg class="deleteMilestone" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                    </svg>
+                </div>`;
+                @endforeach
+                @endif
+                $(milestone_container).append(milestoneHTML);
+            }
+            function appendEmptyMilestoneField() {
+                var emptyMilestoneHTML = `
+             <div class="row-of-dynamic-inputs">
+                <div class="form-group-input">
+                    <label for="">Milestone</label>
+                    <input type="text" class="input-design" name="milestone[]" value="" />
+                </div>
+                <div class="form-group-input">
+                    <label for="">Year</label>
+                    <input type="text" class="input-design" name="year[]" value="" />
+                </div>
+                <svg class="deleteMilestone" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+                    <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                </svg>
+            </div>`;
+                $(milestone_container).append(emptyMilestoneHTML);
+            }
+
+            $(milestone_container).on("click", ".deleteMilestone", function (e) {
                 e.preventDefault();
                 $(this).parent("div").remove();
                 milestone_counter--;
             });
-
-            //Interests
-            var max_fields_of_interests = 10;
-            var interests_counter = 1;
-            var interests_container = $(".interests_container");
-            var add_interests_field_btn = $(".add_interests_field");
-
-            $(add_interests_field_btn).click(function (e) {
-                e.preventDefault();
-                console.log("inside click");
-                if (interests_counter < max_fields_of_interests) {
-                    interests_counter++;
-                    var interestsHTML = `
-@php
-                        $interests = [];
-                        if (!empty($profile['memorialInterest'])) {
-                            $interests = explode(', ', $profile['memorialInterest']->interest);
-                        }
-                    @endphp
-                    @if($interests)
-                    @foreach($interests as $interest)
-                    <div class="row-of-dynamic-inputs">
-                                    <div class="form-group-input">
-                                        <label for="">Interest Name</label>
-                                        <input type="text" class="input-design" name="interest[]" value="@if($interest){{$interest}}@endif" />
-                                    </div>
-                                    <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
-                                    </svg>
-                                </div>
-                                  @endforeach
-                    @else
-                    <div class="row-of-dynamic-inputs">
-                        <div class="form-group-input">
-                            <label for="">Interest Name</label>
-                            <input type="text" class="input-design" name="interest[]" value="" />
-                        </div>
-                        <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
-                        </svg>
-                    </div>
-@endif
-                    `;
-                    $(interests_container).append(interestsHTML);
-                } else {
-                    alert("You Reached the limits");
-                }
-            });
-
-            $(interests_container).on("click", ".deleteInterest", function (e) {
-                e.preventDefault();
-                $(this).parent("div").remove();
-                interests_counter--;
-            });
         });
+        $(document).ready(function () {
+                var max_fields_of_interests = 10;
+                var interests_counter = 1;
+                var interests_container = $(".interests_container");
+                var add_interests_field_btn = $(".add_interests_field");
+
+                appendInterests();
+                @php
+                    $interests = [];
+                    if (!empty($profile['memorialInterest'])) {
+                        $interests = explode(', ', $profile['memorialInterest']->interest);
+                    }
+                @endphp
+                // Event handler for adding new interest field
+                $(add_interests_field_btn).click(function(e) {
+                    e.preventDefault();
+                    console.log("inside click");
+                    if (interests_counter < max_fields_of_interests) {
+                        appendEmptyInterestField();
+                        interests_counter++;
+                    } else {
+                        alert("You Reached the limits");
+                    }
+                });
+
+                // Function to append existing interests
+                function appendInterests() {
+                    var interestsHTML = ``;
+                    @if($interests)
+                        @foreach($interests as $interest)
+                        interestsHTML += `
+                <div class="row-of-dynamic-inputs">
+                    <div class="form-group-input">
+                        <label for="">Interest Name</label>
+                        <input type="text" class="input-design" name="interest[]" value="@if($interest){{$interest}}@endif" />
+                    </div>
+                    <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="removeInterest(this)">
+                        <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                    </svg>
+                </div>`;
+                    @endforeach
+                    @endif
+                    $(interests_container).append(interestsHTML);
+                }
+
+                // Function to append an empty interest field
+                function appendEmptyInterestField() {
+                    var emptyInterestHTML = `
+            <div class="row-of-dynamic-inputs">
+                <div class="form-group-input">
+                    <label for="">Interest Name</label>
+                    <input type="text" class="input-design" name="interest[]" value="" />
+                </div>
+                <svg class="deleteInterest" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="removeInterest(this)">
+                    <path d="M6.99486 7.00636C6.60433 7.39689 6.60433 8.03005 6.99486 8.42058L10.58 12.0057L6.99486 15.5909C6.60433 15.9814 6.60433 16.6146 6.99486 17.0051C7.38538 17.3956 8.01855 17.3956 8.40907 17.0051L11.9942 13.4199L15.5794 17.0051C15.9699 17.3956 16.6031 17.3956 16.9936 17.0051C17.3841 16.6146 17.3841 15.9814 16.9936 15.5909L13.4084 12.0057L16.9936 8.42059C17.3841 8.03007 17.3841 7.3969 16.9936 7.00638C16.603 6.61585 15.9699 6.61585 15.5794 7.00638L11.9942 10.5915L8.40907 7.00636C8.01855 6.61584 7.38538 6.61584 6.99486 7.00636Z" fill="#0F0F0F"></path>
+                </svg>
+            </div>`;
+                    $(interests_container).append(emptyInterestHTML);
+                }
+
+                // Event handler for deleting an interest field
+                $(interests_container).on("click", ".deleteInterest", function (e) {
+                    e.preventDefault();
+                    $(this).parent("div").remove();
+                    interests_counter--;
+                });
+            });
 
         function openProfileItem(evt, profileItem) {
             // Declare all variables
@@ -1065,10 +1122,26 @@
                 formData['to_year'] = [];
 
                 $('.row-of-dynamic-inputs').each(function () {
-                    formData['occupation'].push($(this).find('[name="occupation[]"]').val());
-                    formData['company'].push($(this).find('[name="company[]"]').val());
-                    formData['from_year'].push($(this).find('[name="from_year[]"]').val());
-                    formData['to_year'].push($(this).find('[name="to_year[]"]').val());
+                    var occupationInput = $(this).find('[name="occupation[]"]');
+                    var companyInput = $(this).find('[name="company[]"]');
+                    var fromYearInput = $(this).find('[name="from_year[]"]');
+                    var toYearInput = $(this).find('[name="to_year[]"]');
+
+                    // Check if input fields exist and have values
+                    if (occupationInput.length && companyInput.length && fromYearInput.length && toYearInput.length) {
+                        var occupationValue = occupationInput.val().trim();
+                        var companyValue = companyInput.val().trim();
+                        var fromYearValue = fromYearInput.val().trim();
+                        var toYearValue = toYearInput.val().trim();
+
+                        // Push values only if they are not empty
+                        if (occupationValue || companyValue || fromYearValue || toYearValue) {
+                            formData['occupation'].push(occupationValue);
+                            formData['company'].push(companyValue);
+                            formData['from_year'].push(fromYearValue);
+                            formData['to_year'].push(toYearValue);
+                        }
+                    }
                 });
 
                 formData['user_id'] = userId;
@@ -1077,8 +1150,8 @@
                 // Convert formData to a serialized string
                 formData = $.param(formData);
 
-                saveWithoutImageFormData(userId, formData, identifier, '#occupationSuccessMessage', '#occuptionErrorMessage', '#occupationLoader');
-                return 0;
+                saveWithoutImageFormData(userId, formData, identifier, '#occupationSuccessMessage', '#occupatioErrorMessage', '#occupationLoader');
+                return false; // Prevent default form submission
             });
 
             $('#academic-info-btn').click(function (e) {
@@ -1086,7 +1159,6 @@
                 var userId = $(this).data('user-id');
                 var identifier = 'academic_info';
 
-                // Serialize the form data manually
                 var formData = {};
                 formData['diploma'] = [];
                 formData['school'] = [];
@@ -1094,12 +1166,27 @@
                 formData['to_year'] = [];
 
                 $('.row-of-dynamic-inputs').each(function () {
-                    formData['diploma'].push($(this).find('[name="diploma[]"]').val());
-                    formData['school'].push($(this).find('[name="school[]"]').val());
-                    formData['from_year'].push($(this).find('[name="from_year[]"]').val());
-                    formData['to_year'].push($(this).find('[name="to_year[]"]').val());
-                });
+                    var diplomaInput = $(this).find('[name="diploma[]"]');
+                    var schoolInput = $(this).find('[name="school[]"]');
+                    var fromYearInput = $(this).find('[name="from_year[]"]');
+                    var toYearInput = $(this).find('[name="to_year[]"]');
 
+                    // Check if input fields exist and have values
+                    if (diplomaInput.length && schoolInput.length && fromYearInput.length && toYearInput.length) {
+                        var diplomaValue = diplomaInput.val().trim();
+                        var schoolValue = schoolInput.val().trim();
+                        var fromYearValue = fromYearInput.val().trim();
+                        var toYearValue = toYearInput.val().trim();
+
+                        // Push values only if they are not empty
+                        if (diplomaValue || schoolValue || fromYearValue || toYearValue) {
+                            formData['diploma'].push(diplomaValue);
+                            formData['school'].push(schoolValue);
+                            formData['from_year'].push(fromYearValue);
+                            formData['to_year'].push(toYearValue);
+                        }
+                    }
+                });
                 // Add additional data manually (user_id and form_identifier)
                 formData['user_id'] = userId;
                 formData['form_identifier'] = identifier;
@@ -1124,10 +1211,18 @@
                 formData['year'] = [];
 
                 $('.row-of-dynamic-inputs').each(function () {
-                    formData['milestone'].push($(this).find('[name="milestone[]"]').val());
-                    formData['year'].push($(this).find('[name="year[]"]').val());
-                });
+                    var milestoneInput = $(this).find('[name="milestone[]"]');
+                    var yearInput = $(this).find('[name="year[]"]');
 
+                    if (milestoneInput.length && yearInput.length) {
+                        var milestoneValue = milestoneInput.val().trim();
+                        var yearValue = yearInput.val().trim();
+                        if (milestoneValue || yearValue ) {
+                            formData['milestone'].push(milestoneValue);
+                            formData['year'].push(yearValue);
+                        }
+                    }
+                });
                 // Add additional data manually (user_id and form_identifier)
                 formData['user_id'] = userId;
                 formData['form_identifier'] = identifier;
@@ -1161,10 +1256,16 @@
                 formData['interest'] = [];
 
                 $('.row-of-dynamic-inputs').each(function () {
-                    formData['interest'].push($(this).find('[name="interest[]"]').val());
-                });
+                    var interestInput = $(this).find('[name="interest[]"]');
 
-                // Add additional data manually (user_id and form_identifier)
+
+                    if (interestInput.length) {
+                        var interestValue = interestInput.val().trim();
+                        if (interestValue ) {
+                            formData['interest'].push(interestValue);
+                        }
+                    }
+                });
                 formData['user_id'] = userId;
                 formData['form_identifier'] = identifier;
 
