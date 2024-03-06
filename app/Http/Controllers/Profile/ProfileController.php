@@ -1147,7 +1147,6 @@ class ProfileController extends Controller
             $fieldName = 'coverPicture';
 
             if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
-//                dd('herer');
                 $image = $request->file($fieldName);
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
@@ -1161,11 +1160,9 @@ class ProfileController extends Controller
 
                 $user->theme_image = 'assets/images/theme_images/' . $imageName;
                 $user->save();
-//                dd($user);
 
                 return redirect()->back()->with('success', 'Cover picture updated successfully');
             }
-            dd('heresdasdasdar');
             return redirect()->back()->with('error', 'No valid file uploaded');
 
         }
