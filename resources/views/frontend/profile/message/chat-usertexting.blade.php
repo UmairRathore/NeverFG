@@ -32,19 +32,10 @@
                         <div class="recent_heading">
                             <h4>Recent</h4>
                         </div>
-{{--                        <div class="srch_bar">--}}
-{{--                            <div class="stylish-input-group">--}}
-{{--                                <input type="text" class="search-bar" placeholder="Search">--}}
-{{--                                <span class="input-group-addon">--}}
-{{--                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>--}}
-{{--                </span></div>--}}
-{{--                        </div>--}}
+
                     </div>
                     <div class="inbox_chat">
-                        {{--                                        @foreach($leftwallmessages as $leftwallmessages)--}}
-
-                        {{--                            @if(is_object($leftwallmessages) && property_exists($leftwallmessages, 'id'))--}}
-                        <div id="chatleft" class="chat_list active_chat">
+                    <div id="chatleft" class="chat_list active_chat">
                             <a href="{{ route('chat.text', [$leftwallmessages->id]) }}">
                                 <div class="chat_people">
                                     <div class="chat_img"><img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"></div>
@@ -56,14 +47,26 @@
                                 </div>
                             </a>
                         </div>
-                        {{--                            @else--}}
-                        {{--                                <div>Invalid data format: {{ json_encode($leftwallmessages) }}</div>--}}
-                        {{--                            @endif--}}
-                        {{--                                        @endforeach--}}
+
                     </div>
                 </div>
                 <div class="mesgs" id="mesgs">
                     <div class="msg_history" id="chat">
+                        <div class="type_msg">
+                            <div class="input_msg_write">
+                                <form id="chatmodalform">
+                                    {{--                                        @csrf--}}
+                                    <div class="input_msg_write">
+                                        <input id="receiver_id" type="hidden" value="{{$reciever_id}}">
+                                        <input id="sender_id" type="hidden" value="{{Auth::user()->id}}">
+                                        <input type="text" class="write_msg form-control input-sm chat_input @error('messsage') is-invalid @enderror"
+                                               value="{{ old('message') }}" id="message" placeholder="Write your message here..."/>
+                                        <button class="msg_send_btn" id="btn-chat" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            {{--                                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>--}}
+                        </div>
                         @foreach($messages as $message)
                             @if(Auth::user()->id == $message->sender_id)
                                 <div class="outgoing_msg">
@@ -88,21 +91,7 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="type_msg">
-                        <div class="input_msg_write">
-                            <form id="chatmodalform">
-                                {{--                                        @csrf--}}
-                                <div class="input_msg_write">
-                                    <input id="receiver_id" type="hidden" value="{{$reciever_id}}">
-                                    <input id="sender_id" type="hidden" value="{{Auth::user()->id}}">
-                                    <input type="text" class="write_msg form-control input-sm chat_input @error('messsage') is-invalid @enderror"
-                                           value="{{ old('message') }}" id="message" placeholder="Write your message here..."/>
-                                    <button class="msg_send_btn" id="btn-chat" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                        {{--                                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>--}}
-                    </div>
+
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
                     <script type="text/javascript">
                         $('#chatmodalform').on('submit', function (e) {
