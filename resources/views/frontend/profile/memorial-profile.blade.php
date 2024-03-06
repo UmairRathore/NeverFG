@@ -220,7 +220,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="basicSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <div id="basicSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                         <!-- Dynamic success message will be displayed here -->
                     </div>
                     <div id="basicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -251,7 +251,7 @@
                             <input type="text" class="input-design" name="home_city" value="@if(isset($profile['memorialCity']->home_city)){{$profile['memorialCity']->home_city}}@endif"/>
                         </div>
                     </div>
-                    <div id="homeSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <div id="homeSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                         <!-- Dynamic success message will be displayed here -->
                     </div>
                     <div id="homeErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -282,7 +282,7 @@
                             <input type="text" class="input-design" name="other_city" value="@if(isset($profile['memorialCity']->other_city)){{$profile['memorialCity']->other_city}}@endif"/>
                         </div>
                     </div>
-                    <div id="otherSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <div id="otherSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                         <!-- Dynamic success message will be displayed here -->
                     </div>
                     <div id="otherErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -317,7 +317,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="occupationSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                <div id="occupationSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="occupatioErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -347,7 +347,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="academicSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                <div id="academicSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="academicErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -382,7 +382,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="milestoneSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                <div id="milestoneSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="milestoneErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -420,14 +420,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="religionSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                    <div id="religionSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                         <!-- Dynamic success message will be displayed here -->
                     </div>
-                    <div id="religionErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
+                    <div id="religionErrorMessage" class="alert alert-danger" role="alert" style="color: blue; display: none;">
                         <!-- Dynamic success message will be displayed here -->
                     </div>
                     <div id="religionLoader" style="display: none;">
-                        <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
+                        <img src="{{asset('assets/loader.gif')}}" alt="  GIF">
                         <p>Loading...</p>
                     </div>
 
@@ -454,7 +454,7 @@
                         </button>
                     </div>
                 </div>
-                <div id="interestSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                <div id="interestSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                     <!-- Dynamic success message will be displayed here -->
                 </div>
                 <div id="ErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -495,7 +495,7 @@
                                     <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
                                 @endif
                             </div>
-                            <div id="profileCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                            <div id="profileCustomSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
                                 <!-- Dynamic success message will be displayed here -->
                             </div>
                             <div id="profileCustomErrorMessage" class="alert alert-danger" role="alert" style="display: none;">
@@ -544,7 +544,7 @@
                     <div id="theme" class="theme-tabcontent">
                         <p>You can upload your own unique picture here. For the best look, we recommend using a picture with a high resolution (1024x768 and higher, for example).</p>
                         <div class="custom-file-chooser-wrapper">
-                            <div id="themeCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none;">
+                            <div id="themeCustomSuccessMessage" class="alert alert-success" role="alert" style="display: none; color: blue">
                                 <!-- Dynamic success message will be displayed here -->
                             </div>
                             <div id="themeCustomErrorMessage" class="alert alert-danger" role="alert" style="display: none;">

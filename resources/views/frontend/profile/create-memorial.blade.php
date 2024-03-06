@@ -46,10 +46,6 @@
                             <input type="text" class="input-design" name="city_of_birth" value="{{ $check && $check->city_of_birth ? $check->city_of_birth : '' }}"/>
                         </div>
                         <div class="form-group-input">
-                            <label for="">Email </label>
-                            <input type="email" class="input-design" name="email" value="{{ $check && $check->email ? $check->email : '' }}"/>
-                        </div>
-                        <div class="form-group-input">
                             <label for="">Date of Birth</label>
                             <div class="row-of-inputs">
                                     <!-- Day Dropdown -->
@@ -117,7 +113,7 @@
                         </div>
                     <div class="form-group-input">
                             <label for="memorial_biography">Their Obituary/Biography</label>
-                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ $check && $check->biography ? $check->biography : '' }}" class="input-design @error('memorial_biography') is-invalid @enderror" required/>
+                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ $check && $check->biography ? $check->biography : '' }}" class="input-design @error('memorial_biography') is-invalid @enderror" />
                             @error('memorial_biography')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -126,7 +122,7 @@
                         </div>
                         <div class="form-group-input">
                             <label for="memorial_fav_saying">Their Favourite Saying</label>
-                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ $check && $check->fav_saying ? $check->fav_saying : '' }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" required/>
+                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ $check && $check->fav_saying ? $check->fav_saying : '' }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" />
                             @error('memorial_fav_saying')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -135,7 +131,7 @@
                         </div>
                         <div class="form-group-input">
                             <label for="memorial_resting_place">Resting Place:</label>
-                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ $check && $check->resting_place ? $check->resting_place : '' }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" required/>
+                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ $check && $check->resting_place ? $check->resting_place : '' }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" />
                             @error('memorial_resting_place')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -148,7 +144,7 @@
                             <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
                             <p>Loading...</p>
                         </div>
-                        <div id="formMessage" style="display: none;"></div>
+                        <div id="formMessage" style="display: none; color: blue"></div>
                         <div class="form-group-input">
 
                             <div class="custom-file-chooser-wrapper">
@@ -179,12 +175,12 @@
             </form>
 
             <div id="divalready" class="footer-of-form-content" style="display: none;">
-                        <button class="form-btn" type="button">You have Already Created a Memorial</button>
+                        <button class="form-btn" type="button">You have Already Created a Memorial Click here to go to memorial profile</button>
                     </div>
 @if($check)
                 <div id="divalready" class="footer-of-form-content">
                     <button class="form-btn" type="button">
-                        <a href="{{route('profile',$check->memorial_user_id)}}" style="text-decoration: none; color: white">You have Already Created a Memorial</a>
+                        <a href="{{route('profile',$check->memorial_user_id)}}" style="text-decoration: none; color: white">You have Already Created a Memorial Click here to go to memorial profile</a>
                     </button>
                 </div>
 
