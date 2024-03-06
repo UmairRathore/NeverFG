@@ -1105,7 +1105,6 @@ class ProfileController extends Controller
         {
             try {
                 $user = User::where('id', $request->memorial_id)
-                    ->whereNotNull('profile_image')
                     ->firstOrFail();
             } catch (ModelNotFoundException $e) {
                 return redirect()->back()->with('error', 'User not found');
@@ -1139,7 +1138,6 @@ class ProfileController extends Controller
         {
             try {
                 $user = User::where('id', $request->memorial_id)
-                    ->whereNotNull('theme_image')
                     ->firstOrFail();
 
             } catch (ModelNotFoundException $e) {
@@ -1149,6 +1147,7 @@ class ProfileController extends Controller
             $fieldName = 'coverPicture';
 
             if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
+//                dd('herer');
                 $image = $request->file($fieldName);
                 $imageName = time() . '_' . $image->getClientOriginalName();
 
@@ -1162,11 +1161,11 @@ class ProfileController extends Controller
 
                 $user->theme_image = 'assets/images/theme_images/' . $imageName;
                 $user->save();
-                dd($user);
+//                dd($user);
 
                 return redirect()->back()->with('success', 'Cover picture updated successfully');
             }
-
+            dd('heresdasdasdar');
             return redirect()->back()->with('error', 'No valid file uploaded');
 
         }
