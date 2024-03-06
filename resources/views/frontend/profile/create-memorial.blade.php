@@ -24,30 +24,30 @@
                     <div class="form-data-of-profile-page">
                         <div class="form-group-input">
                             <label for="">First Name</label>
-                            <input type="text" class="input-design" name="first_name" value=""/>
+                            <input type="text" class="input-design" name="first_name" value="{{ $check && $check->first_name ? $check->first_name : '' }}"/>
                         </div>
                         <div class="form-group-input">
                             <label for="">Middle Name</label>
-                            <input type="text" class="input-design" name="middle_name" value=""/>
+                            <input type="text" class="input-design" name="middle_name" value="{{ $check && $check->middle_name ? $check->middle_name : '' }}"/>
                         </div>
                         <div class="form-group-input">
                             <label for="">Last Name</label>
-                            <input type="text" class="input-design" name="last_name" value=""/>
+                            <input type="text" class="input-design" name="last_name" value="{{ $check && $check->last_name ? $check->last_name : '' }}"/>
                         </div>
 
                         <div class="form-group-input">
                             <label for="">Suffix(Mr., M.D., etc.)</label>
-                            <input type="text" class="input-design" name="suffix" value=""/>
+                            <input type="text" class="input-design" name="suffix" value="{{ $check && $check->suffix ? $check->suffix : '' }}"/>
                             <input type="hidden" name="keeperID" value="{{$user_id}}">
 
                         </div>
                         <div class="form-group-input">
                             <label for="">City of birth</label>
-                            <input type="text" class="input-design" name="city_of_birth" value=""/>
+                            <input type="text" class="input-design" name="city_of_birth" value="{{ $check && $check->city_of_birth ? $check->city_of_birth : '' }}"/>
                         </div>
                         <div class="form-group-input">
                             <label for="">Email </label>
-                            <input type="email" class="input-design" name="email" value=""/>
+                            <input type="email" class="input-design" name="email" value="{{ $check && $check->email ? $check->email : '' }}"/>
                         </div>
                         <div class="form-group-input">
                             <label for="">Date of Birth</label>
@@ -117,7 +117,7 @@
                         </div>
                     <div class="form-group-input">
                             <label for="memorial_biography">Their Obituary/Biography</label>
-                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ old('memorial_biography') }}" class="input-design @error('memorial_biography') is-invalid @enderror" required/>
+                            <input name="memorial_biography" type="text" placeholder="Their Obituary/Biography" value="{{ $check && $check->biography ? $check->biography : '' }}" class="input-design @error('memorial_biography') is-invalid @enderror" required/>
                             @error('memorial_biography')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="form-group-input">
                             <label for="memorial_fav_saying">Their Favourite Saying</label>
-                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ old('memorial_fav_saying') }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" required/>
+                            <input name="memorial_fav_saying" type="text" placeholder="Their Favourite Saying" value="{{ $check && $check->fav_saying ? $check->fav_saying : '' }}" class="input-design @error('memorial_fav_saying') is-invalid @enderror" required/>
                             @error('memorial_fav_saying')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="form-group-input">
                             <label for="memorial_resting_place">Resting Place:</label>
-                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ old('memorial_resting_place') }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" required/>
+                            <input name="memorial_resting_place" type="text" placeholder="Their Resting Place" value="{{ $check && $check->resting_place ? $check->resting_place : '' }}" class="input-design @error('memorial_resting_place') is-invalid @enderror" required/>
                             @error('memorial_resting_place')
                             <span class="invalid-feedback" role="alert" style="color: red;">
                     <strong>{{$message}}</strong>
@@ -152,10 +152,19 @@
                         <div class="form-group-input">
 
                             <div class="custom-file-chooser-wrapper">
+                                <div class="user-profile-section-2-wrapper">
+                                    <div id="profile-image-div-dp" class="profile-img-of-user">
+                                        @if($check &&  $check->profile_image)
+                                            <img src="{{asset($check->profile_image)}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;">
+                                        @else
+                                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;"/>
+                                        @endif
+                                    </div>
+                                </div>
                                 <input type="file" id="file-input" name="profile_image"/>
 
                                 <label id="file-input-label" for="file-input">
-                                    + Select a File</label</div>
+                                    + Select Profile Image</label</div>
                         </div>
 
                     </div>
@@ -173,10 +182,13 @@
                         <button class="form-btn" type="button">You have Already Created a Memorial</button>
                     </div>
 @if($check)
-            <div id="divalready" class="footer-of-form-content" ">
-                <button class="form-btn" type="button">You have Already Created a Memorial</button>
-            </div>
-          @endif
+                <div id="divalready" class="footer-of-form-content">
+                    <button class="form-btn" type="button">
+                        <a href="{{route('profile',$check->memorial_user_id)}}" style="text-decoration: none; color: white">You have Already Created a Memorial</a>
+                    </button>
+                </div>
+
+            @endif
         </div>
 
 
@@ -227,6 +239,9 @@
 
                             $('#divmemorial').hide();
                             $('#divalready').show();
+                            $('#profile-image-div').load(window.location.href + ' #profile-image-div');
+                            $('#basic-info-form').load(window.location.href + ' #basic-info-form');
+
 
                         } else {
                             $('#errorMessage').text(response.message).show();

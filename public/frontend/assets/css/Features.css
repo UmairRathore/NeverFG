@@ -235,7 +235,7 @@ body {
 .features-page-first-grid .bird-flying-section {
   grid-area: bird-flying-section;
   height: 80vh;
-  background: url("/frontend/assets/images/bird.webp") no-repeat;
+  background: url("assets/images/blacklogo.jpg") no-repeat;
   background-size: 100%;
   display: flex;
   justify-content: flex-end;

@@ -12,7 +12,7 @@
                     <div class="header-of-form-profile margin-top no-border">
                         <div class="profile-header-without-logged-in ">
                             <div class="profile-header-without-logged-in-image-wrapper">
-                                <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="profile-without-logged-in-image">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-without-logged-in-image">
 
                             </div>
                             <h1>Ghulam Dastgeer</h1>
@@ -246,31 +246,31 @@
                         <h1 class="mem-heading-main">Momentos</h1>
                         <div class="pics-wrapper">
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                             <div class="image-wrapper-of-not-logged-in-profile">
-                                <img src="{{asset('frontend/assets/images/bird.webp')}}" alt="" class="mem-pic">
+                                <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="mem-pic">
                             </div>
                         </div>
                     </div>
@@ -289,7 +289,7 @@
                 <div class="two-cols-of-comment-and-replies">
                     <div class="two-cols-of-comment-and-replies-left">
                         <div class="img-wrapper-of-comment">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="comment-img">
+                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="comment-img">
                         </div>
                     </div>
                     <div class="two-cols-of-comment-and-replies-right">
@@ -313,7 +313,7 @@
                 <div class="two-cols-of-chat-wrapper">
                     <div class="chat-left-section">
                         <div class="chat-usr-img-wrapper">
-                            <img src="{{asset('frontend/assets/images/bird.jpg')}}" alt="" class="chat-usr-photo">
+                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="chat-usr-photo">
                         </div>
                     </div>
 
