@@ -191,6 +191,7 @@ class ProfileController extends Controller
                 'memorialCity' => $this->_city_model::where('memorial_user_id', $memorialID)->first(),
                 'memorialMilestone' => $this->_milestone_model::where('memorial_user_id', $memorialID)->first(),
             ];
+//            dd($this->data['profile']);
             $this->data['profile_images'] = $this->_libraryPhoto_model::where('profile_image', '!=', Null)->get();
 
             return view($this->_viewPath . 'memorial-profile', $this->data);
@@ -430,8 +431,8 @@ class ProfileController extends Controller
                 ];
                 return response()->json($data);
             }
-        } elseif ($formType == 'interest_info') {
-            // Retrieve the 'interest' array from the request
+        }
+        elseif ($formType == 'interest_info') {
             $interests = $request->input('interest', []);
 
             $this->data['interestinfoCheck'] = $this->_interest_model::where('memorial_user_id', $id)->first();
@@ -1140,6 +1141,7 @@ class ProfileController extends Controller
                 $user = User::where('id', $request->memorial_id)
                     ->whereNotNull('theme_image')
                     ->firstOrFail();
+
             } catch (ModelNotFoundException $e) {
                 return redirect()->back()->with('error', 'User not found');
             }
@@ -1160,6 +1162,7 @@ class ProfileController extends Controller
 
                 $user->theme_image = 'assets/images/theme_images/' . $imageName;
                 $user->save();
+                dd($user);
 
                 return redirect()->back()->with('success', 'Cover picture updated successfully');
             }

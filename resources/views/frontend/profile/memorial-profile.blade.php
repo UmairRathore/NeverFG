@@ -412,28 +412,11 @@
                         </p>
 
                         <div class="form-group-input">
-                            <label for="">Religious Views:</label>
+                            <label for="">Enter Your Religion </label>
                             <div class="row-of-inputs">
-                                <div class="radio-input">
-                                    <input type="radio" id="religion_html" name="religion_type" value="predefined" @if($profile['memorialAdditional']->religion === 'Islam') checked @endif />
-                                    <div class="row-of-inputs">
-                                        <select name="predefined_religion" id="religion_select" style="display: block">
-                                            <option value="Islam" @if($profile['memorialAdditional']->religion === 'Islam') selected @endif>Islam</option>
-                                            <option value="Christianity" @if($profile['memorialAdditional']->religion === 'Christianity') selected @endif>Christianity</option>
-                                            <option value="Hinduism" @if($profile['memorialAdditional']->religion === 'Hinduism') selected @endif>Hinduism</option>
-                                            <option value="Buddhism" @if($profile['memorialAdditional']->religion === 'Buddhism') selected @endif>Buddhism</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group-input">
-                            <label for="">Your Religious Views are not there? Enter them here:</label>
-                            <div class="row-of-inputs">
-                                <div class="radio-input">
-                                    <input type="radio" id="custom_religion_html" name="religion_type" value="custom"/>
-                                    <input type="text" name="custom_religion" id="custom_religion" class="input-design" value="" style="display: none"/>
-                                </div>
+
+                                    <input type="text" name="custom_religion" id="custom_religion" class="input-design" value="{{$profile['memorialAdditional']->religion}}" />
+
                             </div>
                         </div>
                     </div>
@@ -740,8 +723,9 @@
                                                 'from_year' => $fromYearArray[$i],
                                             ];
                                         }
+
                                         }
-                                         if(empty($data['memorialAcademic'])) {
+                                         if(empty($profile['memorialAcademic'])) {
 // Initialize $data['occupations'] with a default empty entry
 $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_year' => '']];
 }
@@ -843,7 +827,7 @@ $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_y
                                             ];
                                         }
                                         }
-                 if(empty($data['memorialMilestone'])) {
+                 if(empty($profile['memorialMilestone'])) {
                         // Initialize $data['occupations'] with a default empty entry
                         $data['milestone'] = [['milestone' => '', 'year' => '']];
                     }
@@ -995,23 +979,7 @@ $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_y
             evt.currentTarget.className += " active";
         }
 
-        //religios chck button
-        document.addEventListener('DOMContentLoaded', function () {
-            var existingReligionRadio = document.getElementById('religion_html');
-            var customReligionRadio = document.getElementById('custom_religion_html');
-            var selectReligion = document.getElementById('religion_select');
-            var customReligionInput = document.getElementById('custom_religion');
 
-            existingReligionRadio.addEventListener('change', function () {
-                selectReligion.style.display = 'block';
-                customReligionInput.style.display = 'none';
-            });
-
-            customReligionRadio.addEventListener('change', function () {
-                selectReligion.style.display = 'none';
-                customReligionInput.style.display = 'block';
-            });
-        });
 
         function openThemeItem(evt, themeTab) {
             // Declare all variables
@@ -1257,8 +1225,6 @@ $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_y
 
                 $('.row-of-dynamic-inputs').each(function () {
                     var interestInput = $(this).find('[name="interest[]"]');
-
-
                     if (interestInput.length) {
                         var interestValue = interestInput.val().trim();
                         if (interestValue ) {
