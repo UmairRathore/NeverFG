@@ -68,7 +68,7 @@
                             <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
                             <p>Loading...</p>
                         </div>
-                        <div id="imageMessage" style="display: none;"></div>
+                        <div id="imageMessage" style="display: none; color: blue"></div>
                     </form>
 
                     <form id="videoUploadForm">
@@ -84,7 +84,7 @@
                             <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
                             <p>Loading...</p>
                         </div>
-                        <div id="videoMessage" style="display: none;"></div>
+                        <div id="videoMessage" style="color: blue; display: none;"></div>
                     </form>
 
 

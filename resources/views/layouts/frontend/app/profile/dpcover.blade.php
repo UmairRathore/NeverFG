@@ -116,7 +116,7 @@
                             <label for="profilePictureInput" class="file-label">Choose a picture:</label>
                             <input type="file" name="profilePicture" id="profilePictureInput" class="file-input" accept="image/*" required>
                         </div>
-                        <input type="hidden" name="id" value="{{$user->id}}">
+                        <input type="hidden" name="memorial_id" value="{{$user->memorial_user_id}}">
                         <button type="submit" class="form-btn">Upload</button>
                     </form>
                 </div>
