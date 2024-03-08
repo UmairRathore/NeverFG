@@ -125,13 +125,13 @@
                                 <div class="user-profile-section-2-wrapper">
                                     <div id="profile-image-div-dp" class="profile-img-of-user">
                                         @if($check &&  $check->profile_image)
-                                            <img src="{{asset($check->profile_image)}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;">
+                                            <img id="previewImage" src="{{asset($check->profile_image)}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;">
                                         @else
-                                            <img src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;"/>
+                                            <img id="previewImage" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="profile-img-user" style="width: 100px; height: 100px; border-radius: 50%; object-fit: contain;"/>
                                         @endif
                                     </div>
                                 </div>
-                                <input type="file" id="file-input" name="profile_image"/>
+                                <input type="file" id="file-input" name="profile_image" onchange="previewSelectedImage(event)"/>
 
                                 <label id="file-input-label" for="file-input">
                                     + Select Profile Image</label</div>
@@ -236,7 +236,17 @@
             });
         });
 
+        function previewSelectedImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
 
+            reader.onload = function(event) {
+                const imgElement = document.getElementById('previewImage');
+                imgElement.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
 
     </script>
 @endsection

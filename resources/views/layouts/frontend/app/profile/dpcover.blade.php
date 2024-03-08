@@ -130,6 +130,7 @@
     <section class="profileWrapper">
         <div class="profile-common-top-wrapper">
             <div id="theme-image-div-dp" class="background-img-wrapper">
+                @if(auth()->check())
                 <?php
                 $user = \App\Models\UserMemorial::where('keeper_id', auth()->user()->id)
                     ->where('user_memorials.memorial_user_id', request('id')) // Fetch the ID from the URL
@@ -143,6 +144,7 @@
                 //                dd(auth()->user()->id);
                 //                dd($memorial);
                 ?>
+                @endif
                 @if(isset($user) && $user->keeper_id == auth()->user()->id)
                     @if(isset($user->theme_image))
 

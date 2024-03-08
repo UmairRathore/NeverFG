@@ -23,11 +23,8 @@
                 <img id="logo_image" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="hero_logo"/>
 
                 <h2 class="heading_secandary">KEEPING MEMORIES ALIVE TOGETHER</h2>
-                <h2 class="heading_ternary">
-                    Comprehensive Virtual Memorial Services Call or Text (915) 800-7900
-                </h2>
 
-                <button onclick="window.location.href='https://calendly.com/maniwyatt29/30min'"  class="blue-background-btn">SCHEDULE FREE CONSULTATION</button>
+
     </div>
 
 @elseif(request()->is('faqs'))
