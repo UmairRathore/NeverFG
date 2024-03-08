@@ -517,9 +517,9 @@
                         <div class="form-group-input">
                             <div id="profile-image-div" class="profile-pic-wrapper-of-Picture">
                                 @if($profile['memorialProfile']->profile_image)
-                                    <img src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>
+                                    <img id="previewImage"src="{{asset($profile['memorialProfile']->profile_image) }}" alt="" class="pic-of-usr"/>
                                 @else
-                                    <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                    <img id="previewImage" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="pic-of-usr"/>
                                 @endif
                             </div>
                             <div id="profileCustomSuccessMessage" class="alert alert-success" role="alert" style="color: blue; display: none;">
@@ -534,7 +534,7 @@
                             </div>
 
                             <div class="custom-file-chooser-wrapper">
-                                <input type="file" id="file-input" name="memento_profile_image_custom"/>
+                                <input type="file" id="file-input" name="memento_profile_image_custom" onchange="previewSelectedImage(event)"/>
 
                                 <label id="file-input-label" for="file-input">
                                     + Select a File</label</div>
@@ -581,7 +581,15 @@
                                 <img src="{{asset('assets/loader.gif')}}" alt="Loader GIF">
                                 <p>Loading...</p>
                             </div>
-
+                            <div class="form-group-input">
+                            <div id="profile-image-div" class="profile-pic-wrapper-of-Picture">
+                                @if($profile['memorialProfile']->theme_image)
+                                    <img id="imagePreview"src="{{asset($profile['memorialProfile']->theme_image) }}" alt="" class="pic-of-usr"/>
+                                @else
+                                    <img id="imagePreview" src="{{asset('assets/images/blacklogo.jpg')}}" alt="" class="pic-of-usr"/>
+                                @endif
+                            </div>
+                            </div>
                             <form id="theme_image_form" enctype="multipart/form-data">
                                 <label for="memorial_theme_image_custom" class="file-input-label">
                                     <input type="file" id="memorial_theme_image_custom" name="memorial_theme_image_custom" style="display: none;">
@@ -1537,6 +1545,32 @@ $data['academics'] = [['diploma' => '', 'school' => '', 'to_year' => '', 'from_y
                     }
                 });
             }
+        });
+        function previewSelectedImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const imgElement = document.getElementById('previewImage');
+                imgElement.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imagePreview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#memorial_theme_image_custom").change(function(){
+            previewImage(this);
         });
     </script>
 @endsection

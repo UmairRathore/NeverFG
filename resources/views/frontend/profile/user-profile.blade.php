@@ -128,16 +128,16 @@
                             <div class="form-group-input">
                                 <div id="profile-image-div" class="profile-pic-wrapper-of-Picture">
                                     @if($user->profile_image)
-                                        <img src="{{asset($user->profile_image) }}" alt="" class="pic-of-usr"/>
+                                        <img id="previewImage" src="{{ asset($user->profile_image) }}" alt="" class="pic-of-usr"/>
                                     @else
-                                        <img src="{{asset('frontend/assets/images/hero_background_1.jpg')}}" alt="" class="pic-of-usr"/>
+                                        <img id="previewImage" src="{{ asset('frontend/assets/images/hero_background_1.jpg') }}" alt="" class="pic-of-usr"/>
                                     @endif
                                 </div>
                                 <div class="custom-file-chooser-wrapper">
-                                    <input type="file" id="file-input" name="profile_image"/>
+                                    <input type="file" id="file-input" name="profile_image" onchange="previewSelectedImage(event)"/>
 
-                                    <label id="file-input-label" for="file-input">
-                                        + Select a File</label</div>
+                                    <label id="file-input-label" for="file-input">+ Select a File</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,6 +152,18 @@
 
 
     </div>
+<script>
+    function previewSelectedImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
+        reader.onload = function(event) {
+            const imgElement = document.getElementById('previewImage');
+            imgElement.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+</script>
 @endsection
 

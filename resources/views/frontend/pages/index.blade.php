@@ -26,7 +26,7 @@
             }
         </style>
 
-
+f
 
 {{--        <div class="our-free-memorials">--}}
 {{--            <h1 class="heading-color font-heading-large">Our Free Memorials</h1>--}}
@@ -94,9 +94,9 @@ $user = \App\Models\UserMemorial::where('keeper_id',auth()->user()->id)->first()
         <div class="are-you-funeral-service-provider-section">
             <div class="service-provider-insider">
                 <h1>ARE YOU A CEMETERY OR FUNERAL SERVICE PROVIDER?</h1>
-                <button onclick="window.location.href='{{ route('privacyTerms') }}'" class="custom-button">
-                    Learn more about Neverfg partnership
-                </button>
+                <h1>
+
+FOR BUSINESS ENQUIRIES AND BULK ORDERS PLEASE EMAIL US AT INFO@NEVERFG.COM
             </div>
         </div>
 
