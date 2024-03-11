@@ -1032,6 +1032,7 @@ class ProfileController extends Controller
                 'content' => $request->input('content'),
                 'sender_id' => $request->input('sender_id'),
                 'receiver_id' => $request->input('receiver_id'),
+                'status' => 'pending',
             ]);
 
             // Return a response
